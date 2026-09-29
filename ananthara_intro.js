@@ -7,6 +7,25 @@
   var gameLoadReleased = false;
   var originalLoadAndRestoreGame = window.loadAndRestoreGame;
 
+  function runtimeReady() {
+    return window.anantharaChoiceScriptReady === true &&
+      typeof window.restartGame === "function" &&
+      typeof window.startLoading === "function" &&
+      typeof window.Scene === "function" &&
+      typeof window.SceneNavigator === "function" &&
+      !!window.nav;
+  }
+
+  function whenRuntimeReady(callback) {
+    if (runtimeReady()) {
+      callback();
+      return;
+    }
+    window.addEventListener("ananthara:runtime-ready", function () {
+      if (runtimeReady()) callback();
+    }, {once:true});
+  }
+
   function storageGet(key) {
     try { return window.localStorage ? localStorage.getItem(key) : null; }
     catch (error) { return null; }
@@ -44,31 +63,39 @@
     storageSet(LANGUAGE_KEY, language);
     storageRemove(SAVE_MARKER);
     gameLoadReleased = true;
-    hideIntro();
-    window.restartGame(false);
+    whenRuntimeReady(function () {
+      hideIntro();
+      window.restartGame(false);
+    });
   }
 
   function continueGame() {
     if (gameStarted || storageGet(SAVE_MARKER) !== "1") return;
     gameStarted = true;
     gameLoadReleased = true;
-    hideIntro();
-    originalLoadAndRestoreGame.call(window);
+    whenRuntimeReady(function () {
+      hideIntro();
+      originalLoadAndRestoreGame.call(window);
+    });
   }
 
   function loadManualGame(slot) {
     if (gameStarted || !slot) return;
     gameStarted = true;
     gameLoadReleased = true;
-    hideIntro();
-    originalLoadAndRestoreGame.call(window, slot);
+    whenRuntimeReady(function () {
+      hideIntro();
+      originalLoadAndRestoreGame.call(window, slot);
+    });
   }
 
   function startNewGameFromUi() {
     storageRemove(SAVE_MARKER);
     gameLoadReleased = true;
-    hideIntro();
-    window.restartGame(false);
+    whenRuntimeReady(function () {
+      hideIntro();
+      window.restartGame(false);
+    });
   }
 
   function mountPrologueBanner(scene) {

@@ -3830,6 +3830,11 @@ window.onload=function() {
       })
     });
 
+    // Deployment integration point: the ChoiceScript globals, navigation
+    // state, preferences and DOM references are fully initialized here.
+    window.anantharaChoiceScriptReady = true;
+    window.dispatchEvent(new Event("ananthara:runtime-ready"));
+
 };
 
 if ( document.addEventListener ) {

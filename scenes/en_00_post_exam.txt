@@ -1,0 +1,58 @@
+*comment Ithar'kael final examination evaluation with Corvus
+
+*label start
+
+Behind you, stone begins to move, slow and heavy, until the passage to the final examination chamber is completely sealed. For a moment, only the silence of the corridor remains. Then you notice Corvus. He is waiting a few steps away, his hands resting calmly behind his back. His hair has long since turned completely grey, and the years have left fine lines around his eyes and across his brow. Yet there is nothing frail in the way he carries himself. His gaze is as alert and steady as you remember it – attentive in a way that can sometimes make it seem as though he notices a question before anyone has spoken it aloud.
+
+Corvus is one of those who have accompanied your training in Ithar’kael time and again. Never as a personal mentor guiding your every step, but often enough that you know his brief remarks almost as well as the pauses that precede them. An answer rarely satisfied him when a better question could still be found behind it.
+
+Today, there is no further question waiting for you. At least, not the kind written on an examination page. Corvus watches you not like someone searching for a mistake, but like someone who has been waiting for something that is now complete.
+
+“You passed.” The words come without ceremony, almost matter-of-factly. Corvus lets a moment pass. “But that was never all this was about.” His gaze briefly shifts to the closed door behind you. “The examination was never meant to prescribe an answer. It was meant to show how you search, what you do once you find an answer—and what you do when knowledge suddenly becomes tangible.” He looks back at you. “In the first section, you could only move forward by truly paying attention. Not every clue was an answer, and not everything visible was important. In the second section, you already had knowledge. But knowledge alone was not enough. You had to use it, make connections, and determine what could actually lead you forward.” His gaze returns once more to the sealed chamber. “And in the final section, you could no longer simply observe. You became part of the answer. Your magic. Your questions. Your understanding of what knowledge means.”
+
+*page_break Continue
+
+*if knowledge_conviction_initial = "truth"
+  “You said that truth belongs in the light.” Corvus says it without approval or reproach. “Sometimes that is exactly what is necessary. But truth does not become harmless simply because it is true. It can expose what was hidden. It can liberate. It can also wound.” He is silent for a moment. “The question is not only whether a truth should be spoken. Sometimes the harder question is what happens after it has been spoken.”
+
+*if knowledge_conviction_initial = "guard"
+  “You said that some knowledge must be protected.” Corvus gives the slightest nod. “That can be responsibility. Not everything that can be known must be open to everyone.” His gaze remains steady. “But protection and control can begin to speak the same language if you are not careful. Those who guard knowledge may eventually find themselves deciding who is allowed to know it.” He lets the words remain between you. “No one will be able to show you that boundary once and for all.”
+
+*if knowledge_conviction_initial = "gift"
+  “You said that knowledge should be shared when it can help others.” Corvus studies you for a moment. “Shared knowledge can change things that one person alone never could.” His voice grows quieter. “But the moment you give something away, you no longer decide alone what becomes of it. You can choose what you share. You cannot always choose what another person will use it for.”
+
+*if knowledge_conviction_initial = "self"
+  “You said that knowledge must not determine who you are.” Corvus’ voice remains calm. “That is a distinction many people learn only late. Your past, your origins, and even the truth do not take away your right to choose your own path.” A brief pause. “But self-determination does not mean that something uncomfortable stops being true simply because you refuse to let it define you.”
+
+Corvus is silent for a moment before he continues. “And then knowledge became personal.” His voice has grown quieter. “No longer just an idea. No longer something that belonged to a stranger or was preserved somewhere in an archive. The replica could answer something you yourself are searching for.” He lets the words settle. “That is the point at which knowledge can become a temptation. Not necessarily because it is forbidden. But because it suddenly promises something you want for yourself.”
+
+*if room3_replica_choice = "take"
+  “You reached for it and tried to take it with you.” Corvus says nothing more about that at first. “Perhaps that is exactly why it matters that you remember what you said before.”
+
+*if room3_replica_choice = "leave"
+  “You left it behind.” There is neither praise nor reproach in the words. “Perhaps that is exactly why it matters that you remember what you said before.”
+
+*if knowledge_conviction_initial = "truth"
+  “You said that truth should be brought into the light.”
+*if knowledge_conviction_initial = "guard"
+  “You said that some knowledge must be protected.”
+*if knowledge_conviction_initial = "gift"
+  “You said that knowledge should be able to help others.”
+*if knowledge_conviction_initial = "self"
+  “You said that knowledge must not determine who you are.”
+
+Corvus keeps his gaze on you. “And in that moment, it was no longer about knowledge in general. It was about yours.”
+
+*page_break Continue
+
+Corvus lets the silence remain between you for a moment. “Today, you showed how you search. You said what you believe about knowledge. And you acted when it became personal.” A brief pause. “Ithar’kael has set itself the task of seeking every truth, no matter how deeply hidden or obscured it may be. We follow myths until we understand what lies behind them. We gather traces, compare accounts, examine evidence, and question even what has long been accepted as certainty.” His gaze rests steadily on you. “But finding a truth is only the beginning. In the end, we always have to decide what to do with what we have learned. Do we leave an ancient artifact where we found it because that place may be part of its history, its purpose, or its protection? Or do we take it with us because we believe knowledge should be preserved, studied, or made accessible to others? And what changes simply because we make that choice?” Corvus exhales slowly. “The irony of our work is that we can rarely know with absolute certainty whether a decision was right or wrong. We can only weigh what we know. Question it. Take responsibility. And try to think not only about what we want to know, but also about what our knowledge may mean for others.” For a moment, something almost ceremonial enters his voice. “Truth is no mere opinion. It is a mystery that reveals itself only to those willing to question everything—even themselves.”
+
+*set quest_exam_status "completed"
+*set guild_rank "Envoy"
+*set quest_exam_objective "The final examination is complete."
+
+Something in Corvus’ posture changes, barely perceptible, yet enough for you to know that the examination is truly over. “Your final examination is complete.” He steps aside, leaving the corridor open before you. “I expect you in the Great Hall later.” His gaze remains on you for another moment. “Until then, your time is your own.”
+
+You have already begun to walk past him when his voice reaches you once more. “Seek what is hidden. Question what is known.”
+
+*goto_scene en_00_itharkael_free_time

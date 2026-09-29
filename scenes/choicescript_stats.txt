@@ -1,0 +1,18 @@
+*comment Ananthara — status overview with progressive browser enhancement
+
+*if language = "en"
+  Current values
+*if language != "en"
+  Deine aktuellen Werte
+
+*stat_chart
+  text neugier Neugier
+  text offenheit Offenheit
+  text innere_balance Innere Balance
+  text wyld_vertrauen Vertrauen zu Wyld
+  text verbundenheit Verbundenheit
+  text resonanz Resonanz
+  text authentizitaet Authentizität
+  text vorsicht Vorsicht
+
+*script if (window.AnantharaStats) window.AnantharaStats.enhance(this);

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html data-ana-theme="celestial">
+<!--
+Copyright 2010 by Dan Fabulich.
+
+Dan Fabulich licenses this file to you under the
+ChoiceScript License, Version 1.0 (the "License"); you may
+not use this file except in compliance with the License. 
+You may obtain a copy of the License at
+
+ http://www.choiceofgames.com/LICENSE-1.0.txt
+
+See the License for the specific language governing
+permissions and limitations under the License.
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+either express or implied.
+-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0">
+<!-- INSERT correct meta values -->
+<title>Ananthara: The Lost Fragments</title>
+
+<script>window.version="UNKNOWN"</script>
+<script src="version.js"></script>
+<script src="../persist.js"></script>
+<script src="../alertify.min.js"></script>
+<script src="../util.js"></script>
+<link href="../style.css" rel="stylesheet" type="text/css">
+<link href="ananthara_game.css" rel="stylesheet" type="text/css">
+<link href="oracle_cards.css" rel="stylesheet" type="text/css">
+<link href="stats_ui.css" rel="stylesheet" type="text/css">
+<link href="themes/ananthara_theme_celestial_astrolabe.css" rel="stylesheet" type="text/css">
+<style id="dynamic"></style>
+<script>window.anantharaNativeChoiceTouch = true;</script>
+<script src="../ui.js"></script>
+<script src="../scene.js"></script>
+<script src="../navigator.js"></script>
+<script src="mygame.js"></script>
+<script src="oracle_cards.js"></script>
+<script src="vendor/html2canvas.min.js"></script>
+<script src="stats_ui.js"></script>
+<script src="ananthara_shell.js"></script>
+<script src="ananthara_intro.js"></script>
+<link href="../alertify.css" rel="stylesheet" type="text/css">
+<!--[if IE 6]><style>.alertify-logs { position: absolute; }</style><![endif]-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<script>
+// INSERT store name; disabled by default because it's confusing for newbie authors
+window.storeName = "ananthara_game";
+//Scene.generatedFast = true;
+var rootDir = "../";
+</script>
+</head>
+<body>
+<div id="anantharaIntro" class="ana-intro video-pending intro-sequence-pending" aria-label="Ananthara">
+  <video class="ana-intro-video ana-intro-video-opening" playsinline preload="auto">
+    <source src="Assets/video/mobile_newfin.mp4" type="video/mp4" media="(max-width: 699px)">
+    <source src="Assets/video/logo-fin-fragments.mp4" type="video/mp4">
+  </video>
+  <video class="ana-intro-video ana-intro-video-loop" muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="Assets/video/intro.mp4" type="video/mp4">
+  </video>
+  <div class="ana-intro-shade"></div>
+  <div class="ana-intro-blackout" aria-hidden="true"></div>
+  <div class="ana-intro-controls">
+    <button type="button" id="anaIntroSound" class="ana-intro-sound" aria-pressed="false" aria-label="Ton aktivieren · Enable sound" title="Ton aktivieren · Enable sound">
+      <svg class="ana-sound-icon ana-sound-icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 8.2a5 5 0 0 1 0 7.6M18.5 5.8a8.4 8.4 0 0 1 0 12.4"/></svg>
+      <svg class="ana-sound-icon ana-sound-icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m16.5 9 5 5m0-5-5 5"/></svg>
+    </button>
+    <button type="button" id="anaIntroSkip" class="ana-intro-skip">Skip Intro</button>
+  </div>
+  <div class="ana-intro-content">
+    <h1 class="ana-intro-brand"><img class="ana-intro-logo" src="Assets/_final.png" alt="Ananthara: The Lost Fragments"></h1>
+    <div id="anaIntroMenu" class="ana-intro-menu" hidden>
+      <button type="button" data-intro-action="begin">Begin Your Journey</button>
+      <button type="button" data-intro-action="how-to">How to Play</button>
+      <button type="button" id="anaContinue" data-intro-action="continue" hidden>Return to Ananthara</button>
+      <button type="button" id="anaLoadGame" data-intro-action="load" hidden>Load Game</button>
+      <button type="button" data-intro-action="world">The World of Ananthara</button>
+      <button type="button" data-intro-action="language">Language</button>
+      <button type="button" data-intro-action="leave">Leave the Path</button>
+    </div>
+    <div id="anaLanguage" class="ana-language" hidden>
+      <p id="anaLanguageTitle">Choose your language · Wähle deine Sprache</p>
+      <button type="button" data-language="de">Deutsch</button>
+      <button type="button" data-language="en">English</button>
+      <button type="button" data-language-cancel hidden>Back</button>
+    </div>
+  </div>
+  <div id="anaWorldModal" class="ana-world-modal" hidden>
+    <div class="ana-world-card" role="dialog" aria-modal="true" aria-labelledby="anaWorldTitle">
+      <h2 id="anaWorldTitle">The World of Ananthara</h2>
+      <p id="anaWorldCopy">Welcome to Ananthara, a world shaped by ancient kingdoms, sacred magic and forgotten truths.</p>
+      <button type="button" id="anaWorldClose" data-intro-action="close-world">Close</button>
+    </div>
+  </div>
+</div>
+<div class="ananthara-fireflies" aria-hidden="true">
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+  <span class="firefly"></span>
+</div>
+<div class="container" id="container1">
+<div id="advertisement">
+</div>
+<div id="header">
+  <div id="identity"><a href="#" id="email" style="display: none">you@example.com</a>
+  <a href="#" onclick="logout(); loginDiv(); return false;" id="logout" style="display: none">Sign Out</a>
+  </div>
+
+  <h1 id="title" class="gameTitle"><!-- My First ChoiceScript Game --></h1>
+<h2 id="author" class="gameTitle"><!--by INSERTINSERTINSERT --></h2>
+
+  <p id="headerLinks">
+      <!-- <a href="credits.html" id="aboutLink" class="spacedLink">About</a> -->
+    </p>
+  <p id="buttons">
+    <button id="statsButton" class="spacedLink" onclick="showStats()">Show Stats</button>
+    <button id="achievementsButton" onclick="showAchievements()" class="spacedLink" style="display: none">Achievements</button>
+    <button id="bugButton" onclick="reportBug()" class="spacedLink" style="display: none">Report Bug</button>
+    <button id="menuButton" onclick="showMenu()" class="spacedLink">Menu</button>
+  </p>
+</div>
+<div id="main">
+<div id="text">
+</div>
+<script>
+startLoading();
+</script>
+</div>
+<div id="mobileLinks" class="webOnly">
+</div>
+<noscript>
+<p>This game requires JavaScript; please enable JavaScript and refresh this page.</p>
+</noscript>
+<div id="developerTools" hidden>
+  <div id="tools"></div>
+</div>
+<script type="module">
+const showDevelopmentTools = new URLSearchParams(window.location.search).get('devtools') === '1';
+if (window.location.hostname === 'localhost' && showDevelopmentTools) {
+  const links = ['quicktest', 'randomtest', 'compile'];
+  await Promise.all(Object.values(links).map(async file => {
+    const link = `../../${file}.html`;
+    const response = await fetch(link);
+    if (!response.ok) throw new Error(`invalid link ${link}: ${response.status} ${response.statusText} ${await response.text()}`);
+  }));
+  window.tools.innerHTML = `
+    <p>Tests: <a href="../../quicktest.html">Quicktest</a> <a href="../../randomtest.html">Randomtest</a></p>
+    <p><a href="../../compile.html">Export to HTML</a></p>
+  `;
+  window.developerTools.hidden = false;
+}
+</script>
+<dialog id="keyboardShortcuts" onclick="event.target === this && this.close()">
+<header><span>Keyboard Shortcuts</span> <form method=dialog><button>X</button></form></header>
+<div class="table">
+  <div>Scroll Down</div>
+  <div><span class="key">Space</span></div>
+  <div>Scroll Up</div>
+  <div><span class="key">Shift</span> + <span class="key">Space</span></div>
+  <div>Next Option</div>
+  <div><span class="key">J</span></div>
+  <div>Previous Option</div>
+  <div><span class="key">K</span></div>
+  <div>Next (Press and Hold)</div>
+  <div><span class="key">Enter</span></div>
+  <div>Jump to Option</div>
+  <div><span class="key">1</span> - <span class="key">9</span></div>
+  <div>Show Stats</div>
+  <div><span class="key">Q</span></div>
+  <div>Menu</div>
+  <div><span class="key">W</span></div>
+  <div>Show Shortcuts</div>
+  <div><span class="key">?</span></div>
+</div>
+</dialog>
+</body>
+</html>

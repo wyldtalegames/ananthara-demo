@@ -1,0 +1,1219 @@
+@font-face {
+  font-family: "AnantharaTitle";
+  src: url("fonts/CinzelDecorative-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.ana-intro { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; overflow:hidden; color:#fff; background:radial-gradient(circle at 50% 35%,rgba(255,199,0,.09),transparent 28%),radial-gradient(ellipse at 25% 65%,rgba(37,92,47,.34),transparent 55%),linear-gradient(145deg,#102317 0%,#07100a 48%,#020604 100%); transition:opacity .65s ease; }
+.ana-intro::before { position:absolute; inset:0; content:""; background:radial-gradient(circle at 20% 28%,rgba(255,199,0,.18) 0 1px,transparent 2px),radial-gradient(circle at 76% 18%,rgba(255,199,0,.15) 0 1px,transparent 2px),radial-gradient(circle at 83% 76%,rgba(255,199,0,.14) 0 1px,transparent 2px); opacity:.7; }
+.ana-intro[hidden] { display:none; }
+.ana-intro.is-leaving { opacity:0; pointer-events:none; }
+.ana-intro.has-left { background:#000; }
+.ana-intro-video,.ana-intro-shade,.ana-intro-blackout { position:absolute; inset:0; width:100%; height:100%; }
+.ana-intro-video { object-fit:cover; opacity:0; transition:opacity 1.1s ease; }
+.ana-intro-video.is-active { opacity:1; }
+.ana-intro.video-pending .ana-intro-video,.ana-intro.video-failed .ana-intro-video { opacity:0; }
+.ana-intro-shade { z-index:1; background:linear-gradient(180deg,rgba(1,5,10,.6),rgba(1,3,8,.86)),radial-gradient(circle,rgba(0,0,0,.08),rgba(0,0,0,.64)); transition:background 1s ease; }
+.ana-intro-blackout { z-index:2; pointer-events:none; background:#000; opacity:0; transition:opacity .48s ease; }
+.ana-intro.is-blackout .ana-intro-blackout { opacity:1; }
+.ana-intro.video-pending .ana-intro-blackout { opacity:1; }
+.ana-intro.intro-menu-visible .ana-intro-shade { background:linear-gradient(180deg,rgba(1,5,12,.72),rgba(1,3,9,.9)),radial-gradient(circle,rgba(0,0,0,.2),rgba(0,0,0,.74)); }
+.ana-intro-content { position:relative; z-index:3; width:min(94vw,980px); padding:30px; text-align:center; transition:opacity .9s ease,transform .9s ease; }
+.ana-intro.intro-sequence-pending .ana-intro-content { visibility:hidden; opacity:0; pointer-events:none; transform:translateY(10px); }
+.ana-intro-controls { position:absolute; z-index:4; right:max(14px,env(safe-area-inset-right)); bottom:max(14px,env(safe-area-inset-bottom)); display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; max-width:calc(100% - 28px); }
+.ana-intro-sound,.ana-intro-skip { position:static; min-height:44px; padding:.65rem 1rem; border:1px solid rgba(255,199,0,.5); border-radius:999px; color:#f7efda; background:rgba(2,8,17,.76); backdrop-filter:blur(8px); font:700 .72rem/1 Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
+.ana-intro-sound{display:grid;width:44px;min-width:44px;height:44px;padding:9px;place-items:center;color:#f7efda}
+.ana-sound-icon{grid-area:1/1;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ana-sound-icon-on{display:none}
+.ana-intro-sound.is-sound-on{color:#ffc700;border-color:#ffc700;box-shadow:0 0 18px rgba(255,199,0,.2)}
+.ana-intro-sound.is-sound-on .ana-sound-icon-on{display:block}
+.ana-intro-sound.is-sound-on .ana-sound-icon-off{display:none}
+.ana-intro-skip:hover,.ana-intro-skip:focus-visible,.ana-intro-sound:hover,.ana-intro-sound:focus-visible { border-color:#ffc700; color:#ffc700; box-shadow:0 0 18px rgba(255,199,0,.2); }
+.ana-intro-sound[hidden] { display:none; }
+.ana-intro-skip[hidden] { display:none; }
+.ana-intro-content h1 { margin:0 0 34px; color:#ffc700; font-family:"AnantharaTitle",Arial,sans-serif; font-size:clamp(2rem,6.5vw,5.25rem); line-height:1.08; letter-spacing:.055em; overflow-wrap:anywhere; text-shadow:0 0 30px rgba(255,199,0,.3); }
+.ana-intro-menu,.ana-language { display:grid; gap:12px; width:min(100%,360px); margin:auto; }
+.ana-intro-menu[hidden],.ana-language[hidden],.ana-world-modal[hidden] { display:none; }
+.ana-intro-menu button,.ana-language button,.ana-world-card button { min-height:48px; border:1px solid rgba(255,199,0,.62); border-radius:999px; color:#ffc700; background:rgba(3,10,5,.66); backdrop-filter:blur(8px); }
+.ana-language p { color:rgba(255,255,255,.78); }
+.ana-world-modal { position:absolute; inset:0; z-index:4; display:grid; place-items:center; padding:20px; background:rgba(0,0,0,.72); }
+.ana-world-card { max-width:560px; padding:32px; border:1px solid rgba(255,199,0,.35); border-radius:14px; background:rgba(8,18,10,.96); text-align:center; }
+.ana-world-card h2 { color:#ffc700; }
+@media(max-width:640px){.ana-intro-content{padding:20px}.ana-intro-content h1{margin-bottom:24px}.ana-intro-menu button,.ana-language button{width:100%}.ana-intro-controls{right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));max-width:calc(100% - 16px)}.ana-intro-sound,.ana-intro-skip{padding:.62rem .8rem;font-size:.65rem}.ana-intro-sound{width:44px;min-width:44px;padding:9px}}
+@media(max-width:699px){.ana-intro-blackout{transition-duration:1.2s}}
+@media(prefers-reduced-motion:reduce){.ana-intro{transition:none}.ana-intro-video{display:none}}
+
+.ana-prologue-banner,
+.ana-demo-end {
+  width:min(100%,920px);
+  margin:clamp(24px,7vh,80px) auto;
+  padding:clamp(30px,6vw,68px);
+  border:1px solid rgba(255,199,0,.46);
+  border-radius:18px;
+  background:radial-gradient(circle at 50% 10%,rgba(255,199,0,.09),transparent 32%),linear-gradient(145deg,rgba(14,29,17,.97),rgba(4,10,6,.98));
+  box-shadow:0 0 42px rgba(255,199,0,.09),inset 0 0 30px rgba(255,199,0,.035);
+  text-align:center;
+}
+.ana-prologue-sigil,.ana-demo-sigil{margin-bottom:12px;color:#ffc700;font-size:clamp(2rem,5vw,3.5rem);text-shadow:0 0 18px rgba(255,199,0,.42)}
+.ana-prologue-kicker{margin:0 0 20px;color:#ffc700;font-size:.82rem;font-weight:700;letter-spacing:.28em}
+.ana-prologue-banner h2,.ana-demo-end h2{max-width:760px;margin:0 auto 38px;color:rgba(255,255,255,.9);font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.45rem,3.5vw,2.5rem);line-height:1.42}
+.ana-prologue-banner button,.ana-demo-actions button,.ana-demo-actions a{display:inline-flex;min-width:210px;min-height:48px;align-items:center;justify-content:center;padding:12px 26px;border:1px solid #ffc700;border-radius:999px;color:#071008;background:linear-gradient(135deg,#ffc700,#c59d17);font-weight:700;text-decoration:none;cursor:pointer}
+
+.ana-game-menu{display:grid;width:min(100%,620px);gap:14px;margin:clamp(20px,6vh,64px) auto;padding:clamp(24px,5vw,44px);border:1px solid rgba(255,199,0,.38);border-radius:16px;background:rgba(6,15,8,.96);box-shadow:0 0 36px rgba(255,199,0,.08)}
+.ana-game-menu h2{margin:0 0 16px;color:#ffc700;text-align:center;font-family:Arial,Helvetica,sans-serif;letter-spacing:.12em}
+.ana-game-menu>button,.ana-save-panel button{min-height:48px;padding:11px 20px;border:1px solid rgba(255,199,0,.52);border-radius:999px;color:#ffc700;background:rgba(3,10,5,.78);font:inherit;cursor:pointer}
+.ana-game-menu>button.is-primary,.ana-save-panel button.is-primary{color:#071008!important;-webkit-text-fill-color:#071008;background:linear-gradient(135deg,#ffc700,#c59d17)!important}
+
+.ana-save-overlay{position:fixed;inset:0;z-index:12000;display:grid;place-items:center;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));overflow:auto;background:rgba(0,0,0,.78);backdrop-filter:blur(8px)}
+.ana-save-panel{width:min(100%,760px);max-height:min(88dvh,900px);overflow:auto;padding:clamp(22px,5vw,42px);border:1px solid rgba(255,199,0,.48);border-radius:18px;background:linear-gradient(150deg,rgba(15,29,17,.99),rgba(4,10,6,.99));box-shadow:0 0 48px rgba(255,199,0,.15)}
+.ana-save-panel h2{margin:0 0 26px;color:#ffc700;font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:.1em;text-align:center}
+.ana-save-create{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin-bottom:22px}
+.ana-save-create input{min-width:0;min-height:48px;padding:10px 16px;border:1px solid rgba(255,199,0,.42);border-radius:10px;color:#fff;background:rgba(0,0,0,.34);font:inherit}
+.ana-save-status{min-height:1.4em;margin:0 0 12px;color:rgba(255,255,255,.75);text-align:center}
+.ana-save-list{display:grid;gap:12px}
+.ana-save-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px;border:1px solid rgba(255,199,0,.25);border-radius:12px;background:rgba(0,0,0,.22)}
+.ana-save-card-copy{display:grid;min-width:0;gap:4px}
+.ana-save-card-copy strong{color:#ffc700;font-size:1.05rem;overflow-wrap:anywhere}
+.ana-save-card-copy span,.ana-save-card-copy time{color:rgba(255,255,255,.72);overflow-wrap:anywhere}
+.ana-save-card-copy time{font-size:.86rem}
+.ana-save-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.ana-save-panel .ana-save-actions button{min-height:44px;padding:8px 15px}
+.ana-save-panel button.is-danger{border-color:rgba(255,122,90,.55);color:#ffb09c}
+.ana-save-confirm{grid-column:1/-1;padding-top:14px;border-top:1px solid rgba(255,199,0,.18)}
+.ana-save-confirm p{margin:0 0 12px;color:rgba(255,255,255,.86)}
+.ana-save-empty{margin:12px 0 24px;color:rgba(255,255,255,.67);text-align:center}
+.ana-save-close{display:block;margin:24px auto 0;min-width:180px}
+
+.ana-demo-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+@media(max-width:640px){
+  .ana-intro-content h1{font-size:clamp(1.7rem,10vw,3rem);letter-spacing:.025em}
+  .ana-prologue-banner,.ana-demo-end{margin:16px auto;padding:28px 18px}
+  .ana-save-create,.ana-save-card{grid-template-columns:1fr}
+  .ana-save-actions{justify-content:stretch}
+  .ana-save-actions button{flex:1 1 130px}
+  .ana-save-panel{padding:22px 16px}
+}
+
+@media(prefers-reduced-motion:reduce){.ana-save-overlay{backdrop-filter:none}}
+
+:root {
+  color-scheme: dark;
+  --ana-gold: #ffc700;
+  --ana-gold-soft: rgba(255, 199, 0, 0.18);
+  --ana-gold-border: rgba(255, 199, 0, 0.42);
+  --ana-forest: #0a0f0a;
+  --ana-forest-light: #132016;
+  --ana-black: #030604;
+  --ana-card: rgba(10, 18, 10, 0.94);
+  --ana-text: rgba(255, 255, 255, 0.82);
+  --ana-text-muted: rgba(255, 255, 255, 0.62);
+  --ana-radius: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: var(--ana-black);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+body.nightmode,
+body.whitemode {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: var(--ana-text);
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(40, 96, 46, 0.2), transparent 38rem),
+    radial-gradient(ellipse at 82% 48%, rgba(255, 199, 0, 0.045), transparent 30rem),
+    linear-gradient(180deg, var(--ana-forest) 0%, var(--ana-black) 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: 0.32;
+  background-image:
+    radial-gradient(circle at 14% 24%, var(--ana-gold) 0 1px, transparent 2px),
+    radial-gradient(circle at 79% 18%, var(--ana-gold) 0 1px, transparent 2px),
+    radial-gradient(circle at 67% 72%, var(--ana-gold) 0 1px, transparent 2px),
+    radial-gradient(circle at 26% 84%, var(--ana-gold) 0 1px, transparent 2px);
+}
+
+.ananthara-fireflies {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ananthara-fireflies .firefly {
+  --firefly-x: 34px;
+  --firefly-y: -58px;
+  --firefly-scale: 1.25;
+  --drift-duration: 8s;
+  --pulse-duration: 2.8s;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffc700;
+  opacity: 0;
+  animation:
+    ananthara-firefly-drift var(--drift-duration) ease-in-out infinite,
+    ananthara-firefly-pulse var(--pulse-duration) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.ananthara-fireflies .firefly:nth-child(1) { top: 18%; left: 8%; animation-delay: -1s, -0.4s; }
+.ananthara-fireflies .firefly:nth-child(2) { top: 42%; left: 16%; --firefly-x: 24px; --firefly-y: -46px; --drift-duration: 10s; animation-delay: -7s, -1.6s; }
+.ananthara-fireflies .firefly:nth-child(3) { top: 76%; left: 11%; --firefly-x: 46px; --firefly-y: -68px; --drift-duration: 11s; animation-delay: -4s, -2.1s; }
+.ananthara-fireflies .firefly:nth-child(4) { top: 27%; left: 29%; --firefly-x: -28px; --firefly-y: -52px; --pulse-duration: 3.4s; animation-delay: -6s, -0.8s; }
+.ananthara-fireflies .firefly:nth-child(5) { top: 88%; left: 34%; --firefly-x: 38px; --firefly-y: -74px; --drift-duration: 12s; animation-delay: -9s, -1.2s; }
+.ananthara-fireflies .firefly:nth-child(6) { top: 12%; left: 47%; --firefly-x: 22px; --firefly-y: -42px; --drift-duration: 9s; animation-delay: -2s, -2.4s; }
+.ananthara-fireflies .firefly:nth-child(7) { top: 64%; left: 55%; --firefly-x: -42px; --firefly-y: -64px; --drift-duration: 11.5s; animation-delay: -8s, -1.9s; }
+.ananthara-fireflies .firefly:nth-child(8) { top: 34%; left: 69%; --firefly-x: 30px; --firefly-y: -70px; --pulse-duration: 3.2s; animation-delay: -5s, -0.5s; }
+.ananthara-fireflies .firefly:nth-child(9) { top: 82%; left: 74%; --firefly-x: -26px; --firefly-y: -48px; --drift-duration: 9.5s; animation-delay: -3s, -2.2s; }
+.ananthara-fireflies .firefly:nth-child(10) { top: 21%; left: 86%; --firefly-x: -38px; --firefly-y: -62px; --drift-duration: 12.5s; animation-delay: -10s, -1.1s; }
+.ananthara-fireflies .firefly:nth-child(11) { top: 55%; left: 92%; --firefly-x: -48px; --firefly-y: -54px; --pulse-duration: 3.6s; animation-delay: -7.5s, -2.7s; }
+.ananthara-fireflies .firefly:nth-child(12) { top: 93%; left: 88%; --firefly-x: 18px; --firefly-y: -76px; --drift-duration: 13s; animation-delay: -11s, -0.9s; }
+
+@keyframes ananthara-firefly-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.48;
+  }
+  50% {
+    transform: translate3d(var(--firefly-x), var(--firefly-y), 0) scale(var(--firefly-scale));
+    opacity: 0.72;
+  }
+  88% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes ananthara-firefly-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 4px 2px rgba(255, 199, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(255, 199, 0, 0.42);
+  }
+}
+
+.serif,
+.sans,
+.dyslexia,
+button,
+input,
+select,
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  z-index: 1;
+  width: min(100%, 900px);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 26px 22px 56px;
+  overflow-anchor: none;
+}
+
+/* The current ChoiceScript page contributes its height to the document while
+   the outgoing clone remains overlaid during the page fade. */
+#container1 {
+  position: relative;
+}
+
+.container:not(#container1) {
+  top: 0;
+}
+
+#header {
+  padding: 8px 8px 22px;
+  text-align: center;
+}
+
+#identity {
+  float: none;
+}
+
+#title {
+  margin: 0;
+  color: var(--ana-gold);
+  font-family: "AnantharaTitle", Arial, Helvetica, sans-serif;
+  font-size: clamp(2.1rem, 7vw, 3.7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-shadow:
+    0 0 12px rgba(255, 199, 0, 0.18),
+    0 0 28px rgba(255, 199, 0, 0.12);
+}
+
+#author {
+  margin: 9px 0 0;
+  color: var(--ana-text-muted);
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#headerLinks:empty {
+  display: none;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 19px 0 0;
+}
+
+#main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 5vw, 48px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 199, 0, 0.23);
+  border-radius: var(--ana-radius);
+  background: linear-gradient(135deg, rgba(15, 25, 15, 0.94), var(--ana-card));
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.42),
+    0 0 36px rgba(255, 199, 0, 0.065);
+  line-height: 1.82;
+  overflow-wrap: break-word;
+}
+
+#main::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(110deg, rgba(255, 199, 0, 0.035), transparent 28%);
+}
+
+#text,
+#main form,
+#main > * {
+  position: relative;
+  z-index: 1;
+}
+
+#text {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  text-align: left;
+  text-justify: auto;
+}
+
+.ana-narrative-prose,
+.ana-story-text,
+.ana-replica-copy {
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+#text > p,
+#text > form > p,
+.ana-story-text {
+  line-height: 1.5;
+}
+
+.ana-choice-question {
+  max-width: 52rem !important;
+  margin-bottom: clamp(1.5rem, 3vw, 2.4rem) !important;
+  color: rgba(245, 243, 233, 0.96);
+  font-size: clamp(1.3rem, 2.45vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.45 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+  text-wrap: balance;
+}
+
+.choice label {
+  text-align: left;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+#main > .next,
+#text > .next,
+#text > form > .next {
+  flex: 0 0 auto;
+  margin-top: auto;
+}
+
+#main:not(.ana-choice-screen):not(.ana-attunement-intro):not(.ana-oracle-screen) > .next,
+#main:not(.ana-choice-screen):not(.ana-attunement-intro):not(.ana-oracle-screen) #text > .next,
+#main:not(.ana-choice-screen):not(.ana-attunement-intro):not(.ana-oracle-screen) #text > form > .next {
+  margin-top: 3rem;
+}
+
+#text p:first-child {
+  margin-top: 0;
+}
+
+#text p:last-child {
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+h1,
+h2,
+h3,
+strong,
+b {
+  color: var(--ana-gold);
+}
+
+a,
+body.nightmode a,
+body.whitemode a {
+  color: var(--ana-gold);
+  text-underline-offset: 0.2em;
+}
+
+button,
+.next {
+  min-height: 40px;
+  padding: 9px 18px;
+  border: 1px solid var(--ana-gold-border);
+  border-radius: 999px;
+  color: var(--ana-gold);
+  background: rgba(255, 199, 0, 0.04);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+#buttons .spacedLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#buttons .ana-nav-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px rgba(255, 199, 0, 0.25));
+}
+
+button:hover,
+button:focus-visible {
+  border-color: rgba(255, 199, 0, 0.85);
+  background: rgba(255, 199, 0, 0.11);
+  box-shadow: 0 0 20px rgba(255, 199, 0, 0.16);
+}
+
+.choice {
+  display: grid;
+  gap: 13px;
+  margin: 2rem 0 0;
+}
+
+.choice > div,
+.choice > div:first-child,
+.choice > div:last-child {
+  min-width: 0;
+  min-height: 52px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 199, 0, 0.44);
+  border-radius: 999px;
+  color: var(--ana-text);
+  background: linear-gradient(135deg, rgba(20, 38, 24, 0.94), rgba(8, 16, 10, 0.98));
+  box-shadow: 0 0 13px rgba(255, 199, 0, 0.08);
+  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.choice label {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  padding: 12px 20px;
+  color: inherit;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.choice > div.ana-submenu-back-row {
+  justify-self: start;
+  width: auto;
+  min-height: 44px;
+  border-color: rgba(127, 215, 233, 0.34);
+  background: rgba(5, 17, 31, 0.78);
+  box-shadow: none;
+}
+
+.choice label.ana-submenu-back {
+  min-height: 44px;
+  padding: 9px 18px;
+  color: rgba(244, 240, 229, 0.82);
+  font-size: 0.9rem;
+}
+
+.choice input {
+  flex: 0 0 auto;
+  accent-color: var(--ana-gold);
+}
+
+.choice > div.selectedKeyboard,
+.choice > div.selectedKeyboard:hover,
+.selected,
+.selectedKeyboard {
+  border-color: var(--ana-gold);
+  color: #fff;
+  background: rgba(44, 62, 33, 0.98) !important;
+  box-shadow: 0 0 24px rgba(255, 199, 0, 0.22);
+}
+
+.next,
+body.nightmode .next,
+body.whitemode .next {
+  width: 100%;
+  margin: 1.6rem 0 0;
+  border-color: var(--ana-gold);
+  color: #0a0f0a;
+  background: linear-gradient(135deg, var(--ana-gold), #b8941e);
+  font-size: 0.86rem;
+  box-shadow: 0 0 22px rgba(255, 199, 0, 0.12);
+}
+
+.next:hover,
+.next:focus-visible {
+  color: #050805;
+  box-shadow: 0 0 28px rgba(255, 199, 0, 0.3);
+}
+
+button:focus-visible,
+.choice input:focus-visible + label,
+a:focus-visible {
+  outline: 2px solid var(--ana-gold);
+  outline-offset: 3px;
+}
+
+table {
+  width: 100%;
+  margin: 1.2rem 0 2rem;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+td {
+  padding: 5px 8px;
+  color: var(--ana-text);
+  border-bottom: 1px solid rgba(255, 199, 0, 0.1);
+}
+
+.statText {
+  color: var(--ana-text);
+}
+
+hr {
+  height: 1px;
+  margin: 2rem 0;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 199, 0, 0.65), transparent);
+}
+
+#developerTools {
+  margin-top: 24px;
+  color: var(--ana-text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+#developerTools[hidden],
+#makeyourowngames {
+  display: none !important;
+}
+
+dialog {
+  max-width: min(92vw, 620px);
+  border: 1px solid var(--ana-gold-border);
+  border-radius: var(--ana-radius);
+  color: var(--ana-text);
+  background: #0d160f;
+}
+
+@media (hover: hover) {
+  .choice > div:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 199, 0, 0.88);
+    background: linear-gradient(135deg, rgba(29, 55, 34, 0.98), rgba(12, 23, 14, 0.98));
+    box-shadow: 0 0 24px rgba(255, 199, 0, 0.22);
+  }
+
+  button:hover,
+  .next:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (min-width: 768px) {
+  .next,
+  body.nightmode .next,
+  body.whitemode .next {
+    width: min(100%, 620px);
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  #main.ana-choice-screen {
+    margin-top: 18px;
+    padding: 54px 54px 64px;
+  }
+
+  #main.ana-choice-screen .choice {
+    gap: 25px;
+    margin-top: 3rem;
+  }
+
+  #main.ana-choice-screen > .next,
+  #main.ana-choice-screen #text > .next,
+  #main.ana-choice-screen #text > form > .next {
+    margin-top: 3rem;
+  }
+
+  #main.ana-attunement-intro > .next,
+  #main.ana-attunement-intro #text > .next,
+  #main.ana-attunement-intro #text > form > .next {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  body,
+  body.nightmode,
+  body.whitemode {
+    font-size: 16px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 18px 12px 36px;
+    animation: none !important;
+    -webkit-animation: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    transition-property: opacity !important;
+  }
+
+  .ananthara-fireflies .firefly {
+    width: 3px;
+    height: 3px;
+    opacity: 0;
+    --drift-duration: 14s;
+    --pulse-duration: 4s;
+    animation-duration: 14s, 4s;
+  }
+
+  .ananthara-fireflies .firefly:nth-child(n+5) {
+    display: none;
+  }
+
+  #header {
+    padding-bottom: 16px;
+  }
+
+  #title {
+    font-size: clamp(2rem, 13vw, 3rem);
+  }
+
+  #buttons {
+    gap: 8px;
+  }
+
+  #buttons button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  #main {
+    width: 100%;
+    max-width: 100%;
+    min-height: clamp(560px, 78vh, 900px);
+    min-height: clamp(560px, 78svh, 900px);
+    padding: 24px 18px;
+    border-radius: 12px;
+    line-height: 1.72;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  #text,
+  #main form {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  button,
+  .next {
+    touch-action: manipulation;
+  }
+
+  #text > form {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+  }
+
+  .choice {
+    grid-auto-rows: max-content;
+    align-items: start;
+    gap: 12px;
+    margin-top: 1.15rem;
+  }
+
+  .choice > div,
+  .choice > div:first-child,
+  .choice > div:last-child {
+    height:auto;
+    min-height: 44px;
+    align-self: start;
+    border-radius: 13px;
+  }
+
+  .choice label {
+    height:auto;
+    min-height: 44px;
+    padding: 10px 14px;
+    touch-action: pan-y;
+  }
+
+  #main.ana-choice-screen,
+  #main.ana-attunement-intro {
+    justify-content: flex-start;
+  }
+
+  #main.ana-choice-screen #text,
+  #main.ana-attunement-intro #text {
+    flex: 0 0 auto;
+  }
+
+  #main.ana-choice-screen > .next {
+    margin-top: 1.8rem;
+  }
+
+  #main.ana-attunement-intro {
+    justify-content: center;
+  }
+
+  #main.ana-attunement-intro #text::before {
+    min-height: 108px;
+    margin-bottom: 16px;
+    padding-top: 76px;
+    background-size: 94px 65px;
+    font-size: clamp(1.65rem, 9vw, 2.2rem);
+  }
+
+  #main.ana-attunement-intro > .next {
+    margin-top: 1.7rem;
+  }
+
+  td {
+    padding-inline: 4px;
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 699px) {
+  .ana-choice-question {
+    font-size: clamp(1.22rem, 5.8vw, 1.55rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .ananthara-fireflies .firefly {
+    animation: none !important;
+    opacity: 0.2;
+    box-shadow: 0 0 5px 2px rgba(255, 199, 0, 0.2);
+    will-change: auto;
+  }
+
+  .ananthara-fireflies .firefly:nth-child(n+5) {
+    display: none;
+  }
+}
+
+/* Reusable production interactions: keepsakes and conscious Thal’ithara links. */
+.ana-attunement-overlay,.ana-item-overlay{position:fixed;inset:0;z-index:13000;display:grid;place-items:center;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));overflow:auto;background:radial-gradient(circle at 50% 38%,rgba(38,79,43,.34),transparent 48%),rgba(1,7,4,.92);backdrop-filter:blur(8px);animation:ana-popup-backdrop-in .28s ease both}
+.ana-attunement-dialog,.ana-item-dialog{width:min(100%,620px);padding:clamp(24px,5vw,46px);border:1px solid rgba(255,199,0,.58);border-radius:18px;color:rgba(255,255,255,.86);text-align:center;background:linear-gradient(145deg,rgba(8,24,13,.98),rgba(2,9,5,.99));box-shadow:0 0 52px rgba(255,199,0,.14);animation:ana-popup-dialog-in .48s cubic-bezier(.2,.78,.2,1) both}
+.ana-attunement-dialog h2,.ana-item-dialog h2{margin:.35rem 0 1.1rem;color:#ffc700;font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.45rem,5vw,2.35rem)}
+.ana-attunement-kicker,.ana-item-kicker{margin:0;color:rgba(255,199,0,.72);font-size:.75rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
+.ana-attunement-hold{position:relative;display:grid;place-items:center;width:min(70vw,220px);aspect-ratio:1;margin:24px auto;border:1px solid rgba(255,199,0,.42);border-radius:50%;color:#ffc700;background:rgba(255,199,0,.035);touch-action:none;cursor:pointer;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.ana-attunement-hold svg{z-index:2;width:68%;height:68%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 9px rgba(255,199,0,.35));pointer-events:none;user-select:none;-webkit-user-select:none}
+.ana-attunement-progress{position:absolute;inset:auto 0 0;height:0;background:linear-gradient(0deg,rgba(255,199,0,.32),rgba(255,199,0,.04));transition:height .2s ease}
+.ana-attunement-hold.is-holding .ana-attunement-progress{height:100%;transition:height 1.4s linear}
+.ana-attunement-hold.is-holding svg path,.ana-attunement-hold.is-holding svg circle{stroke-dasharray:320;stroke-dashoffset:320;animation:ana-symbol-trace 1.35s linear forwards}.ana-attunement-overlay.is-complete .ana-attunement-hold svg{filter:drop-shadow(0 0 12px rgba(255,199,0,.95))}
+.ana-attunement-overlay.is-complete .ana-attunement-hold{box-shadow:0 0 42px rgba(255,199,0,.52);transform:scale(1.03)}
+.ana-attunement-accessible,.ana-thal-accessible{min-height:44px;border:0;color:rgba(255,199,0,.82);background:transparent;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.ana-item-dialog h3{margin:25px 0 8px;color:#ffc700;font-size:1rem}.ana-item-description,.ana-item-effect{line-height:1.7;text-align:left}
+.ana-thal-interaction-symbol{position:relative;display:grid;place-items:center;width:clamp(108px,18vw,156px);aspect-ratio:1;margin:0 auto 18px;padding:18px;border:1px solid rgba(255,199,0,.45);border-radius:50%;color:#ffc700;background:rgba(4,14,8,.72);cursor:pointer;touch-action:none;outline:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.ana-thal-interaction-symbol svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;user-select:none;-webkit-user-select:none}.ana-thal-interaction-symbol:focus-visible{box-shadow:0 0 0 3px rgba(255,199,0,.7)}
+.ana-thal-interaction-symbol.is-holding,.ana-thal-interaction-symbol.is-activating{filter:drop-shadow(0 0 25px rgba(255,199,0,.75))}.ana-thal-interaction-symbol.is-attuned{filter:drop-shadow(0 0 32px rgba(255,199,0,.95));transform:scale(1.05)}.ana-thal-interaction-symbol.is-holding svg path,.ana-thal-interaction-symbol.is-holding svg circle{stroke-dasharray:260;stroke-dashoffset:260;animation:ana-symbol-trace 1.35s linear forwards}.ana-thal-interaction-symbol.is-activating svg path,.ana-thal-interaction-symbol.is-activating svg circle,.ana-thal-interaction-symbol.is-activating svg line,.ana-thal-interaction-symbol.is-activating svg polyline{stroke-dasharray:260;stroke-dashoffset:260;animation:ana-symbol-trace .72s ease-in-out forwards}.ana-thal-interaction-symbol.is-attuned svg{filter:drop-shadow(0 0 8px rgba(255,199,0,.9))}
+.ana-thal-icon.is-attuned{filter:drop-shadow(0 0 32px rgba(255,199,0,.95));transform:scale(1.05)}
+.ana-thal-gesture{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,199,0,.18)}.ana-thal-gesture>p{line-height:1.55}.ana-thal-progress{width:min(100%,320px);height:4px;margin:14px auto;background:rgba(255,199,0,.12);overflow:hidden}.ana-thal-progress::after{content:"";display:block;width:0;height:100%;background:#ffc700;box-shadow:0 0 12px rgba(255,199,0,.65)}.ana-thal-interaction-symbol.is-holding~.ana-thal-progress::after{width:100%;transition:width 1.4s linear}.ana-thal-interaction-symbol.is-activating~.ana-thal-progress::after{width:100%;transition:width .78s ease-in-out}.ana-thal-gesture.is-complete .ana-thal-progress::after{width:100%}
+@keyframes ana-symbol-trace{to{stroke-dashoffset:0}}
+.ana-save-portrait{width:86px;aspect-ratio:4/5;border:1px solid rgba(255,199,0,.35);border-radius:9px;overflow:hidden;background:radial-gradient(circle,rgba(255,199,0,.12),rgba(2,8,4,.7))}.ana-save-portrait img{width:100%;height:100%;object-fit:cover}.ana-save-portrait.is-fallback::after{content:"✧";display:grid;height:100%;place-items:center;color:#ffc700;font-size:1.6rem}.ana-save-card{grid-template-columns:auto minmax(0,1fr) auto}.ana-save-location{text-transform:capitalize}.ana-save-route{color:#ffc700!important}
+@media(max-width:620px){.ana-save-card{grid-template-columns:auto minmax(0,1fr)}.ana-save-actions,.ana-save-confirm{grid-column:1/-1}.ana-save-portrait{width:72px}.ana-attunement-dialog,.ana-item-dialog{padding:24px 17px}}
+@media(prefers-reduced-motion:reduce){.ana-attunement-progress,.ana-thal-progress::after,.ana-attunement-hold,.ana-thal-icon,.ana-thal-interaction-symbol,.ana-thal-interaction-symbol svg *{transition:none!important;animation:none!important;stroke-dashoffset:0!important}.ana-replica-video{display:none}.ana-discovery-dialog>*{animation:none!important}.ana-replica-dialog.is-revealed .ana-replica-book{animation:none!important}}
+
+/* Celestial, state-free How to Play overlay. */
+.ana-howto-overlay{position:fixed;inset:0;z-index:30000;display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:rgba(1,5,16,.88);backdrop-filter:blur(10px);animation:ana-popup-backdrop-in .24s ease both}
+.ana-howto-dialog{box-sizing:border-box;width:min(100%,980px);max-height:min(90dvh,820px);overflow:auto;border:1px solid rgba(236,184,40,.48);border-radius:18px;color:#f4f0e5;background:radial-gradient(circle at 75% 0,rgba(76,63,139,.14),transparent 38%),linear-gradient(145deg,#071426,#020817);box-shadow:0 24px 90px rgba(0,0,0,.62),0 0 35px rgba(71,190,220,.09);animation:ana-popup-dialog-in .4s cubic-bezier(.2,.78,.2,1) both}
+.ana-howto-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(20px,4vw,34px);border-bottom:1px solid rgba(236,184,40,.24)}
+.ana-howto-header h2{margin:0;color:#e9b820;font:700 clamp(1.45rem,4vw,2.4rem)/1.1 "AnantharaTitle",Georgia,serif;letter-spacing:.06em}
+.ana-howto-close{flex:0 0 44px;width:44px;height:44px;padding:0;border:1px solid rgba(87,190,215,.35);border-radius:50%;color:#f4f0e5;background:rgba(6,19,37,.8);font-size:1.8rem;cursor:pointer}
+.ana-howto-tabs{display:flex;gap:6px;padding:12px clamp(14px,3vw,28px);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(87,190,215,.18)}
+.ana-howto-tabs::-webkit-scrollbar{display:none}.ana-howto-tab{flex:0 0 auto;min-height:44px;padding:10px 15px;border:1px solid transparent;border-radius:8px;color:#aab5c8;background:transparent;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;cursor:pointer}
+.ana-howto-tab[aria-selected="true"]{border-color:rgba(236,184,40,.45);color:#e9b820;background:rgba(236,184,40,.07)}
+.ana-howto-tab:focus-visible,.ana-howto-close:focus-visible{outline:2px solid #7fd7e9;outline-offset:2px}
+.ana-howto-panel{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr);column-gap:clamp(24px,5vw,54px);align-items:center;padding:clamp(28px,5vw,58px)}
+.ana-howto-panel h3{grid-column:2;margin:0 0 18px;color:#e9b820;font:700 clamp(1.35rem,3vw,2rem)/1.2 "AnantharaTitle",Georgia,serif;letter-spacing:.08em}
+.ana-howto-panel p{grid-column:2;margin:0 0 16px;line-height:1.7;text-align:left;hyphens:auto;overflow-wrap:break-word}
+.ana-howto-demo{grid-column:1;grid-row:1/span 6;display:grid;place-items:center;gap:12px;min-height:210px;padding:24px;border:1px solid rgba(87,190,215,.25);border-radius:50% 50% 14px 14px;background:radial-gradient(circle,rgba(35,112,146,.15),rgba(3,11,27,.7));color:#e9b820}.ana-howto-icon,.ana-howto-hold{display:grid;place-items:center}.ana-howto-icon svg,.ana-howto-hold svg{width:70px;height:70px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 9px rgba(233,184,32,.3))}.ana-howto-demo>i{display:block;width:75%;height:10px;border:1px solid rgba(127,215,233,.28);border-radius:8px}.ana-howto-demo.is-choices{border-radius:14px}.ana-howto-demo.is-choices label{display:grid;grid-template-columns:22px 1fr;align-items:center;gap:10px;width:100%;padding:10px;border:1px solid rgba(127,215,233,.25);border-radius:4px}.ana-howto-demo.is-choices label b{width:16px;aspect-ratio:1;border:1px solid #7fd7e9;border-radius:50%}.ana-howto-demo.is-choices label i{height:7px;border-radius:8px;background:rgba(244,240,229,.55)}.ana-howto-demo.is-thal small{font-size:.7rem;letter-spacing:.18em}.ana-howto-hold{width:100px;aspect-ratio:1;border:1px solid rgba(233,184,32,.48);border-radius:50%}
+.ana-key-insight,.ana-tehand-text{color:#e9b820!important;font-size:inherit!important;font-style:italic;font-weight:500;text-shadow:0 0 12px rgba(233,184,32,.12)}
+@media(max-width:699px){.ana-howto-panel{display:block;padding:24px 17px}.ana-howto-demo{min-height:118px;margin-bottom:25px;border-radius:14px}.ana-howto-panel h3{margin-bottom:16px}.ana-howto-header{padding:18px 16px}.ana-howto-header h2{overflow-wrap:anywhere}.ana-howto-dialog{max-height:94dvh}}
+@media(prefers-reduced-motion:reduce){.ana-howto-overlay,.ana-howto-dialog{animation:none!important}}
+
+/* Only explicit interface copy is centered; narrative alignment is assigned semantically above. */
+.ana-exam-section-heading,.ana-registration-heading,.ana-choice-question{text-align:center!important;text-align-last:center!important}
+
+/* Demo actions sit in the ordinary page flow instead of forming a second card. */
+.ana-demo-end{width:auto;max-width:none;margin:28px 0 0;padding:0;border:0;border-top:1px solid rgba(233,184,32,.28);background:transparent;box-shadow:none}.ana-demo-end .ana-demo-sigil{display:none}.ana-demo-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}.ana-demo-actions>a,.ana-demo-actions>button{width:auto;min-width:min(100%,220px)}.ana-demo-actions .is-disabled{opacity:.48;cursor:not-allowed;pointer-events:none}
+.ana-discovery-overlay{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(0,8,4,.82);backdrop-filter:blur(8px);animation:ana-popup-backdrop-in .28s ease both}.ana-discovery-dialog{width:min(100%,620px);max-height:min(88dvh,760px);overflow:auto;padding:clamp(24px,5vw,44px);border:1px solid rgba(255,199,0,.55);border-radius:18px;background:linear-gradient(145deg,rgba(10,29,17,.98),rgba(2,12,7,.98));box-shadow:0 0 46px rgba(255,199,0,.2);text-align:center;animation:ana-popup-dialog-in .48s cubic-bezier(.2,.78,.2,1) both}.ana-discovery-dialog h2{color:#ffc700;font-family:Georgia,serif;font-size:clamp(1.7rem,5vw,2.7rem)}.ana-discovery-copy{text-align:left;line-height:1.6}
+.ana-replica-overlay{position:fixed;inset:0;z-index:1250;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 40%,rgba(55,69,24,.28),rgba(0,7,4,.94) 65%);backdrop-filter:blur(9px)}.ana-replica-dialog{width:min(100%,780px);max-height:92dvh;overflow:auto;padding:clamp(18px,4vw,42px);text-align:center}.ana-replica-book{position:relative;min-height:0;padding:clamp(30px,6vw,58px);border:1px solid rgba(255,199,0,.58);border-radius:50% 50% 14px 14px/16% 16% 8px 8px;background:linear-gradient(90deg,rgba(21,37,22,.98) 49.6%,rgba(255,199,0,.25) 50%,rgba(21,37,22,.98) 50.4%);box-shadow:0 0 55px rgba(255,199,0,.22),inset 0 0 50px rgba(255,199,0,.06)}.ana-replica-page{display:grid;place-content:center;min-height:0;color:#f7eab8}.ana-replica-name{font-family:'AnantharaTitle',Georgia,serif;font-size:clamp(2rem,7vw,4.2rem);color:#ffc700;text-shadow:0 0 20px rgba(255,199,0,.55)}.ana-replica-title,.ana-replica-subtitle{font-family:Georgia,serif;letter-spacing:.12em;color:#ffc700}.ana-replica-title{font-size:clamp(1.3rem,4vw,2.2rem)}.ana-replica-subtitle{margin-top:10px;font-size:clamp(.85rem,2.5vw,1.25rem)}.ana-replica-copy{width:min(100%,620px);margin:24px auto 0;padding-inline:clamp(8px,3vw,24px);font-size:clamp(.95rem,2vw,1.05rem);line-height:1.65}.ana-replica-instructions{margin:22px auto;color:#ffc700}.ana-replica-instructions p{margin:8px 0}.ana-replica-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}.ana-replica-controls button{min-height:44px}
+@media(max-width:420px){.ana-replica-overlay{padding:8px}.ana-replica-dialog{padding:12px 4px}.ana-replica-book{min-height:0;padding:32px 16px 26px;border-radius:34% 34% 12px 12px/8% 8% 8px 8px}.ana-replica-page{min-height:0}.ana-replica-copy{padding-inline:6px;font-size:.94rem;line-height:1.55}.ana-replica-title{font-size:clamp(1.15rem,6vw,1.5rem);overflow-wrap:anywhere}.ana-replica-subtitle{font-size:.82rem;letter-spacing:.08em}.ana-replica-instructions{margin:18px auto}.ana-replica-controls{margin-top:16px}}
+.ana-replica-overlay{animation:ana-popup-backdrop-in .28s ease both}.ana-replica-dialog{animation:ana-popup-dialog-in .48s cubic-bezier(.2,.78,.2,1) both}
+.ana-replica-video-stage{position:relative;display:grid;place-items:center;max-width:100%}.ana-replica-video{width:min(92vw,900px);max-height:88dvh;object-fit:contain;opacity:1;transition:opacity .36s ease;filter:brightness(.82)}.ana-replica-video.is-leaving{opacity:0}.ana-replica-video-skip{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:auto;min-width:0;min-height:44px;padding:.7rem 1.1rem}.ana-replica-dialog[hidden]{display:none}.ana-replica-dialog.is-revealed .ana-replica-book{animation:ana-replica-book-reveal .52s ease both}@keyframes ana-replica-book-reveal{from{opacity:0;transform:scale(.985);filter:brightness(.7)}to{opacity:1;transform:scale(1);filter:brightness(1)}}
+.ana-discovery-dialog .ana-item-kicker{animation:ana-popup-content-in .34s .04s ease both}.ana-discovery-dialog h2{animation:ana-popup-content-in .36s .1s ease both}.ana-discovery-dialog .ana-discovery-copy{animation:ana-popup-content-in .38s .17s ease both}.ana-discovery-dialog>button{animation:ana-popup-content-in .38s .24s ease both}@keyframes ana-popup-content-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Ithar'kael identity reveal */
+.ana-thal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: radial-gradient(circle at 50% 28%, rgba(36, 67, 38, 0.34), transparent 48%), rgba(2, 8, 5, 0.9);
+  backdrop-filter: blur(8px);
+  animation: ana-reveal-arrive 0.65s ease both;
+}
+
+.ana-thal-overlay.is-closing { animation: ana-reveal-leave 0.28s ease both; }
+
+.ana-thal-reveal {
+  width: min(680px, 100%);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid rgba(255, 199, 0, 0.62);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  background: linear-gradient(145deg, rgba(8, 22, 13, 0.97), rgba(2, 10, 6, 0.98));
+  box-shadow: 0 0 22px rgba(255, 199, 0, 0.2), 0 0 80px rgba(255, 199, 0, 0.08), inset 0 0 45px rgba(255, 199, 0, 0.04);
+}
+
+.ana-thal-icon {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 18px;
+  color: #ffc700;
+  filter: drop-shadow(0 0 12px rgba(255, 199, 0, 0.44));
+}
+
+.ana-thal-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ana-thal-kicker,
+.ana-story-kicker {
+  margin: 0 0 8px;
+  color: rgba(255, 199, 0, 0.66);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ana-thal-reveal h2,
+.ana-identity-story h2 {
+  margin: 0 0 20px;
+  color: #ffc700;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1.1;
+  text-shadow: 0 0 24px rgba(255, 199, 0, 0.28);
+}
+
+.ana-thal-description { font-size: 1.05rem; line-height: 1.78; }
+
+.ana-thal-detail {
+  margin-top: 14px;
+  padding: 15px 17px;
+  border: 1px solid rgba(255, 199, 0, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  text-align: left;
+}
+
+.ana-thal-detail summary {
+  margin: 0 0 6px;
+  color: rgba(255, 199, 0, 0.78);
+  font: 700 0.76rem/1.4 Arial, sans-serif;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 30px;
+}
+
+.ana-thal-detail:not([open]) summary { margin-bottom: 0; }
+.ana-thal-detail p { margin: 10px 0 0; line-height: 1.65; }
+
+.ana-thal-quote {
+  margin: 30px 0 0;
+  line-height: 1.72;
+}
+
+.ana-thal-quote br { display: none; }
+
+.ana-thal-quote span + span::before { content: " "; }
+
+.ana-identity-continue {
+  margin-top: 24px;
+  padding: 13px 32px;
+  border: 1px solid #ffc700;
+  border-radius: 999px;
+  color: #ffc700;
+  background: rgba(255, 199, 0, 0.06);
+  font: 700 0.82rem/1 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ana-identity-continue:hover,
+.ana-identity-continue:focus-visible {
+  background: rgba(255, 199, 0, 0.13);
+  box-shadow: 0 0 22px rgba(255, 199, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.ana-thal-overlay.is-preserver .ana-thal-icon { animation: ana-crystal-pulse 3.4s ease-in-out infinite; }
+.ana-thal-overlay.is-soul-whisperer .ana-thal-icon { animation: ana-wisp-float 3s ease-in-out infinite; }
+.ana-thal-overlay.is-pattern-seeker .ana-thal-icon { animation: ana-pattern-turn 8s linear infinite; }
+.ana-thal-overlay.is-resonant-creator .ana-thal-icon { animation: ana-creator-spark 2.6s ease-in-out infinite; }
+.ana-thal-overlay.is-veil-walker .ana-thal-icon { animation: ana-veil-breathe 4s ease-in-out infinite; }
+.ana-thal-overlay.is-empathic-conduit .ana-thal-icon { animation: ana-heart-resonate 2.2s ease-in-out infinite; }
+
+.ana-identity-story {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(22px, 5vw, 44px);
+  border: 1px solid rgba(255, 199, 0, 0.28);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(9, 23, 14, 0.94), rgba(3, 11, 7, 0.97));
+  box-shadow: 0 0 34px rgba(255, 199, 0, 0.09);
+  text-align: center;
+  animation: ana-reveal-arrive 0.55s ease both;
+}
+
+.ana-story-text {
+  margin: 0 auto 30px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.03rem;
+  line-height: 1.85;
+}
+
+.ana-guild-oath {
+  margin: 28px 0;
+  padding: 24px 18px;
+  border-block: 1px solid rgba(255, 199, 0, 0.25);
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.ana-guild-oath p { margin: 0.48rem 0; line-height: 1.55; }
+
+.ana-signature { margin-top: 30px; }
+.ana-signature h3 { margin: 0 0 16px; color: #ffc700; font: 700 0.84rem/1 Arial, sans-serif; letter-spacing: 0.16em; text-transform: uppercase; }
+
+.ana-signature-line {
+  position: relative;
+  display: block;
+  width: min(390px, 100%);
+  min-height: 58px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 0;
+  border-bottom: 1px solid #ffc700;
+  color: #ffc700;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: 0 8px 14px -14px rgba(255, 199, 0, 0.9);
+}
+
+.ana-signature-line::after {
+  content: "✧";
+  position: absolute;
+  right: 8px;
+  bottom: 9px;
+  opacity: 0.62;
+}
+
+.ana-signature-line span {
+  display: block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font: italic 2rem/1.5 "AnantharaTitle", Georgia, serif;
+  text-align: left;
+}
+
+#main.ana-attunement-intro #text::before {
+  display: block;
+  box-sizing: border-box;
+  min-height: 126px;
+  margin: 0 auto 22px;
+  padding-top: 92px;
+  content: "THAL’ITHARA";
+  color: #ffc700;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-shadow: 0 0 22px rgba(255, 199, 0, 0.24);
+}
+
+#main.ana-attunement-intro #text::after {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 112px;
+  height: 78px;
+  content: "";
+  pointer-events: none;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 82'%3E%3Cg fill='none' stroke='%23FFC700' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 7 78 26 71 55 60 73 49 55 42 26Z'/%3E%3Cpath d='m60 7 7 24-7 42-7-42Z'/%3E%3Ccircle cx='60' cy='36' r='9'/%3E%3Cpath d='M30 41H13m94 0H90M39 15 27 7m54 8 12-8M38 67l-12 8m56-8 12 8' opacity='.62'/%3E%3C/g%3E%3C/svg%3E");
+  filter: drop-shadow(0 0 9px rgba(255, 199, 0, 0.28));
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: ana-attunement-sigil-breathe 3.4s ease-in-out infinite;
+}
+
+#main.ana-attunement-intro #text {
+  width: 100%;
+  max-width: 850px;
+  margin-inline: auto;
+  line-height: 1.85;
+  text-align: left;
+}
+
+#main.ana-attunement-intro #text > p:first-of-type {
+  margin-bottom: 32px;
+}
+
+#main.ana-attunement-intro #text > p:last-of-type {
+  margin-bottom: 55px;
+}
+
+#main.ana-attunement-intro > .next,
+#main.ana-attunement-intro #text > .next,
+#main.ana-attunement-intro #text > form > .next {
+  width: min(100%, 600px);
+  max-width: 600px;
+  margin-top: 0;
+  margin-inline: auto;
+}
+
+.ana-signature-line.is-signed span { animation: ana-write-signature 0.72s steps(22, end) forwards; }
+.ana-signature-line:focus-visible { outline: 2px solid rgba(255, 199, 0, 0.7); outline-offset: 6px; }
+.ana-signature-line:disabled { cursor: default; opacity: 1; }
+.ana-signature p { color: rgba(255, 255, 255, 0.52); font-size: 0.82rem; }
+
+.ana-archive-recognition {
+  margin: 24px 0 0;
+  color: #ffc700;
+  animation: ana-recognition 0.6s ease both;
+}
+
+@keyframes ana-reveal-arrive { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes ana-reveal-leave { to { opacity: 0; transform: scale(1.02); } }
+@keyframes ana-crystal-pulse { 50% { transform: scale(1.07); filter: drop-shadow(0 0 22px rgba(255,199,0,.66)); } }
+@keyframes ana-wisp-float { 50% { transform: translateY(-9px) rotate(2deg); } }
+@keyframes ana-pattern-turn { to { transform: rotate(360deg); } }
+@keyframes ana-creator-spark { 50% { transform: rotate(-4deg) scale(1.06); } }
+@keyframes ana-veil-breathe { 50% { opacity: 0.64; transform: translateX(5px); } }
+@keyframes ana-heart-resonate { 40% { transform: scale(1.1); } 60% { transform: scale(0.98); } }
+@keyframes ana-write-signature { from { width: 0; } to { width: 100%; } }
+@keyframes ana-recognition { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ana-popup-backdrop-in { from { opacity: 0; backdrop-filter: blur(0); } to { opacity: 1; backdrop-filter: blur(8px); } }
+@keyframes ana-popup-dialog-in { from { opacity: 0; transform: translateY(18px) scale(.965); filter: blur(3px); } 65% { opacity: 1; } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ana-attunement-sigil-breathe {
+  0%, 100% { opacity: 0.82; transform: translateX(-50%) scale(0.96); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.04); }
+}
+
+@media (max-width: 767px) {
+  .ana-thal-overlay {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    overflow-x: hidden;
+  }
+
+  .ana-thal-reveal {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 26px 18px;
+    overflow-x: hidden;
+  }
+
+  .ana-thal-reveal > *,
+  .ana-thal-description,
+  .ana-thal-detail,
+  .ana-thal-detail p,
+  .ana-thal-quote {
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .ana-thal-reveal h2 {
+    max-width: 100%;
+    font-size: clamp(1.35rem, 7.2vw, 2.25rem);
+    line-height: 1.16;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 620px) {
+  .ana-thal-overlay { padding: 10px; align-items: start; }
+  .ana-thal-reveal { margin-block: 10px; padding: 24px 18px; border-radius: 15px; }
+  .ana-thal-icon { width: 82px; height: 82px; }
+  .ana-thal-detail { padding: 12px; }
+  .ana-thal-quote { margin-top: 34px; }
+  .ana-identity-story { padding: 24px 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ana-thal-overlay,
+  .ana-thal-icon,
+  .ana-identity-story,
+  #main.ana-attunement-intro #text::before,
+  #main.ana-attunement-intro #text::after,
+  .ana-signature-line.is-signed span,
+  .ana-archive-recognition { animation: none !important; }
+  .ana-signature-line.is-signed span { width: 100%; }
+}
+.ana-replica-name{transition:opacity .4s ease}.ana-replica-name.is-fading{opacity:0}
+
+/* Mobile app shell: the browser viewport stays fixed while the active game
+   surface owns vertical scrolling. Kept last so older layout rules cannot
+   restore document scrolling or a fixed story-panel height. */
+@media(max-width:640px){
+  html{height:100%;overflow:hidden}
+  body,body.nightmode,body.whitemode{height:100%;min-height:0;overflow:hidden}
+  #container1.container{display:flex;flex-direction:column;width:100%;height:100vh;height:100dvh;min-height:0;padding-bottom:max(10px,env(safe-area-inset-bottom));overflow:hidden}
+  #container1>#header{flex:0 0 auto}
+  #container1>#main{flex:1 1 auto;min-height:0!important;max-height:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  .ana-save-overlay,.ana-attunement-overlay,.ana-thal-overlay,.ana-item-overlay,.ana-discovery-overlay,.ana-replica-overlay,.ana-fate-modal,.ana-howto-overlay{overflow:hidden}
+  .ana-save-panel,.ana-attunement-dialog,.ana-thal-dialog,.ana-thal-reveal,.ana-item-dialog,.ana-discovery-dialog,.ana-replica-dialog,.ana-howto-dialog,.ana-fate-dialog{max-height:calc(100dvh - max(28px, env(safe-area-inset-top) + env(safe-area-inset-bottom) + 16px));min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  .ana-attunement-hold,.ana-thal-interaction-symbol{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+  .choice label{touch-action:pan-y}
+  #main .next,#main button[type="submit"],.ana-replica-controls button,.ana-replica-video-skip{touch-action:manipulation}
+}

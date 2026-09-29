@@ -1,0 +1,644 @@
+*comment de_00_exam_room_01.txt
+*comment Ithar'kael Abschlussprüfung — Raum I
+*comment Raum I endet mit dem Übergang in die finalisierte Raum-II-Szene.
+
+*temp wrong_symbol ""
+
+*label start
+*if language = "en"
+  *goto_scene en_00_exam_room_01
+
+*page_break Prolog — Die Abschlussprüfung
+
+[b]VERBORGENE WAHRHEIT[/b]
+
+*set quest_exam_room_01_visible true
+*set quest_exam_status "active"
+*set quest_exam_objective "Schließe die drei Abschnitte der Abschlussprüfung ab."
+*set quest_exam_room_01_status "active"
+*set quest_exam_room_01_objective "Enthülle das Geheimnis der Ruine und verlasse sie, bevor der letzte Sand durch die Uhr gefallen ist."
+
+Die Kammer ist kleiner, als du erwartet hast. Kalter Stein umgibt dich von allen Seiten. Kein Fenster durchbricht die Wände, keine Fackel erhellt den Raum. Nur schwaches Licht dringt durch die schmalen Fugen der Tür hinter dir und verliert sich bereits wenige Schritte weiter in der Dunkelheit. In der Mitte der Kammer steht ein steinernes Pult. Darauf liegt eine einzelne Schriftrolle.
+
+„Finde das Geheimnis dieser Ruine. Wenn du glaubst, es verstanden zu haben, finde deinen Weg hinaus.“ Mehr hatte man dir nicht mit auf den Weg gegeben.
+
+Du trittst näher. Das Pergament ist von Alter gezeichnet. Dunkle Ränder, feine Risse und verblasste Zeichen ziehen sich über seine Oberfläche. Einige davon erkennst du, andere verschwimmen beinahe vollständig mit dem Pergament. Zwischen ihnen befinden sich Schriftzeichen, deren geschwungene Linien dir vertraut vorkommen. Têhand.
+
+Du streckst die Hand danach aus. In dem Augenblick, in dem deine Finger das Pergament berühren, spürst du ein schwaches Kribbeln unter deiner Haut. Etwas antwortet. Ein feiner Schimmer läuft unter deinen Fingerspitzen durch die Schrift. Erst folgt er nur einem einzelnen Zeichen, dann dem nächsten. Wie flüssiges Licht breitet sich die Energie über das Pergament aus, wandert durch die noch sichtbaren Wörter und Linien und lässt einzelne Zeichen für einen Herzschlag golden aufleuchten. Dann erreicht sie den Rand der Schriftrolle und verschwindet im steinernen Pult.
+
+Ein tiefer Ton durchdringt die Kammer. Du ziehst die Hand zurück. Für einen Moment bleibt alles still. Dann flammt hinter dir Feuer auf. Eine Fackel. Eine zweite antwortet auf der gegenüberliegenden Seite, dann eine dritte. Eine nach der anderen erwachen die Flammen entlang der Wände, bis sich warmes Licht über den Stein ausbreitet und die Dunkelheit aus der Kammer zurückdrängt.
+
+Doch mit dem Licht erscheint noch etwas. Dort, wo eben nur nackter Stein gewesen war, beginnen feine Linien zu glimmen. Erst schwach, dann deutlicher. Symbole treten aus Wänden und Boden hervor, als hätten sie die ganze Zeit unter der Oberfläche geschlafen. Dutzende. Manche kaum größer als deine Hand, andere über mehrere Steinplatten verteilt. Einige wiederholen sich, andere erscheinen nur ein einziges Mal. Du erkennst eine Flamme. Eine Klinge. Wasser. Eine Krone. Etwas, das an eine Sonne erinnert. Wurzeln und wachsende Ranken. Linien, die ineinandergreifen. Und weiter hinten ein Zeichen, das wie ein Auge wirkt, halb verborgen hinter etwas, das einem Schleier ähnelt.
+
+Du blickst zurück zur Schriftrolle. Der goldene Schimmer darin ist schwächer geworden, aber noch nicht vollständig verschwunden. Die Schriftrolle hat nicht einfach auf deine Berührung reagiert. Sie hat auf dich reagiert.
+
+*choice
+  #Ich untersuche zuerst die Schriftrolle.
+    *set exam_room_01_first_block "scroll"
+    *goto scroll_investigation
+  #Ich untersuche zuerst die Kammer und ihre Symbole.
+    *set exam_room_01_first_block "room"
+    *goto room_investigation
+
+
+*label scroll_investigation
+*if exam_room_01_room_done
+  Mit dem Eindruck der Kammer noch frisch in dir kehrst du zum steinernen Pult zurück. Die Zeichen auf dem Pergament wirken nun weniger wie ein einzelnes Rätsel als wie ein Teil desselben Gefüges.
+  *if exam_room_01_room_thal_used
+    *if thal_archetype = "Veilwalker"
+      Das Echo früherer Hände haftet noch schwach am Rand der Rolle.
+    *if thal_archetype = "Llifari"
+      Die feinen Schwingungen des Pergaments antworten auf jene im Stein.
+    *if thal_archetype = "Seeker"
+      Das Muster, das du in der Kammer erkannt hast, setzt sich in der Schrift fort.
+    *if thal_archetype = "Artisari"
+      Unter der verblassten Tinte spürst du die Form eines Werkes, das sich noch nicht ganz vergessen hat.
+    *if thal_archetype = "Vanguard"
+      Die Wärme an den Rändern der Rolle erinnert an die reagierenden Rillen im Mauerwerk.
+    *if thal_archetype = "Aegis"
+      Durch dein eigenes Zeichen wurden hinter Krone und Klinge unterschiedliche entgegenwirkende Kräfte spürbar. Welche Zeichen tatsächlich zur Lösung gehören, weißt du noch nicht. Die Schriftrolle könnte dir den Zusammenhang liefern, den reine Kraft nicht offenbart.
+*if exam_room_01_room_done = false
+  Du trittst näher an das steinerne Pult und richtest deine Aufmerksamkeit auf die Schriftrolle.
+
+Das Pergament ist alt, die Schrift darauf nur teilweise erhalten. Manche Zeilen lassen sich problemlos lesen, von anderen sind lediglich einzelne Wörter oder Zeichen übrig geblieben. Dazwischen befinden sich Stellen, an denen die Tinte so vollständig verblasst ist, dass ganze Teile des Textes fehlen.
+
+Ein Teil wurde in gewöhnlicher Schrift verfasst, ein anderer in Têhand, jener alten Sprache, deren Zeichen sich bis heute in Ritualen, Schwüren, Siegeln und Überlieferungen aus der Zeit der Götter finden. Nicht jedes Wort in Têhand trägt Magie. Doch du hast gelernt, unbekannte Worte niemals allein deshalb harmlos zu nennen, weil du sie übersetzen kannst.
+
+Eine der erhaltenen Zeilen kommt dir bekannt vor. Nicht, weil du diesen konkreten Satz schon einmal gelesen hättest, sondern weil seine Bestandteile zu jenen gehören, denen du während deiner Ausbildung immer wieder begegnet bist.
+
+[i]Don wuvurep dêkh posehkund sundaykh, elvip wuvurep dêkh posehkund duldaykh.[/i]
+
+Du gehst die bekannten Zeichen im Kopf durch. Nicht jede sprachliche Nuance erschließt sich dir auf Anhieb, doch die Bedeutung ist deutlich genug:
+
+„Was verborgen wurde, offenbart sich nicht dem Auge, sondern dem Licht.“
+
+Du liest die Übersetzung noch einmal. Dann bewegst du das Pergament ein wenig. Das Licht einer der Fackeln streift schräg über seine Oberfläche. Für einen Augenblick glaubst du, zwischen zwei verblassten Passagen weitere Zeichen zu erkennen. Nicht deutlich genug, um sie zu lesen – nur einzelne Formen, die dort eben noch nicht gewesen zu sein scheinen.
+
+Du veränderst unwillkürlich den Winkel. Sie verschwinden.
+
+Du hältst inne. Der Têhand-Satz klingt plötzlich wesentlich weniger metaphorisch.
+
+*choice
+  #Ich verändere den Einfallswinkel des Lichts, bis die Spuren lesbar werden.
+    *set exam_room_01_hidden_method "light"
+    Du hebst das Pergament vorsichtig an und veränderst seinen Winkel zur nächsten Fackel. Zunächst geschieht nichts. Dann fällt das Licht flacher über die Oberfläche.
+
+    Etwas verändert sich.
+
+    Zwischen den verblassten Zeichen treten dünne Linien hervor. Erst einzelne Striche, dann Bögen, schließlich ganze Schriftzeichen. Sie waren nicht verschwunden. Nur unter gewöhnlichem Licht nicht mehr zu erkennen. Du hältst die Schriftrolle still. Langsam fügt sich zusammen, was zuvor verborgen war.
+    *goto reveal_hidden_text
+  *if thal_archetype = "Artisari"
+    #Ich lasse mein Thal'ithara der verblassten Arbeit ihre Form zurückgeben. [Artisari]
+      *set exam_room_01_hidden_method "artisari"
+      Du legst die Fingerspitzen auf eines der letzten noch sichtbaren Zeichen. Für dich ist Schrift nicht nur Information. Jemand hat diese Linien geschaffen. Jeder Schwung, jede Unterbrechung, jede Verbindung war einmal eine bewusste Bewegung – ein Werk, das durch eine Hand Gestalt angenommen hat.
+
+      Du lässt dein Thal’ithara in die Schrift fließen. Das Zeichen unter deinem Finger beginnt golden zu glimmen. Langsam ziehst du die Fingerspitze über die verblasste Zeile. Dort, wo du das Pergament berührst, erwacht die Tinte. Ein unvollständiger Bogen zieht sich weiter. Eine abgebrochene Linie findet ihren Abschluss. Zeichen schreiben sich unter deiner Hand zu Ende, eines nach dem anderen, als würde das Pergament sich an die Bewegungen erinnern, durch die sie einst entstanden sind.
+
+      Du erschaffst die Worte nicht neu. Du hilfst dem Werk, sich zu erinnern.
+      *goto reveal_hidden_text
+  *if thal_archetype = "Veilwalker"
+    #Ich suche nach einem Echo früherer Hände an der Schriftrolle. [Veilwalker]
+      *set exam_room_01_hidden_method "veilwalker"
+      Du löst deine Aufmerksamkeit vom Pergament und suchst nach dem, was an diesem Ort zurückgeblieben ist. Zwischen den schwachen Echos früherer Anwärter zeichnet sich für einen Moment eine Gestalt am Pult ab. Ihre Hände bewegen die Schriftrolle. Einmal. Noch einmal. Dann hält sie inne.
+
+      Die Gestalt hebt das Pergament leicht an und dreht es gegen das Licht einer Fackel. Für einen Herzschlag siehst du verborgene Zeichen auf der Oberfläche aufleuchten. Das Echo zerfällt. Aber du hast gesehen, was du wissen musst.
+
+      Du hebst das Pergament vorsichtig an. Als das Fackellicht flach über die Oberfläche fällt, treten die verborgenen Zeichen hervor.
+      *goto reveal_hidden_text
+
+
+*label reveal_hidden_text
+*set exam_room_01_hidden_revealed true
+*set quest_exam_room_01_discovery_01 "Schräg einfallendes Licht macht verborgene Schrift auf der Têhand-Schriftrolle sichtbar."
+
+Vier verborgene Zeilen werden lesbar.
+
+„Aus ihren Händen wurde gegeben, was keinem allein gehören sollte.“
+
+„Wo die Gabe Wurzeln schlug, erwachte Leben und brachte Neues hervor.“
+
+„Was getrennt geschaffen worden war, fand zueinander und schuf gemeinsam weiter.“
+
+„Doch als offene Hände sich schlossen, legte sich ein Schleier über das, was einst frei gegeben worden war.“
+
+Du liest sie ein zweites Mal. Nicht als vier voneinander getrennte Aussagen, sondern als Abfolge.
+
+Etwas wird gegeben. Etwas schlägt Wurzeln und wächst.
+
+Getrenntes verbindet sich.
+
+*page_break Weiter
+
+Dann legt sich ein Schleier darüber.
+
+Die Bildsprache erinnert an die Symbole der Kammer. Doch die Zeilen nennen keines davon ausdrücklich. Du wirst ihre Entsprechungen selbst bestimmen müssen.
+
+*set quest_exam_room_01_discovery_02 "Vier verborgene Zeilen erzählen eine Abfolge: Gabe, Wachstum, Verbindung und ein abschließender Schleier."
+*set exam_room_01_scroll_done true
+
+*if exam_room_01_room_done
+  *goto convergence
+*goto room_investigation
+
+
+*label room_investigation
+*if exam_room_01_scroll_done
+  Du löst dich von der Schriftrolle und wendest dich der Kammer zu. Nun suchst du nicht mehr nur nach Auffälligkeiten. Du suchst nach Entsprechungen.
+*if exam_room_01_scroll_done = false
+  Du lässt die Schriftrolle vorerst auf dem Pult liegen und richtest deine Aufmerksamkeit auf die Kammer.
+
+Jetzt, da die Fackeln brennen, erkennst du erst, wie viele Zeichen tatsächlich in den Stein eingelassen wurden. Es sind deutlich mehr, als für eine einfache Kombination notwendig sein dürften. Einige wiederholen sich auf Boden und Wänden, andere tauchen nur ein einziges Mal auf. Manche Steinplatten tragen leichte Verfärbungen, andere wirken nahezu unberührt.
+
+Eine offensichtliche Tür, die weiterführt, kannst du auch jetzt nicht erkennen. Du gehst näher an die ersten Platten heran. Einige reagieren überhaupt nicht auf deine Nähe. Bei anderen glaubst du feine Fugen oder Rillen im umliegenden Stein zu erkennen.
+
+Die Kammer wartet.
+
+Die Schriftrolle hat auf deine magische Energie reagiert. Vielleicht ist das bereits ein Hinweis darauf, wie dieser Ort verstanden werden will. Du könntest dich allein auf das verlassen, was du mit deinen eigenen Augen erkennst. Oder du könntest auf jene Seite deiner selbst vertrauen, durch die dein Thal’ithara seine eigene Gestalt angenommen hat.
+
+*choice
+  #Ich untersuche die eingeritzten Zeichen und ihre Anordnung.
+    Du nimmst dir Zeit. Du gehst die Wände ab, vergleichst die Zeichen, achtest auf Wiederholungen und darauf, welche Darstellungen nur einmal vorkommen. Einige der Symbole scheinen lediglich in den Stein eingelassen zu sein. Andere besitzen feinere Ränder, als könnten sich die Platten dahinter bewegen.
+
+    Wiederkehrende Linien verbinden mehrere von ihnen mit dem Pult und mit einer breiten Wandplatte auf der gegenüberliegenden Seite. Besonders deutlich erkennst du die Flamme, die Knospe, die Verbindung und das Auge. Doch auch Krone, Klinge, Wasser und Sonne tragen Spuren häufiger Berührung. Mehr lässt sich allein durch Beobachtung zunächst nicht mit Sicherheit sagen.
+    *goto room_after_mundane
+  #Ich untersuche die Platten, Fugen und möglichen Mechanismen.
+    Du gehst die Wände ab, untersuchst Fugen, vergleichst die Größe der Steinplatten und achtest darauf, welche Zeichen sich wiederholen. Mehrere Symbole sitzen auf beweglichen Steinplatten. Hinter ihren Rändern verlaufen schmale mechanische Fugen. Manche führen tiefer in die Wand; andere ziehen sich bis zur Decke oder zum Boden.
+
+    Das ist keine bloße Inschrift. Die Kammer kann auf deine Auswahl reagieren. Mehr lässt sich allein durch Beobachtung zunächst nicht mit Sicherheit sagen.
+    *goto room_after_mundane
+  #Ich untersuche die Kammer mit meinem Thal'ithara.
+    *goto room_thal
+
+
+*label room_after_mundane
+*choice
+  #Ich ziehe zusätzlich mein Thal'ithara hinzu.
+    *goto room_thal
+  #Die sichtbaren Spuren genügen mir vorerst.
+    *goto room_complete
+
+
+*label room_thal
+*set exam_room_01_room_thal_used true
+
+*if thal_archetype = "Veilwalker"
+  Als Veilwalker hast du gelernt, dass Orte Spuren hinterlassen können, die mit den Augen allein nicht zu erkennen sind. Gefühle, Erinnerungen und manchmal sogar die Echos jener, die vor dir hier waren. Du lässt deinen Blick unscharf werden und richtest deine Aufmerksamkeit nicht auf den Stein selbst, sondern auf das, was an ihm haftet.
+
+  Für einen Moment geschieht nichts. Dann erscheint der erste Fußabdruck. Blass. Durchscheinend. Ein zweiter folgt, dann Dutzende. Geistige Spuren früherer Anwärter überlagern sich wie Erinnerungen, die niemand vollständig ausgelöscht hat. Eine Gestalt steht vor dem Pult. Eine andere kniet vor einem Symbol. Eine Hand hebt eine Fackel.
+
+  Ein falsches Zeichen wird berührt. Die Erinnerung zuckt zusammen und zerreißt. Dann hörst du eine Stimme. Nicht deutlich genug, um jedes Wort zu verstehen, aber sie spricht Zeichen von der Schriftrolle. Eines der Symbole beginnt zu leuchten. Das Echo vergeht.
+
+  Du weißt nun, dass andere vor dir versucht haben, die Schriftrolle laut zu lesen und dass ihre Worte eine Reaktion im Raum ausgelöst haben. Doch ihre Echos zeigen dir nur, was sie getan haben – nicht, ob sie damit richtiglagen. Gesichter, Worte und die genaue Reihenfolge zerfallen, sobald du danach greifst.
+  *goto room_complete
+
+*if thal_archetype = "Aegis"
+  Als Aegis liegt die Natur deines Thal’ithara in Stärke, Standhaftigkeit und dem Instinkt, dich dem entgegenzustellen, was anderen schaden könnte. Durch Zeichen und Siegel kannst du dieser Kraft Form und Richtung geben – und manchmal erfahren, was dir gegenübersteht, indem du deine eigene Kraft dagegen setzt.
+
+  Du gehst vor den Steinplatten in die Hocke und ziehst mit zwei Fingern ein kleines Zeichen in die Luft. Blasses Licht bleibt dort zurück, wo deine Fingerspitzen entlangfahren. Als du einen Teil deiner Kraft hineinfließen lässt, führst du das Zeichen langsam an den verschiedenen Symbolen entlang. Vor den meisten bleibt es ruhig. Vor der Krone jedoch spannen sich die leuchtenden Linien plötzlich, als würde von der anderen Seite ein schwerer Druck nach unten dagegenpressen. Bei der Klinge fährt stattdessen ein kurzer seitlicher Ruck durch das Zeichen und zieht deine Hand ein Stück mit sich, bevor du dagegenhältst.
+
+  Du löst die Verbindung. Dein Thal’ithara hat dir weder die Bedeutung der Zeichen noch die richtige Reihenfolge verraten. Aber du hast etwas anderes erfahren: Hinter der Krone und der Klinge warten Kräfte, die sich deutlich von den übrigen Platten unterscheiden. Was genau geschehen würde, wenn du sie aktivierst, weißt du nicht. Harmlos sind sie jedoch nicht.
+  *set exam_room_01_danger_known true
+  *goto room_complete
+
+*if thal_archetype = "Seeker"
+  Als Seeker liegt deine Stärke nicht darin, dass verborgene Antworten sich dir einfach offenbaren. Es ist dein Drang, Zusammenhänge dort zu erkennen, wo andere zunächst nur einzelne Fragmente sehen. Du vergleichst die Zeichen auf der Schriftrolle mit den Symbolen im Raum.
+
+  Etwas wiederholt sich. Nicht exakt, aber oft genug, um kein Zufall zu sein. Bestimmte Formen auf dem Pergament tauchen in veränderter Gestalt auf den Steinplatten wieder auf. Auch innerhalb der Schrift scheinen einige Zeichen in einer auffälligen Ordnung aufzutreten. Was zunächst wie poetische Wiederholung wirkte, beginnt sich wie eine Struktur anzufühlen.
+
+  Du kennst ihre Bedeutung noch nicht, aber du bist dir sicher, dass Schriftrolle und Symbole keine voneinander getrennten Rätsel sind. Sie erzählen Teile derselben Sache – und wenn du eines von beiden verstehst, könnte das andere beginnen, Sinn zu ergeben. Keine einzelne Stelle enthält die ganze Antwort. Der Text muss gelesen und anschließend in die Sprache des Raumes übertragen werden.
+  *goto room_complete
+
+*if thal_archetype = "Artisari"
+  Als Artisari betrachtest du die Zeichen länger. Für dich besteht ein Symbol nicht nur aus Linien, Farbe und Form. Jemand hat diese Form gewählt, weil sie etwas ausdrücken sollte. Eine Flamme kann mehr sein als Feuer. Eine Knospe mehr als eine Pflanze. Eine ausgestreckte Hand mehr als eine Geste. Bilder können Gedanken tragen, ohne ein einziges Wort auszusprechen – und manchmal überdauert ihre Bedeutung selbst die Sprache, in der sie einst geschaffen wurden.
+
+  Du gehst langsam an den Steinplatten entlang. Zwischen Kronen, Klingen, Wasser und anderen Zeichen bleibt dein Blick immer wieder an einzelnen Darstellungen hängen. Du versuchst nicht, sie zu übersetzen. Du lässt ihre Formen auf dich wirken. Was wollte jemand ausdrücken, als er diese Linien erschuf? Was verbindet ihre Bildsprache miteinander?
+
+  Als du dich darauf konzentrierst, antwortet dein Thal’ithara. Farbe sammelt sich in den eingravierten Linien eines der Symbole. Zunächst nur ein schwacher Schimmer, dann leuchtet das Zeichen deutlicher vor dir auf. Wenige Schritte weiter antwortet ein zweites. Dann ein drittes und schließlich ein viertes. Die übrigen Steinplatten bleiben dunkel.
+
+  Du wendest dich der Schriftrolle zu. Zwischen den noch lesbaren Teilen der Schrift erkennst du dieselben vier Zeichen wieder. Auch dort beginnen ihre Linien in denselben Farben zu schimmern. Die verblassten Passagen dazwischen bleiben verborgen, doch die Verbindung zwischen Pergament und Stein lässt sich nicht mehr übersehen.
+
+  Vier Zeichen antworten besonders deutlich aufeinander: Flamme, Knospe, Verbindung und Auge. Sie sind verwandt. Ob sie eine Reihenfolge, eine Warnung oder nur vier Teile derselben Geschichte bilden, bleibt offen.
+  *goto room_complete
+
+*if thal_archetype = "Vanguard"
+  Als Vanguard richtet sich dein Blick auf Konstruktion, Funktion und die Art, wie einzelne Teile eines Systems ineinandergreifen. Du untersuchst die Steinplatten selbst. Feine Rillen verlaufen hinter einigen davon in die Wand. Ein Mechanismus. Die Verfärbungen an den Oberflächen stammen vermutlich von Hitze. Die Platten reagieren also wahrscheinlich auf Feuer oder eine ähnliche Energiequelle.
+
+  Einige andere Platten besitzen jedoch zusätzliche mechanische Verbindungen. Von der Krone führt eine schmale Verbindung nach oben in die Decke. Hinter der Platte mit der Klinge verläuft ein eigener Mechanismus seitlich in die Wand. Sie gehören offenbar nicht zum selben System wie die übrigen Zeichen. Fallen.
+
+  Du weißt noch nicht, welche Kombination die richtige ist, aber du verstehst, wie der Raum zuhört. Und du weißt, bei welchen Zeichen eine falsche Entscheidung unmittelbare Folgen haben könnte. Beides ist vermeidbar, wenn du schnell reagierst.
+  *set exam_room_01_danger_known true
+  *goto room_complete
+
+*if thal_archetype = "Llifari"
+  Als Llifari suchst du die Antwort nicht zuerst in der Schrift oder in den Symbolen. Dein Thal’ithara zieht deine Wahrnehmung tiefer – in den Stein unter deinen Füßen. Du legst die Hand auf eine der Platten. Die Oberfläche ist kalt, doch darunter spürst du etwas anderes.
+
+  Eine schwache Spannung läuft durch das Gestein. Du schließt die Augen. Für einen Moment verschwindet die Kammer um dich herum und es bleiben nur Druck, Widerstand und die feinen Bewegungen im Stein. Manche Platten liegen stumm und schwer im Fundament. Von anderen führen kaum wahrnehmbare Schwingungen durch Boden und Wände, verzweigen sich und verschwinden irgendwo hinter dem Mauerwerk.
+
+  Als du mit den Fingern über eines der Symbole streichst, antwortet tief darunter ein leises Vibrieren. Du kennst den Mechanismus nicht und weißt noch nicht, welche Zeichen die richtigen sind. Aber der Stein verrät dir, dass die Kammer miteinander verbunden ist. Was du an einer Stelle auslöst, wird an einer anderen weitergetragen – als wäre der gesamte Raum ein einziger Körper.
+  *goto room_complete
+
+*comment Legacy/empty-save fallback: a mundane but useful magical impression.
+Du öffnest dich für die Resonanz der Kammer. Wärme, Stein und Zeichen antworten als zusammenhängendes Gefüge, doch keine einzelne Empfindung verrät dir die Lösung.
+*goto room_complete
+
+
+*label room_complete
+*set exam_room_01_room_done true
+*if exam_room_01_scroll_done
+  *goto convergence
+*goto scroll_investigation
+
+
+*label convergence
+*set exam_room_01_puzzle_line 1
+
+Du trittst zwischen Pult und Symbolwand.
+
+Erst jetzt beginnen die einzelnen Beobachtungen, sich miteinander zu verbinden. Die Schriftrolle. Die Zeichen im Stein. Die vier Aussagen. Was zunächst wie einzelne Hinweise wirkte, scheint Teil derselben Geschichte zu sein.
+
+*if (thal_archetype = "Artisari") and (exam_room_01_room_thal_used)
+  Vier der Symbole hast du bereits als zusammengehörig erkannt.
+*if (thal_archetype = "Seeker") and (exam_room_01_room_thal_used)
+  Das Muster, das dir zuvor aufgefallen ist, liegt nun deutlicher vor dir: Text und Kammer erzählen tatsächlich dieselbe Geschichte.
+*if ((thal_archetype = "Aegis") or (thal_archetype = "Vanguard")) and (exam_room_01_danger_known)
+  Du weißt außerdem, dass einige der falschen Zeichen mit gefährlichen Kräften oder Mechanismen verbunden sind.
+*if (thal_archetype = "Veilwalker") and (exam_room_01_room_thal_used)
+  Und irgendwo in den Echos dieser Kammer liegt die Erinnerung daran, dass gesprochene Worte die Symbole selbst beeinflussen können.
+
+Doch die eigentliche Entscheidung liegt weiterhin bei dir. Die verborgenen Zeilen geben dir eine Geschichte. Die Kammer verlangt, dass du sie in Zeichen übersetzt.
+
+Bevor du beginnst, fällt dir am unteren Rand der Schriftrolle eine zweite, kürzere Passage auf. Die Zeichen sind schwächer als der übrige Text. Du könntest versuchen, sie zu entziffern — oder deiner eigenen Deutung vertrauen.
+
+*choice
+  #Ich löse die Abfolge selbst.
+    *goto puzzle_line_1
+  #Ich untersuche die kurze Têhand-Passage.
+    *goto recitation_discovery
+
+
+*label recitation_discovery
+*set exam_room_01_recitation_found true
+
+Unterhalb der vier Aussagen liegt eine weitere kurze Passage. Anders als die erzählenden Zeilen darüber besitzt sie eine auffällig regelmäßige Struktur. Zwei kurze Sätze. Zwei Imperative.
+
+Die Passage lautet:
+
+[i]Kikaggondal bîngehkundid. Rîndal durkid bîngehkundayk.[/i]
+
+Wörtlich trägt sie den Sinn: sich an das Gegebene zu erinnern und sichtbar zu machen, was daraus geworden ist.
+
+Als vollständige Übersetzung liest du:
+
+„Erinnere dich an das, was gegeben wurde. Zeige, was daraus geworden ist.“
+
+Das klingt nicht wie eine weitere Beschreibung. Es klingt wie eine Aufforderung zur Rezitation. Dass sie zu dieser Prüfung gehört, bedeutet jedoch nicht, dass unbekannte Têhand-Worte grundsätzlich gefahrlos wären.
+
+*choice
+  #Ich spreche die Worte laut aus.
+    *goto recitation_demonstration
+  *if thal_archetype = "Artisari"
+    #Ich gebe den Worten eine Melodie und singe sie. [Artisari]
+      *goto recitation_demonstration
+  #Ich verzichte auf die Rezitation und löse die Abfolge selbst.
+    *goto puzzle_line_1
+
+
+*label recitation_demonstration
+*set exam_room_01_recitation_used true
+*set exam_room_01_sequence_known true
+*set quest_exam_room_01_discovery_03 "Die Kammer demonstrierte die Abfolge: Flamme → Knospe → Verbindung → Auge."
+
+Das letzte Wort verklingt. Einen Moment bleibt die Kammer still.
+
+Dann erklingt ein einzelner, tiefer Ton. Die eingravierten Linien der Flamme füllen sich mit rotem Licht. Wenige Herzschläge später erlischt es.
+
+Ein zweiter Ton folgt, heller als der erste. Das Symbol des Wachstums erwacht in grünem Licht.
+
+Dann ein dritter Klang. Oder vielmehr zwei. Zwei Töne erklingen beinahe gleichzeitig, antworten einander und finden schließlich zu einer Harmonie, während die Verbindung golden aufleuchtet.
+
+Zuletzt folgt ein gedämpfter, beinahe ferner Ton. Das Zeichen des Schleiers füllt sich mit tiefem violettem Licht. Dann erlischt auch dieses.
+
+Stille. Vier Farben. Vier Klänge. Eine Abfolge.
+
+Die Kammer hat dir nichts erklärt. Aber sie hat dir etwas vorgespielt.
+
+*page_break Zur Symbolwand
+*goto puzzle_line_1
+
+
+*label puzzle_line_1
+*set exam_room_01_puzzle_line 1
+
+Erste Zeile:
+
+„Aus ihren Händen wurde gegeben, was keinem allein gehören sollte.“
+
+Welches Zeichen antwortet darauf?
+
+*choice
+  *if exam_room_01_l1_crown
+    *selectable_if (false) #Die Krone. [bereits versucht]
+      *goto puzzle_line_1
+  *if (exam_room_01_l1_crown = false) and (exam_room_01_danger_known)
+    #Die Krone. [Gefahr erkannt]
+      *set exam_room_01_l1_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  *if (exam_room_01_l1_crown = false) and (exam_room_01_danger_known = false)
+    #Die Krone.
+      *set exam_room_01_l1_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  *if exam_room_01_l1_water
+    *selectable_if (false) #Das Wasser. [bereits versucht]
+      *goto puzzle_line_1
+  *else
+    #Das Wasser.
+      *set exam_room_01_l1_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer
+  #Die Flamme.
+    Rotes Licht breitet sich durch die eingravierten Linien der Flamme aus. Ein warmer, tiefer Ton erklingt irgendwo hinter dem Stein. Das Symbol bleibt erleuchtet.
+    *goto puzzle_line_2
+  *if exam_room_01_l1_sun
+    *selectable_if (false) #Die Sonne. [bereits versucht]
+      *goto puzzle_line_1
+  *else
+    #Die Sonne.
+      *set exam_room_01_l1_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer
+
+
+*label puzzle_line_2
+*set exam_room_01_puzzle_line 2
+
+Zweite Zeile:
+
+„Wo die Gabe Wurzeln schlug, erwachte Leben und brachte Neues hervor.“
+
+*choice
+  *if exam_room_01_l2_water
+    *selectable_if (false) #Das Wasser. [bereits versucht]
+      *goto puzzle_line_2
+  *else
+    #Das Wasser.
+      *set exam_room_01_l2_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer
+  #Die Knospe.
+    Grünes Licht breitet sich durch die eingravierten Linien der Knospe aus. Ein zweiter Ton erklingt, heller als der erste. Flamme und Wachstum leuchten nun gemeinsam.
+    *goto puzzle_line_3
+  *if exam_room_01_l2_sun
+    *selectable_if (false) #Die Sonne. [bereits versucht]
+      *goto puzzle_line_2
+  *else
+    #Die Sonne.
+      *set exam_room_01_l2_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer
+  *if exam_room_01_l2_eye
+    *selectable_if (false) #Das Auge. [bereits versucht]
+      *goto puzzle_line_2
+  *else
+    #Das Auge.
+      *set exam_room_01_l2_eye true
+      *set wrong_symbol "eye"
+      *goto wrong_answer
+
+
+*label puzzle_line_3
+*set exam_room_01_puzzle_line 3
+
+Dritte Zeile:
+
+„Was getrennt geschaffen worden war, fand zueinander und schuf gemeinsam weiter.“
+
+*choice
+  *if exam_room_01_l3_crown
+    *selectable_if (false) #Die Krone. [bereits versucht]
+      *goto puzzle_line_3
+  *if (exam_room_01_l3_crown = false) and (exam_room_01_danger_known)
+    #Die Krone. [Gefahr erkannt]
+      *set exam_room_01_l3_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  *if (exam_room_01_l3_crown = false) and (exam_room_01_danger_known = false)
+    #Die Krone.
+      *set exam_room_01_l3_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  *if exam_room_01_l3_eye
+    *selectable_if (false) #Das Auge. [bereits versucht]
+      *goto puzzle_line_3
+  *else
+    #Das Auge.
+      *set exam_room_01_l3_eye true
+      *set wrong_symbol "eye"
+      *goto wrong_answer
+  #Die Verbindung.
+    Goldenes Licht wandert durch die Verbindung. Diesmal antworten nicht ein Ton, sondern zwei einander — zunächst getrennt, dann gemeinsam —, bis sie für einen kurzen Moment dieselbe Harmonie halten. Drei Symbole leuchten nun.
+    *goto puzzle_line_4
+  *if exam_room_01_l3_water
+    *selectable_if (false) #Das Wasser. [bereits versucht]
+      *goto puzzle_line_3
+  *else
+    #Das Wasser.
+      *set exam_room_01_l3_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer
+
+
+*label puzzle_line_4
+*set exam_room_01_puzzle_line 4
+
+Vierte Zeile:
+
+„Doch als offene Hände sich schlossen, legte sich ein Schleier über das, was einst frei gegeben worden war.“
+
+*choice
+  *if exam_room_01_l4_crown
+    *selectable_if (false) #Die Krone. [bereits versucht]
+      *goto puzzle_line_4
+  *if (exam_room_01_l4_crown = false) and (exam_room_01_danger_known)
+    #Die Krone. [Gefahr erkannt]
+      *set exam_room_01_l4_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  *if (exam_room_01_l4_crown = false) and (exam_room_01_danger_known = false)
+    #Die Krone.
+      *set exam_room_01_l4_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer
+  #Das Auge.
+    Ein tiefvioletter Schimmer erfüllt das Zeichen. Der vierte Ton ist gedämpfter als die anderen, beinahe fern. Nun leuchten alle vier Symbole gemeinsam.
+    *goto puzzle_success
+  *if exam_room_01_l4_blade
+    *selectable_if (false) #Die Klinge. [bereits versucht]
+      *goto puzzle_line_4
+  *if (exam_room_01_l4_blade = false) and (exam_room_01_danger_known)
+    #Die Klinge. [Gefahr erkannt]
+      *set exam_room_01_l4_blade true
+      *set wrong_symbol "blade"
+      *goto wrong_answer
+  *if (exam_room_01_l4_blade = false) and (exam_room_01_danger_known = false)
+    #Die Klinge.
+      *set exam_room_01_l4_blade true
+      *set wrong_symbol "blade"
+      *goto wrong_answer
+  *if exam_room_01_l4_sun
+    *selectable_if (false) #Die Sonne. [bereits versucht]
+      *goto puzzle_line_4
+  *else
+    #Die Sonne.
+      *set exam_room_01_l4_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer
+
+
+*label wrong_answer
+*if wrong_symbol = "crown"
+  Ein schweres Knirschen ertönt über dir.
+
+  *if (exam_room_01_danger_known) and (thal_archetype = "Aegis")
+    Das Schaben über dir beginnt, und im selben Moment erkennst du die Kraft wieder, die zuvor gegen dein Zeichen gedrückt hat. Die Steinplatte fährt aus der Decke. Dein Thal’ithara schießt durch Arme und Schultern, die Linien deines Zeichens flammen über deiner Haut auf, und du stemmst beide Hände nach oben. Der Stein trifft dich mit gewaltiger Wucht. Deine Knie geben einen Moment nach, doch du hältst dagegen, bis der Mechanismus greift und die Platte wieder nach oben zieht. Die Krone erlischt. Falsche Antwort – aber diesmal wusstest du zumindest, was auf dich zukam.
+  *if (exam_room_01_danger_known) and (thal_archetype != "Aegis")
+    Weil du die Gefahr bereits gespürt hast, weichst du beim ersten Zittern des Steins zur Seite. Eine breite Deckenplatte senkt sich dort herab, wo du eben noch standest, hält knapp über dem Boden inne und fährt wieder zurück.
+  *if exam_room_01_danger_known = false
+    Ein Schatten fällt über dich. Du springst zurück, bevor eine breite Deckenplatte den Boden erreicht. Sie hält inne und fährt mit mahlendem Geräusch wieder hinauf.
+*if wrong_symbol = "blade"
+  Die Wandfuge neben dir springt auf.
+
+  *if (exam_room_01_danger_known) and (thal_archetype = "Aegis")
+    Du erkennst den seitlichen Ruck wieder. Noch während die stumpfe Übungsklinge aus der Wand schnellt, ziehst du mit einer Hand ein kurzes Zeichen in ihre Bahn und stößt deine Kraft hinein. Blasses Licht spannt sich gegen den Schlag. Die Klinge prallt daran ab und wird vom Mechanismus zurückgezogen.
+  *if (exam_room_01_danger_known) and (thal_archetype != "Aegis")
+    Du bist bereits in Bewegung, als eine stumpfe Übungsklinge hervorschnellt. Sie streift nur die Luft und zieht sich wieder zurück.
+  *if exam_room_01_danger_known = false
+    Eine stumpfe Übungsklinge schießt aus der Öffnung. Du reißt dich zur Seite; der Schlag verfehlt dich knapp und der Mechanismus zieht sich zurück.
+*if wrong_symbol = "water"
+  Das Wasserzeichen füllt sich mit kaltem blauem Licht. Es gibt keinen Ton von sich. Nach einem Augenblick versiegt der Schein.
+*if wrong_symbol = "sun"
+  Die Sonne blitzt grell auf. Für einige Herzschläge tanzen helle Flecken vor deinen Augen, dann kehrt die Kammer in ihr gedämpftes Licht zurück.
+*if wrong_symbol = "eye"
+  Hinter dem Auge öffnet sich für einen Moment eine schmale mechanische Fuge. Dahinter liegt nur Dunkelheit. Noch bevor du sie untersuchen kannst, schließt sie sich wieder.
+
+Die zuvor aktivierten Zeichen verlöschen. Die Abfolge wurde zurückgesetzt.
+
+Du musst wieder bei der ersten Zeile beginnen.
+
+*choice
+  #Ich versuche die Abfolge erneut.
+    *goto puzzle_line_1
+  *if exam_room_01_recitation_found = false
+    #Ich untersuche jetzt doch die kurze Têhand-Passage.
+      *goto recitation_discovery
+  *if exam_room_01_recitation_found
+    #Ich prüfe die Têhand-Passage noch einmal.
+      *goto recitation_discovery
+
+
+*label puzzle_success
+*set exam_room_01_sequence_known true
+*if quest_exam_room_01_discovery_03 = ""
+  *set quest_exam_room_01_discovery_03 "Die Symbolfolge der Kammer lautet: Flamme → Knospe → Verbindung → Auge."
+
+Diesmal erlischt das letzte Symbol nicht.
+
+Rot. Grün. Gold. Violett.
+
+Die vier Farben liegen über den Steinplatten wie Teile eines einzigen Bildes. Der tiefe Ton der Flamme erklingt erneut. Dann der hellere Klang des Wachstums. Die beiden Töne der Verbindung antworten einander. Schließlich legt sich der gedämpfte Klang des Schleiers darunter.
+
+Für einen Moment existieren die einzelnen Töne nebeneinander. Dann werden sie zu einem Akkord.
+
+Feine Linien beginnen im Boden zu glühen. Sie ziehen sich von einem Symbol zum nächsten. Von der Flamme zum Wachstum. Vom Wachstum zur Verbindung. Von dort zum Schleier. Was zunächst wie vier einzelne Zeichen wirkte, wird zu einer einzigen Bewegung durch den Raum.
+
+Stein knirscht. Staub rieselt aus einer Fuge an der gegenüberliegenden Wand. Du trittst einen Schritt zurück. Eine Wand, die du bislang für massiv gehalten hast, fährt langsam in den Boden.
+
+Dahinter liegt eine weitere Kammer.
+
+Doch bevor du den ersten Schritt hindurchsetzt, fällt dein Blick zurück auf das steinerne Pult. Die Schriftrolle liegt noch immer dort.
+
+*choice
+  #Ich nehme die Schriftrolle mit.
+    *set exam_room_01_scroll_disposition "taken"
+    Du kehrst zum Pult zurück und rollst das alte Pergament vorsichtig zusammen.
+
+    Was immer diese Quelle ursprünglich bedeutete – und was immer sich hinter der geöffneten Wand noch verbirgt –, du entscheidest dich, das Original bei dir zu behalten.
+    *set quest_exam_room_01_item_01 "Têhand-Schriftrolle — enthält den Licht-Hinweis und die vier verborgenen Zeilen der Prüfung."
+    *if exam_room_01_recitation_found
+      *set quest_exam_room_01_item_01 quest_exam_room_01_item_01 & " Am unteren Rand steht außerdem die Têhand-Rezitation."
+    *goto exit_room
+  #Ich kopiere genau zwei Informationen und lasse das Original zurück.
+    *set exam_room_01_scroll_disposition "copied"
+    Du musst das Pergament nicht mitnehmen, um etwas davon zu bewahren. Du gehst noch einmal durch das, was du entdeckt hast, und entscheidest, welche Informationen du für wichtig genug hältst, um sie festzuhalten.
+    *goto copy_first
+  #Ich lasse die Schriftrolle zurück.
+    *set exam_room_01_scroll_disposition "left"
+    Du lässt die Schriftrolle auf dem steinernen Pult liegen. Keine Abschrift. Kein Original in deiner Tasche. Was du aus dieser Kammer mitnimmst, bleibt vorerst in deiner Erinnerung.
+    *goto exit_room
+
+
+*label copy_first
+Du hast nur Raum für zwei sorgfältige Einträge. Was hältst du zuerst fest?
+
+*choice
+  #Die verborgene Geschichte von Gabe, Wachstum, Verbindung und Schleier.
+    *set exam_room_01_copy_first "story"
+    *set quest_exam_room_01_note_01 "Verborgene Geschichte: Gabe → Wachstum → Verbindung → Schleier."
+    *goto copy_second
+  #Die gelöste Symbolfolge: Flamme → Knospe → Verbindung → Auge.
+    *set exam_room_01_copy_first "sequence"
+    *set quest_exam_room_01_note_01 "Symbolfolge: Flamme → Knospe → Verbindung → Auge."
+    *goto copy_second
+  #Den Licht-Hinweis: „Was verborgen wurde, offenbart sich nicht dem Auge, sondern dem Licht.“
+    *set exam_room_01_copy_first "light"
+    *set quest_exam_room_01_note_01 "Licht-Hinweis: Was verborgen wurde, offenbart sich nicht dem Auge, sondern dem Licht."
+    *goto copy_second
+  *if exam_room_01_recitation_found
+    #Die Rezitation: „Erinnere dich an das, was gegeben wurde. Zeige, was daraus geworden ist.“
+      *set exam_room_01_copy_first "recitation"
+      *set quest_exam_room_01_note_01 "Têhand-Rezitation: Erinnere dich an das, was gegeben wurde. Zeige, was daraus geworden ist."
+      *goto copy_second
+
+
+*label copy_second
+Welche zweite Information bewahrst du?
+
+*choice
+  *if exam_room_01_copy_first != "story"
+    #Die verborgene Geschichte von Gabe, Wachstum, Verbindung und Schleier.
+      *set exam_room_01_copy_second "story"
+      *set quest_exam_room_01_note_02 "Verborgene Geschichte: Gabe → Wachstum → Verbindung → Schleier."
+      *goto copy_complete
+  *if exam_room_01_copy_first != "sequence"
+    #Die gelöste Symbolfolge: Flamme → Knospe → Verbindung → Auge.
+      *set exam_room_01_copy_second "sequence"
+      *set quest_exam_room_01_note_02 "Symbolfolge: Flamme → Knospe → Verbindung → Auge."
+      *goto copy_complete
+  *if exam_room_01_copy_first != "light"
+    #Den Licht-Hinweis: „Was verborgen wurde, offenbart sich nicht dem Auge, sondern dem Licht.“
+      *set exam_room_01_copy_second "light"
+      *set quest_exam_room_01_note_02 "Licht-Hinweis: Was verborgen wurde, offenbart sich nicht dem Auge, sondern dem Licht."
+      *goto copy_complete
+  *if (exam_room_01_recitation_found) and (exam_room_01_copy_first != "recitation")
+    #Die Rezitation: „Erinnere dich an das, was gegeben wurde. Zeige, was daraus geworden ist.“
+      *set exam_room_01_copy_second "recitation"
+      *set quest_exam_room_01_note_02 "Têhand-Rezitation: Erinnere dich an das, was gegeben wurde. Zeige, was daraus geworden ist."
+      *goto copy_complete
+
+
+*label copy_complete
+Du überträgst genau die beiden ausgewählten Informationen in deine Notizen. Dann legst du die Schriftrolle auf das Pult zurück.
+*goto exit_room
+
+
+*label exit_room
+*set quest_exam_room_01_status "completed"
+*set quest_exam_room_01_objective "Der erste Abschnitt der Prüfung wurde entschlüsselt und abgeschlossen."
+
+Du trittst durch die Öffnung. Kaum hast du die Schwelle überschritten, setzt sich hinter dir der Stein wieder in Bewegung. Langsam schiebt sich die Wand zurück an ihren Platz. Der Blick auf das Pult verschwindet. Dann die Fackeln. Dann die letzte schmale Linie der Kammer.
+
+Mit einem tiefen Geräusch schließt sich der Durchgang. Vor dir liegt der nächste Teil deiner Prüfung.
+
+*page_break Nächster Abschnitt
+*goto_scene de_00_exam_room_02

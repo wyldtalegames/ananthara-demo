@@ -1,0 +1,482 @@
+*comment Abschlussprüfung — Raum II: Das Wandbild
+*label start
+*if language = "en"
+  *goto_scene en_00_exam_room_02
+*set quest_exam_status "active"
+*set quest_exam_room_01_status "completed"
+*set quest_exam_room_02_status "active"
+*set quest_exam_room_02_objective "Rekonstruiere das Wandbild und finde den Weg in den nächsten Abschnitt."
+*set quest_exam_room_03_status "locked"
+[b]DIE GABE DES LICHTS[/b]
+
+Hinter dir verstummt das tiefe Grollen der zurückfahrenden Wand. Für einige Augenblicke hörst du nur deine eigenen Schritte, dann öffnet sich der schmale Durchgang zu einer zweiten Kammer. Sie ist größer als die erste und beinahe vollständig leer. Keine Schriftrolle wartet auf einem Pult, keine Reihe von Symbolen fordert unmittelbar deine Aufmerksamkeit. Stattdessen fällt warmes, weißes Licht aus einer schmalen Öffnung hoch über dir. Es trifft auf ein geschliffenes Stück Glas oder Kristall, das in einer steinernen Halterung nahe der Decke sitzt, und wird von dort schräg durch den Raum gelenkt. Wohin genau der Lichtstrahl führen soll, lässt sich auf den ersten Blick nicht erkennen, denn fast die gesamte gegenüberliegende Wand wird von einem gewaltigen Mosaik eingenommen – und mit ihm stimmt etwas nicht.
+
+Das Wandbild ist nicht zerstört. Kein Stein fehlt, keine losen Bruchstücke liegen auf dem Boden. Trotzdem wirkt es, als hätte jemand das gesamte Werk auseinandergenommen und falsch wieder zusammengesetzt. Eine gemalte Hand endet an der Kante eines Segments und wird auf dem nächsten zu einer Ranke. Goldene Linien brechen mitten in ihrer Bewegung ab und setzen sich mehrere Meter entfernt fort. Teile von Gewändern, Gesichtern, Pflanzen und dunklen Flächen tauchen an Stellen auf, an denen sie unmöglich zusammengehören können. Erst als du nähertrittst, erkennst du, dass das Mosaik aus großen steinernen Segmenten besteht. Feine Fugen trennen sie voneinander, manche Flächen sitzen in kreisförmigen Führungen, andere in geraden Bahnen, die tief in die Wand hineinreichen. Die einzelnen Teile lassen sich offenbar drehen oder verschieben.
+
+Das hier ist kein zerstörtes Kunstwerk. Jemand hat es absichtlich aus seiner Ordnung gebracht.
+
+*goto investigation
+
+*label investigation
+Was untersuchst du?
+*choice
+  *if room2_examined_seams and (room2_initial_investigations < 2)
+    *selectable_if (false) #Die Fugen und beweglichen Segmente. [untersucht]
+      *goto investigation
+  *elseif room2_examined_seams = false
+    #Ich untersuche die Fugen und die beweglichen Segmente.
+      *set room2_examined_seams true
+      *set room2_initial_investigations +1
+      Du gehst näher an die Wand heran und fährst mit den Fingern über eine der schmalen Fugen. Sie ist zu gleichmäßig, um ein natürlicher Bruch zu sein. Dahinter verläuft eine Führung aus Stein und dunklem Metall, und weiter oben erkennst du ähnliche Spuren. Manche Segmente können offenbar seitlich verschoben werden, andere scheinen sich um einen Mittelpunkt drehen zu lassen. Das Mosaik wurde nicht nachträglich zerschlagen und neu zusammengesetzt. Es wurde von Anfang an so gebaut, dass seine einzelnen Teile bewegt werden können.
+      *set quest_exam_room_02_discovery_01 "Das Wandbild besteht aus absichtlich beweglichen Segmenten."
+      *goto investigation
+  *if room2_examined_breaks and (room2_initial_investigations < 2)
+    *selectable_if (false) #Die sichtbaren Brüche im Bild. [untersucht]
+      *goto investigation
+  *elseif room2_examined_breaks = false
+    #Ich untersuche die sichtbaren Brüche innerhalb des Bildes.
+      *set room2_examined_breaks true
+      *set room2_initial_investigations +1
+      Du trittst einige Schritte zurück und zwingst dich, zunächst nicht nach einer Bedeutung zu suchen, sondern nur nach dem, was tatsächlich vor dir liegt. Eine Ranke endet an einer Fuge, obwohl dieselbe Form auf einem entfernten Segment weiterläuft. Eine ausgestreckte Hand besitzt keinen dazugehörigen Arm. Eine goldene Linie verschwindet an einer Kante und erscheint an anderer Stelle erneut. Auch einige der dunklen Flächen scheinen nicht dort weiterzulaufen, wo sie sollten. Du weißt noch nicht, welches Bild daraus entstehen soll, aber mehrere Teile besitzen sichtbare Fortsetzungen, die momentan voneinander getrennt sind.
+      *set quest_exam_room_02_discovery_02 "Mehrere Segmente besitzen erkennbare visuelle Fortsetzungen."
+      *goto investigation
+  *if room2_examined_controls and (room2_initial_investigations < 2)
+    *selectable_if (false) #Eine Möglichkeit, das Wandbild zu bedienen. [untersucht]
+      *goto investigation
+  *elseif room2_examined_controls = false
+    #Ich suche nach einer Möglichkeit, das Wandbild zu bedienen.
+      *set room2_examined_controls true
+      *set room2_initial_investigations +1
+      Du suchst die Wand, den Boden und die angrenzenden Steine nach etwas ab, das die Konstruktion steuern könnte. Einen Hebel findest du nicht, ebenso wenig ein Rad oder eine Reihe von Schaltern, mit denen sich das gesamte Bild einfach zurücksetzen ließe. Schließlich entdeckst du am unteren Rand des Mosaiks eine flache steinerne Scheibe, kaum größer als deine Hand. Feine Markierungen laufen an ihrem Rand entlang. Als du sie vorsichtig bewegst, antwortet irgendwo hinter der Wand ein tiefes Knirschen und eines der kleineren Segmente verschiebt sich ein Stück. Die Steuerung reicht offenbar aus, um einzelne Teile zu bewegen – aber sie verrät dir nicht, wohin sie gehören.
+      *set quest_exam_room_02_discovery_03 "Die Segmente können bewegt werden; die Steuerung selbst enthält keine Lösung."
+      *goto investigation
+  *if room2_examined_magic and (room2_initial_investigations < 2)
+    *selectable_if (false) #Die magischen Spuren im Mosaik. [untersucht]
+      *goto investigation
+  *elseif room2_examined_magic = false
+    #Ich untersuche die magischen Spuren innerhalb des Mosaiks.
+      *set room2_examined_magic true
+      *set room2_initial_investigations +1
+      Du lässt dein Bewusstsein für Thal’ithara vorsichtig über die Wand gleiten, ohne deiner Magie bereits eine bestimmte Aufgabe zu geben. Etwas antwortet. Nicht stark genug, um dir ein Bild oder eine Lösung zu zeigen, aber deutlich genug, um keinen Zweifel zu lassen: Dieses Mosaik ist mehr als Stein und Farbe. Magie liegt in seinen Materialien, in seiner Konstruktion, in dem Werk selbst und in Spuren, die sich nicht vollständig der sichtbaren Welt zuordnen lassen. Was davon für dich erreichbar ist, hängt davon ab, wie deine eigene Thal’ithara der Welt begegnet.
+      *goto investigation
+  *if room2_initial_investigations >= 2
+    #Ich wende meine Thal'ithara auf das Wandbild an.
+      *goto thal_route
+
+*label thal_route
+Je länger du das Mosaik betrachtest, desto deutlicher wird die Aufgabe. Alle Teile sind vorhanden. Sie befinden sich nur nicht dort, wo sie hingehören. Irgendwo innerhalb dieses Durcheinanders existiert ein vollständiges Bild, doch die Kammer wird es dir nicht einfach zeigen. Du könntest versuchen, jedes Segment einzeln zu verschieben und dich allein auf sichtbare Fortsetzungen zu verlassen. Bei einem Wandbild dieser Größe könnte das lange dauern. Oder du könntest herausfinden, was deine Thal’ithara darin erkennt.
+*if thal_archetype = "Artisari"
+  *goto artisari
+*if thal_archetype = "Seeker"
+  *goto seeker
+*if thal_archetype = "Vanguard"
+  *goto vanguard
+*if thal_archetype = "Llifari"
+  *goto llifari
+*if thal_archetype = "Veilwalker"
+  *goto veilwalker
+*goto aegis
+
+*label artisari
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Artisari", nextLabel:"artisari_after_interaction"});
+*label artisari_after_interaction
+Als Artisari begegnet deine Thal’ithara Schöpfung nicht nur als etwas Fertigem. In einem Werk können Ausdruck, Absicht und etwas von dem weiterleben, was sein Schöpfer einst darin hinterlassen hat. Du legst die Hand auf eines der bemalten Segmente und lässt deine Kraft hineinfließen. Für einen Herzschlag geschieht nichts, dann läuft ein schwacher Schimmer unter deinen Fingern hervor. Farbe gewinnt an Tiefe. Eine gemalte Ranke bewegt sich, als würde Wind durch ihre Blätter streichen, weiter oben hebt sich innerhalb des Bildes eine Hand und greift nach etwas, das nicht mehr dort ist. Das Mosaik antwortet dir nicht mit Worten. Es antwortet wie ein Werk, das weiß, dass etwas an ihm nicht mehr stimmt. Dann bewegt sich der Stein. Nicht weil du ihn schiebst. Das Kunstwerk tut es selbst. Ein Segment dreht sich langsam in seiner Führung, ein anderes gleitet zur Seite. Eine unterbrochene Ranke findet ihre Fortsetzung, eine Hand ihren Arm, eine goldene Linie den Teil, von dem sie getrennt worden war. Du hältst deine Hand auf dem Mosaik und spürst, wie sich das Werk Stück für Stück an seine eigene Gestalt erinnert.
+*goto restored
+
+*label seeker
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Seeker", nextLabel:"seeker_after_interaction"});
+*label seeker_after_interaction
+Als Seeker liegt die Stärke deiner Thal’ithara darin, Beziehungen zwischen Informationen sichtbar werden zu lassen. Du konzentrierst dich auf das Mosaik, und nach und nach treten einzelne Zusammenhänge deutlicher aus dem Durcheinander hervor. Kein fertiges Bild erscheint vor deinem inneren Auge. Stattdessen erkennst du Verbindungen: Eine goldene Linie auf einem Segment entspricht exakt einer Linie mehrere Reihen darüber. Eine Ranke besitzt hier ihren Anfang und dort ihre Fortsetzung. Eine ausgestreckte Hand muss zu einer Figur gehören, deren Arm momentan auf der anderen Seite des Bildes liegt. An mehreren Stellen liegen dunkle Formen über goldenen Linien – was zumindest darauf hindeutet, dass das Gold innerhalb der dargestellten Abfolge bereits vorhanden gewesen sein muss. Und manches erinnert dich an das, was du in der ersten Kammer gesehen hast: etwas wird gegeben, etwas wächst, Getrenntes findet zusammen, etwas legt sich darüber. Das ist kein Beweis dafür, dass beide Darstellungen dieselbe Geschichte erzählen. Aber es ist eine Spur. Du gehst zur steinernen Steuerung am unteren Rand des Mosaiks. Deine Thal’ithara bewegt die Teile nicht für dich und verrät dir nicht, wie die Konstruktion funktioniert. Sie hilft dir zu erkennen, welche Informationen zusammengehören. Den Rest musst du selbst daraus ableiten.
+*goto restored
+
+*label vanguard
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Vanguard", nextLabel:"vanguard_after_interaction"});
+*label vanguard_after_interaction
+Als Vanguard begegnet deine Thal’ithara Konstruktionen über ihre Funktion. Du legst die Hand an den Stein neben einer der Führungen und lässt deine Kraft tiefer in die Wand greifen. Etwas antwortet. Kein Bild, keine Erinnerung – eine Konstruktion. Für einen Moment nimmst du ihre einzelnen Teile wahr, als lägen sie offen vor dir: Führungen, Achsen, Gegengewichte, Verbindungen und bewegliche Halterungen, verborgen hinter meterdickem Stein. Du musst nicht verstehen, was das Wandbild erzählt. Die Maschine selbst besitzt einen Zustand, aus dem sie herausbewegt wurde, und einen Zustand, für den sie gebaut wurde. Du lässt dein Thal’ithara durch das Gefüge fließen und gibst ihm einen einzigen Impuls. Zurück. Tief in der Wand greift ein Zahnrad in das nächste. Stein gleitet über Stein. Segmente drehen sich, andere verschwinden kurz in ihren Führungen und tauchen an neuer Stelle wieder auf. Du bewegst nicht jedes Teil einzeln. Du hast der Konstruktion nur gesagt, wohin sie zurückkehren soll. Den Rest erledigt sie selbst.
+*goto restored
+
+*label llifari
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Llifari", nextLabel:"llifari_after_interaction"});
+*label llifari_after_interaction
+Als Llifari begegnet deine Thal’ithara der Welt durch das, woraus sie besteht. Du legst die Hand auf den kalten Stein und lässt deine Wahrnehmung unter Farbe, Werkzeugspuren und bearbeitete Oberfläche sinken. Das Bild verschwindet für einen Moment aus deinem Bewusstsein. Was bleibt, sind Stein, Mineralien, metallische Einschlüsse und Pigmente, die einst aus Erde, Pflanzen und anderen Bestandteilen der lebenden Welt gewonnen wurden. Plötzlich fühlt sich das Mosaik nicht mehr wie eine Ansammlung fremder Teile an. Einige davon gehören zusammen – nicht wegen dessen, was auf ihnen dargestellt ist, sondern weil sie dieselben materiellen Spuren tragen. Unter deiner Hand beginnt der Stein zu vibrieren. Feiner Staub löst sich aus den Fugen. Ein Segment gleitet langsam zur Seite, ein anderes dreht sich ihm entgegen. Nicht die verborgene Maschine führt die Bewegung. Das Material selbst folgt den Verbindungen, die dein Thal’ithara darin gefunden hat, bis getrennte Flächen wieder zueinanderfinden.
+*goto restored
+
+*label veilwalker
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Veilwalker", nextLabel:"veilwalker_after_interaction"});
+*label veilwalker_after_interaction
+Als Veilwalker reicht deine Thal’ithara dorthin, wo die sichtbare Welt endet. Orte sind selten so leer, wie sie erscheinen, und manchmal genügt es, die Grenze zwischen dir und dem, was jenseits davon wartet, ein wenig durchlässiger werden zu lassen. Du legst die Hand an den kalten Stein und öffnest dich für den Schleier. Zunächst antwortet nur Stille, dann verändert sich die Luft. Ein kaum hörbares Flüstern zieht durch die Kammer, obwohl sich nichts bewegt, und am Rand deines Blickfelds erscheinen Formen, die verschwinden, sobald du ihnen direkt folgen willst. Eine durchscheinende Hand zeichnet sich für einen Augenblick auf der Oberfläche des Mosaiks ab. Dann eine zweite. Weitere folgen. Du weißt nicht, was sie sind. Geister dieses Ortes, Wächter, die mit dem Wandbild verbunden sind, oder etwas, das deinem Ruf aus einem anderen Grund gefolgt ist. Doch als du deine Hand vom Stein nimmst, bleiben ihre zurück. Eine der geisterhaften Gestalten greift nach einem Segment. Ihre Finger gleiten nicht hindurch. Der Stein bewegt sich. Dann greifen auch die anderen zu. Ohne ein Wort beginnen die Gestalten, das Wandbild neu zu ordnen, drehen Segmente in ihren Führungen und führen Stück für Stück zusammen, was voneinander getrennt worden war. Du kennst die Ordnung nicht, der sie folgen. Du hast lediglich die Verbindung hergestellt.
+*goto restored
+
+*label aegis
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Aegis", nextLabel:"aegis_after_interaction"});
+*label aegis_after_interaction
+Als Aegis liegt die Natur deiner Thal’ithara in Stärke, Standhaftigkeit und darin, Kraft dorthin zu richten, wo sie gebraucht wird. Zeichen und Siegel können dieser Stärke Form und Richtung geben – und vor dir liegt ein Problem, das weniger an Erkenntnis als an schierer Größe scheitert. Du kannst selbst erkennen, dass manche Linien und Formen zusammengehören. Eine Ranke besitzt ihre Fortsetzung mehrere Segmente entfernt, eine Hand sucht ihren Arm, goldene Linien enden dort, wo sie unmöglich enden sollten. Doch einige der dazugehörigen Steine liegen mehrere Meter über dir und sind viel zu groß, um sie mit bloßen Händen zu bewegen. Du hebst eine Hand und ziehst ein Zeichen in die Luft. Eine Linie gibt der Kraft Richtung, eine weitere gibt ihr Halt. Als du die Form schließt, fährt dein Thal’ithara hindurch und das Zeichen wächst. Licht breitet sich über dir aus, Linien werden zu Fingern, Bögen zu einer Handfläche, bis eine gewaltige durchscheinende Hand vor dem Wandbild schwebt. Du bewegst deine Finger und die Hand bewegt ihre. Du schließt deine Faust um eines der oberen Segmente und ziehst. Tiefes Knirschen erfüllt die Kammer, als der Stein in seiner Führung gleitet. Du hast weder den Mechanismus verstanden noch eine verborgene Lösung erkannt. Du hast deiner eigenen Stärke lediglich eine Form gegeben, die weit über die Reichweite deines Körpers hinausreicht. Und das genügt.
+*goto restored
+
+*label restored
+*set exam_room_02_mural_restored true
+Das letzte Segment erreicht seinen Platz. Ein tiefes Geräusch läuft durch die Wand, dann greifen die Führungen hinter dem Mosaik ineinander. Einer nach dem anderen sinken die beweglichen Steine wenige Fingerbreit zurück, bis die Fugen beinahe bündig miteinander abschließen. Was zuvor wie Dutzende voneinander getrennte Fragmente wirkte, wird zu einem einzigen Bild. Du trittst zurück. Zum ersten Mal siehst du das Wandbild so, wie es geschaffen wurde.
+
+*page_break Weiter
+
+Drei große Gestalten beherrschen seinen Mittelpunkt. Eine Frau steht zwischen zwei männlichen Figuren, die Hände geöffnet vor sich. Ranken ziehen sich über ihr Gewand und winden sich um ihre Arme, und obwohl die Darstellung stilisiert ist, erkennst du das Motiv. Faon’lin. Eine der Drei. In den Geschichten wird sie mit Wachstum, Schöpfung und der Entfaltung des Lebens verbunden. Zwischen ihren geöffneten Händen schwebt etwas Helles. Vielleicht eine Flamme, vielleicht Licht, vielleicht etwas, für das der Künstler keine eindeutigere Form wählen wollte. Von dort ziehen sich goldene Linien nach außen. Sie erreichen Menschen und Tiere, Pflanzen und Bäume, Werkzeuge, Gebäude und Dinge, die nach Kunstwerken oder gefertigten Gegenständen aussehen. Manche Linien enden nicht bei einer einzelnen Gestalt. Sie gehen weiter, verzweigen sich, treffen aufeinander und verbinden das Geschaffene miteinander.
+
+Doch je weiter dein Blick dem Bild nach außen folgt, desto mehr verändert es sich. Geöffnete Hände werden zu geschlossenen. Finger legen sich um dieselben goldenen Linien, die zuvor frei durch das Bild liefen. An einigen Stellen werden sie zusammengezogen, an anderen voneinander getrennt. Und darüber liegt der schwarze Schleier. Er beginnt nicht an einem einzigen Punkt. Dunkle Flächen ziehen sich von mehreren Seiten über das Bild, überdecken Teile der goldenen Linien und verschlucken Formen, die darunter noch schwach zu erkennen sind. Innerhalb der Dunkelheit liegen Augen. Einige kaum mehr als angedeutet, andere deutlich genug, dass ihr Blick beinahe unangenehm wirkt. Sie schauen nicht zu dir. Sie schauen nach innen – dorthin, wo Faon’lin das Licht zwischen ihren offenen Händen hält.
+
+Es erinnert an den ersten Abschnitt der Prüfung: Gabe, Wachstum, Verbindung und etwas, das sich darüberlegt. Aber Ähnlichkeit ist noch kein Beweis.
+*goto detail_menu
+
+*label detail_menu
+Was möchtest du genauer betrachten?
+*choice
+  *if room2_seen_divine_light and (room2_detail_count < 4)
+    *selectable_if (false) #Die drei Gestalten und das Licht. [untersucht]
+      *goto detail_menu
+  *elseif room2_seen_divine_light = false
+    #Die drei Gestalten und das Licht zwischen Faon’lins Händen.
+      *set room2_seen_divine_light true
+      *set room2_detail_count +1
+      Aus der Nähe erkennst du, dass Faon’lins Hände das Licht nicht berühren. Ihre Finger sind vollständig geöffnet, die Handflächen nach außen gerichtet. Das Helle zwischen ihnen besteht aus weißen und goldenen Pigmenten, die über winzigen hellen Einschlüssen liegen. Es wirkt nicht, als hielte sie etwas fest. Eher, als gäbe sie etwas frei. Die beiden männlichen Gestalten neben ihr wenden sich demselben Licht zu, doch ihre Hände bleiben gesenkt. Du kannst beobachten, dass das Licht zwischen Faon’lins offenen Händen dargestellt ist und sich von dort aus über goldene Linien im Bild verteilt. Was genau gegeben wird, warum es weitergetragen wird und ob der Künstler damit tatsächlich Thal’ithara meinte, bleibt Interpretation.
+      *if thal_archetype = "Seeker"
+        Alte Texte Ithar’kaels beschreiben Thal’ithara mitunter als etwas, das durch Menschen Gestalt annimmt. Die Ähnlichkeit ist auffällig, aber kein Beweis.
+        *set room2_seeker_thalithara_theory true
+      *if (personal_quest_id = "lost_memory") and (lost_memory_sand_ruin = false)
+        *goto lost_memory_vision
+      *goto detail_menu
+  *if room2_seen_creation_lines and (room2_detail_count < 4)
+    *selectable_if (false) #Menschen, Tiere und Schöpfungen. [untersucht]
+      *goto detail_menu
+  *elseif room2_seen_creation_lines = false
+    #Die Menschen, Tiere und Dinge, die von den goldenen Linien erreicht werden.
+      *set room2_seen_creation_lines true
+      *set room2_detail_count +1
+      Du folgst einer der goldenen Linien vom Zentrum nach außen. Sie läuft durch Wurzeln, steigt in einen Stamm und verzweigt sich zwischen Blättern und Tieren. Eine andere erreicht die Hand eines Menschen, geht in ein Werkzeug über und von dort in etwas, das wie ein geschaffenes Werk aussieht. Weitere Linien verbinden Figuren, die gemeinsam an etwas arbeiten, oder führen von einem fertigen Gegenstand zu jemandem, der ihn weiterträgt. Nicht jede Linie geht unmittelbar vom Zentrum aus. Manche werden aufgenommen, verändert, geteilt oder fortgeführt. Beobachten kannst du nur, dass das Licht nicht im Zentrum bleibt. Es bewegt sich durch Lebendiges, durch Menschen und durch das, was sie erschaffen. Ob das Wandbild damit Wachstum, Wissen, Magie, Erinnerung oder etwas anderes meint, lässt sich nicht beweisen.
+      *if (personal_quest_id = "missing") and (missing_mural_connection = false)
+        *goto missing_vision
+      *goto detail_menu
+  *if room2_seen_closed_hands and (room2_detail_count < 4)
+    *selectable_if (false) #Die geschlossenen Hände. [untersucht]
+      *goto detail_menu
+  *elseif room2_seen_closed_hands = false
+    #Die geschlossenen Hände am Rand des Bildes.
+      *set room2_seen_closed_hands true
+      *set room2_detail_count +1
+      Je weiter du den goldenen Linien nach außen folgst, desto deutlicher verändert sich die Darstellung. Die Hände im Zentrum sind geöffnet. Auch viele der ersten Figuren halten die Linien nur lose oder führen sie weiter. Hier ist das anders. Finger schließen sich darum. Eine Hand umfasst mehrere Linien gleichzeitig, eine andere zieht eine einzelne Linie von den übrigen fort. An einer Stelle greifen zwei Hände nach derselben goldenen Spur. Die Linien selbst verändern dabei weder Farbe noch Form. Es sind die Hände um sie herum, die anders dargestellt werden. Du kannst beobachten, dass aus offenen Händen geschlossene werden und dass dieselben goldenen Linien, die zuvor weitergeführt und geteilt wurden, hier festgehalten, zusammengezogen oder voneinander getrennt werden. Dass daraus Besitz, Gier, Macht oder Kontrolle wird, wäre bereits deine Deutung. Vielleicht ist sie richtig. Aber das Bild sagt es nicht für dich.
+      *goto detail_menu
+  *if room2_seen_veil and (room2_detail_count < 4)
+    *selectable_if (false) #Der schwarze Schleier. [untersucht]
+      *goto detail_menu
+  *elseif room2_seen_veil = false
+    #Den schwarzen Schleier und die Augen darin.
+      *set room2_seen_veil true
+      *set room2_detail_count +1
+      Aus der Nähe wirkt die Dunkelheit weniger wie eine einzelne schwarze Fläche, als du zunächst dachtest. Mehrere Schichten unterschiedlicher Pigmente liegen übereinander. Manche sind matt, andere reflektieren das Licht kaum merklich. Der Schleier übermalt Teile dessen, was darunter liegt, doch nicht vollständig; hier und dort schimmert Gold durch die schwarze Farbe hindurch. Die Augen darin sind ebenso merkwürdig. Einige bestehen nur aus wenigen Linien, andere wurden sorgfältig ausgearbeitet. Keines blickt nach außen. Ihre Ausrichtung folgt dem Bild zurück zum Zentrum. Du kannst feststellen, dass der Schleier über Dingen liegt, die bereits dargestellt waren. Du kannst feststellen, dass die Augen in Richtung des Lichts blicken. Ob die Dunkelheit das Licht beobachtet, begehrt, fürchtet oder auslöschen will, verrät dir das Wandbild nicht.
+      *if (personal_quest_id = "affliction") and (affliction_veil_connection = false)
+        *goto affliction_vision
+      *goto detail_menu
+  #Ich trete zurück und betrachte das Wandbild als Ganzes.
+    *goto step_back
+
+*label lost_memory_vision
+Du willst dich von der Darstellung lösen, doch in diesem Moment hörst du eine Stimme. Nur ein Wort. Zu leise, um es zu verstehen. Du drehst dich um, aber die Kammer ist leer. Als du wieder zum Wandbild blickst, scheint Faon’lin dich anzusehen. Nicht das Licht zwischen ihren Händen. Dich.
+
+Dann verschwindet die Kammer. Hitze schlägt dir entgegen. Heller Sand reicht bis zum Horizont, und halb darin versunken liegt eine Ruine aus dunklem Stein. Ihre Mauern sind gebrochen, doch etwas bewegt sich darin. Licht, vielleicht. Oder eine Gestalt. Du kennst diesen Ort nicht. Du warst nie hier. Und trotzdem trifft dich das überwältigende Gefühl, dass du weißt, was hinter dem nächsten Torbogen liegt.
+
+Die Vision reißt ab. Schmerz fährt durch deinen Kopf, scharf genug, dass du einen Schritt zurücktaumelst. Ein tiefes Brummen liegt in deinen Ohren. Als du wieder klar siehst, steht Faon’lin unverändert im Mosaik und blickt auf das Licht zwischen ihren Händen. Vielleicht hat sich nie etwas bewegt. Vielleicht war die Stimme nur in deinem Kopf. Aber die körperlichen Nachwirkungen sind real, und die unbekannte Ruine fühlt sich noch immer an wie etwas, das du vergessen hast.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set lost_memory_sand_ruin true
+*set echo_personal_clue_01 "Während der Prüfung löste Faon’lins Darstellung eine Vision aus: heller Sand, eine halb versunkene Ruine aus dunklem Stein und das überwältigende Gefühl, zu wissen, was hinter dem nächsten Torbogen liegt. Ich kenne diesen Ort nicht – und doch fühlte er sich an wie etwas, das ich vergessen habe."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"ERKENNTNIS", title:"Die Ruine im Sand", body:"Die Darstellung Faon’lins löste etwas aus, das sich nicht wie eine gewöhnliche Erinnerung anfühlte. Du hörtest eine Stimme und sahst eine Ruine im Sand, die unbekannt und dennoch vertraut wirkte. Die Vision endete mit starken körperlichen Nachwirkungen.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label missing_vision
+Zwischen all den Menschen und geschaffenen Dingen bleiben deine Augen an zwei kleineren Figuren hängen. Sie stehen etwas abseits, durch eine einzelne goldene Linie miteinander verbunden. Eine von ihnen wendet sich der anderen zu. Ihre Hände sind beinahe ausgestreckt, als läge zwischen ihnen eine Bewegung, die der Künstler nur angedeutet hat. Etwas daran trifft dich mit unerwarteter Vertrautheit. Nicht weil du diese gemalten Menschen kennst. Sondern weil die Art, wie sie zueinander stehen, eine Erinnerung berührt.
+
+Für einen Augenblick denkst du nicht an das Verschwinden. Du erinnerst dich an die Person selbst.
+*if missing_person_relationship = ""
+  *goto missing_relationship
+*goto missing_memory
+
+*label missing_relationship
+Wer war diese Person für dich?
+*choice
+  #Die Person, die ich liebte.
+    *set missing_person_relationship "loved"
+    *set missing_room2_name_or_relationship "die Person, die ich liebte"
+    *goto missing_memory
+  #Mein engster Freund / meine engste Freundin.
+    *set missing_person_relationship "closest_friend"
+    *set missing_room2_name_or_relationship "meinen engsten Freund oder meine engste Freundin"
+    *goto missing_memory
+  #Meine Mutter / mein Vater.
+    *set missing_person_relationship "parent"
+    *set missing_room2_name_or_relationship "meine Mutter oder meinen Vater"
+    *goto missing_memory
+  #Meine Schwester.
+    *set missing_person_relationship "sister"
+    *set missing_room2_name_or_relationship "meine Schwester"
+    *goto missing_memory
+  #Mein Bruder.
+    *set missing_person_relationship "brother"
+    *set missing_room2_name_or_relationship "meinen Bruder"
+    *goto missing_memory
+
+*label missing_memory
+Die Erinnerung wird deutlicher. Nicht das Verschwinden. Nicht die Fragen, die danach kamen. Etwas viel Gewöhnlicheres: die Nähe dieser Person, eine vertraute Bewegung, ein Ort, an dem ihr gemeinsam gewesen seid, ein Augenblick, der damals vielleicht vollkommen unbedeutend gewirkt hatte und gerade deshalb geblieben ist. Die Kammer um dich herum bleibt vor deinen Augen, und trotzdem scheint ein Teil von dir für einen Moment woanders zu sein.
+
+Was an der Darstellung fühlt sich so vertraut an?
+*choice
+  #Die Bewegung ihrer Hände — eine Geste, die nur wir verstanden.
+    *set missing_connection_memory "gesture"
+    *set missing_room2_symbol_or_trait "unsere vertraute Geste"
+    Es sind die Hände. Die Finger einer Figur bewegen sich beinahe auf die der anderen zu, eine kleine Geste, die im Gesamtbild leicht übersehen werden könnte. Du kennst nicht diese gemalten Hände. Du kennst die Bewegung. Eine bestimmte Haltung der Finger, eine kurze Berührung, etwas, das zwischen dir und dieser Person irgendwann zu einer eigenen wortlosen Sprache geworden war. Für andere hätte sie vermutlich nichts bedeutet. Zwischen euch konnte sie vieles sagen. Ich bin hier. Ich habe verstanden. Du bist nicht allein.
+    *goto missing_shared
+  #Der Ort hinter ihnen — ein Platz, der uns beiden etwas bedeutete.
+    *set missing_connection_memory "place"
+    *set missing_room2_symbol_or_trait "einen Ort, der uns beiden etwas bedeutete"
+    Dein Blick wandert an den Figuren vorbei zu der angedeuteten Landschaft hinter ihnen, und etwas in dir zieht sich zusammen. Du kennst diesen gemalten Ort nicht. Das kannst du nicht. Aber etwas an seiner Anordnung erinnert dich an einen anderen – einen Platz, an dem du mit dieser Person gewesen bist. Einen Ort, der für euch beide irgendwann mehr geworden war als nur ein Punkt auf einer Karte. Du erinnerst dich nicht zuerst daran, wie er aussah. Du erinnerst dich daran, wie es sich anfühlte, dort gemeinsam zu sein.
+    *goto missing_shared
+  #Die Szene — ein Moment, den wir miteinander geteilt haben.
+    *set missing_connection_memory "shared_moment"
+    *set missing_room2_symbol_or_trait "einen Moment, den wir miteinander geteilt hatten"
+    Es ist kein einzelnes Detail. Es ist die ganze kleine Szene. Zwei Menschen nebeneinander, beide für einen Augenblick auf dasselbe gerichtet. Eine Erinnerung drängt sich nach vorn. Du und diese Person, irgendwo anders, irgendwann früher. Du weißt noch, wie ihr nebeneinanderstandet. Vielleicht habt ihr gesprochen. Vielleicht auch nicht. Für einen Augenblick war das nicht wichtig. Was dir geblieben ist, ist das Gefühl dieses Moments – dass ihr beide dasselbe gesehen, denselben Augenblick geteilt habt und du dich später immer wieder daran erinnert hast.
+    *goto missing_shared
+
+*label missing_shared
+*if missing_room2_name_or_relationship = ""
+  *if missing_person_relationship = "loved"
+    *set missing_room2_name_or_relationship "die Person, die ich liebte"
+  *if missing_person_relationship = "closest_friend"
+    *set missing_room2_name_or_relationship "meinen engsten Freund oder meine engste Freundin"
+  *if missing_person_relationship = "parent"
+    *set missing_room2_name_or_relationship "meine Mutter oder meinen Vater"
+  *if missing_person_relationship = "sister"
+    *set missing_room2_name_or_relationship "meine Schwester"
+  *if missing_person_relationship = "brother"
+    *set missing_room2_name_or_relationship "meinen Bruder"
+Für einige Herzschläge ist die Erinnerung so deutlich, dass die Kammer um dich herum an Schärfe verliert. Dann liegt das Mosaik wieder klar vor dir. Zwei gemalte Figuren. Eine goldene Linie zwischen ihnen. Eine kleine Bewegung ihrer Hände, eine angedeutete Landschaft und ein Augenblick, dessen Bedeutung der Künstler dir nicht erklären kann.
+
+Vielleicht hat das Wandbild lediglich eine Erinnerung geweckt. Vielleicht war es mehr. Du weißt es nicht. Aber etwas an dieser Darstellung hat einen Teil deiner Erinnerung berührt, der sich plötzlich viel näher anfühlt als noch vor wenigen Augenblicken.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set missing_mural_connection true
+*set echo_personal_clue_01 "Das Wandbild weckte eine lebendige Erinnerung an " & missing_room2_name_or_relationship
+*set echo_personal_clue_01 echo_personal_clue_01 & ". "
+*set echo_personal_clue_01 echo_personal_clue_01 & missing_room2_symbol_or_trait
+*set echo_personal_clue_01 echo_personal_clue_01 & " fühlte sich vertraut an. Ich weiß noch nicht, ob darin mehr liegt als eine Erinnerung."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"NEUE SPUR", title:"Eine vertraute Verbindung", body:"Das Wandbild in meiner Abschlussprüfung löste eine unerwartet deutliche Erinnerung an " + stats.missing_room2_name_or_relationship + " aus. Ein Teil der Darstellung erinnerte mich an " + stats.missing_room2_symbol_or_trait + " und fühlte sich auffällig vertraut an. Ich weiß noch nicht, ob das Wandbild lediglich eine Erinnerung geweckt hat oder ob es etwas berührt hat, das mit dem Verschwinden zusammenhängt.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label affliction_vision
+Dann bewegt sich eines der Augen.
+
+Du erstarrst. Nur ein Blinzeln. So kurz, dass du dir im selben Moment einreden könntest, das Licht habe sich auf dem Pigment verändert. Doch dein Blick bleibt daran hängen. Je länger du hinsiehst, desto schwerer wird es, dich davon zu lösen. Das Schwarz um das Auge scheint sich auszubreiten, erst über den Stein, dann über alles andere.
+
+Die Kammer verschwindet. Du bist wieder zu Hause. Der Geruch trifft dich zuerst: aufgekochte Kräuter, feuchte Tücher, Schweiß und die bittere Schärfe jener Mittel, von denen jedes das nächste Heilmittel hätte sein sollen. Menschen liegen dort, wo du sie in Erinnerung behalten hast. Eine Hand zittert auf einer Decke. Jemand versucht aufzustehen und schafft es nicht. Dann siehst du die Haut. Etwas Dunkles liegt darunter. Nicht wie ein gewöhnlicher Ausschlag. Für einen Augenblick scheint sich derselbe schwarze Einfluss unter der Haut eines Erkrankten auszubreiten, den du eben noch auf dem Wandbild gesehen hast. Du willst näher heran, doch das Auge ist plötzlich wieder da.
+
+Es blickt dich an.
+
+Du reißt dich los. Die Kammer kehrt zurück. Vor dir liegt nichts als bemalter Stein. Das Auge bewegt sich nicht mehr. Aber das Bild aus deiner Heimat bleibt. Du kannst nicht beweisen, was du gerade gesehen hast. Du weißt nicht, ob der schwarze Schleier die Krankheit verursacht, ob er nur mit ihr verbunden ist oder ob deine eigene Erinnerung zwei Dinge miteinander verknüpft hat. Doch die Ähnlichkeit ist zu deutlich, um sie einfach zu ignorieren.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set affliction_veil_connection true
+*set echo_personal_clue_01 "Während der Prüfung sah ich meine Heimat und denselben dunklen Einfluss unter der Haut der Erkrankten, der dem schwarzen Schleier auffällig ähnelte. Die Ähnlichkeit ist deutlich; eine Ursache ist damit nicht bewiesen."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"ERKENNTNIS", title:"Der schwarze Schleier", body:"Derselbe dunkle Einfluss erschien in deiner Vision bei den Erkrankten deiner Heimat. Das beweist keine Ursache, ist aber ein konkreter Hinweis auf eine mögliche Verbindung.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label step_back
+*if room2_detail_count > 0
+  Du entfernst dich einige Schritte von der Wand. Einzelne Pigmente, feine Linien und kleine Gesten verschwinden wieder im Ganzen. Drei Gestalten. Offene Hände. Licht. Goldene Linien, die sich durch eine wachsende Welt ziehen. Hände, die sich schließen. Ein schwarzer Schleier, der sich darüberlegt. Augen in der Dunkelheit, deren Blick zurück zum Ursprung führt.
+
+  Du hast einzelne Teile genauer betrachtet und manches entdeckt, das aus der Entfernung kaum sichtbar war. Trotzdem bleibt die Grenze zwischen Beobachtung und Interpretation bestehen. Du kannst beschreiben, was du gesehen hast. Was es bedeutet, ist eine andere Frage.
+*if room2_detail_count = 0
+  Du entfernst dich einige Schritte von der Wand. Einzelne Pigmente, feine Linien und kleine Gesten verschwinden wieder im Ganzen. Drei Gestalten. Offene Hände. Licht. Goldene Linien, die sich durch eine wachsende Welt ziehen. Hände, die sich schließen. Ein schwarzer Schleier, der sich darüberlegt. Augen in der Dunkelheit, deren Blick zurück zum Ursprung führt.
+
+  Du hast das Wandbild als Ganzes gesehen, aber seine einzelnen Bestandteile nicht genauer untersucht. Vielleicht genügt dir der erste Eindruck. Vielleicht hast du etwas übersehen. In jedem Fall wäre es unehrlich, aus Details Schlüsse zu ziehen, die du dir nie aus der Nähe angesehen hast.
+
+Nachdem du einige Schritte zurückgetreten bist, fällt dein Blick wieder auf das Licht in der Kammer. Erst jetzt, da das Wandbild vollständig vor dir liegt, nimmst du den weißen Strahl wirklich wahr, der von hoch oben durch den Raum fällt. Du folgst ihm mit den Augen. Er fällt durch die schmale Öffnung in der Decke und trifft auf das geschliffene Glas in seiner steinernen Fassung. Dort bricht sich das Licht und wird schräg über die Kammer gelenkt – direkt auf die Mitte des Wandbilds.
+
+Zwischen Faon’lins geöffneten Händen endet der Strahl.
+
+Für einen Moment sieht es aus, als hielte sie das Licht selbst zwischen ihren Handflächen.
+
+Du gehst näher und folgst dem Strahl bis zu seinem Ende. Aus der Entfernung hattest du das helle Gebilde zwischen ihren Händen für weiße und goldene Pigmente gehalten. Jetzt erkennst du dazwischen winzige geschliffene Flächen, kaum größer als Splitter. Kristall oder Glas, direkt in das Mosaik eingelassen. Das Licht trifft auf sie. Ein Teil davon wird zurückgeworfen und lässt das Weiß und Gold um Faon’lins Hände aufleuchten. Doch nicht alles. Wenn du den Kopf ein wenig bewegst, erkennst du einen schwachen Schimmer unter der Oberfläche. Dünne Lichtspuren verschwinden zwischen den eingelassenen Kristallflächen und führen tiefer in das Wandbild hinein.
+
+Das Licht beleuchtet die dargestellte Quelle nicht nur. Es wird von ihr aufgenommen.
+*set exam_room_02_mural_examined true
+*set room2_light_source_observed true
+
+Dein Blick folgt einer der schwachen Lichtspuren, doch schon nach kurzer Strecke verliert sie sich wieder im Mosaik. Du gehst noch einen Schritt näher. Dabei bemerkst du etwas unterhalb des Wandbilds. Eine schmale Zeile ist dort direkt in den Stein eingraviert.
+
+[i]Was gegeben wird, soll weitergetragen werden.[/i]
+
+Darunter sitzen mehrere kleine Druckplatten. Und die Symbole darauf kennst du. Es sind dieselben Druckplatten und dieselbe Symbolsprache wie im ersten Abschnitt der Prüfung: die Flamme, die Krone, das Wasser, die Sonne, die Knospe, die Verbindung, die Klinge und das Auge. Schon in der ersten Kammer musstest du zwischen ihnen unterscheiden.
+*if exam_room_01_sequence_known
+  Auch die Abfolge, mit der du die erste Kammer geöffnet hast, ist nicht verloren. Du hast sie bereits einmal rekonstruiert, und die Erkenntnis darüber ist in deinen Aufzeichnungen zur Abschlussprüfung festgehalten. Falls du sie brauchst, kannst du dort nachsehen.
+*goto light_puzzle
+
+*label light_puzzle
+Welche Platte drückst du?
+*choice
+  #Die Krone.
+    *goto distractor
+  *if room2_light_stage >= 1
+    *selectable_if (false) #Die Flamme. [aktiviert]
+      *goto light_puzzle
+  *else
+    #Die Flamme.
+      *goto flame
+  #Das Wasser.
+    *goto distractor
+  *if room2_light_stage >= 2
+    *selectable_if (false) #Die Knospe. [aktiviert]
+      *goto light_puzzle
+  *else
+    #Die Knospe.
+      *if room2_light_stage = 1
+        *goto growth
+      *goto early
+  #Die Sonne.
+    *goto distractor
+  *if room2_light_stage >= 3
+    *selectable_if (false) #Die Verbindung. [aktiviert]
+      *goto light_puzzle
+  *else
+    #Die Verbindung.
+      *if room2_light_stage = 2
+        *goto connection
+      *goto early
+  #Die Klinge.
+    *goto distractor
+  *if room2_light_stage >= 4
+    *selectable_if (false) #Das Auge. [aktiviert]
+      *goto light_puzzle
+  *else
+    #Das Auge.
+      *if room2_light_stage = 3
+        *goto veil
+      *goto early
+  *if room2_light_stage >= 4
+    #Zur vollständigen Lichtdarstellung zurückkehren.
+      *goto light_network_menu
+
+*label early
+Die Platte gibt unter deinem Finger nach. Tief in der Wand antwortet ein leises Klicken, und irgendwo innerhalb des Mosaiks regt sich Licht. Für einen Augenblick läuft ein Schimmer über eine der eingelassenen Bahnen, als hätte die Kammer versucht, deiner Eingabe zu folgen.
+
+Dann bricht der Schein ab. Die Platte hebt sich wieder in ihre ursprüngliche Position. Etwas hat reagiert. Aber offenbar fehlt etwas, das vorher geschehen muss.
+*goto light_puzzle
+*label distractor
+Die Platte gibt unter deinem Finger nach. Eine kurze, harmlose Reaktion läuft durch das Mosaik, erreicht jedoch keinen der aktivierten Wege. Dann hebt sie sich wieder in ihre ursprüngliche Position. Die bereits erreichte Folge bleibt bestehen.
+*goto light_puzzle
+
+*label flame
+*set room2_light_stage 1
+Unter deinem Finger sinkt die Flamme tiefer in den Stein. Diesmal springt die Platte nicht zurück. Ein sattes Klicken läuft durch die Wand, und über dir verändert sich das Licht.
+
+Zwischen Faon’lins Händen flammt das helle Zentrum auf. Die kleinen Kristallflächen darin fangen den Strahl aus der Decke ein, und plötzlich wird sichtbar, was vorher im Gold des Mosaiks verborgen lag. Ein dünner Lichtfaden läuft aus dem Zentrum hinaus. Dann ein zweiter. Ein dritter.
+
+Drei schmale Strahlen breiten sich von derselben Quelle in unterschiedliche Richtungen über das Wandbild aus. Einer zieht sich zu den Bereichen, in denen Wurzeln, Pflanzen, Tiere und andere lebendige Formen dargestellt sind. Ein zweiter läuft in Richtung der Menschen, Werkzeuge, Kunstwerke, Gebäude und geschaffenen Dinge. Der dritte nimmt einen anderen Weg, teilweise entlang jener Bereiche, in denen die Darstellung dunkler wird und der schwarze Schleier über bereits vorhandenen Formen liegt.
+
+Alle drei Wege brechen nach kurzer Strecke ab. Nicht dort, wo die gemalten Linien enden. Dort, wo etwas innerhalb des Mosaiks sie noch nicht weiterträgt. Die Flamme bleibt im Stein versenkt.
+*goto light_puzzle
+
+*label growth
+*set room2_light_stage 2
+Die Platte mit der Knospe sinkt in den Stein. Ein zweites Klicken antwortet aus der Wand, und diesmal siehst du die Bewegung. Entlang eines der drei Lichtwege drehen sich winzige Kristalle innerhalb des Mosaiks. Einer sitzt zwischen gemalten Wurzeln, ein weiterer im Stamm eines Baumes, andere zwischen Ästen, Blättern und den Formen von Tieren. Sie sind so geschickt in das Kunstwerk eingearbeitet, dass du sie ohne das Licht kaum von den Pigmenten unterschieden hättest.
+
+Der Strahl trifft auf den ersten Kristall. Licht fährt durch die Wurzeln, steigt durch den Stamm und verzweigt sich in den Ästen. Von dort wird es weitergetragen. Nicht als eine einzige gerade Linie, sondern über zahlreiche kleine Abzweigungen, die Pflanzen, Tiere und andere Darstellungen lebendiger Entwicklung miteinander verbinden. Manche Wege teilen sich, manche enden, andere führen tiefer in das Mosaik hinein.
+
+Schließlich erreicht der Schein mehrere kleine Kristallpunkte, die zuvor überhaupt nicht aufgefallen waren. Einer davon beginnt zu leuchten. Dann ein zweiter. Sie liegen nicht nebeneinander und ergeben für sich allein noch keine erkennbare Form. Aber sie verlöschen nicht.
+*goto light_puzzle
+
+*label connection
+*set room2_light_stage 3
+Die Platte mit der Verbindung sinkt in den Stein. Diesmal antwortet die Wand an mehreren Stellen gleichzeitig. Der zweite der vom Zentrum ausgehenden Lichtwege erwacht. Ein Strahl läuft von einer gemalten Hand in einen Gegenstand, der von ihr geschaffen wurde, von dort zu einer weiteren Figur und weiter in etwas Neues. Andere Linien führen durch Menschen, Tiere, Werkzeuge, Kunst und Gebäude. Manche bleiben voneinander getrennt, bis sie zwei verschiedene Kristalle erreichen.
+
+Ein leises Drehen geht durch die Wand. Die Kristalle richten sich aufeinander aus. Zwei Lichtfäden treffen sich. Das Weiß an ihrem Berührungspunkt wird so hell, dass du unwillkürlich blinzelst. Als du wieder hinsiehst, sind aus den getrennten Strahlen neue Wege geworden. Sie teilen sich, kreuzen sich, laufen für eine Strecke nebeneinander und finden an anderen Stellen wieder zusammen. Was getrennt begonnen hat, trägt das Licht gemeinsam weiter.
+
+Du kennst dieses Prinzip. Nicht unbedingt seine Bedeutung. Aber seine Form. Weitere der unscheinbaren Punkte im Wandbild beginnen zu leuchten – manche zwischen Menschen, andere in geschaffenen Dingen, wieder andere weit entfernt davon. Zwischen einzelnen Punkten erscheinen für einen Augenblick hauchdünne Lichtlinien. Dann bleiben auch sie bestehen.
+*if exam_room_01_sequence_known
+  Du erinnerst dich: Was getrennt geschaffen worden war, fand zueinander und schuf gemeinsam weiter.
+*goto light_puzzle
+
+*label veil
+*set room2_light_stage 4
+Die Platte mit dem Auge sinkt unter deinem Finger in den Stein. Diesmal hörst du zunächst nichts. Keine Zahnräder. Kein Klicken. Keine Bewegung.
+
+Dann erwacht der dritte Lichtweg. Vom Zentrum aus läuft er in eine andere Richtung als die beiden zuvor aktivierten Wege. Er folgt goldenen Spuren, die weiter außen teilweise unter dunklen Pigmentschichten verschwinden. An manchen Stellen kannst du beobachten, wie das Licht unter dem schwarzen Schleier weiterläuft, obwohl die gemalte Linie darüber kaum noch sichtbar ist. Dann taucht es an anderer Stelle wieder auf, wird von einem winzigen Kristall aufgefangen und erneut unter eine dunkle Fläche gelenkt.
+
+Für einen Herzschlag scheint der Schleier den Weg vollständig zu verschlucken. Dann antwortet irgendwo darin ein Lichtpunkt. Ein zweiter erscheint außerhalb der Dunkelheit. Ein dritter oberhalb einer der drei Gestalten. Ein weiterer zwischen den goldenen Linien. Dann einer am äußeren Rand des Wandbilds.
+
+Immer mehr zuvor unsichtbare Einschlüsse beginnen auf die drei vollständig aktivierten Lichtwege zu reagieren. Nicht nur innerhalb des schwarzen Schleiers. Überall. Über Pflanzen. Zwischen Menschen. In geschaffenen Dingen. Über den drei Gestalten. An den äußeren Bereichen des Mosaiks. Und auch dort, wo der schwarze Schleier Teile der Darstellung überdeckt. Einer nach dem anderen treten die Punkte hervor.
+*goto light_network
+
+*label light_network
+Du nimmst die Hand von der letzten Platte. Das Licht bewegt sich trotzdem weiter. Die drei Wege, die zwischen Faon’lins Händen begonnen haben, durchziehen unterschiedliche Bereiche des Mosaiks. Einer verzweigt sich durch Wachstum und lebendige Formen. Einer verbindet Menschen und das, was durch sie geschaffen und weitergeführt wurde. Einer folgt den teilweise verdeckten Bereichen des Bildes und verschwindet immer wieder unter dem schwarzen Schleier, bevor er an anderer Stelle erneut hervortritt.
+
+Doch die Wege bleiben nicht für sich. Überall dort, wo sie Kristalle und mineralische Einschlüsse erreichen, beginnen weitere Punkte zu antworten. Einige liegen unmittelbar an einem der drei Wege. Andere werden erst sichtbar, nachdem mehrere kleine Lichtadern auf denselben Bereich treffen. Feine Linien erscheinen zwischen ihnen. Zunächst einzelne. Dann immer mehr.
+
+Aus der Nähe kannst du noch nicht erkennen, was daraus entsteht.
+*label light_network_menu
+*choice
+  *if room2_hidden_light_network_examined
+    *selectable_if (false) #Die verborgenen Lichtwege aus der Nähe. [untersucht]
+      *goto light_network
+  *else
+    #Ich untersuche die verborgenen Lichtwege aus der Nähe.
+      *set room2_hidden_light_network_examined true
+      Die Lichtpunkte sind keine bloßen Reflexionen. Winzige mineralische Einschlüsse liegen über das gesamte Mosaik verteilt, verbunden durch haarfeine Kanäle und Kristalladern. Manche befinden sich zwischen den goldenen Linien, andere in Pflanzen, Figuren oder geschaffenen Dingen, wieder andere liegen unter den dunklen Pigmentschichten des Schleiers. Einige der feinen Verbindungen waren offenbar die ganze Zeit vorhanden und werden erst jetzt sichtbar. Andere entstehen optisch erst dadurch, dass mehrere Lichtwege denselben Punkt erreichen.
+
+      Was wie drei getrennte Wege begonnen hat, wird hier Teil eines größeren Netzes. Mehr kannst du mit Sicherheit noch nicht sagen.
+      *goto light_network
+  #Ich trete zurück und betrachte die vollständige Darstellung.
+    *goto book_reveal
+  #Zurück zur Plattenauswahl.
+    *goto light_puzzle
+
+*label book_reveal
+Du gehst einen Schritt zurück. Dann noch einen.
+
+Der erste Eindruck verändert sich sofort. Aus der Nähe waren es Lichtpunkte, einzelne Linien und Kristalle gewesen. Mit jedem Schritt Abstand beginnen sie sich zueinander zu verhalten. Ein Punkt oberhalb von Faon’lin antwortet auf einen weit links. Eine Linie am äußeren Rand findet ihre Fortsetzung auf der gegenüberliegenden Seite. Weitere Verbindungen werden sichtbar, bis sich eine zweite leuchtende Darstellung beinahe über das gesamte Mosaik legt.
+
+Du bleibst stehen. Jetzt kannst du sie sehen.
+
+Die Lichtpunkte bilden zwei gewaltige Flächen, die sich zu beiden Seiten einer gemeinsamen Mitte öffnen. Ihre äußeren Linien wölben sich leicht. Weitere Punkte markieren Kanten, eine zentrale Falte und die Form zweier aufgeschlagener Seiten.
+
+Es gibt keinen Zweifel daran, was du vor dir siehst. Ein geöffnetes Buch.
+
+Ein Buch aus Licht, dessen Konturen sich über beinahe das gesamte Wandbild legen. Die drei Gestalten befinden sich unter seiner Mitte. Faon’lin steht dort noch immer mit geöffneten Händen, das Licht zwischen ihnen. Von dort laufen die drei leuchtenden Wege hinaus durch unterschiedliche Teile der dargestellten Welt, und gemeinsam speisen sie Punkt für Punkt die gewaltige Form, die sich darüber aufspannt.
+
+Für einen Moment wirkt es, als läge das gesamte Wandbild innerhalb seiner geöffneten Seiten.
+
+Du weißt nicht, welches Buch es ist, warum es verborgen wurde, wer diese Ebene schuf oder was sie bedeutet.
+*set room2_hidden_book_revealed true
+*set echo_exam_room_02 "Das Licht zwischen Faon’lins Händen war nicht das Ende des Wandbilds. Es war sein Anfang. Von dort wurde es durch die verschiedenen Teile der dargestellten Welt weitergetragen – durch Wachstum, Schöpfung und Verbindung, bis schließlich auch die letzten verborgenen Wege darauf antworteten. Erst als alle Wege zusammenkamen, erschien über dem gesamten Wandbild eine zweite Darstellung: ein geöffnetes Buch aus Licht. Ich weiß nicht, welches Buch dort dargestellt ist oder warum es verborgen wurde. Aber ich werde mich an den Satz darunter erinnern: Was gegeben wird, soll weitergetragen werden."
+*goto room_opens
+
+*label room_opens
+Noch während du das Buch betrachtest, verändert sich das Licht. Der erste Punkt erlischt, doch sein Schein verschwindet nicht. Er zieht sich entlang einer der feinen Linien zum nächsten zurück. Dieser folgt. Dann der nächste. Einer nach dem anderen verlöschen die Lichtpunkte, während ihr Schein rückwärts durch das Netz läuft. Das geöffnete Buch löst sich langsam auf. Seiten werden wieder zu Linien, Linien zu Punkten, Punkte zu einzelnen Lichtadern.
+
+Das Licht zieht sich aus den äußeren Bereichen des Mosaiks zurück. Aus den Stellen, an denen der Schleier Teile davon verdeckt. Aus den geschaffenen Dingen. Aus den Verbindungen zwischen Menschen und Figuren. Aus Ästen, Blättern, Stamm und Wurzeln. Die drei Wege werden wieder deutlicher, während alles, was sie gemeinsam sichtbar gemacht haben, erlischt.
+
+Schließlich fließen auch sie zurück zum Zentrum. Zwischen Faon’lins geöffneten Händen sammelt sich das Licht ein letztes Mal.
+
+Dann geht ein tiefes Grollen durch die Kammer.
+
+Du weichst einen Schritt zurück. Eine feine senkrechte Linie erscheint im Mosaik. Zuerst glaubst du, eine der alten Fugen zwischen den beweglichen Segmenten zu sehen, doch diese Linie läuft weiter – durch Figuren, goldene Wege und den schwarzen Schleier. Eine zweite erscheint auf der gegenüberliegenden Seite. Staub rieselt zu Boden.
+
+Das gesamte Wandbild bewegt sich. Nicht einzelne Segmente diesmal.
+
+Die vollständige steinerne Fläche gleitet langsam zurück. Dahinter greifen gewaltige Mechanismen ineinander, dann teilt sich das Relief entlang der neu entstandenen Fuge. Die beiden Hälften bewegen sich auseinander.
+
+Kühle Luft streicht dir entgegen. Wo eben noch das Wandbild stand, liegt jetzt ein schmaler Durchgang. Dahinter wartet eine weitere Kammer.
+
+*set exam_room_02_complete true
+*set quest_exam_room_02_status "completed"
+*set quest_exam_room_02_objective "Das Wandbild wurde rekonstruiert und sein verborgenes Lichtbild enthüllt."
+*set quest_exam_room_03_status "active"
+*set quest_exam_room_03_objective "Betritt den letzten Abschnitt und setze die Abschlussprüfung fort."
+*set quest_exam_objective "Betritt den letzten Abschnitt und schließe die Abschlussprüfung ab."
+*page_break Nächster Abschnitt
+*goto_scene de_00_exam_room_03

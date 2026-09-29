@@ -1,0 +1,349 @@
+*comment Große Halle, Chronicles-Auftrag und Portalwahl — Deutsch
+
+*label start
+*if language = "en"
+  *goto_scene en_00_great_hall
+*set itharkael_great_hall_entered true
+
+Als du schließlich den Weg zur Großen Halle einschlägst, merkst du schon lange vor den Türen, dass dieser Teil Ithar’kaels anders klingt als das Archiv oder die ruhigeren Wohnbereiche. Schritte hallen über den Stein. Stimmen kommen und gehen. Irgendwo wird etwas getragen, an anderer Stelle werden letzte Anweisungen ausgetauscht.
+Dann öffnen sich die Türen vor dir.
+Die Große Halle trägt ihren Namen nicht ohne Grund. Das Gewölbe erhebt sich weit über dir, und selbst die Menschen, die sich darunter bewegen, wirken für einen Augenblick kleiner als sonst.
+
+Doch dein Blick bleibt nicht lange bei ihnen.
+Am anderen Ende der Halle steht das Portal.
+Ein gewaltiger Rahmen aus Stein erhebt sich aus dem Boden. Im Augenblick liegt innerhalb seines Bogens nichts als eine ruhige, dunkle Fläche, doch feine Linien ziehen sich bereits über den Rand des Steins und verschwinden wieder, als würde etwas darin nur darauf warten, geweckt zu werden.
+Du hast das Portal oft genug gesehen.
+Gesandte, die Ithar’kael verlassen haben. Andere, die nach langen Reisen wieder zurückkehrten. Gepäck, Karten, Berichte und manchmal Dinge, die wenige Stunden später ihren Weg in die Archive fanden.
+Heute stehst du nicht hier, um jemand anderem beim Aufbruch zuzusehen.
+
+Corvus wartet vor dem Portal.
+Er steht mit dem Rücken halb zu dir und betrachtet etwas, das auf einem schmalen Pult neben dem Portal liegt. Erst als deine Schritte näher kommen, hebt er den Blick. „Da bist du.“ Sein Blick wandert kurz an dir vorbei durch die Halle, dann wieder zu dir. „Ich hoffe, du hast deine freie Zeit genutzt.“
+
+Ob du im Archiv gewesen bist, im Innenhof gesessen oder dich in dein Zimmer zurückgezogen hast, fragt er nicht. Corvus war selten jemand, der eine Antwort verlangte, wenn sie ihn nichts anging.
+
+Stattdessen legt er eine Hand auf die Unterlagen vor sich.
+„Bevor du aufbrichst, gibt es noch etwas, das wir besprechen sollten.“
+
+*page_break Weiter
+
+Für einen Moment denkst du wieder an das Buch in der letzten Prüfungskammer. An das Licht auf seinen Seiten. An die Fragen, die es beantwortet hat.
+
+Corvus scheint zu wissen, wohin deine Gedanken wandern.
+
+„Die Replik, der du während deiner Prüfung begegnet bist, war kein zufällig gewähltes Artefakt“, sagt er. „Sie war eine Nachbildung der Chroniken.“
+
+Das Gedächtnis der Schöpfung.
+
+„Was du gesehen hast, war begrenzt. Es konnte nur mit dem arbeiten, was du selbst mitgebracht hast – mit deinem Wissen, deinen Erinnerungen und den Möglichkeiten, die bereits in dir lagen.“
+
+„Das Original besitzt diese Grenze nicht.“
+
+Er öffnet eine Aufzeichnung. „Nach den Aufzeichnungen Ithar’kaels wurden die Chroniken von jenem Ort entfernt, an dem sie hätten bewahrt werden sollen. Dem Ort, dessen Abbild du während deiner Prüfung gesehen hast.“
+
+Sein Finger bleibt auf einer Zeile liegen.
+
+„Gestohlen.“
+
+„Seitdem gibt es Berichte über ihren Verbleib. Fragmente. Gerüchte. Hinweise, die einander teilweise widersprechen. Genug, um zu wissen, dass die Suche nicht beendet ist. Nicht genug, um einfach auf einer Karte einen Punkt zu markieren.“
+
+„Ithar’kael will die Chroniken finden und sicher an den Ort zurückbringen, an den sie gehören.“
+
+Dann sieht er dich direkt an.
+
+„Du wirst einer dieser Spuren folgen.“
+
+„Deine Prüfung hat nicht entschieden, ob du jede Antwort kennst. Sie hat gezeigt, dass du weißt, wie man sucht. Berichte vergleichen. Behauptungen prüfen. Zwischen einer Möglichkeit und einer Gewissheit unterscheiden.“ Ein kaum sichtbares Zucken liegt in seinem Mundwinkel. „Du solltest dich also inzwischen beinahe zu Hause fühlen.“
+
+„Finde heraus, was an den Berichten über die Chroniken wahr ist. Folge den Spuren. Und wenn du das Original findest, bring es zurück.“
+
+*set quest_chronicles_status "active"
+*set quest_chronicles_objective "Finde die Chroniken und bringe sie an ihren vorgesehenen Aufbewahrungsort zurück."
+*set echo_chronicles_assignment "Corvus hat mir meinen ersten Auftrag gegeben: den Spuren der Chroniken folgen, herausfinden, was an den Berichten wahr ist, und das Original nach Ithar’kaels Auftrag zurückbringen."
+
+*page_break Weiter
+
+„Es gibt noch etwas.“
+
+„Die Replik konnte dir nur zeigen, was bereits einen Weg in dich gefunden hatte. Die echten Chroniken könnten Wissen bewahren, das weit über das hinausgeht, was wir in diesen Hallen besitzen. Vielleicht auch etwas über die Frage, wegen der du überhaupt nach Ithar’kael gekommen bist.“
+
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription)
+  *choice
+    #Ich erzähle Corvus von den Worten, die die Replik mit meiner Erinnerung an die Ruine verbunden hat.
+      *set corvus_personal_disclosure "tehand"
+      *goto personal_disclosure_resolution
+    #Ich erzähle ihm nur von der Ruine.
+      *set corvus_personal_disclosure "ruin"
+      *goto personal_disclosure_resolution
+    #Ich behalte beides vorerst für mich.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "lost_memory") and ((lost_memory_tehand_inscription = false) and (lost_memory_sand_ruin))
+  *choice
+    #Ich erzähle Corvus von der Ruine.
+      *set corvus_personal_disclosure "ruin"
+      *goto personal_disclosure_resolution
+    #Ich behalte die Erinnerung vorerst für mich.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known) or (affliction_veil_connection))
+  *choice
+    #Ich erzähle Corvus, was ich während der Prüfung gesehen habe.
+      *set corvus_personal_disclosure "affliction"
+      *goto personal_disclosure_resolution
+    #Ich behalte die Spur vorerst für mich.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "missing") and (missing_mural_connection)
+  *choice
+    #Ich erzähle Corvus von der Erinnerung, die das Wandbild in mir geweckt hat.
+      *set corvus_personal_disclosure "missing"
+      *goto personal_disclosure_resolution
+    #Ich behalte die Erinnerung vorerst für mich.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+
+*label personal_disclosure_resolution
+*if corvus_personal_disclosure = "private"
+  Die Spur bleibt unausgesprochen. Nicht jede Spur muss geteilt werden, nur weil jemand danach fragen könnte.
+  *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (corvus_personal_disclosure = "ruin")
+  Du erzählst Corvus von der Ruine. Vom Sand, dem alten Stein und der Vertrautheit, die du noch immer nicht erklären kannst.
+
+  „Vertrautheit ist keine Gewissheit“, sagt er. „Aber sie ist ein Grund, genauer hinzusehen. Wenn du einen ersten Ort suchst, sind die Wüsten V’eilds eine Möglichkeit.“
+  *set corvus_route_hint "veild"
+  *goto after_personal_route
+
+*if (personal_quest_id = "lost_memory") and ((lost_memory_tehand_inscription) and (corvus_personal_disclosure = "tehand"))
+  Die Worte aus der Replik kommen dir wieder in den Sinn.
+
+  „Corvus.“
+
+  Du sprichst sie aus. „Pîn reip kalztarkaikh duldid sêmîk.“
+
+  Corvus schweigt einen Moment. „Nur die Dunkelheit kann uns das Licht bringen.“
+  *set lost_memory_tehand_translation_known true
+  *set echo_tehand "Corvus übersetzte die Worte: „Nur die Dunkelheit kann uns das Licht bringen.“ Er konnte ihre Herkunft nicht sicher bestimmen. Für den Moment ist die Übersetzung eine Spur, keine Antwort."
+
+  Zum ersten Mal besitzen die Worte eine Bedeutung.
+
+  „Die Formulierung erinnert mich an ältere Überlieferungen. Unter anderem an Berichte über einen Kult, dessen Anhänger den Gott der Leere verehrten.“ Er hebt leicht eine Hand. „Das ist keine Zuordnung. Dieser Kult war verstreut, und ein einzelner Satz beweist weder Herkunft noch Zusammenhang.“
+
+  „Auch die Vorr’kael könnten mehr wissen. Ihr Orden beschäftigt sich intensiv mit Magie und Wissen, und ihr Hauptsitz liegt in V’eild. Vielleicht ist ihnen diese Sprache oder etwas Vergleichbares schon begegnet.“
+
+  „Und da ist noch die Ruine. Sand. Alter Stein. Eine Umgebung, die zu den Wüsten V’eilds passen könnte.“
+
+  „Könnte.“
+
+  „Wir wissen weder, ob der Ort dort liegt, noch weshalb die Worte mit dieser Erinnerung verbunden sind. Aber wenn du eine erste Richtung für diese Spur suchst, würde ich in V’eild beginnen.“
+
+  „Mehr als einen Anfang kann ich dir daraus nicht geben.“
+  *set corvus_route_hint "veild"
+  *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription = false)
+  *if lost_memory_sand_ruin
+    Du erzählst Corvus von der Ruine. Vom Sand, vom alten Stein und von diesem unangenehmen Gefühl der Vertrautheit.
+
+    „Vertrautheit ist keine Gewissheit“, sagt er. „Aber sie ist ein Grund, genauer hinzusehen. Wenn du einen ersten Ort suchst, wären die Wüsten V’eilds eine Möglichkeit. Nicht weil wir wissen, dass deine Ruine dort liegt. Sondern weil das, was du gesehen hast, zu Teilen des Reiches passen könnte.“
+
+    „Wenn du dort nichts findest, hast du eine Möglichkeit ausgeschlossen. Auch das ist Wissen.“
+    *set corvus_route_hint "veild"
+    *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (lost_memory_sand_ruin = false)
+  Der Gedanke trifft dich anders als der eigentliche Auftrag. Ein Buch, das Wissen bewahren soll, während Teile deiner eigenen Vergangenheit fehlen.
+
+  „Wenn es eine Spur dessen gibt, was damals mit dir geschehen ist, besteht zumindest die Möglichkeit, dass die Chroniken etwas davon bewahrt haben. Vielleicht geben sie dir eine Antwort. Vielleicht nur eine weitere Frage. Im Augenblick wissen wir es nicht.“
+  *goto after_personal_route
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known) and (corvus_personal_disclosure = "affliction"))
+  Du erzählst Corvus, dass das unter dem schwarzen Schleier und das aus den Erkrankten deiner Heimat derselben Quelle entspringen.
+
+  „Dann besitzt du mehr als eine Ähnlichkeit. Aber noch keinen Namen. Keinen Ursprung. Und keine Heilung.“
+
+  Sein Blick wandert zum Zeichen Bay’rs. „In Bay’r gibt es Schamanen, die eigene Traditionen der Medizin und Alchemie bewahrt haben. Sie betrachten manche Veränderungen des Körpers und der Magie aus einer anderen Perspektive und arbeiten mit Kräutern, Pflanzen und Verfahren, die außerhalb des Reiches kaum noch verwendet oder verstanden werden.“
+
+  „Das bedeutet nicht, dass sie deine Krankheit kennen. Aber vielleicht erkennen sie etwas darin, das wir bisher übersehen haben.“
+  *set corvus_route_hint "bayr"
+  *goto after_personal_route
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known = false) and (corvus_personal_disclosure = "affliction"))
+  *if affliction_veil_connection
+    Du erzählst Corvus vom schwarzen Schleier und von der Ähnlichkeit zu dem, was du aus deiner Heimat kennst.
+
+    „Ähnlichkeit ist noch keine Ursache. Aber sie reicht aus, um die Frage nicht zu verwerfen. Die Schamanen Bay’rs besitzen eigene Traditionen der Medizin und Alchemie. Vielleicht erkennen sie etwas, das uns bisher entgangen ist.“
+
+    „Wenn du dieser Spur folgen willst, wäre Bay’r ein möglicher Anfang.“
+    *set corvus_route_hint "bayr"
+    *goto after_personal_route
+*if (personal_quest_id = "affliction") and (affliction_veil_connection = false)
+  Deine Gedanken wandern zu deiner Heimat und den Erkrankten.
+
+  „Vielleicht enthalten die Chroniken Aufzeichnungen über Dinge, die unsere Archive nie erreicht haben. Wenn es darin eine Spur zu dieser Krankheit gibt, wirst du sie erst kennen, wenn du das Buch findest.“
+  *goto after_personal_route
+*if (personal_quest_id = "missing") and ((missing_mural_connection) and (corvus_personal_disclosure = "missing"))
+  Du erzählst Corvus von der Erinnerung, die das Wandbild in dir geweckt hat. Du beschreibst nur, woran du dich tatsächlich erinnerst.
+
+  *if missing_connection_memory = "gesture"
+    Du erzählst Corvus von der vertrauten Geste, an die dich das Wandbild erinnert hat.
+  *if missing_connection_memory = "place"
+    Du erzählst Corvus von dem vertrauten Ort, den die Erinnerung in dir hervorgerufen hat.
+  *if missing_connection_memory = "shared_moment"
+    Du erzählst Corvus von dem gemeinsamen Moment, an den dich das Wandbild erinnert hat.
+
+  „Eine Erinnerung ist kein Beweis“, sagt er schließlich.
+
+  Sein Ton ist nicht abweisend.
+
+  „Aber sie kann eine Spur sein.“
+
+  „Wenn du versuchen willst, mehr aus einem solchen Fragment herauszulesen, würde ich Thal’draen nicht außer Acht lassen. Der Arcus Nexus und die Gelehrten, die mit seinem Wissen arbeiten, verfügen über Möglichkeiten, die wir hier nicht besitzen. Vielleicht findet sich dort etwas, das sich mit deiner Erinnerung, einer bekannten Spur oder einem bewahrten Fragment verbinden lässt.“
+
+  „Ich verspreche dir nicht, dass der Nexus dir sagen kann, wo ${missing_person_name} ist. Aber wenn ich mit dem beginnen müsste, was du mir erzählt hast, würde ich dort zumindest fragen.“
+  *set corvus_route_hint "thaldraen"
+  *goto after_personal_route
+*if (personal_quest_id = "missing") and (missing_mural_connection = false)
+  Du denkst an ${missing_person_name}. An all die Fragen, die selbst Ithar’kaels Archive bisher nicht beantworten konnten.
+
+  „Wenn die Chroniken Wissen bewahren, das über unsere Aufzeichnungen hinausgeht, könnten sie eine Spur enthalten.“
+
+  „Könnten.“
+  *goto after_personal_route
+
+*label after_personal_route
+Corvus lässt die persönliche Frage dort stehen. Kein Versprechen, dass du die Antwort finden wirst. Kein Versuch, dir vorzugeben, was sie am Ende bedeuten soll.
+
+*page_break Weiter
+
+Dann wendet er sich dem Portal zu.
+
+„Bevor du gehst, solltest du wissen, wie du zurückkommst. Und wie du überhaupt hinausgelangst.“
+
+Corvus deutet auf die Zeichen im steinernen Bogen.
+
+Erst jetzt, aus der Nähe, erkennst du, wie viele es tatsächlich sind. Manche liegen beinahe verborgen zwischen feineren Linien und geometrischen Mustern. Andere sind größer und klarer ausgearbeitet.
+
+Der Baum. Die Sonne. Der Schneekristall.
+
+„Jedes dieser Zeichen trägt eine Verbindung zu einem Ort“, erklärt Corvus. „Ein Symbol allein öffnet jedoch keinen Weg.“
+
+Sein Blick fällt auf deine Hand.
+
+„Du musst die Verbindung selbst herstellen.“
+
+Für einen Moment denkst du an die letzte Prüfungskammer. An die freigelegte Bahn. Daran, wie dein eigenes Thal’ithara erst in das bestehende Muster fließen musste, bevor die Energie weitergetragen werden konnte.
+
+„Du hast das Prinzip heute bereits angewendet“, sagt Corvus. Er legt die Fingerspitzen kurz an den äußeren Rand des Portals, ohne eines der Zeichen zu berühren. „Wähle dein Ziel. Berühre sein Zeichen. Lass dein Thal’ithara hineinfließen und halte die Verbindung. Wenn sie stabil ist, nimmt das Portal sie auf und öffnet den Durchgang.“
+
+„Es gibt mehr Wege als diese drei. Aber für deinen ersten Aufbruch sind sie die, die dir offenstehen.“ Dann tritt Corvus vom Portal zurück. „Von hier an wird Ithar’kael dir nicht mehr jede Frage vorlegen.“ Seine Hand ruht einen Moment auf dem Rand des Pults. „Manche wirst du selbst erkennen müssen.“
+
+Dann sieht er dich noch einmal an.
+
+„Die Chroniken sind dein Auftrag.“ Eine kurze Pause. „Was du auf dem Weg außerdem findest, wird deine Suche.“ Er tritt zur Seite. „Wenn du bereit bist, wähle deinen ersten Weg.“
+
+*page_break Weiter
+
+Du bleibst vor dem Portal stehen. Noch ist sein Inneres dunkel. Nur die feinen Linien im steinernen Rahmen leuchten schwach und warten darauf, dass ein Ziel gewählt wird. Du hast dieses Portal schon oft gesehen. Heute wirkt es anders. Vielleicht weil du zum ersten Mal weißt, dass der nächste Mensch, der hindurchgehen wird, du selbst bist.
+
+Plötzlich fühlt sich alles greifbarer an. Die Prüfung ist vorbei. Die Jahre des Lernens liegen hinter dir. Die Berichte, über denen du im Archiv gesessen hast. Die Gespräche im Innenhof. Die Fragen, die Corvus immer wieder gestellt hat. All die Male, in denen du anderen Gesandten nachgesehen hast, wenn sie Ithar’kael verließen.
+
+Bisher war die Welt außerhalb dieser Hallen etwas, auf das du dich vorbereitet hast. Jetzt wartet sie auf der anderen Seite eines einzigen Schrittes. Du bist nach Ithar’kael gekommen, weil du Antworten gesucht hast. Nicht irgendeine Wahrheit. Deine.
+
+*if personal_quest_id = "missing"
+  ${missing_person_name}. Der Name begleitet dich länger, als du zählen möchtest. Du bist hierher gekommen, weil jemand verschwunden ist, der dir wichtig ist, und weil niemand dir sagen konnte, was geschehen ist.
+
+  Du hast gelernt, Spuren zu prüfen. Behauptungen zu hinterfragen. Nicht aus Hoffnung Gewissheit zu machen und nicht aus fehlenden Antworten zu schließen, dass es keine mehr gibt.
+
+  Aber all dieses Wissen hat eine Sache nicht verändert: ${missing_person_name} ist noch immer fort. Jetzt beginnt die Suche wirklich.
+*if personal_quest_id = "affliction"
+  Deine Heimat. Die Krankheit. Menschen, denen niemand erklären konnte, was mit ihnen geschah.
+
+  Du bist nach Ithar’kael gekommen, weil du nicht akzeptieren konntest, dass Unwissen das Ende dieser Geschichte sein musste.
+
+  Du hast Jahre zwischen Berichten, Krankheiten, alchemistischen Verfahren und verworfenen Vermutungen verbracht.
+
+  Vielleicht wartet die Antwort nicht in einem Archiv. Vielleicht musst du ihr entgegengehen. Jetzt kannst du es.
+*if personal_quest_id = "lost_memory"
+  Deine Vergangenheit. Oder vielmehr die Stellen darin, an denen etwas fehlt. Fragmente. Bilder. Orte, die sich vertraut anfühlen, obwohl du nicht weißt, weshalb.
+
+  Du bist nach Ithar’kael gekommen, weil du nicht nur wissen willst, was damals geschehen ist.
+
+  Du willst verstehen, wer du warst, wer du heute bist – und welche Rolle diese verlorene Vergangenheit darin spielt.
+
+  Vielleicht können die Chroniken dir darauf keine einfache Antwort geben. Vielleicht gibt es keine einfache Antwort. Aber irgendwo dort draußen liegen die Spuren dessen, was geschehen ist. Jetzt kannst du anfangen, ihnen zu folgen.
+
+Vor dir wartet das Portal. Dahinter liegen Königreiche, die du bisher aus Erinnerungen, Karten, Berichten oder Erzählungen kennst. Und irgendwo jenseits dieser Halle liegen die Chroniken. Vielleicht auch die Antworten, wegen derer du einst nach Ithar’kael gekommen bist. Du hebst den Blick. Zeit zu entscheiden, wo deine Suche beginnt.
+
+*choice
+  *if corvus_route_hint = "bayr"
+    #Bay’r — Ein ruhiges Reich aus grünen Hügeln, gewundenen Flüssen und verträumten Landschaften, in dem Gemeinschaft, Einfachheit und Harmonie mit der Natur das Leben bestimmen. [Hinweis von Corvus]
+      *set campaign_route_01 "bayr"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in Bay’r zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_bayr
+  *if corvus_route_hint != "bayr"
+    #Bay’r — Ein ruhiges Reich aus grünen Hügeln, gewundenen Flüssen und verträumten Landschaften, in dem Gemeinschaft, Einfachheit und Harmonie mit der Natur das Leben bestimmen.
+      *set campaign_route_01 "bayr"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in Bay’r zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_bayr
+  *if corvus_route_hint = "thaldraen"
+    #Thal’draen — Ein majestätisches Reich, in dem Eis und Schnee das Land formen und die Luft von reiner Magie erfüllt ist. [Hinweis von Corvus]
+      *set campaign_route_01 "thaldraen"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in Thal’draen zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_thaldraen
+  *if corvus_route_hint != "thaldraen"
+    #Thal’draen — Ein majestätisches Reich, in dem Eis und Schnee das Land formen und die Luft von reiner Magie erfüllt ist.
+      *set campaign_route_01 "thaldraen"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in Thal’draen zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_thaldraen
+  *if corvus_route_hint = "veild"
+    #V’eild — Ein geschäftiges Reich, in dem Handel und Austausch jeden Bereich des Lebens prägen. [Hinweis von Corvus]
+      *set campaign_route_01 "veild"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in V’eild zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_veild
+  *if corvus_route_hint != "veild"
+    #V’eild — Ein geschäftiges Reich, in dem Handel und Austausch jeden Bereich des Lebens prägen.
+      *set campaign_route_01 "veild"
+      *set echo_first_departure "Ich habe entschieden, meine Suche in V’eild zu beginnen. Das Portal ist geöffnet. Der Schritt hindurch liegt noch vor mir."
+      *goto portal_attune_veild
+
+*label portal_attune_bayr
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"tree", stateField:"portal_attunement_complete", nextLabel:"bayr_outro"});
+*goto bayr_outro
+
+*label portal_attune_thaldraen
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"crystal", stateField:"portal_attunement_complete", nextLabel:"thaldraen_outro"});
+*goto thaldraen_outro
+
+*label portal_attune_veild
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"sun", stateField:"portal_attunement_complete", nextLabel:"veild_outro"});
+*goto veild_outro
+
+*label bayr_outro
+Du legst die Hand auf das Zeichen des Baumes. Für einen Augenblick geschieht nichts. Dann lässt du dein Thal’ithara in die Linien des Symbols fließen. Licht sammelt sich unter deinen Fingern. Es folgt den Wurzeln, steigt durch den Stamm und erreicht die feinsten Verzweigungen. Von dort springt es auf den steinernen Bogen über. Linie für Linie erwacht das Portal. Die Dunkelheit in seinem Inneren beginnt sich zu verändern. Grün tritt aus der Dunkelheit hervor. Weite Hügel. Gewundene Flüsse. Felder und die dunkleren Linien alter Wälder.
+
+Bay’r. Ein einziger Schritt trennt dich noch von deinem ersten Weg. Hinter dir liegt Ithar’kael. Vor dir liegt Ananthara. Und irgendwo dort draußen warten die verlorenen Fragmente einer Wahrheit, die noch niemand vollständig kennt. Du trittst auf das Portal zu.
+
+*page_break Weiter
+*goto_scene de_00_demo_end
+
+*label thaldraen_outro
+Du legst die Hand auf den Schneekristall.
+
+Dein Thal’ithara fließt in das geometrische Muster. Eine Linie nach der anderen erwacht, bis das Zeichen unter deinen Fingern vollständig leuchtet. Die Energie breitet sich über den Portalrahmen aus und die Dunkelheit in seinem Inneren beginnt zu weichen.
+
+Dahinter erscheinen Schnee und Eis. Ferne Berge zeichnen sich am Horizont ab, Licht bricht sich in Kristallen und über gefrorenen Flächen.
+
+Thal’draen.
+*goto common_outro
+
+*label veild_outro
+Du legst die Hand auf das Zeichen der Sonne.
+
+Wärme breitet sich unter deinen Fingern aus, während dein Thal’ithara in die eingelassenen Linien fließt. Strahl um Strahl erwacht das Symbol, bis das Licht den Portalrahmen erreicht und sich über den gesamten Bogen verteilt.
+
+Die Dunkelheit dahinter löst sich auf. Farben, Licht und Bewegung treten hervor. In der Ferne liegen Straßen und belebte Wege, weiter dahinter verschwimmt die Landschaft in der Hitze.
+
+V’eild.
+*goto common_outro
+
+*label common_outro
+Ein einziger Schritt trennt dich noch von deinem ersten Weg. Hinter dir liegt Ithar’kael. Vor dir liegt Ananthara. Und irgendwo dort draußen warten die verlorenen Fragmente einer Wahrheit, die noch niemand vollständig kennt. Du trittst auf das Portal zu.
+
+*page_break Weiter
+*goto_scene de_00_demo_end

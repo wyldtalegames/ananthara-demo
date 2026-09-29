@@ -1,0 +1,256 @@
+*title Ananthara: The Lost Fragments
+*author Joshua Martel
+*ifid 3860EB93-1605-45C9-889C-3FDCF57875FA
+
+*scene_list
+  startup
+  de_00_arrival
+  de_00_identity
+  de_00_exam_room_01
+  en_00_exam_room_01
+  de_00_exam_room_02
+  en_00_exam_room_02
+  de_00_exam_room_03
+  en_00_exam_room_03
+  de_00_post_exam
+  en_00_post_exam
+  de_00_itharkael_free_time
+  en_00_itharkael_free_time
+  de_00_great_hall
+  en_00_great_hall
+  de_00_demo_end
+  en_00_demo_end
+  de_00_character_creation
+
+*create name ""
+*create language ""
+*create race ""
+*create race_image ""
+*create race_lore ""
+*create race_lens ""
+*create homeland ""
+*create homeland_image ""
+*create homeland_lore ""
+*create homeland_lens ""
+*create personal_history ""
+*create personal_history_full ""
+*create seeker_reason ""
+*create seeker_reason_full ""
+*comment Campaign architecture state. Keep generic; concrete quest/location flags are added only when a playable chapter needs them.
+*create campaign_route_01 ""
+*create personal_quest_id ""
+*create personal_quest_stage "unassigned"
+*create personal_quest_discovery_01 ""
+*create personal_quest_discovery_02 ""
+*create corvus_personal_disclosure ""
+*comment Quest Log presentation fields for the existing Personal Quest. Progress remains authoritative in personal_quest_id/stage.
+*create personal_quest_log_visible false
+*create personal_quest_log_title ""
+*create personal_quest_log_objective ""
+*create personal_quest_log_item_01 ""
+*create personal_quest_log_item_02 ""
+*create personal_quest_log_question_01 ""
+*create personal_quest_log_question_02 ""
+
+*comment Knowledge flags for the future Room II investigation. These remain false until authored scene content explicitly reveals them.
+*create personal_room2_vision_seen false
+*create personal_room2_clue_discovered false
+*create missing_mural_connection false
+*create lost_memory_sand_ruin false
+*create affliction_veil_connection false
+*create room2_seen_divine_light false
+*create room2_seen_creation_lines false
+*create room2_seen_closed_hands false
+*create room2_seen_veil false
+*comment Missing-path personalization placeholders. Room II will fill these with the player's authored selections before unlocking its clue.
+*create missing_room2_name_or_relationship ""
+*create missing_room2_symbol_or_trait ""
+*create missing_person_relationship ""
+*create missing_connection_memory ""
+*create quest_exam_status "inactive"
+*create quest_exam_objective ""
+*create quest_exam_room_02_status "locked"
+*create quest_exam_room_02_objective ""
+*create quest_exam_room_02_discovery_01 ""
+*create quest_exam_room_02_discovery_02 ""
+*create quest_exam_room_02_discovery_03 ""
+*create quest_exam_room_03_status "locked"
+*create quest_exam_room_03_objective ""
+*create quest_exam_room_03_discovery_01 ""
+*create quest_exam_room_03_discovery_02 ""
+*create quest_exam_room_03_discovery_03 ""
+*create room3_light_pattern_understood false
+*create room3_self_as_light_understood false
+*create room3_light_carried_through_darkness false
+*create room3_pedestal_activated false
+*create room3_chronicles_replica_manifested false
+*create room3_personal_question ""
+*create room3_replica_choice ""
+*create knowledge_truth 0
+*create knowledge_guard 0
+*create knowledge_gift 0
+*create knowledge_self 0
+*create knowledge_conviction_initial ""
+*create missing_person_name ""
+*create lost_memory_sand_ruin_discovered_via_replica false
+*create lost_memory_tehand_inscription false
+*create lost_memory_tehand_translation_known false
+*create affliction_shared_source_known false
+*create exam_room_02_mural_restored false
+*create room2_seeker_thalithara_theory false
+*create exam_room_02_mural_examined false
+*create room2_light_source_observed false
+*create room2_hidden_light_network_examined false
+*create room2_hidden_book_revealed false
+*create exam_room_02_complete false
+*create room2_light_stage 0
+*create room2_examined_seams false
+*create room2_examined_breaks false
+*create room2_examined_controls false
+*create room2_examined_magic false
+*create room2_initial_investigations 0
+*create room2_detail_count 0
+*create echo_exam_room_02 ""
+
+*comment Ithar'kael final exam — Room I. Quest Log fields are factual; no Journey Log echo is created here.
+*create quest_exam_room_01_visible false
+*create quest_exam_room_01_status "inactive"
+*create quest_exam_room_01_objective ""
+*create quest_exam_room_01_discovery_01 ""
+*create quest_exam_room_01_discovery_02 ""
+*create quest_exam_room_01_discovery_03 ""
+*create quest_exam_room_01_item_01 ""
+*create quest_exam_room_01_note_01 ""
+*create quest_exam_room_01_note_02 ""
+*create exam_room_01_first_block ""
+*create exam_room_01_scroll_done false
+*create exam_room_01_room_done false
+*create exam_room_01_room_thal_used false
+*create exam_room_01_danger_known false
+*create exam_room_01_hidden_revealed false
+*create exam_room_01_hidden_method ""
+*create exam_room_01_recitation_found false
+*create exam_room_01_recitation_used false
+*create exam_room_01_sequence_known false
+*create exam_room_01_puzzle_line 1
+*create exam_room_01_scroll_disposition ""
+*create exam_room_01_copy_first ""
+*create exam_room_01_copy_second ""
+*create exam_room_01_l1_crown false
+*create exam_room_01_l1_water false
+*create exam_room_01_l1_sun false
+*create exam_room_01_l2_water false
+*create exam_room_01_l2_sun false
+*create exam_room_01_l2_eye false
+*create exam_room_01_l3_crown false
+*create exam_room_01_l3_eye false
+*create exam_room_01_l3_water false
+*create exam_room_01_l4_crown false
+*create exam_room_01_l4_blade false
+*create exam_room_01_l4_sun false
+*create thal_type ""
+*create thal_description ""
+*create thal_passive ""
+*create thal_growth ""
+*create thal_calling ""
+*create thal_archetype ""
+*create thal_resonance ""
+*create thal_manifestation ""
+*create thal_calling_description ""
+*create thal_affinity ""
+*create thal_resonance_description ""
+*create thal_manifestation_description ""
+*create guild_rank "Initiate Seeker"
+*create current_stability "Balanced"
+*create origin ""
+*create origin_lens ""
+*create echo_origin ""
+
+*create oracle_card ""
+*create oracle_card_title_de ""
+*create oracle_card_title_en ""
+*create oracle_card_text_de ""
+*create oracle_card_text_en ""
+*create oracle_card_full_de ""
+*create oracle_card_full_en ""
+*create oracle_card_image ""
+*create oracle_card_drawn false
+
+*create prophecy_01_card ""
+*create prophecy_01 ""
+*create prophecy_01_de ""
+*create prophecy_01_en ""
+*create prophecy_01_revealed false
+
+*create neugier 0
+*create offenheit 0
+*create innere_balance 0
+*create wyld_vertrauen 0
+*create verbundenheit 0
+*create resonanz 0
+*create authentizitaet 0
+*create vorsicht 0
+
+*create sacred_wylds_interest false
+*create asked_about_food false
+*create interested_in_dance false
+*create veild_interest false
+*create ritual_participation false
+*create echo_meditation false
+*create reflection_path false
+*create reflection_connection false
+*create reflection_uncertain false
+
+*create ritual_focus ""
+*create first_ritual_station ""
+*create loslassen_choice ""
+*create wunsch_choice ""
+*create dank_choice ""
+
+*comment Narrative Journey Log. Future chapters can add their own echo_* variables here.
+*create echo_intro ""
+*create echo_wyld ""
+*create echo_sacred_wylds ""
+*create echo_festival ""
+*create echo_reflection ""
+*create echo_ritual ""
+*create echo_oracle ""
+*create echo_personal_quest ""
+*create echo_personal_clue_01 ""
+*create echo_tehand ""
+*create echo_personal_keepsake ""
+*create echo_chronicles_assignment ""
+*create echo_first_departure ""
+
+*comment Free Ithar'kael phase after the final examination.
+*create itharkael_free_time_started false
+*create itharkael_room_entered false
+*create itharkael_room_done false
+*create itharkael_room_desk_seen false
+*create itharkael_room_records_seen false
+*create itharkael_room_rest_seen false
+*create itharkael_room_keepsake_seen false
+*create personal_keepsake_id ""
+*create personal_keepsake_taken false
+*create personal_keepsake_popup_seen false
+*create itharkael_archive_entered false
+*create itharkael_archive_done false
+*create itharkael_archive_reading_seen false
+*create itharkael_archive_reports_seen false
+*create itharkael_archive_relics_seen false
+*create itharkael_oracle_encounter_seen false
+*create itharkael_courtyard_entered false
+*create itharkael_courtyard_done false
+*create itharkael_courtyard_rest_seen false
+*create itharkael_courtyard_seekers_seen false
+*create itharkael_courtyard_envoys_seen false
+*create itharkael_courtyard_debate_choice ""
+*create itharkael_courtyard_personal_response ""
+*create itharkael_great_hall_entered false
+*create quest_chronicles_status "inactive"
+*create quest_chronicles_objective ""
+*create corvus_route_hint ""
+*create portal_attunement_complete false
+
+*script if (typeof localStorage !== "undefined") stats.language = localStorage.getItem("ananthara_language") || stats.language;
+*goto_scene de_00_arrival

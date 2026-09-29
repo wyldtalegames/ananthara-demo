@@ -1,0 +1,115 @@
+/* 01 Tokens */
+html[data-ana-theme="codex"] { --theme-surface:rgba(20,25,16,.97);--theme-surface-deep:#080d08;--theme-border:rgba(242,188,46,.32);--theme-border-strong:rgba(255,211,84,.78);--theme-gold:#ffd454;--theme-text:#f5edda;--theme-muted:#c4bda9;--theme-radius:12px;--theme-shadow:0 26px 70px rgba(0,0,0,.5),inset 0 0 38px rgba(122,92,22,.05);--theme-title-font:AnantharaTitle,Palatino,"Palatino Linotype",serif;--theme-body-font:Palatino,"Palatino Linotype",Georgia,serif;--theme-transition:300ms ease; }
+/* 02 Base Reading */
+html[data-ana-theme="codex"] #text{font-family:var(--theme-body-font);font-size:18px;line-height:1.82;color:var(--theme-text);}
+html[data-ana-theme="codex"] #main{position:relative;background:linear-gradient(90deg,rgba(255,199,0,.025),transparent 12%,transparent 88%,rgba(255,199,0,.025));}
+html[data-ana-theme="codex"] #text>p{max-width:70ch;margin-inline:auto;margin-bottom:1.3em;}
+/* 03 Header */
+html[data-ana-theme="codex"] #header{background:linear-gradient(180deg,rgba(13,19,11,.95),rgba(10,15,9,.62));border-bottom:1px solid var(--theme-border);}
+html[data-ana-theme="codex"] .ana-intro-content h1{letter-spacing:.055em;text-shadow:0 0 30px rgba(255,212,84,.2);}
+/* 04 Prologue */
+html[data-ana-theme="codex"] .ana-prologue-banner{position:relative;overflow:hidden;border:1px solid var(--theme-border-strong);border-radius:var(--theme-radius);padding:clamp(42px,7vw,78px);background:radial-gradient(circle at 50% 15%,rgba(255,199,0,.09),transparent 30%),linear-gradient(90deg,rgba(255,199,0,.035),transparent 10%,transparent 90%,rgba(255,199,0,.035)),var(--theme-surface);box-shadow:var(--theme-shadow);}
+html[data-ana-theme="codex"] .ana-prologue-banner::before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,211,84,.18);border-radius:7px;pointer-events:none;}
+html[data-ana-theme="codex"] .ana-prologue-banner::after{content:"◆  ─────────  ◆";display:block;margin-top:35px;color:rgba(255,211,84,.54);letter-spacing:.15em;}
+html[data-ana-theme="codex"] .ana-prologue-sigil{font-size:38px;color:var(--theme-gold);text-shadow:0 0 22px rgba(255,199,0,.35);}
+html[data-ana-theme="codex"] .ana-prologue-kicker{font-family:var(--theme-title-font);font-size:clamp(19px,2.3vw,28px);letter-spacing:.24em;}
+html[data-ana-theme="codex"] .ana-prologue-banner h2{font-family:var(--theme-body-font);font-size:clamp(26px,4vw,46px);font-style:italic;font-weight:400;line-height:1.35;}
+html[data-ana-theme="codex"] .ana-prologue-banner button{max-width:430px;border-radius:8px;background:linear-gradient(90deg,rgba(255,199,0,.06),rgba(255,199,0,.18),rgba(255,199,0,.06));border:1px solid var(--theme-border-strong);color:var(--theme-gold);}
+/* 05 Choices */
+html[data-ana-theme="codex"] #text button,html[data-ana-theme="codex"] #text .choice label{border-radius:8px;border-color:var(--theme-border);background:linear-gradient(90deg,rgba(255,212,84,.035),transparent);}
+html[data-ana-theme="codex"] #text button:hover,html[data-ana-theme="codex"] #text button:focus-visible{border-color:var(--theme-border-strong);background:linear-gradient(90deg,rgba(255,212,84,.12),rgba(255,212,84,.02));}
+/* 06 Menu */
+html[data-ana-theme="codex"] .ana-game-menu{border-radius:var(--theme-radius);border:1px solid var(--theme-border-strong);background:var(--theme-surface);box-shadow:var(--theme-shadow);}
+html[data-ana-theme="codex"] .ana-game-menu h2{font-family:var(--theme-title-font);}
+/* 07 Save / Load */
+html[data-ana-theme="codex"] .ana-save-panel{border-radius:var(--theme-radius);border:1px solid var(--theme-border-strong);background:linear-gradient(90deg,rgba(255,199,0,.025),transparent 12%,transparent 88%,rgba(255,199,0,.025)),var(--theme-surface);}
+html[data-ana-theme="codex"] .ana-save-card{border-radius:8px;border-color:var(--theme-border);background:rgba(255,246,216,.025);}
+/* 08 Stats Navigation */
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs{padding:7px;border-radius:10px;background:rgba(8,13,8,.8);border:1px solid var(--theme-border);}
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs button{border-radius:7px;font-family:var(--theme-body-font);}
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs button[aria-selected="true"]{background:linear-gradient(180deg,rgba(255,212,84,.16),rgba(255,212,84,.04));box-shadow:inset 0 -2px var(--theme-gold);}
+/* 09 Character Sheet */
+html[data-ana-theme="codex"] .ananthara-character-sheet,html[data-ana-theme="codex"] .ac-section{border-radius:var(--theme-radius);border-color:var(--theme-border);background:linear-gradient(90deg,rgba(255,199,0,.025),transparent 11%,transparent 89%,rgba(255,199,0,.025)),var(--theme-surface);box-shadow:var(--theme-shadow);}
+html[data-ana-theme="codex"] .ac-title,html[data-ana-theme="codex"] .ac-section-title{font-family:var(--theme-title-font);}
+/* 10 Quest Log */
+html[data-ana-theme="codex"] .aq-card,html[data-ana-theme="codex"] .aq-room{border-radius:9px;border-color:var(--theme-border);background:linear-gradient(100deg,rgba(255,212,84,.045),rgba(7,13,8,.68) 16%);}
+html[data-ana-theme="codex"] .aq-heading,html[data-ana-theme="codex"] .aq-group-title{font-family:var(--theme-title-font);}
+/* 11 Journey */
+html[data-ana-theme="codex"] .aj-entry{border-radius:8px;border-color:var(--theme-border);background:linear-gradient(90deg,rgba(255,212,84,.035),transparent);}
+html[data-ana-theme="codex"] .aj-copy{font-family:var(--theme-body-font);line-height:1.78;}
+/* 12 Attributes */
+html[data-ana-theme="codex"] .ac-attribute-tile{border-radius:9px;border-color:var(--theme-border);background:rgba(255,246,216,.025);}
+/* 13 Demo End */
+html[data-ana-theme="codex"] .ana-demo-end{border:1px solid var(--theme-border-strong);border-radius:var(--theme-radius);background:var(--theme-surface);}
+/* 14 Motion */
+@keyframes codexFrame{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes codexReveal{from{opacity:0}to{opacity:1}}
+html[data-ana-theme="codex"] .ana-prologue-banner{animation:codexFrame .7s ease both}html[data-ana-theme="codex"] .ana-prologue-sigil{animation:codexReveal .35s .2s both}html[data-ana-theme="codex"] .ana-prologue-kicker{animation:codexReveal .35s .38s both}html[data-ana-theme="codex"] .ana-prologue-banner h2{animation:codexReveal .4s .56s both}html[data-ana-theme="codex"] .ana-prologue-banner button{animation:codexReveal .4s .75s both}
+/* 15 Responsive */
+@media(max-width:700px){html[data-ana-theme="codex"] #text{font-size:17px;line-height:1.7}html[data-ana-theme="codex"] #main{background:none}html[data-ana-theme="codex"] .ana-prologue-banner{padding:38px 18px}html[data-ana-theme="codex"] .ana-prologue-banner::before{inset:8px}}
+/* 16 Reduced Motion */
+@media(prefers-reduced-motion:reduce){html[data-ana-theme="codex"] *,html[data-ana-theme="codex"] *::before,html[data-ana-theme="codex"] *::after{animation:none!important;transition-duration:.001ms!important}}
+
+/* PASS 2 — 03 Header Controls */
+html[data-ana-theme="codex"] #buttons{gap:8px;}
+html[data-ana-theme="codex"] #statsButton,
+html[data-ana-theme="codex"] #menuButton{position:relative;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:9px 15px;border:0;border-bottom:1px solid var(--theme-border);border-radius:3px;background:linear-gradient(180deg,rgba(255,212,84,.055),transparent);box-shadow:none;overflow:hidden;}
+html[data-ana-theme="codex"] #statsButton::before,
+html[data-ana-theme="codex"] #menuButton::before{content:"";width:21px;height:21px;flex:none;background:var(--theme-gold);opacity:.76;mask:center/contain no-repeat var(--header-icon);-webkit-mask:center/contain no-repeat var(--header-icon);}
+html[data-ana-theme="codex"] #statsButton{--header-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='10' r='5' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M7 27c1-7 5-10 9-10s8 3 9 10M4 16h5M23 16h5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E")}
+html[data-ana-theme="codex"] #menuButton{--header-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 9h18M7 16h18M7 23h18' stroke='black' stroke-width='2'/%3E%3Ccircle cx='4' cy='9' r='1.5'/%3E%3Ccircle cx='28' cy='23' r='1.5'/%3E%3C/svg%3E")}
+html[data-ana-theme="codex"] #statsButton::after,
+html[data-ana-theme="codex"] #menuButton::after{content:"";position:absolute;left:50%;right:50%;bottom:0;height:1px;background:var(--theme-gold);transition:left .28s ease,right .28s ease;}
+html[data-ana-theme="codex"] #statsButton:hover::after,html[data-ana-theme="codex"] #statsButton:focus-visible::after,html[data-ana-theme="codex"] #menuButton:hover::after,html[data-ana-theme="codex"] #menuButton:focus-visible::after{left:8px;right:8px;}
+
+/* PASS 2 — 04 Page Entrance */
+html[data-ana-theme="codex"] #text.is-lab-revealed,
+html[data-ana-theme="codex"] .as-panel.is-lab-revealed,
+html[data-ana-theme="codex"] .ana-game-menu.is-lab-revealed,
+html[data-ana-theme="codex"] .ana-save-panel.is-lab-revealed{animation:codexPageIn .23s ease-out both;}
+
+/* PASS 2 — 05 Prologue */
+html[data-ana-theme="codex"] .ana-prologue-banner{isolation:isolate;animation:codexPanelAwake .38s ease-out both;}
+html[data-ana-theme="codex"] .ana-prologue-banner::before{opacity:0;transform:scaleX(.06);animation:codexFrameDraw .58s .12s cubic-bezier(.2,.75,.2,1) forwards;}
+html[data-ana-theme="codex"] .ana-prologue-banner::after{opacity:0;animation:codexInkReveal .3s .72s ease forwards;}
+html[data-ana-theme="codex"] .ana-prologue-sigil{opacity:0;filter:blur(5px);animation:codexSigilReveal .32s .48s ease-out forwards;}
+html[data-ana-theme="codex"] .ana-prologue-kicker{opacity:0;animation:codexInkReveal .28s .63s ease forwards;font-size:clamp(1.05rem,2vw,1.45rem);}
+html[data-ana-theme="codex"] .ana-prologue-banner h2{opacity:0;animation:codexInkReveal .38s .79s ease forwards;font-size:clamp(1.45rem,3vw,2.35rem);}
+html[data-ana-theme="codex"] .ana-prologue-banner button{opacity:0;animation:codexInkReveal .3s .98s ease forwards;border-radius:4px;}
+html[data-ana-theme="codex"] .ana-prologue-banner.is-lab-leaving{animation:codexPageOut .28s ease-in both;}
+html[data-ana-theme="codex"] .ana-prologue-banner.is-lab-leaving::before{animation:codexLineRelease .25s ease-out both;}
+
+/* PASS 2 — 06 Choices */
+html[data-ana-theme="codex"] .choice{gap:10px;}
+html[data-ana-theme="codex"] .choice>div{position:relative;border:0!important;border-radius:3px!important;background:linear-gradient(90deg,rgba(255,212,84,.035),rgba(4,10,6,.6) 18%,rgba(4,10,6,.35))!important;box-shadow:inset 2px 0 rgba(255,199,0,.42);overflow:hidden;opacity:0;animation:codexChoiceIn .22s ease-out forwards;}
+html[data-ana-theme="codex"] .choice>div:nth-child(2){animation-delay:45ms}html[data-ana-theme="codex"] .choice>div:nth-child(3){animation-delay:90ms}html[data-ana-theme="codex"] .choice>div:nth-child(4){animation-delay:135ms}html[data-ana-theme="codex"] .choice>div:nth-child(5){animation-delay:180ms}
+html[data-ana-theme="codex"] .choice>div::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:linear-gradient(90deg,var(--theme-gold),transparent);transition:right .3s ease;pointer-events:none;}
+html[data-ana-theme="codex"] .choice>div:hover::after,html[data-ana-theme="codex"] .choice>div:focus-within::after,html[data-ana-theme="codex"] .choice>div.selectedKeyboard::after{right:0;}
+html[data-ana-theme="codex"] .choice label{padding:18px 20px 18px 45px!important;border:0!important;border-radius:0!important;background:none!important;text-align:left!important;}
+html[data-ana-theme="codex"] .choice label::before{content:"◆";position:absolute;left:18px;color:rgba(255,199,0,.56);font-size:10px;transition:color .2s,text-shadow .2s;}
+html[data-ana-theme="codex"] .choice input:checked+label::before,html[data-ana-theme="codex"] .choice>div:hover label::before,html[data-ana-theme="codex"] .choice>div:focus-within label::before{color:var(--theme-gold);text-shadow:0 0 10px rgba(255,199,0,.48);}
+
+/* PASS 2 — 07 Menu / 08 Save Load */
+html[data-ana-theme="codex"] .ana-game-menu>button{border-radius:3px!important;border-width:0 0 1px!important;text-align:left;padding-left:22px;background:linear-gradient(90deg,rgba(255,199,0,.05),transparent)!important;}
+html[data-ana-theme="codex"] .ana-save-overlay{animation:codexFade .18s ease both}html[data-ana-theme="codex"] .ana-save-card{opacity:0;animation:codexChoiceIn .22s ease forwards}html[data-ana-theme="codex"] .ana-save-card:nth-child(2){animation-delay:45ms}html[data-ana-theme="codex"] .ana-save-card:nth-child(3){animation-delay:90ms}
+
+/* PASS 2 — 09 Status Tabs */
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs{border-radius:4px;padding:0 8px;border-width:0 0 1px;background:rgba(5,11,7,.7);}
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs button{position:relative;border:0;border-radius:0;background:none;min-height:52px;font-family:var(--theme-body-font);font-size:.82rem;letter-spacing:.09em;}
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs button::after{content:"";position:absolute;left:50%;right:50%;bottom:0;height:2px;background:var(--theme-gold);transition:left .22s ease,right .22s ease,box-shadow .22s ease;}
+html[data-ana-theme="codex"] .ananthara-game-ui .as-tabs button[aria-selected="true"]::after{left:12px;right:12px;box-shadow:0 0 12px rgba(255,199,0,.3);}
+
+/* PASS 2 — 10–13 Panels */
+html[data-ana-theme="codex"] .ac-title,html[data-ana-theme="codex"] .ac-section-title,html[data-ana-theme="codex"] .aq-heading,html[data-ana-theme="codex"] .aq-group-title{font-size:clamp(1.35rem,2.5vw,2.15rem);}
+html[data-ana-theme="codex"] .aq-card.is-lab-revealed::before{content:"";display:block;height:1px;width:0;background:linear-gradient(90deg,var(--theme-gold),transparent);animation:codexDivider .38s ease-out forwards;}
+
+/* PASS 2 — 14 Hover / Focus */
+html[data-ana-theme="codex"] #statsButton:focus-visible,html[data-ana-theme="codex"] #menuButton:focus-visible,html[data-ana-theme="codex"] .choice input:focus-visible+label,html[data-ana-theme="codex"] .as-tabs button:focus-visible{outline:1px solid var(--theme-gold)!important;outline-offset:3px;box-shadow:0 0 0 1px rgba(255,199,0,.3)!important;}
+
+/* PASS 2 — 15 Motion */
+@keyframes codexPanelAwake{from{opacity:0}to{opacity:1}}@keyframes codexFrameDraw{from{opacity:0;transform:scaleX(.06)}to{opacity:1;transform:scaleX(1)}}@keyframes codexSigilReveal{from{opacity:0;filter:blur(5px)}to{opacity:1;filter:none}}@keyframes codexInkReveal{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}@keyframes codexPageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes codexPageOut{to{opacity:0;transform:translateY(-4px)}}@keyframes codexLineRelease{to{opacity:0;transform:scaleX(1.08)}}@keyframes codexChoiceIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes codexFade{from{opacity:0}to{opacity:1}}@keyframes codexDivider{to{width:100%}}
+
+/* PASS 2 — 16 Responsive */
+@media(max-width:700px){html[data-ana-theme="codex"] .ana-prologue-banner h2{animation-delay:.4s}html[data-ana-theme="codex"] .ana-prologue-banner button{animation-delay:.58s}html[data-ana-theme="codex"] #statsButton,html[data-ana-theme="codex"] #menuButton{min-width:44px;min-height:44px;padding:9px 12px}html[data-ana-theme="codex"] .choice label{padding:16px 14px 16px 40px!important}}
+
+/* PASS 2 — 17 Reduced Motion */
+@media(prefers-reduced-motion:reduce){html[data-ana-theme="codex"] .ana-prologue-banner,html[data-ana-theme="codex"] .ana-prologue-banner::before,html[data-ana-theme="codex"] .ana-prologue-banner::after,html[data-ana-theme="codex"] .ana-prologue-banner>*,html[data-ana-theme="codex"] .choice>div,html[data-ana-theme="codex"] .is-lab-revealed{opacity:1!important;filter:none!important;transform:none!important;animation:none!important}}

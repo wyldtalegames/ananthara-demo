@@ -1,0 +1,65 @@
+/* 01 Tokens */
+html[data-ana-theme="archive"] {
+  --theme-surface: rgba(11, 20, 14, .96); --theme-surface-deep: #07100b;
+  --theme-border: rgba(255, 199, 0, .28); --theme-border-strong: rgba(255, 199, 0, .72);
+  --theme-gold: #ffc700; --theme-text: #f2eee3; --theme-muted: #bbb8ac;
+  --theme-radius: 5px; --theme-shadow: 0 22px 60px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.025);
+  --theme-title-font: AnantharaTitle, Georgia, serif; --theme-body-font: Georgia, "Times New Roman", serif;
+  --theme-transition: 240ms ease;
+}
+/* 02 Base Reading */
+html[data-ana-theme="archive"] #main,
+html[data-ana-theme="archive"] #text { min-width:0; }
+html[data-ana-theme="archive"] #text { font-family:var(--theme-body-font); color:var(--theme-text); font-size:18px; line-height:1.78; }
+html[data-ana-theme="archive"] #text > p { max-width:72ch; margin:0 auto 1.22em; text-align:left; }
+/* 03 Header */
+html[data-ana-theme="archive"] #header { border-bottom:1px solid var(--theme-border); background:linear-gradient(180deg,rgba(6,13,9,.92),rgba(6,13,9,.62)); }
+html[data-ana-theme="archive"] #header button { border-radius:var(--theme-radius); letter-spacing:.12em; }
+html[data-ana-theme="archive"] .ana-intro-content h1 { text-shadow:0 2px 30px rgba(255,199,0,.18); letter-spacing:.045em; }
+/* 04 Prologue */
+html[data-ana-theme="archive"] .ana-prologue-banner { position:relative; border:3px double var(--theme-border-strong); border-radius:2px; background:linear-gradient(145deg,rgba(18,31,21,.97),rgba(6,12,8,.99)); box-shadow:var(--theme-shadow); padding:clamp(42px,7vw,82px); }
+html[data-ana-theme="archive"] .ana-prologue-banner::before,
+html[data-ana-theme="archive"] .ana-prologue-banner::after { content:"◆"; position:absolute; color:var(--theme-gold); opacity:.55; font-size:13px; }
+html[data-ana-theme="archive"] .ana-prologue-banner::before { top:15px; left:17px; }
+html[data-ana-theme="archive"] .ana-prologue-banner::after { right:17px; bottom:15px; }
+html[data-ana-theme="archive"] .ana-prologue-sigil { color:transparent; width:58px; height:58px; margin-inline:auto; border:1px solid var(--theme-border-strong); transform:rotate(45deg); box-shadow:0 0 25px rgba(255,199,0,.12); }
+html[data-ana-theme="archive"] .ana-prologue-kicker { font-family:Arial,sans-serif; letter-spacing:.42em; color:var(--theme-gold); }
+html[data-ana-theme="archive"] .ana-prologue-banner h2 { font-family:var(--theme-title-font); font-size:clamp(27px,4.1vw,48px); font-weight:700; line-height:1.28; }
+html[data-ana-theme="archive"] .ana-prologue-banner button { max-width:420px; border-radius:3px; background:linear-gradient(180deg,rgba(255,199,0,.16),rgba(255,199,0,.05)); color:var(--theme-gold); border:1px solid var(--theme-border-strong); }
+/* 05 Choices */
+html[data-ana-theme="archive"] #text button:not(.ana-ui-lab-switcher button),
+html[data-ana-theme="archive"] #text .choice label { border-radius:var(--theme-radius); border-color:var(--theme-border); transition:border-color var(--theme-transition),background var(--theme-transition),transform var(--theme-transition); }
+html[data-ana-theme="archive"] #text button:hover,
+html[data-ana-theme="archive"] #text button:focus-visible { border-color:var(--theme-border-strong); box-shadow:0 0 18px rgba(255,199,0,.1); }
+/* 06 Menu */
+html[data-ana-theme="archive"] .ana-game-menu { border:3px double var(--theme-border); border-radius:var(--theme-radius); background:var(--theme-surface); box-shadow:var(--theme-shadow); }
+html[data-ana-theme="archive"] .ana-game-menu h2 { font-family:var(--theme-title-font); }
+/* 07 Save / Load */
+html[data-ana-theme="archive"] .ana-save-panel { border:3px double var(--theme-border-strong); border-radius:var(--theme-radius); background:var(--theme-surface); box-shadow:var(--theme-shadow); }
+html[data-ana-theme="archive"] .ana-save-card { border-left:3px solid var(--theme-border-strong); border-radius:2px; background:rgba(255,255,255,.025); }
+/* 08 Stats Navigation */
+html[data-ana-theme="archive"] .ananthara-game-ui .as-tabs { border:1px solid var(--theme-border); border-radius:var(--theme-radius); background:rgba(4,10,7,.76); }
+html[data-ana-theme="archive"] .ananthara-game-ui .as-tabs button { border-radius:2px; font-family:Arial,sans-serif; letter-spacing:.1em; }
+html[data-ana-theme="archive"] .ananthara-game-ui .as-tabs button[aria-selected="true"] { background:rgba(255,199,0,.11); box-shadow:inset 0 -2px var(--theme-gold); }
+/* 09 Character Sheet */
+html[data-ana-theme="archive"] .ananthara-character-sheet,
+html[data-ana-theme="archive"] .ac-section { border-radius:var(--theme-radius); border-color:var(--theme-border); background:linear-gradient(150deg,rgba(17,28,19,.96),rgba(7,13,9,.98)); box-shadow:var(--theme-shadow); }
+html[data-ana-theme="archive"] .ac-title, html[data-ana-theme="archive"] .ac-section-title { font-family:var(--theme-title-font); }
+html[data-ana-theme="archive"] .ac-divider { background:linear-gradient(90deg,transparent,var(--theme-border-strong),transparent); }
+/* 10 Quest Log */
+html[data-ana-theme="archive"] .aq-card,
+html[data-ana-theme="archive"] .aq-room { border-radius:var(--theme-radius); border-color:var(--theme-border); background:rgba(9,17,11,.86); box-shadow:inset 3px 0 rgba(255,199,0,.3); }
+/* 11 Journey */
+html[data-ana-theme="archive"] .aj-entry { border-radius:2px; border-color:var(--theme-border); background:rgba(255,255,255,.018); }
+html[data-ana-theme="archive"] .aj-copy { font-family:var(--theme-body-font); line-height:1.72; }
+/* 12 Attributes */
+html[data-ana-theme="archive"] .ac-attribute-tile { border-radius:3px; border-color:var(--theme-border); background:rgba(7,15,10,.86); }
+/* 13 Demo End */
+html[data-ana-theme="archive"] .ana-demo-end { border:3px double var(--theme-border-strong); border-radius:2px; background:var(--theme-surface); }
+/* 14 Motion */
+@keyframes archiveSigilGlow { 50% { box-shadow:0 0 34px rgba(255,199,0,.2); } }
+html[data-ana-theme="archive"] .ana-prologue-sigil { animation:archiveSigilGlow 5s ease-in-out infinite; }
+/* 15 Responsive */
+@media(max-width:700px){html[data-ana-theme="archive"] #text{font-size:17px;line-height:1.68}html[data-ana-theme="archive"] .ana-prologue-banner{padding:36px 18px}}
+/* 16 Reduced Motion */
+@media(prefers-reduced-motion:reduce){html[data-ana-theme="archive"] *,html[data-ana-theme="archive"] *::before,html[data-ana-theme="archive"] *::after{animation:none!important;transition-duration:.001ms!important}}

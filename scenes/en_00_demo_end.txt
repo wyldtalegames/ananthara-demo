@@ -1,0 +1,15 @@
+*comment English ending of the current demo.
+
+*label start
+[b]THANK YOU FOR PLAYING THE DEMO.[/b]
+
+You have reached the end of the current demo of ANANTHARA: THE LOST FRAGMENTS.
+Your final examination is behind you. The search for the Chronicles has begun. And you have decided where your first path will lead.
+But your journey has only just begun.
+
+On another playthrough, you can make different choices, follow a different personal path, or choose a different destination for your first departure.
+Perhaps your next path will lead somewhere entirely different.
+This is only the beginning.
+
+*script if (window.AnantharaDemoEnd) window.AnantharaDemoEnd.mount(this);
+*ending

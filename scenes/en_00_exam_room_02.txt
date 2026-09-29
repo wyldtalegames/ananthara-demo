@@ -1,0 +1,429 @@
+*comment Final Examination — Room II: The Mural
+*label start
+*set quest_exam_status "active"
+*set quest_exam_room_01_status "completed"
+*set quest_exam_room_02_status "active"
+*set quest_exam_room_02_objective "Restore the mural and find the way into the next section."
+*set quest_exam_room_03_status "locked"
+[b]THE GIFT OF LIGHT[/b]
+
+Behind you, the deep rumble of the retreating wall falls silent. For several moments you hear only your own footsteps before the narrow passage opens into a second chamber. It is larger than the first and almost entirely empty. No scroll waits upon a lectern, and no row of symbols immediately demands your attention. Instead, warm white light falls through a narrow opening high above. It strikes a cut piece of glass or crystal held in a stone setting near the ceiling and is directed diagonally across the room. Where the beam is meant to lead is not immediately apparent, for almost the entire opposite wall is occupied by an enormous mosaic—and something is wrong with it.
+
+The mural is not destroyed. No stone is missing; no loose fragments lie on the floor. Even so, it looks as though someone dismantled the whole work and reassembled it incorrectly. A painted hand ends at the edge of one segment and becomes a vine on the next. Golden lines break off in mid-motion and continue several metres away. Pieces of robes, faces, plants and dark fields appear where they cannot possibly belong. Only when you step closer do you see that the mosaic consists of immense stone segments. Fine seams divide them; some panels rest in circular guides, others in straight tracks that reach deep into the wall. The individual pieces can evidently be rotated or shifted.
+
+This is not a ruined artwork. Someone deliberately took it out of order.
+*goto investigation
+
+*label investigation
+What do you examine?
+*choice
+  *if room2_examined_seams and (room2_initial_investigations < 2)
+    *selectable_if (false) #The seams and movable segments. [examined]
+      *goto investigation
+  *elseif room2_examined_seams = false
+    #I examine the seams and movable segments.
+      *set room2_examined_seams true
+      *set room2_initial_investigations +1
+      You move closer to the wall and run your fingers over one of the narrow seams. It is too even to be a natural fracture. Behind it runs a guide of stone and dark metal, and higher up you recognize similar traces. Some segments can evidently be shifted sideways, while others appear to rotate around a central point. The mosaic was not broken apart and reassembled after the fact. It was built from the beginning so that its individual parts could move.
+      *set quest_exam_room_02_discovery_01 "The mural consists of deliberately movable segments."
+      *goto investigation
+  *if room2_examined_breaks and (room2_initial_investigations < 2)
+    *selectable_if (false) #The visible breaks in the image. [examined]
+      *goto investigation
+  *elseif room2_examined_breaks = false
+    #I examine the visible breaks within the image.
+      *set room2_examined_breaks true
+      *set room2_initial_investigations +1
+      You take several steps back and force yourself not to search for meaning, but only for what is actually before you. A vine ends at a seam although the same shape continues on a distant segment. An outstretched hand has no arm attached to it. A golden line disappears at one edge and reappears elsewhere. Some of the dark fields also seem not to continue where they should. You do not yet know what image they are meant to form, but several pieces have visible continuations from which they are currently separated.
+      *set quest_exam_room_02_discovery_02 "Several segments have recognizable visual continuations."
+      *goto investigation
+  *if room2_examined_controls and (room2_initial_investigations < 2)
+    *selectable_if (false) #A way to operate the mural. [examined]
+      *goto investigation
+  *elseif room2_examined_controls = false
+    #I look for a way to operate the mural.
+      *set room2_examined_controls true
+      *set room2_initial_investigations +1
+      You search the wall, floor and adjoining stones for something that might control the construction. You find no lever, no wheel, and no row of switches capable of simply resetting the entire image. At last you discover a flat stone disc at the lower edge of the mosaic, scarcely larger than your hand. Fine markings run around its rim. When you move it carefully, a deep grinding answers somewhere behind the wall and one of the smaller segments shifts a little. The control is enough to move individual pieces—but it does not tell you where they belong.
+      *set quest_exam_room_02_discovery_03 "The segments can be moved; the control itself contains no solution."
+      *goto investigation
+  *if room2_examined_magic and (room2_initial_investigations < 2)
+    *selectable_if (false) #The magical traces in the mosaic. [examined]
+      *goto investigation
+  *elseif room2_examined_magic = false
+    #I examine the magical traces within the mosaic.
+      *set room2_examined_magic true
+      *set room2_initial_investigations +1
+      You let your awareness of Thal’ithara pass cautiously over the wall without yet giving your magic a specific task. Something answers. Not strongly enough to show you an image or a solution, but clearly enough to leave no doubt: this mosaic is more than stone and colour. Magic lies in its materials, in its construction, in the work itself and in traces that cannot be assigned entirely to the visible world. Which of them you can reach depends upon how your own Thal’ithara meets the world.
+      *goto investigation
+  *if room2_initial_investigations >= 2
+    #I apply my Thal'ithara to the mural.
+      *goto thal_route
+
+*label thal_route
+The longer you study the mosaic, the clearer the task becomes. Every piece is present. It is merely out of place. Somewhere within this confusion lies a complete image, but the chamber will not simply show it to you. You could try moving every segment one at a time and rely on visible continuations alone. With a mural of this size, that could take a very long time. Or you could discover what your Thal’ithara recognizes within it.
+*if thal_archetype = "Artisari"
+  *goto artisari
+*if thal_archetype = "Seeker"
+  *goto seeker
+*if thal_archetype = "Vanguard"
+  *goto vanguard
+*if thal_archetype = "Llifari"
+  *goto llifari
+*if thal_archetype = "Veilwalker"
+  *goto veilwalker
+*goto aegis
+
+*label artisari
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Artisari", nextLabel:"artisari_after_interaction"});
+*label artisari_after_interaction
+As an Artisari, your Thal’ithara does not encounter creation only as something finished. Expression, intention, and something of what its creator once left behind can continue to live within a work. You place your hand upon one of the painted segments and let your power flow into it. For a heartbeat nothing happens; then a faint shimmer runs out from beneath your fingers. Colour deepens. A painted vine moves as though wind were passing through its leaves, and higher within the image a hand rises and reaches for something no longer there. The mosaic does not answer you in words. It answers like a work that knows something about it is wrong. Then the stone moves. Not because you push it. The artwork does it itself. One segment turns slowly in its guide, another glides sideways. A broken vine finds its continuation, a hand its arm, a golden line the part from which it had been separated. You keep your hand against the mosaic and feel the work remember its own shape, piece by piece.
+*goto restored
+*label seeker
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Seeker", nextLabel:"seeker_after_interaction"});
+*label seeker_after_interaction
+As a Seeker, the strength of your Thal’ithara lies in making relationships between pieces of information visible. You concentrate upon the mosaic, and gradually individual connections emerge more clearly from the confusion. No finished picture appears in your mind. Instead, you recognize correspondences: a golden line on one segment matches a line several rows above it exactly. A vine begins here and continues there. An outstretched hand must belong to a figure whose arm currently lies on the other side of the image. In several places, dark forms lie over golden lines—which suggests, at least, that the gold must already have existed within the depicted sequence. And some of it recalls what you saw in the first chamber: something is given, something grows, separated things come together, something lays itself over them. That is not proof that both images tell the same story. But it is a lead. You approach the stone control at the mural’s lower edge. Your Thal’ithara does not move the pieces for you or reveal how the construction works. It helps you recognize which information belongs together. You must deduce the rest yourself.
+*goto restored
+*label vanguard
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Vanguard", nextLabel:"vanguard_after_interaction"});
+*label vanguard_after_interaction
+As a Vanguard, your Thal’ithara meets constructions through their function. You place a hand against the stone beside one of the guides and let your power reach deeper into the wall. Something answers. Not an image, not a memory—a construction. For a moment you perceive its individual parts as though they lay exposed before you: guides, axles, counterweights, connections and movable brackets hidden behind metres of stone. You do not need to understand what the mural depicts. The machine itself possesses a state from which it was moved, and a state for which it was built. You let your Thal’ithara flow through the structure and give it a single impulse. Return. Deep within the wall one gear catches the next. Stone passes over stone. Segments rotate; others briefly vanish into their guides and emerge in new positions. You do not move every part individually. You merely told the construction where it should return. It does the rest.
+*goto restored
+*label llifari
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Llifari", nextLabel:"llifari_after_interaction"});
+*label llifari_after_interaction
+As a Llifari, your Thal’ithara meets the world through what it is made of. You lay your hand upon the cold stone and let your perception sink beneath paint, tool marks and worked surface. For a moment, the picture vanishes from your awareness. What remains is stone, minerals, metallic inclusions and pigments once drawn from earth, plants and other elements of the living world. Suddenly the mosaic no longer feels like a collection of unrelated pieces. Some belong together—not because of what is depicted upon them, but because they carry the same material traces. The stone begins to vibrate beneath your hand. Fine dust loosens from the seams. One segment glides slowly sideways, another turns towards it. It is not the hidden machine that guides the motion. The material itself follows the connections your Thal’ithara has found until separated surfaces meet again.
+*goto restored
+*label veilwalker
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Veilwalker", nextLabel:"veilwalker_after_interaction"});
+*label veilwalker_after_interaction
+As a Veilwalker, your Thal’ithara reaches where the visible world ends. Places are rarely as empty as they appear, and sometimes it is enough to make the boundary between yourself and whatever waits beyond a little more permeable. You place your hand against the cold stone and open yourself to the veil. At first only silence answers; then the air changes. A nearly inaudible whisper passes through the chamber although nothing moves, and shapes appear at the edge of your vision only to vanish whenever you try to follow them directly. For an instant a translucent hand forms upon the mosaic’s surface. Then a second. More follow. You do not know what they are: spirits of this place, guardians bound to the mural, or something that answered your call for another reason. Yet when you remove your hand from the stone, theirs remain. One spectral figure reaches for a segment. Its fingers do not pass through. The stone moves. Then the others take hold as well. Without a word, the figures begin to restore the mural, turning segments within their guides and joining, piece by piece, what had been separated. You do not know the order they follow. You merely established the connection.
+*goto restored
+*label aegis
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountRoom2ThalInteraction(this, {archetype:"Aegis", nextLabel:"aegis_after_interaction"});
+*label aegis_after_interaction
+As an Aegis, the nature of your Thal’ithara lies in strength, steadfastness, and directing force where it is needed. Signs and seals can give that strength form and direction—and before you lies a problem defeated less by insight than by sheer scale. You can see for yourself that certain lines and shapes belong together. A vine continues several segments away, a hand seeks its arm, golden lines end where they cannot possibly end. Yet some of the corresponding stones lie several metres above you and are far too large to move with bare hands. You raise one hand and draw a sign in the air. One line gives the power direction; another gives it purchase. When you close the form, your Thal’ithara surges through it and the sign grows. Light spreads above you, lines becoming fingers, curves becoming a palm, until an immense translucent hand floats before the mural. You move your fingers and the hand moves its own. You close your fist around one of the upper segments and pull. Deep grinding fills the chamber as the stone slides along its guide. You have neither understood the mechanism nor recognized a hidden solution. You have merely given your own strength a form that reaches far beyond your body. And that is enough.
+*goto restored
+
+*label restored
+*set exam_room_02_mural_restored true
+The final segment reaches its place. A deep sound travels through the wall, and the guides behind the mosaic engage. One by one, the movable stones sink back a few finger-widths until the seams lie almost flush. What had seemed like dozens of isolated fragments becomes a single image. You step back. For the first time, you see the mural as it was created.
+
+*page_break Continue
+
+Three great figures dominate its centre. A woman stands between two male figures, her hands open before her. Vines cross her robes and wind around her arms, and despite the stylized depiction, you recognize the motif. Faon’lin. One of the Three. In the stories, she is associated with growth, creation and the unfolding of life. Something bright floats between her open hands. Perhaps a flame, perhaps light, perhaps something for which the artist chose no more definite form. Golden lines extend outward from it. They reach people and animals, plants and trees, tools, buildings, and things that resemble works of art or crafted objects. Some lines do not end with a single figure. They continue, divide, meet one another and connect what has been created.
+
+Yet the farther your gaze follows the image outward, the more it changes. Open hands become closed. Fingers curl around the same golden lines that once ran freely through the image. In some places they are drawn together; in others, pulled apart. And over it lies the black veil. It does not begin at any single point. Dark fields creep across the image from several directions, covering parts of the golden lines and swallowing shapes still faintly visible beneath them. Eyes lie within the darkness. Some are barely suggested; others are rendered clearly enough that their gaze is almost unpleasant. They do not look at you. They look inward—toward Faon’lin holding the light between her open hands.
+
+It recalls the first section of the examination: gift, growth, connection, and something laid over them. But resemblance is not proof.
+*goto detail_menu
+
+*label detail_menu
+What do you study more closely?
+*choice
+  *if room2_seen_divine_light and (room2_detail_count < 4)
+    *selectable_if (false) #The three figures and the light. [examined]
+      *goto detail_menu
+  *elseif room2_seen_divine_light = false
+    #The three figures and the light between Faon’lin's hands.
+      *set room2_seen_divine_light true
+      *set room2_detail_count +1
+      Faon’lin's hands are fully open and do not touch the light. White and gold pigments lie over tiny bright inclusions. The image resembles release rather than possession. What is given, and why, remains interpretation.
+      *if thal_archetype = "Seeker"
+        Older Ithar’kael texts sometimes describe Thal’ithara as something that takes form through people. The resemblance is striking, but it is not proof.
+        *set room2_seeker_thalithara_theory true
+      *if (personal_quest_id = "lost_memory") and (lost_memory_sand_ruin = false)
+        *goto lost_memory_vision
+      *goto detail_menu
+  *if room2_seen_creation_lines and (room2_detail_count < 4)
+    *selectable_if (false) #People, animals and creations. [examined]
+      *goto detail_menu
+  *elseif room2_seen_creation_lines = false
+    #The people, animals and things reached by the golden lines.
+      *set room2_seen_creation_lines true
+      *set room2_detail_count +1
+      Lines pass through roots and branches, into tools and made things, and between people working together. Not everything comes directly from the centre. People take up lines and carry them onward. You can only observe that the light does not remain at its source.
+      *if (personal_quest_id = "missing") and (missing_mural_connection = false)
+        *goto missing_vision
+      *goto detail_menu
+  *if room2_seen_closed_hands and (room2_detail_count < 4)
+    *selectable_if (false) #The closed hands. [examined]
+      *goto detail_menu
+  *elseif room2_seen_closed_hands = false
+    #The closed hands at the edge of the image.
+      *set room2_seen_closed_hands true
+      *set room2_detail_count +1
+      The golden lines do not change. The way people handle them does: open hands close; what was passed onward is held, gathered or separated. Possession, greed or control would be interpretation, not proven observation.
+      *goto detail_menu
+  *if room2_seen_veil and (room2_detail_count < 4)
+    *selectable_if (false) #The black veil. [examined]
+      *goto detail_menu
+  *elseif room2_seen_veil = false
+    #The black veil and the eyes within it.
+      *set room2_seen_veil true
+      *set room2_detail_count +1
+      Layers of dark pigment cover what already existed without erasing it. Gold glimmers beneath. The eyes face the bright centre. Whether they watch, desire, fear or seek to extinguish it remains unknown.
+      *if (personal_quest_id = "affliction") and (affliction_veil_connection = false)
+        *goto affliction_vision
+      *goto detail_menu
+  #I step back and regard the mural as a whole.
+    *goto step_back
+
+*label lost_memory_vision
+You try to pull away from the image, but at that moment you hear a voice. A single word, too quiet to understand. You turn, but the chamber is empty. When you look back at the mural, Faon’lin seems to be watching you. Not the light between her hands. You.
+
+Then the chamber vanishes. Heat strikes you. Pale sand reaches to the horizon, and half-buried within it lies a ruin of dark stone. Its walls are broken, yet something moves inside. Light, perhaps. Or a figure. You do not know this place. You have never been here. And still you are overwhelmed by the certainty that you know what lies beyond the next archway.
+
+The vision tears away. Pain lances through your head sharply enough to make you stagger back. A deep humming fills your ears. When your sight clears, Faon’lin stands unchanged in the mosaic, gazing at the light between her hands. Perhaps nothing ever moved. Perhaps the voice existed only in your mind. But the physical aftereffects are real, and the unknown ruin still feels like something you have forgotten.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set lost_memory_sand_ruin true
+*set echo_personal_clue_01 "During the examination, Faon’lin’s depiction triggered a vision: pale sand, a half-buried ruin of dark stone and the overwhelming feeling that I knew what lay beyond the next archway. I do not know this place—and yet it felt like something I had forgotten."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"INSIGHT", title:"The Ruin in the Sand", body:"The depiction of Faon’lin triggered something that did not feel like an ordinary memory. You heard a voice and saw a ruin in the sand, unknown and yet familiar. The vision ended with powerful physical aftereffects.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label missing_vision
+Among all the people and crafted things, your eyes catch upon two smaller figures. They stand a little apart, joined by a single golden line. One turns towards the other. Their hands are almost outstretched, as though a movement lies between them that the artist only suggested. Something about it strikes you with unexpected familiarity. Not because you know these painted people, but because the way they stand together touches a memory.
+
+For a moment, you do not think of the disappearance. You remember the person.
+*if missing_person_relationship = ""
+  *goto missing_relationship
+*goto missing_memory
+*label missing_relationship
+Who was this person to you?
+*choice
+  #The person I loved.
+    *set missing_person_relationship "loved"
+    *set missing_room2_name_or_relationship "the person I loved"
+    *goto missing_memory
+  #My closest friend.
+    *set missing_person_relationship "closest_friend"
+    *set missing_room2_name_or_relationship "my closest friend"
+    *goto missing_memory
+  #My mother / father.
+    *set missing_person_relationship "parent"
+    *set missing_room2_name_or_relationship "my mother or father"
+    *goto missing_memory
+  #My sister.
+    *set missing_person_relationship "sister"
+    *set missing_room2_name_or_relationship "my sister"
+    *goto missing_memory
+  #My brother.
+    *set missing_person_relationship "brother"
+    *set missing_room2_name_or_relationship "my brother"
+    *goto missing_memory
+*label missing_memory
+Not the disappearance, but something ordinary becomes clearer: closeness, a movement, a shared place or moment. What feels familiar?
+*choice
+  #The movement of their hands—a gesture only we understood.
+    *set missing_connection_memory "gesture"
+    *set missing_room2_symbol_or_trait "our familiar gesture"
+    You know not these painted fingers, but a wordless language between you: I am here. I understand. You are not alone.
+    *goto missing_shared
+  #The place behind them—a place that meant something to both of us.
+    *set missing_connection_memory "place"
+    *set missing_room2_symbol_or_trait "a place that meant something to both of us"
+    You do not know the painted landscape. Yet its arrangement recalls a place that became more than a point on a map to both of you.
+    *goto missing_shared
+  #The scene itself—a moment we had shared.
+    *set missing_connection_memory "shared_moment"
+    *set missing_room2_symbol_or_trait "a moment we had shared"
+    Two people stand together and see the same thing for a moment. What remains is the feeling of that shared instant.
+    *goto missing_shared
+*label missing_shared
+*if missing_room2_name_or_relationship = ""
+  *if missing_person_relationship = "loved"
+    *set missing_room2_name_or_relationship "the person I loved"
+  *if missing_person_relationship = "closest_friend"
+    *set missing_room2_name_or_relationship "my closest friend"
+  *if missing_person_relationship = "parent"
+    *set missing_room2_name_or_relationship "my mother or father"
+  *if missing_person_relationship = "sister"
+    *set missing_room2_name_or_relationship "my sister"
+  *if missing_person_relationship = "brother"
+    *set missing_room2_name_or_relationship "my brother"
+Perhaps the mural merely awakened a memory. Perhaps it was more. You do not know.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set missing_mural_connection true
+*set echo_personal_clue_01 "The mural awakened a vivid memory of " & missing_room2_name_or_relationship
+*set echo_personal_clue_01 echo_personal_clue_01 & ". "
+*set echo_personal_clue_01 echo_personal_clue_01 & missing_room2_symbol_or_trait
+*set echo_personal_clue_01 echo_personal_clue_01 & " felt familiar. I do not yet know whether it was more than a memory."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"NEW LEAD", title:"A Familiar Connection", body:"The mural in my final examination triggered an unexpectedly vivid memory of " + stats.missing_room2_name_or_relationship + ". Part of the depiction reminded me of " + stats.missing_room2_symbol_or_trait + " and felt strikingly familiar. I do not yet know whether the mural merely awakened a memory or whether it touched upon something connected to the disappearance.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label affliction_vision
+Then one of the eyes moves.
+
+You freeze. Only a blink, so brief that you could tell yourself in the same instant that the light merely shifted across the pigment. Yet your gaze remains caught upon it. The longer you look, the harder it becomes to pull away. The blackness around the eye seems to spread, first across the stone, then across everything else.
+
+The chamber vanishes. You are home again. The smell reaches you first: boiled herbs, damp cloths, sweat, and the bitter sharpness of remedies, each of which was meant to be the next cure. People lie where you remember them. A hand trembles upon a blanket. Someone tries to rise and cannot. Then you see the skin. Something dark lies beneath it. Not like an ordinary rash. For a moment, the same black influence you just saw upon the mural seems to spread beneath the skin of one of the afflicted. You try to move closer, but suddenly the eye is there again.
+
+It is looking at you.
+
+You wrench yourself free. The chamber returns. Nothing but painted stone lies before you. The eye no longer moves. Yet the image of your homeland remains. You cannot prove what you just saw. You do not know whether the black veil causes the illness, whether it is merely connected to it, or whether your own memory joined two things together. But the resemblance is too clear to ignore.
+*set personal_room2_vision_seen true
+*set personal_room2_clue_discovered true
+*set affliction_veil_connection true
+*set echo_personal_clue_01 "During the examination I saw my homeland and the same dark influence beneath the skin of the afflicted, strikingly similar to the black veil. The resemblance is clear; it does not prove a cause."
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountDiscovery(this, {kind:"INSIGHT", title:"The Black Veil", body:"The same dark influence appeared among the afflicted people of your homeland. This proves no cause, but offers a concrete indication of a possible connection.", nextLabel:"detail_menu"});
+*goto detail_menu
+
+*label step_back
+*if room2_detail_count > 0
+  You examined individual details. The boundary between observation and interpretation remains: you can describe what you saw. What it means is another question.
+*if room2_detail_count = 0
+  You saw the mural as a whole but did not inspect its details. It would be dishonest to draw conclusions from things you never viewed closely.
+
+Now you truly notice the white beam. It passes through the opening, strikes the already aligned glass and ends between Faon’lin's hands. Tiny crystal facets take in the light; faint traces lead deeper into the mural.
+
+The light does not merely illuminate the depicted source. The image receives it.
+*set exam_room_02_mural_examined true
+*set room2_light_source_observed true
+
+Beneath the mural is carved: [i]What is given should be carried forward.[/i]
+
+Below it sit pressure plates bearing symbols you know from the first section of the examination.
+*if exam_room_01_sequence_known
+  It is the same symbolic language. The insight you gained there remains preserved in your examination record.
+*goto light_puzzle
+
+*label light_puzzle
+Which plate do you press?
+*choice
+  #The Crown.
+    *goto distractor
+  *if room2_light_stage >= 1
+    *selectable_if (false) #The Flame. [activated]
+      *goto light_puzzle
+  *else
+    #The Flame.
+      *goto flame
+  #The Water.
+    *goto distractor
+  *if room2_light_stage >= 2
+    *selectable_if (false) #The Bud. [activated]
+      *goto light_puzzle
+  *else
+    #The Bud.
+      *if room2_light_stage = 1
+        *goto growth
+      *goto early
+  #The Sun.
+    *goto distractor
+  *if room2_light_stage >= 3
+    *selectable_if (false) #The Connection. [activated]
+      *goto light_puzzle
+  *else
+    #The Connection.
+      *if room2_light_stage = 2
+        *goto connection
+      *goto early
+  #The Blade.
+    *goto distractor
+  *if room2_light_stage >= 4
+    *selectable_if (false) #The Eye. [activated]
+      *goto light_puzzle
+  *else
+    #The Eye.
+      *if room2_light_stage = 3
+        *goto veil
+      *goto early
+  *if room2_light_stage >= 4
+    #Return to the complete light display.
+      *goto light_network_menu
+
+*label early
+The plate sinks and light stirs—then fails. The plate rises again. Something must happen first.
+*goto light_puzzle
+*label distractor
+The plate answers with a brief harmless shimmer and returns. Your existing progress remains.
+*goto light_puzzle
+*label flame
+*set room2_light_stage 1
+The flame sinks deeper into the stone beneath your finger. This time the plate does not rise again. A solid click runs through the wall, and the light above you changes.
+
+The bright centre between Faon’lin’s hands flares. Its tiny crystal facets catch the beam from the ceiling, and what had been hidden within the mosaic’s gold becomes visible. One slender thread of light runs out from the centre. Then a second. A third.
+
+Three narrow rays spread from the same source in different directions across the mural. One reaches towards the regions depicting roots, plants, animals and other living forms. A second runs towards people, tools, artworks, buildings and created things. The third takes another route, partly along those areas where the depiction darkens and the black veil lies over forms that were already there. All three paths break off after a short distance—not where the painted lines end, but where something within the mosaic has not yet carried them onward. The flame remains recessed in the stone.
+*goto light_puzzle
+*label growth
+*set room2_light_stage 2
+The plate bearing the Bud sinks into the stone. A second click answers from within the wall, and this time you see the movement. Tiny crystals turn along one of the three paths: one among painted roots, another in a tree trunk, others among branches, leaves and animal forms. They have been worked into the art so skilfully that without the light you would scarcely distinguish them from pigment.
+
+The ray strikes the first crystal. Light runs through the roots, rises through the trunk and branches through the limbs. From there it is carried onward—not as one straight line, but through countless small divisions connecting plants, animals and other depictions of living growth. Some paths divide, some end, others lead deeper into the mosaic. At last the glow reaches several tiny crystal points you had not noticed at all. One begins to shine. Then another. They are not adjacent and form no recognizable shape by themselves. But they do not go dark.
+*goto light_puzzle
+*label connection
+*set room2_light_stage 3
+The plate bearing the Connection sinks into the stone. This time the wall answers in several places at once. The second path from the centre awakens. A ray runs from a painted hand into an object it created, from there to another figure, and onward into something new. Other lines pass through people, animals, tools, art and buildings. Some remain separate until they reach two different crystals.
+
+A quiet turning passes through the wall. The crystals align. Two threads of light meet. The white at their point of contact becomes so bright that you blink involuntarily. When you look again, the separate rays have become new paths. They divide, cross, run beside one another for a time and join again elsewhere. What began apart now carries the light forward together. You know this principle—not necessarily its meaning, but its form. More inconspicuous points begin to shine, some between people, others within crafted things, still others far away. Hair-thin lines of light appear between individual points, and remain.
+*if exam_room_01_sequence_known
+  You remember: What had been created apart found one another and continued creating together.
+*goto light_puzzle
+*label veil
+*set room2_light_stage 4
+The plate bearing the Eye sinks beneath your finger. At first you hear nothing. No gears. No click. No movement.
+
+Then the third path awakens. It runs from the centre in a different direction from the first two, following golden traces that disappear farther out beneath layers of dark pigment. In places you can watch the light continue beneath the black veil although the painted line above it is barely visible. It emerges elsewhere, is caught by a tiny crystal, and is directed beneath another dark field.
+
+For one heartbeat the veil seems to swallow the path completely. Then a point of light answers somewhere within it. A second appears outside the darkness. A third above the three figures. Another between the golden lines. Then one at the mural’s outer edge. More and more previously invisible inclusions respond to the three completed paths—not only within the black veil, but everywhere: over plants, between people, in created things, above the three figures, at the outer edges, and where the veil covers parts of the depiction. One after another, the points emerge.
+*goto light_network
+
+*label light_network
+You remove your hand from the last plate. The light continues moving. The three paths that began between Faon’lin’s hands cross different regions of the mosaic: one branching through growth and living forms, one connecting people with what they created and carried onward, and one following the partially hidden portions of the image, repeatedly vanishing beneath the black veil before emerging elsewhere.
+
+Yet the paths do not remain separate. Wherever they reach crystals and mineral inclusions, more points begin to answer. Some lie directly upon one of the routes. Others become visible only after several fine veins of light meet in the same region. Lines appear between them—first a few, then more and more. From this close, you still cannot tell what they are becoming.
+*label light_network_menu
+*choice
+  *if room2_hidden_light_network_examined
+    *selectable_if (false) #The hidden light paths up close. [examined]
+      *goto light_network
+  *else
+    #I examine the hidden light paths up close.
+      *set room2_hidden_light_network_examined true
+      The points are not mere reflections. Tiny mineral inclusions lie across the entire mural, connected by hair-fine channels and crystalline veins. Some rest between the golden lines, others among plants, figures or crafted things, and still others beneath the veil’s dark pigments. Some connections were evidently always present and only now become visible. Others appear only when several paths reach the same point. What began as three separate routes becomes part of a larger network here. You can say no more with certainty yet.
+      *goto light_network
+  #I step back and view the complete display.
+    *goto book_reveal
+  #Back to the pressure plates.
+    *goto light_puzzle
+
+*label book_reveal
+You take one step back. Then another.
+
+The first impression changes at once. Up close, there had been points of light, separate lines and crystals. With every step of distance, they begin to relate to one another. A point above Faon’lin answers one far to the left. A line at the outer edge finds its continuation on the opposite side. More connections become visible until a second luminous image stretches across almost the entire mosaic.
+
+You stop. Now you can see it.
+
+The points form two immense planes opening on either side of a common centre. Their outer lines curve slightly. Other points mark edges, a central fold and the shape of two spread pages. There is no doubt what stands before you. An open book.
+
+A book made of light, its contours extending across almost the entire mural. The three figures stand beneath its centre. Faon’lin remains there with open hands, the light between them. From that source, the three illuminated paths run outward through different parts of the depicted world, and together they feed, point by point, the immense shape unfolding above them. For a moment, the entire mural seems to lie within its open pages.
+
+You do not know what book it is, why it was hidden, who made this layer or what it means.
+*set room2_hidden_book_revealed true
+*set echo_exam_room_02 "The light between Faon’lin’s hands was not the end of the mural. It was its beginning. From there, it was carried through the different parts of the depicted world — through growth, creation, and connection, until at last even the final hidden paths responded. Only when all the paths came together did a second image appear across the entire mural: an open book of light. I do not know what book is depicted there or why it was hidden. But I will remember the words beneath it: What is given should be carried forward."
+*goto room_opens
+
+*label room_opens
+Even as you watch the book, the light begins to change. The first point goes dark, yet its glow does not vanish. It retreats along one of the fine lines to the next point. That one follows. Then the next. One by one, the points extinguish as their light runs backwards through the network. The open book slowly dissolves. Pages become lines, lines become points, points become individual veins of light.
+
+The light withdraws from the mural’s outer reaches: from the places where the veil covers it, from created things, from connections between people and figures, from branches, leaves, trunk and roots. The three paths emerge more clearly as everything they revealed together fades. At last they too flow back towards the centre. Between Faon’lin’s open hands, the light gathers one final time.
+
+Then a deep rumble passes through the chamber.
+
+You step back. A fine vertical line appears in the mosaic. At first you think it is one of the old seams between the movable segments, but this line continues through figures, golden paths and the black veil. A second appears on the opposite side. Dust spills to the floor.
+
+The entire mural moves. Not individual segments this time. The complete stone surface slides slowly backwards. Immense mechanisms engage behind it, and then the relief divides along the new seam. Its two halves move apart.
+
+Cool air brushes your skin. Where the mural stood, a narrow passage now lies open. Beyond it waits another chamber.
+
+*set exam_room_02_complete true
+*set quest_exam_room_02_status "completed"
+*set quest_exam_room_02_objective "The mural was restored and its hidden image of light revealed."
+*set quest_exam_room_03_status "active"
+*set quest_exam_room_03_objective "Enter the final section and continue the final examination."
+*set quest_exam_objective "Enter the final section and complete the final examination."
+*page_break Next section
+*goto_scene en_00_exam_room_03

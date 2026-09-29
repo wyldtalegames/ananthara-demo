@@ -1,0 +1,44 @@
+*comment Prologue — the Seeker prepares for Ithar'kael's final examination
+
+*label start
+*script if (window.AnantharaIntro) window.AnantharaIntro.mountPrologueBanner(this);
+
+*label prologue
+*if language = "en"
+  Ithar’kael. The Guild of the Seekers of Truth. An order devoted to preserving forgotten traces, following myths, and seeking truths no matter how deeply they may be hidden.
+
+  Within these walls, you have learned not only to search for answers, but to ask questions where others have long since accepted certainty. You know the echo of your footsteps beneath the towering stone arches, the muted glow of ancient relics, and the mysteries that still lie hidden within the depths of Ithar’kael.
+
+  At first glance, it could be a day like any other – another day filled with study among heavy books, old records, and relics whose stories are not yet fully understood. But today is different.
+
+  Today, your final examination begins.
+
+  With it begins a new chapter. Ever since you joined Ithar’kael, your goal has been to one day become one of its Envoys – members of the order who leave the shelter of these halls behind, venture out into Ananthara, and search for truths that cannot be found between the pages of books or within the archives.
+
+  Before you may enter the examination chambers, your Seeker dossier must be completed one final time. Your name. Your origins. The reason that once brought you to Ithar’kael. And finally, one last attunement to your Thal’ithara – to the way your soul reaches toward the world and your magic takes form through you.
+
+  Only then will the doors to the examination open.
+
+  Are you ready to face your destiny?
+
+  *page_break I am ready.
+*if language != "en"
+  Ithar’kael. Die Gilde der Sucher der Wahrheit. Ein Orden, der vergessene Spuren bewahrt, Mythen verfolgt und Wahrheiten sucht, wie tief sie auch verborgen liegen mögen.
+
+  Du hast gelernt, zwischen diesen Mauern nicht nur nach Antworten zu suchen, sondern Fragen zu stellen, wo andere längst Gewissheit sehen. Du kennst das Echo deiner Schritte unter den gewaltigen Steinbögen, das gedämpfte Leuchten uralter Relikte und die Rätsel, die noch immer in den Tiefen Ithar’kaels verborgen liegen.
+
+  Auf den ersten Blick könnte es ein Tag wie jeder andere sein – ein weiterer Tag voller Studien zwischen schweren Büchern, alten Aufzeichnungen und Relikten, deren Geschichten noch nicht vollständig verstanden sind. Doch heute ist anders.
+
+  Heute beginnt deine Abschlussprüfung.
+
+  Mit ihr beginnt ein neuer Abschnitt. Seit du dich Ithar’kael angeschlossen hast, war dein Ziel, eines Tages zu den Gesandten zu gehören – jenen Mitgliedern des Ordens, die die schützenden Hallen hinter sich lassen, hinaus nach Ananthara ziehen und dort nach den Wahrheiten suchen, die sich nicht zwischen Buchseiten oder in den Archiven finden lassen.
+
+  Bevor du die Prüfungsräume betreten darfst, muss deine Sucherakte ein letztes Mal vervollständigt werden. Dein Name. Deine Herkunft. Der Grund, der dich einst zu Ithar’kael führte. Und schließlich eine letzte Einstimmung auf dein Thal’ithara – auf die Art, wie deine Seele nach der Welt greift und deine Magie durch dich Gestalt annimmt.
+
+  Erst danach werden sich die Türen zur Prüfung öffnen.
+
+  Bist du bereit, deinem Schicksal zu begegnen?
+
+  *page_break Ich bin bereit.
+
+*goto_scene de_00_identity

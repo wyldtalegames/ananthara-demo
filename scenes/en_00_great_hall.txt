@@ -1,0 +1,347 @@
+*comment Great Hall, Chronicles assignment and portal choice — English
+
+*label start
+*set itharkael_great_hall_entered true
+
+Long before you reach the doors of the Great Hall, this part of Ithar’kael sounds different from the archive or the quieter living quarters. Footsteps echo over stone. Voices come and go. Something is being carried, and elsewhere final instructions are exchanged.
+Then the doors open before you.
+The Great Hall earns its name. Its vault rises far above you, and even the people moving beneath it seem smaller than usual for a moment.
+
+Yet your gaze does not remain on them for long.
+At the far end of the hall stands the portal.
+An immense stone frame rises from the floor. At present, nothing lies within its arch but a still, dark surface, yet fine lines already travel over the stone’s edge and disappear again, as though something within it merely waits to be awakened.
+You have seen this portal often enough.
+Envoys leaving Ithar’kael. Others returning after long journeys. Luggage, maps, reports and sometimes things that found their way into the archives only hours later.
+Today, you are not here to watch someone else depart.
+
+Corvus waits before the portal.
+He stands half-turned away from you, studying something upon a narrow lectern beside it. Only when your steps draw closer does he look up. “There you are.” His gaze moves briefly past you through the hall, then returns. “I hope you made use of your free time.”
+
+He does not ask whether you visited the archive, sat in the courtyard or withdrew to your room. Corvus was rarely someone who demanded an answer when it was none of his concern.
+
+Instead, he rests one hand upon the documents before him.
+“Before you leave, there is something else we should discuss.”
+
+*page_break Continue
+
+For a moment you think again of the book in the final examination chamber. Of the light on its pages. Of the questions it answered.
+
+Corvus seems to know where your thoughts have gone.
+
+“The replica you encountered during your examination was not a randomly chosen artefact,” he says. “It was a copy of the Chronicles.”
+
+The Memory of Creation.
+
+“What you saw was limited. It could work only with what you brought to it—your knowledge, your memories and the possibilities already within you.”
+
+“The original has no such limitation.”
+
+He opens a record. “According to Ithar’kael’s records, the Chronicles were removed from the place where they were meant to be preserved. The place whose image you saw during your examination.”
+
+His finger rests on one line.
+
+“Stolen.”
+
+“Since then, there have been reports of their whereabouts. Fragments. Rumours. Clues that partly contradict one another. Enough to know the search is not over. Not enough to place a point on a map.”
+
+“Ithar’kael intends to find the Chronicles and return them safely to the place where they belong.”
+
+Then he looks directly at you.
+
+“You will follow one of those leads.”
+
+“Your examination did not determine whether you know every answer. It showed that you know how to search. Compare reports. Test claims. Distinguish possibility from certainty.” The corner of his mouth shifts almost imperceptibly. “You should feel almost at home by now.”
+
+“Discover what is true in the reports concerning the Chronicles. Follow the traces. And if you find the original, bring it back.”
+
+*set quest_chronicles_status "active"
+*set quest_chronicles_objective "Find the Chronicles and return them to their intended place of safekeeping."
+*set echo_chronicles_assignment "Corvus gave me my first assignment: follow the traces of the Chronicles, discover what is true in the reports, and return the original on Ithar’kael’s behalf."
+
+*page_break Continue
+
+“There is something else.”
+
+“The replica could show you only what had already found a way into you. The true Chronicles may preserve knowledge far beyond anything held in these halls. Perhaps even something about the question that first brought you to Ithar’kael.”
+
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription)
+  *choice
+    #I tell Corvus about the words the replica connected with my memory of the ruin.
+      *set corvus_personal_disclosure "tehand"
+      *goto personal_disclosure_resolution
+    #I tell him only about the ruin.
+      *set corvus_personal_disclosure "ruin"
+      *goto personal_disclosure_resolution
+    #I keep both to myself for now.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "lost_memory") and ((lost_memory_tehand_inscription = false) and (lost_memory_sand_ruin))
+  *choice
+    #I tell Corvus about the ruin.
+      *set corvus_personal_disclosure "ruin"
+      *goto personal_disclosure_resolution
+    #I keep the memory to myself for now.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known) or (affliction_veil_connection))
+  *choice
+    #I tell Corvus what I saw during the examination.
+      *set corvus_personal_disclosure "affliction"
+      *goto personal_disclosure_resolution
+    #I keep the lead to myself for now.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+*if (personal_quest_id = "missing") and (missing_mural_connection)
+  *choice
+    #I tell Corvus about the memory the mural awakened in me.
+      *set corvus_personal_disclosure "missing"
+      *goto personal_disclosure_resolution
+    #I keep the memory to myself for now.
+      *set corvus_personal_disclosure "private"
+      *goto personal_disclosure_resolution
+
+*label personal_disclosure_resolution
+*if corvus_personal_disclosure = "private"
+  The lead remains unspoken. Not every trace must be shared merely because someone might ask about it.
+  *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (corvus_personal_disclosure = "ruin")
+  You tell Corvus about the ruin. The sand, old stone and the familiarity you still cannot explain.
+
+  “Familiarity is not certainty,” he says. “But it is a reason to look more closely. If you seek a first place, the deserts of V’eild are one possibility.”
+  *set corvus_route_hint "veild"
+  *goto after_personal_route
+
+*if (personal_quest_id = "lost_memory") and ((lost_memory_tehand_inscription) and (corvus_personal_disclosure = "tehand"))
+  The words from the replica return to you.
+
+  “Corvus.”
+
+  You speak them. “Pîn reip kalztarkaikh duldid sêmîk.”
+
+  Corvus is silent for a moment. “Only the darkness can bring us the light.”
+  *set lost_memory_tehand_translation_known true
+  *set echo_tehand "Corvus translated the words: “Only the darkness can bring us the light.” He could not determine their origin with certainty. For now, the translation is a lead, not an answer."
+
+  For the first time, the words have meaning.
+
+  “The phrasing reminds me of older traditions. Among them are reports of a cult whose followers worshipped the God of the Void.” He raises one hand slightly. “That is not an identification. The cult was scattered, and one sentence proves neither origin nor connection.”
+
+  “The Vorr’kael may also know more. Their order devotes itself closely to magic and knowledge, and its headquarters lie in V’eild. They may have encountered this language or something comparable.”
+
+  “And there is the ruin. Sand. Old stone. An environment that could fit the deserts of V’eild.”
+
+  “Could.”
+
+  “We know neither whether the place lies there nor why the words connect to this memory. But if you seek a first direction for this trail, I would begin in V’eild.”
+
+  “I can give you no more than a beginning.”
+  *set corvus_route_hint "veild"
+  *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription = false)
+  *if lost_memory_sand_ruin
+    You tell Corvus about the ruin. The sand, old stone and the uncomfortable familiarity you still cannot explain.
+
+    “Familiarity is not certainty,” he says. “But it is a reason to look more closely. If you seek a first place, the deserts of V’eild are one possibility. Not because we know your ruin lies there, but because what you saw could fit parts of the realm.”
+
+    “If you find nothing there, you will have ruled out one possibility. That too is knowledge.”
+    *set corvus_route_hint "veild"
+    *goto after_personal_route
+*if (personal_quest_id = "lost_memory") and (lost_memory_sand_ruin = false)
+  The thought strikes differently from the assignment itself. A book said to preserve knowledge while parts of your own past remain missing.
+
+  “If any trace of what happened to you exists, the Chronicles may have preserved it. Perhaps they will give you an answer. Perhaps only another question. At present, we do not know.”
+  *goto after_personal_route
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known) and (corvus_personal_disclosure = "affliction"))
+  You tell Corvus that what lay beneath the black veil and what you know from the afflicted people of your homeland come from the same source.
+
+  “Then you possess more than a similarity. But not yet a name. An origin. Or a cure.”
+
+  His gaze moves to Bay’r’s sign. “In Bay’r, shamans have preserved their own traditions of medicine and alchemy. They view some changes of body and magic from a different perspective and work with herbs, plants and methods that are scarcely used or understood outside the realm.”
+
+  “That does not mean they know your illness. But perhaps they will recognise something we have overlooked.”
+  *set corvus_route_hint "bayr"
+  *goto after_personal_route
+*if (personal_quest_id = "affliction") and ((affliction_shared_source_known = false) and (corvus_personal_disclosure = "affliction"))
+  *if affliction_veil_connection
+    You tell Corvus about the black veil and its similarity to what you know from your homeland.
+
+    “Similarity is not yet causation. But it is enough not to discard the question. Bay’r’s shamans possess their own traditions of medicine and alchemy. Perhaps they will recognise something we have missed.”
+
+    “If you wish to follow that trace, Bay’r would be one possible beginning.”
+    *set corvus_route_hint "bayr"
+    *goto after_personal_route
+*if (personal_quest_id = "affliction") and (affliction_veil_connection = false)
+  Your thoughts turn to your homeland and its afflicted people.
+
+  “The Chronicles may contain records of things that never reached our archives. If they contain a trace of this illness, you will know only when you find the book.”
+  *goto after_personal_route
+*if (personal_quest_id = "missing") and ((missing_mural_connection) and (corvus_personal_disclosure = "missing"))
+  You tell Corvus about the memory awakened by the mural. You describe only what you actually remember.
+
+  *if missing_connection_memory = "gesture"
+    You tell Corvus of the familiar gesture the mural recalled to you.
+  *if missing_connection_memory = "place"
+    You tell Corvus of the familiar place the memory awakened within you.
+  *if missing_connection_memory = "shared_moment"
+    You tell Corvus of the shared moment the mural brought back to you.
+
+  “A memory is not evidence,” he says at last.
+
+  His tone is not dismissive.
+
+  “But it can be a clue.”
+
+  “If you want to draw more from such a fragment, I would not disregard Thal’draen. The Arcus Nexus and the scholars who work with its knowledge have means we do not possess here. Something there may connect to your memory, a known trace or a fragment already preserved.”
+
+  “I cannot promise that the Nexus can tell you where ${missing_person_name} is. But if I had to begin with what you have told me, I would at least ask there.”
+  *set corvus_route_hint "thaldraen"
+  *goto after_personal_route
+*if (personal_quest_id = "missing") and (missing_mural_connection = false)
+  You think of ${missing_person_name}. Of all the questions even Ithar’kael’s archives have failed to answer.
+
+  “If the Chronicles preserve knowledge beyond our records, they might contain a clue.”
+
+  “Might.”
+  *goto after_personal_route
+
+*label after_personal_route
+Corvus leaves the personal question there. No promise that you will find the answer. No attempt to tell you what it should mean in the end.
+
+*page_break Continue
+
+Then he turns toward the portal.
+
+“Before you leave, you should know how to return. And how to get out at all.”
+
+Corvus gestures toward the signs in the stone arch.
+
+Only now, from close by, do you see how many there truly are. Some lie almost hidden among finer lines and geometric patterns. Others are larger and more clearly worked.
+
+The tree. The sun. The snow crystal.
+
+“Each of these signs carries a connection to a place,” Corvus explains. “But a symbol alone opens no path.”
+
+His gaze falls to your hand.
+
+“You must establish the connection yourself.”
+
+For a moment, you think of the final examination chamber. Of the exposed channel. Of how your own Thal’ithara first had to flow into the existing pattern before the energy could be carried onward.
+
+“You have already applied the principle today,” Corvus says. He briefly rests his fingertips against the portal’s outer edge without touching any of the signs. “Choose your destination. Touch its sign. Let your Thal’ithara flow into it and hold the connection. Once it is stable, the portal will accept it and open the passage.”
+
+“There are more paths than these three. But for your first departure, these are the ones open to you.” Then Corvus steps back from the portal. “From this point on, Ithar’kael will not place every question before you.” His hand rests on the lectern’s edge for a moment. “Some you will have to recognise for yourself.”
+
+Then he looks at you once more.
+
+“The Chronicles are your assignment.” A brief pause. “What else you discover along the way will be your search.” He steps aside. “When you are ready, choose your first path.”
+
+*page_break Continue
+
+You remain before the portal. Its interior is still dark. Only the fine lines in the stone frame glow faintly, waiting for a destination to be chosen. You have seen this portal many times. Today it seems different. Perhaps because, for the first time, you know that the next person to pass through it will be you.
+
+Suddenly everything feels more tangible. The examination is over. The years of learning lie behind you. The reports you studied in the archive. The conversations in the courtyard. The questions Corvus asked again and again. All the times you watched other envoys leave Ithar’kael.
+
+Until now, the world beyond these halls was something for which you prepared. Now it waits on the other side of a single step. You came to Ithar’kael because you sought answers. Not just any truth. Yours.
+
+*if personal_quest_id = "missing"
+  ${missing_person_name}. The name has accompanied you longer than you care to count. You came here because someone important to you disappeared, and because no one could tell you what happened.
+
+  You learned to examine clues. To question claims. Not to turn hope into certainty, and not to conclude from the absence of answers that none remain.
+
+  But none of that knowledge has changed one thing: ${missing_person_name} is still gone. Now the search truly begins.
+*if personal_quest_id = "affliction"
+  Your homeland. The illness. People no one could explain.
+
+  You came to Ithar’kael because you could not accept that ignorance had to be the end of this story.
+
+  You spent years among reports, illnesses, alchemical methods and discarded suspicions.
+
+  Perhaps the answer is not waiting in an archive. Perhaps you must go to meet it. Now you can.
+*if personal_quest_id = "lost_memory"
+  Your past. Or rather, the places where parts of it are missing. Fragments. Images. Places that feel familiar though you do not know why.
+
+  You came to Ithar’kael because you do not only want to know what happened then.
+
+  You want to understand who you were, who you are today—and what part that lost past plays in it.
+
+  Perhaps the Chronicles can offer no simple answer. Perhaps there is no simple answer. But somewhere out there lie the traces of what happened. Now you can begin following them.
+
+The portal waits before you. Beyond it lie kingdoms you have known until now through memories, maps, reports or stories. And somewhere beyond this hall lie the Chronicles. Perhaps also the answers that once brought you to Ithar’kael. You raise your gaze. Time to decide where your search begins.
+
+*choice
+  *if corvus_route_hint = "bayr"
+    #Bay’r — A tranquil realm of verdant hills, meandering rivers and dreamy countryside, where community, simplicity and harmony with nature guide everyday life. [Corvus' lead]
+      *set campaign_route_01 "bayr"
+      *set echo_first_departure "I decided to begin my search in Bay’r. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_bayr
+  *if corvus_route_hint != "bayr"
+    #Bay’r — A tranquil realm of verdant hills, meandering rivers and dreamy countryside, where community, simplicity and harmony with nature guide everyday life.
+      *set campaign_route_01 "bayr"
+      *set echo_first_departure "I decided to begin my search in Bay’r. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_bayr
+  *if corvus_route_hint = "thaldraen"
+    #Thal’draen — A majestic kingdom where ice and snow shape the land and the air hums with pure magic. [Corvus' lead]
+      *set campaign_route_01 "thaldraen"
+      *set echo_first_departure "I decided to begin my search in Thal’draen. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_thaldraen
+  *if corvus_route_hint != "thaldraen"
+    #Thal’draen — A majestic kingdom where ice and snow shape the land and the air hums with pure magic.
+      *set campaign_route_01 "thaldraen"
+      *set echo_first_departure "I decided to begin my search in Thal’draen. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_thaldraen
+  *if corvus_route_hint = "veild"
+    #V’eild — A bustling kingdom where trade and commerce weave through every facet of life. [Corvus' lead]
+      *set campaign_route_01 "veild"
+      *set echo_first_departure "I decided to begin my search in V’eild. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_veild
+  *if corvus_route_hint != "veild"
+    #V’eild — A bustling kingdom where trade and commerce weave through every facet of life.
+      *set campaign_route_01 "veild"
+      *set echo_first_departure "I decided to begin my search in V’eild. The portal is open. The step through it still lies ahead."
+      *goto portal_attune_veild
+
+*label portal_attune_bayr
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"tree", stateField:"portal_attunement_complete", nextLabel:"bayr_outro"});
+*goto bayr_outro
+
+*label portal_attune_thaldraen
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"crystal", stateField:"portal_attunement_complete", nextLabel:"thaldraen_outro"});
+*goto thaldraen_outro
+
+*label portal_attune_veild
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"sun", stateField:"portal_attunement_complete", nextLabel:"veild_outro"});
+*goto veild_outro
+
+*label bayr_outro
+You place your hand on the sign of the tree. For a moment, nothing happens. Then you let your Thal’ithara flow into the symbol’s lines. Light gathers beneath your fingers. It follows the roots, rises through the trunk and reaches the finest branches. From there it leaps to the stone arch. Line by line, the portal awakens. The darkness within begins to change. Green emerges from the darkness. Wide hills. Meandering rivers. Fields and the darker lines of ancient forests.
+
+Bay’r. Only one step separates you from your first path. Behind you lies Ithar’kael. Before you lies Ananthara. And somewhere out there wait the lost fragments of a truth no one yet knows in full. You step toward the portal.
+
+*page_break Continue
+*goto_scene en_00_demo_end
+
+*label thaldraen_outro
+You place your hand upon the snow crystal.
+
+Your Thal’ithara flows into the geometric pattern. One line after another awakens until the sign beneath your fingers shines completely. Energy spreads across the portal frame and the darkness within begins to recede.
+
+Beyond it appear snow and ice. Distant mountains rise against the horizon, light breaking through crystals and across frozen expanses.
+
+Thal’draen.
+*goto common_outro
+
+*label veild_outro
+You place your hand upon the sign of the sun.
+
+Warmth spreads beneath your fingers as your Thal’ithara flows into the inset lines. Ray after ray awakens until the light reaches the portal frame and spreads across the entire arch.
+
+The darkness beyond dissolves. Colour, light and movement emerge. Roads and busy paths lie in the distance, while the landscape beyond blurs in the heat.
+
+V’eild.
+*goto common_outro
+
+*label common_outro
+Only one step separates you from your first path. Behind you lies Ithar’kael. Before you lies Ananthara. And somewhere out there wait the lost fragments of a truth no one yet knows in full. You step toward the portal.
+
+*page_break Continue
+*goto_scene en_00_demo_end

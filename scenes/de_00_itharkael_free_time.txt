@@ -1,0 +1,627 @@
+*comment Freie Ithar'kael-Phase nach der Abschlussprüfung — Deutsch
+*temp oracle_roll 0
+
+*label start
+*if language = "en"
+  *goto_scene en_00_itharkael_free_time
+*set itharkael_free_time_started true
+
+Corvus’ Worte bleiben noch einen Moment im Gang zurück, selbst als seine Schritte längst verklungen sind.
+
+Suche, was verborgen ist. Hinterfrage, was als Wahrheit gilt.
+
+*page_break Weiter
+
+Zum ersten Mal seit Beginn der Prüfung wartet keine verschlossene Tür mehr auf dich. Kein Rätsel. Keine Inschrift, die entschlüsselt werden will. Niemand, der beobachtet, welche Entscheidung du triffst.
+
+Nur Ithar’kael.
+
+Die vertrauten Hallen wirken kaum anders als noch heute Morgen, und doch fällt es dir schwer, sie mit denselben Augen zu betrachten. Irgendwo über dir bewegen sich die gewaltigen Konstruktionen unter den hohen Gewölben weiter auf ihren unsichtbaren Bahnen. Aus entfernteren Gängen dringen gedämpfte Stimmen, das Rascheln von Papier, das gelegentliche Klirren eines Werkzeugs auf Metall. Der Orden ist nicht stehen geblieben, nur weil deine Prüfung beendet ist.
+
+Du schon. Wenigstens für einen Augenblick.
+
+Corvus hatte recht mit einer Sache: Eine Antwort beendet eine Suche nicht zwangsläufig. Manchmal gibt sie ihr nur eine neue Richtung.
+
+Und manche der Dinge, die du heute gesehen hast, lassen sich nicht so einfach in einer Prüfungskammer zurücklassen.
+
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription)
+  Die fremden Worte stehen dir noch immer so klar vor Augen, als lägen sie erneut auf der Seite der Replik.
+
+  Pîn reip kalztarkaikh duldid sêmîk.
+
+  Du weißt noch immer nicht, was sie bedeuten. Die Replik hat sie mit jener Ruine verbunden – mit einem Ort, der etwas in deiner Vergangenheit berührt. Ob diese Verbindung wörtlich, symbolisch oder etwas ganz anderes ist, kannst du nicht wissen.
+
+  Corvus erwartet dich später in der Großen Halle.
+
+  Vielleicht sollte diese Frage mit dir dorthin gehen.
+*if (personal_quest_id = "lost_memory") and (lost_memory_tehand_inscription = false)
+  *if lost_memory_sand_ruin
+    Das Bild der Ruine lässt dich nicht los. Sand, alter Stein und dieses unangenehme Gefühl von Vertrautheit, für das du noch immer keine Erklärung besitzt. Ob es eine wirkliche Spur zu deiner Vergangenheit ist oder nur ein weiteres Fragment, das etwas in dir berührt hat, kannst du nicht wissen.
+
+    Aber du hast jetzt einen Ort, an dem du anfangen kannst zu suchen.
+*if (personal_quest_id = "missing") and (missing_mural_connection)
+  Auch die Erinnerung, die das Wandbild in dir geweckt hat, drängt sich wieder nach vorn. Für einen Augenblick war sie zu deutlich gewesen, um sie einfach als bedeutungslosen Gedanken abzutun.
+
+  Aber eine Erinnerung ist noch kein Beweis. Vielleicht ist sie eine Spur. Vielleicht hat die Prüfung lediglich etwas in dir berührt, das längst dort war.
+
+  Ob du Corvus davon erzählst, kannst du später entscheiden. Als Antwort taugt die Erinnerung noch nicht. Aber vielleicht als etwas, das überprüft werden sollte.
+*if (personal_quest_id = "affliction") and (affliction_shared_source_known)
+  Dann ist da noch das, was die Replik dir gezeigt hat. Was unter dem Schleier lag und was du aus den Erkrankten deiner Heimat kennst, entspringt derselben Quelle.
+
+  Die Antwort hat dir weder einen Namen noch einen Ursprung gegeben. Sie hat nichts geheilt. Aber aus einer Vermutung ist etwas geworden, das du nicht mehr ignorieren kannst.
+
+  Ob du Corvus davon erzählst, kannst du später entscheiden.
+*if (personal_quest_id = "affliction") and (affliction_shared_source_known = false)
+  *if affliction_veil_connection
+    Dann ist da noch der schwarze Schleier. Du hast gesehen, was darunter lag – und du kannst die Ähnlichkeit zu dem, was du aus deiner Heimat kennst, nicht einfach vergessen. Ähnlichkeit ist keine Ursache. Noch nicht.
+
+    Aber vielleicht ist sie eine Spur. Und vielleicht weiß Corvus, wo man mit einer solchen Spur beginnt.
+
+*goto hub
+
+*label hub
+Was möchtest du tun?
+
+*choice
+  *if itharkael_archive_done
+    *selectable_if (false) #Das Archiv. [besucht]
+      *goto hub
+  *if itharkael_archive_done = false
+    #Das Archiv.
+      *goto archive
+  *if itharkael_courtyard_done
+    *selectable_if (false) #Der Innenhof. [besucht]
+      *goto hub
+  *if itharkael_courtyard_done = false
+    #Der Innenhof.
+      *goto courtyard
+  *if itharkael_room_done
+    *selectable_if (false) #Mein Zimmer. [besucht]
+      *goto hub
+  *if itharkael_room_done = false
+    #Mein Zimmer.
+      *goto room
+  #Zur Großen Halle. [Story fortsetzen]
+    *goto_scene de_00_great_hall
+
+*label room
+*if itharkael_room_entered = false
+  *set itharkael_room_entered true
+  Der Weg zu deinem Zimmer führt dich in einen ruhigeren Teil Ithar’kaels. Je weiter du dich von den großen Hallen entfernst, desto mehr verliert sich das Echo fremder Schritte. Stimmen werden seltener, Türen bleiben geschlossen, und schließlich begleitet dich nur noch das vertraute Geräusch deiner eigenen Schritte auf dem Stein. Als du deine Tür öffnest, empfängt dich nichts Außergewöhnliches. Ein Bett. Ein Schreibtisch. Regale, deren Inhalt längst nicht mehr so ordentlich ist, wie du dir irgendwann einmal vorgenommen hattest. Bücher stehen zwischen zusammengerollten Aufzeichnungen, losen Blättern und Dingen, für die sich über die Jahre offenbar nie ein besserer Platz gefunden hat. Auf dem Schreibtisch liegen Notizen neben geöffneten Bänden, manche sorgfältig sortiert, andere nur deshalb noch auffindbar, weil du dich daran erinnerst, wo du sie zuletzt liegen gelassen hast.
+
+  Es ist kein beeindruckender Raum. Aber es ist deiner. Nach den gewaltigen Wandbildern, den goldenen Lichtbahnen und der Replik der Chroniken wirkt gerade diese Vertrautheit beinahe fremd.
+
+  Du schließt die Tür hinter dir. Zum ersten Mal seit Beginn deiner Abschlussprüfung bist du wirklich allein.
+
+*label room_loop
+*choice
+  *if itharkael_room_desk_seen
+    *selectable_if (false) #Den Schreibtisch betrachten. [angesehen]
+      *goto room_loop
+  *if itharkael_room_desk_seen = false
+    #Den Schreibtisch betrachten.
+      *set itharkael_room_desk_seen true
+      Auf deinem Schreibtisch liegt die Geschichte deiner Zeit in Ithar’kael in einer Form, die vermutlich nur du vollständig entziffern könntest. Abschriften alter Aufzeichnungen liegen neben eigenen Notizen, dazwischen Skizzen, Verweise und Fragen, die irgendwann wichtiger gewesen sein müssen als Schlaf. Du ziehst eines der älteren Blätter hervor. Die Schrift darauf ist deine, auch wenn sie anders wirkt als heute. Sorgfältiger. Bedachter. Als hätte jede Zeile beweisen müssen, dass sie ihren Platz auf dem Papier verdient.
+
+      Du erinnerst dich noch daran, wie ungewohnt die ersten Übungen gewesen waren. Du hattest erwartet, dass Ithar’kael dir beibringen würde, Antworten zu finden. Stattdessen brachte man dir zuerst bei, ihnen nicht zu schnell zu vertrauen.
+
+      Berichte mussten miteinander verglichen werden. Behauptungen brauchten Spuren, die sie stützten. Eine alte Überlieferung war weder wertlos, nur weil sie sich nicht beweisen ließ, noch wurde sie zur Wahrheit, nur weil sie oft genug wiederholt worden war. Und immer wieder dieselbe Frage: Woher weißt du das?
+
+      Anfangs hattest du sie irgendwann nicht mehr hören können. Später hattest du begonnen, sie dir selbst zu stellen. Corvus gehörte zu denen, die diese Frage besonders gern stehen ließen. Manchmal schrieb er nichts weiter unter eine ganze Seite deiner Arbeit als wenige Worte an den Rand:
+
+      Was davon weißt du – und was glaubst du nur zu wissen? Damals hatte dich das mehr als einmal wahnsinnig gemacht. Heute musst du unwillkürlich lächeln.
+
+      *goto room_loop
+  *if itharkael_room_records_seen
+    *selectable_if (false) #Meine alten Aufzeichnungen durchsehen. [angesehen]
+      *goto room_loop
+  *if itharkael_room_records_seen = false
+    #Meine alten Aufzeichnungen durchsehen.
+      *set itharkael_room_records_seen true
+      Zwischen zwei Büchern steckt ein älteres Bündel deiner eigenen Aufzeichnungen. Einige handeln von Dingen, die dir inzwischen beinahe selbstverständlich erscheinen: widersprüchlichen Quellen, unvollständigen Berichten, Relikten, deren Bedeutung sich nicht aus ihrem Aussehen allein erschließen ließ. Andere erinnern dich daran, warum all das nie nur Vorbereitung auf eine Prüfung gewesen ist. Die Archive Ithar’kaels können viel bewahren. Texte. Berichte. Karten. Fragmente dessen, was andere vor euch gefunden haben.
+
+      Doch nicht alles, was niedergeschrieben wurde, ist deshalb wahr. Auch eine Aufzeichnung muss hinterfragt, mit anderen Berichten verglichen und an dem gemessen werden, was sich tatsächlich belegen lässt. Vielleicht war das eine der wichtigsten Lektionen, die Ithar’kael dir beigebracht hat: Ein geschriebenes Wort kann eine Spur sein. Aber es ist noch kein Beweis.
+
+      Genau deshalb verlassen die Gesandten diese Hallen. Nicht nur, um neues Wissen zu finden, sondern um hinauszugehen und zu prüfen, was von dem Bestand hat, was längst zu wissen geglaubt wird. Als du dich Ithar’kael angeschlossen hast, war dieses Ziel noch etwas Fernes gewesen. Eines Tages hinauszugehen.
+
+      Selbst zu suchen. Heute ist deine Abschlussprüfung vorbei. Was genau danach kommt, wird sich erst zeigen.
+
+      Aber zum ersten Mal fühlt sich dieses eines Tages nicht mehr besonders weit entfernt an.
+
+      *goto room_loop
+  *if itharkael_room_rest_seen
+    *selectable_if (false) #Mich einen Moment setzen. [angesehen]
+      *goto room_loop
+  *if itharkael_room_rest_seen = false
+    #Mich einen Moment setzen.
+      *set itharkael_room_rest_seen true
+      Du setzt dich auf die Bettkante und lässt den Blick durch den Raum wandern. Wie viele Abende hast du hier verbracht, während irgendwo hinter diesen Mauern noch Licht in den Archiven brannte? Wie oft bist du mit einer Frage zurückgekommen, die am Morgen noch einfach erschienen war, und hast festgestellt, dass du am Ende des Tages drei neue dafür hattest? Manche Erinnerungen sind kaum mehr als kleine Dinge. Ein Buch, das du viel zu lange gesucht hast, obwohl es direkt vor dir lag. Das Geräusch von Regen gegen Stein. Eine Diskussion, die längst hätte enden sollen und trotzdem noch auf dem Gang weitergeführt wurde. Der Moment, in dem dir zum ersten Mal bewusst wurde, dass du eine alte Aufzeichnung nicht mehr nur gelesen, sondern tatsächlich hinterfragt hattest.
+
+      Nichts davon war Teil einer großen Offenbarung. Vielleicht ist es gerade deshalb geblieben. Ithar’kael ist irgendwann aufgehört, nur der Ort zu sein, an dem du Antworten suchst. Es ist zu einem Teil deines Lebens geworden.
+
+      Für einen Moment fragst du dich, wie oft du noch durch diese Tür treten wirst, bevor sich dein Leben wieder verändert. Die Antwort kennst du nicht. Aber heute musst du sie auch nicht kennen.
+
+      *goto room_loop
+  *if itharkael_room_keepsake_seen
+    *selectable_if (false) #Mich meinen persönlichen Dingen zuwenden. [angesehen]
+      *goto room_loop
+  *if itharkael_room_keepsake_seen = false
+    #Mich meinen persönlichen Dingen zuwenden.
+      *set itharkael_room_keepsake_seen true
+      *goto keepsake
+  #Mein Zimmer wieder verlassen.
+    *set itharkael_room_done true
+    Schließlich richtest du dich wieder auf. Die Ruhe dieses Zimmers hat nichts von dem beantwortet, was heute geschehen ist. Aber vielleicht musste sie das auch nicht. Draußen wartet Ithar’kael.
+
+    Das Archiv. Der Innenhof. Die vertrauten Hallen, die heute ein wenig anders wirken als noch am Morgen. Und irgendwann Corvus in der Großen Halle. Du ziehst die Tür hinter dir zu.
+
+    *goto hub
+
+*label keepsake
+*if personal_quest_id = "missing"
+  Dein Blick bleibt an einer kleinen Zeichnung hängen, die zwischen zwei Büchern am Rand des Regals steht. Du musst sie nicht in die Hand nehmen, um zu wissen, wer darauf zu sehen ist. ${missing_person_name}.
+
+  Die Linien sind längst vertraut. Das Gesicht ebenso. Und trotzdem gibt es Tage, an denen du länger davor stehen bleibst, als könnte irgendwo zwischen diesen Strichen etwas verborgen sein, das du bisher übersehen hast. Vielleicht ist das der Grund, weshalb die Zeichnung all die Jahre ihren Platz hier behalten hat. Nicht weil sie dir eine Antwort geben könnte.
+
+  Sondern weil sie dich daran erinnert, weshalb du überhaupt angefangen hast, nach einer zu suchen. Nach allem, was die Prüfung heute in dir aufgerührt hat, fühlt sich der Gedanke seltsam an, sie einfach hier zurückzulassen.
+
+  *choice
+    #Mitnehmen.
+      *set personal_keepsake_id "missing_drawing"
+      *set personal_keepsake_taken true
+      *set personal_quest_log_item_01 "Zeichnung von ${missing_person_name}"
+      *set echo_personal_keepsake "Ich habe die Zeichnung von " & missing_person_name
+      *set echo_personal_keepsake echo_personal_keepsake & " mitgenommen. Sie gibt mir keine Antwort. Aber sie erinnert mich daran, weshalb ich überhaupt angefangen habe zu suchen."
+      Du nimmst die Zeichnung vorsichtig aus ihrer Halterung. Das Papier ist leicht genug, um beinahe nichts zu wiegen. Die Erinnerung daran, weshalb du sie mitnimmst, ist es nicht. Du verstaust sie zwischen deinen Sachen.
+
+      Du fährst mit dem Daumen kurz über den Rand des Papiers. Sie gibt dir keine Antwort. Aber vielleicht muss sie das auch nicht. Sie erinnert dich daran, weshalb du überhaupt angefangen hast zu suchen.
+
+      *script if (window.AnantharaInteractions) window.AnantharaInteractions.mountItem(this);
+      *goto room_loop
+    #Hierlassen.
+      Du lässt die Zeichnung, wo sie ist. Vielleicht muss nicht alles, was dir wichtig ist, mit dir reisen, um Teil dessen zu bleiben, wonach du suchst.
+
+      *goto room_loop
+*if personal_quest_id = "affliction"
+  Auf deinem Schreibtisch liegt ein schwerer Band, dessen Rücken vom häufigen Gebrauch weicher geworden ist als der vieler anderer Bücher in deinem Zimmer. Krankheiten Anantharas. Beschriebene Symptome. Bekannte Ursachen. Heilmethoden verschiedener Regionen. Alchemistische Verfahren, von denen einige einander widersprechen und andere kaum mehr als Randnotizen in älteren Aufzeichnungen sind. Du weißt nicht mehr, wie oft du darin nach etwas gesucht hast, das zu dem passt, was in deiner Heimat geschah.
+
+  Wie viele Seiten du markiert hast. Wie viele Randbemerkungen du später wieder durchgestrichen hast. Wie oft du dachtest, endlich etwas gefunden zu haben, nur um wenige Seiten später festzustellen, dass eine entscheidende Einzelheit nicht passte.
+
+  Jahrelang hast du gehofft, irgendwo zwischen den Beschreibungen anderer Krankheiten einen Hinweis zu finden. Bisher hat keiner davon gereicht. Zwischen den Seiten liegt ein wesentlich schmaleres Buch.
+
+  Dein eigenes Forschungsnotizbuch. Abschriften. Beobachtungen. Vergleiche. Fragen. Vermutungen, die du später verworfen hast, und andere, die du noch immer nicht beantworten kannst. Den großen Band wirst du kaum durch Ananthara tragen.
+
+  Das Notizbuch dagegen ist eine andere Sache.
+
+  *choice
+    #Mitnehmen.
+      *set personal_keepsake_id "affliction_notebook"
+      *set personal_keepsake_taken true
+      *set personal_quest_log_item_01 "Forschungsnotizbuch"
+      *set echo_personal_keepsake "Ich habe mein Forschungsnotizbuch mitgenommen. Keine Heilung, keine Antwort – nur Jahre meiner Suche und Beobachtungen, die unterwegs noch wichtig werden könnten."
+      Du ziehst das Notizbuch zwischen den Seiten hervor und blätterst kurz durch die vertrauten Einträge. Es enthält keine Heilung. Nicht einmal eine Antwort.
+
+      Aber es enthält Jahre deiner Suche – und vielleicht wird irgendwann genau eine dieser Beobachtungen dort wichtig, wo ein Buch allein nicht weiterhilft. Du steckst es ein. Das vertraute Gewicht des Notizbuchs liegt in deiner Hand. Keine Heilung. Keine Antwort. Noch nicht. Aber alles, was du bisher weißt, reist wenigstens mit dir.
+
+      *script if (window.AnantharaInteractions) window.AnantharaInteractions.mountItem(this);
+      *goto room_loop
+    #Hierlassen.
+      Du schiebst das Notizbuch wieder zwischen die Seiten des schweren Bandes. Noch liegt es hier sicher. Und noch weißt du nicht, wohin dein nächster Weg dich überhaupt führen wird.
+
+      *goto room_loop
+*if personal_quest_id = "lost_memory"
+  In der untersten Schublade deines Schreibtischs liegt ein schmales Journal. Du hast dir irgendwann angewöhnt, Dinge aufzuschreiben. Nicht weil jeder Tag außergewöhnlich wäre.
+
+  Sondern weil du gelernt hast, dass Erinnerung nichts ist, worauf du dich immer verlassen kannst. Orte. Namen. Träume. Eindrücke, die dir vertraut erschienen, ohne dass du wusstest, warum. Manchmal nur ein Satz. Manchmal eine hastige Skizze. Manchmal ein einzelnes Wort, von dem du am nächsten Morgen nicht mehr sagen konntest, weshalb du es überhaupt notiert hattest. Vielleicht ist manches davon bedeutungslos.
+
+  Vielleicht wirst du eines Tages Seiten darin finden, über die du nur den Kopf schütteln kannst. Aber du würdest lieber etwas festhalten, das sich später als unwichtig erweist, als noch einmal etwas verlieren, das du hättest bewahren können. Deine Finger bleiben einen Moment auf dem Einband liegen.
+
+  Wenn du Ithar’kael bald wirklich verlässt, könnte dieses Journal wichtiger werden als bisher.
+
+  *choice
+    #Mitnehmen.
+      *set personal_keepsake_id "memory_journal"
+      *set personal_keepsake_taken true
+      *set personal_quest_log_item_01 "Erinnerungsjournal"
+      *set echo_personal_keepsake "Ich habe mein Erinnerungsjournal mitgenommen. Es gibt mir meine Vergangenheit nicht zurück. Aber wenn etwas zurückkehrt, will ich es diesmal festhalten."
+      Du schlägst es noch einmal auf. Deine eigene Handschrift zieht sich durch die Seiten – manchmal ordentlich, manchmal hastig, an einigen Stellen mit Ergänzungen, die erst Tage oder Wochen später hinzugekommen sein müssen. Keine davon gibt dir die Vergangenheit zurück. Aber vielleicht können sie verhindern, dass eine neue Spur verschwindet, bevor du verstehst, was sie bedeutet.
+
+      Du schließt das Journal und nimmst es an dich. Du hältst das Journal einen Moment länger fest. Es kann dir nicht zurückgeben, was fehlt. Aber wenn wieder etwas zurückkehrt, soll es diesmal nicht verschwinden, bevor du verstanden hast, was es bedeutet.
+
+      *script if (window.AnantharaInteractions) window.AnantharaInteractions.mountItem(this);
+      *goto room_loop
+    #Hierlassen.
+      Du legst das Journal zurück in die Schublade und schließt sie. Es läuft dir nicht davon. Ein seltsam beruhigender Gedanke, wenn auch nicht unbedingt einer, den du über Erinnerungen selbst sagen könntest.
+
+      *goto room_loop
+*label archive
+*if itharkael_archive_entered = false
+  *set itharkael_archive_entered true
+  Das Archiv liegt tiefer im Inneren Ithar’kaels als die meisten Räume, die du täglich benutzt. Schon auf dem Weg dorthin verändert sich die Atmosphäre. Die Gänge werden breiter, Stimmen gedämpfter, und die Türen tragen kleine eingelassene Zeichen, deren Ordnung dir inzwischen längst vertraut ist.
+
+  Als du die schweren Türen öffnest, empfängt dich der Geruch von Papier, Staub, Holz und etwas Kühlem, Mineralischem. Das Archiv ist größer, als der Name vermuten lässt. Hohe Regale ziehen sich zwischen steinernen Pfeilern empor, verbunden durch schmale Galerien und Treppen. Bücher stehen neben gebundenen Expeditionsberichten, Kartenrollen neben beschrifteten Kisten. Weiter hinten geht der Lesebereich beinahe unmerklich in die Sammlung über – jenen Teil des Archivs, in dem all die Dinge aufbewahrt werden, die sich nicht zwischen zwei Buchdeckel pressen lassen.
+
+  Du kennst diesen Ort. Stunden hast du hier verbracht: mit Büchern, deren Seiten älter waren als manche Gebäude, mit Aufzeichnungen, die du drei Mal lesen musstest, bevor du überhaupt verstanden hattest, wonach du eigentlich suchtest, und mit Abenden, an denen aus „nur noch dieser eine Abschnitt“ irgendwann das Licht des nächsten Morgens geworden war. Manches davon vermisst du bereits, obwohl du noch gar nicht fort bist.
+
+*label archive_loop
+Wohin möchtest du gehen?
+
+*choice
+  *if itharkael_archive_reading_seen
+    *selectable_if (false) #Die Lesegalerien aufsuchen. [angesehen]
+      *goto archive_loop
+  *if itharkael_archive_reading_seen = false
+    #Die Lesegalerien aufsuchen.
+      *set itharkael_archive_reading_seen true
+      Die Lesegalerien liegen etwas erhöht über dem Hauptsaal. Von hier aus kannst du zwischen den Geländern hindurch auf Reihen von Regalen hinabblicken, die sich unter dir verlieren.
+
+      An den langen Tischen sitzen einzelne Sucher über Büchern und Abschriften. Niemand spricht laut. Ab und zu hörst du das Kratzen einer Feder, das Umblättern einer Seite oder das leise Schieben eines Stuhls über Stein.
+
+      Es ist ein Geräusch, das du kaum noch bewusst wahrnimmst. Früher war das anders. Du erinnerst dich noch an die ersten Male, als du hier gesessen hast und nicht einmal wusstest, in welchem Teil des Archivs du anfangen solltest zu suchen: an Bücher, die sich als vollkommen nutzlos erwiesen, an Querverweise, die dich zu weiteren Querverweisen führten, und an einen Nachmittag, an dem du so lange über zwei widersprüchlichen Berichten gebrütet hattest, dass du erst beim Aufstehen bemerktest, wie dunkel es draußen geworden war.
+
+      Irgendwann hattest du aufgehört, dich in diesen Regalen verloren zu fühlen. Du hattest gelernt, wo bestimmte Aufzeichnungen zu finden waren, welche Bereiche ständig umgeordnet wurden und an welchen Tischen man besser nicht saß, wenn man tatsächlich etwas erledigen wollte, weil dort früher oder später immer jemand in eine Diskussion verwickelt wurde.
+
+      Dein Blick wandert über die Galerie. Ithar’kael besteht aus großen Hallen, alten Geheimnissen und Relikten, die niemand vollständig versteht. Aber es besteht auch aus solchen Orten: aus zu vielen Büchern, zu wenig Schlaf und Fragen, die sich hartnäckig weigern, dort zu bleiben, wo man sie abgelegt hat.
+      *goto archive_loop
+  *if itharkael_archive_reports_seen
+    *selectable_if (false) #In alten Expeditionsberichten stöbern. [angesehen]
+      *goto archive_loop
+  *if itharkael_archive_reports_seen = false
+    #In alten Expeditionsberichten stöbern.
+      *set itharkael_archive_reports_seen true
+      Die Expeditionsberichte nehmen mehrere lange Regalreihen ein. Manche sind sauber gebunden. Andere bestehen aus losen Seiten, nachträglich zusammengefügten Karten, Zeichnungen und Notizen, die offenbar erst lange nach der Rückkehr ihres Verfassers in eine halbwegs sinnvolle Reihenfolge gebracht wurden.
+
+      Du kennst diese Regale gut. Während deiner Ausbildung waren sie eine der wenigen Möglichkeiten gewesen, einen Eindruck davon zu bekommen, wie das Leben außerhalb Ithar’kaels für einen Gesandten tatsächlich aussehen konnte. Nicht die Geschichten, die später erzählt wurden, sondern die Tage dazwischen: lange Reisen, falsche Wege, Gespräche mit Menschen, die ein und dasselbe Ereignis vollkommen unterschiedlich erinnerten, Orte, die auf einer Karte einfach erschienen und in Wirklichkeit mehrere Tage Umweg bedeuteten, Relikte, die sich am Ende als etwas völlig Gewöhnliches herausstellten – und unscheinbare Funde, wegen denen ein Gesandter Wochen später noch einmal zurückkehrte.
+
+      Du ziehst einen der Berichte hervor und blätterst einige Seiten durch.
+
+      Zwischen Skizzen und kurzen Beobachtungen findest du Flecken am Papier, hastig ergänzte Randnotizen und an einer Stelle einen Satz, der mitten im Wort endet und auf der nächsten Seite in einer anderen Tinte fortgeführt wurde.
+
+      Du musst lächeln. In den Geschichten über Gesandte klingt ihre Arbeit häufig größer, als sie auf diesen Seiten aussieht. Hier wirkt sie menschlicher und vielleicht gerade deshalb zum ersten Mal wirklich nah. Bald könnten deine eigenen Aufzeichnungen zwischen solchen Seiten entstehen.
+      *goto archive_loop
+  *if itharkael_archive_relics_seen
+    *selectable_if (false) #Die Sammlung der Funde und Relikte besuchen. [angesehen]
+      *goto archive_loop
+  *if itharkael_archive_relics_seen = false
+    #Die Sammlung der Funde und Relikte besuchen.
+      *goto relics
+  #Das Archiv verlassen.
+    *set itharkael_archive_done true
+    Als du das Archiv schließlich wieder verlässt, fällt die schwere Tür hinter dir leise ins Schloss.
+
+    Für einen Moment hörst du noch das Rascheln von Papier und die gedämpften Schritte zwischen den Regalen – Geräusche, die so lange zu deinem Alltag gehört haben, dass du kaum bemerkt hattest, wie vertraut sie geworden sind. Dann gehst du weiter.
+    *goto hub
+
+*label relics
+Je weiter du in die Sammlung gehst, desto weiter treten die Bücher in den Hintergrund.
+
+Sockel, Vitrinen und eingefasste Wandflächen nehmen ihren Platz ein. Manche Gegenstände sind kaum größer als eine Münze. Andere beanspruchen ganze Abschnitte des Raumes. Einige tragen ausführliche Beschreibungen, bei anderen stehen auf den kleinen Tafeln kaum mehr als ein Fundort, ein ungefähres Alter und mehrere unbeantwortete Fragen.
+
+Du bist schon oft durch diese Reihen gegangen, manchmal während deiner Studien, manchmal aus Neugier und manchmal schlicht deshalb, weil es hier immer irgendetwas gab, das du beim letzten Mal noch nicht gesehen hattest: ein neues Fundstück, eine ergänzte Notiz oder eine Vitrine, die zuvor noch geschlossen gewesen war. Du gehst langsam an den Auslagen entlang.
+
+Dann hörst du deinen Namen. ${name}. Du bleibst stehen. Die Stimme war nicht laut; eigentlich bist du dir nicht einmal sicher, ob es eine Stimme gewesen ist. Dein Blick wandert durch die Sammlung. Niemand in deiner unmittelbaren Nähe scheint dich angesprochen zu haben.
+
+Für einen Moment geschieht nichts. Dann wieder: ${name}. Diesmal deutlicher.
+
+Weiter hinten in der Sammlung flackert Licht auf.
+
+Du gehst zwischen zwei Reihen von Vitrinen hindurch.
+
+Das Leuchten verschwindet wieder, kaum dass du es siehst. Dann kehrt es zurück: ein kurzer goldener Schimmer, dann noch einer. Schließlich bleibst du vor einer eingefassten Auslage stehen. Darin liegt ein Kartensatz. Orakelkarten.
+
+Die Karten selbst liegen vollkommen still, doch das Licht entlang ihrer Ränder tut es nicht.
+
+Eine feine Linie zieht sich über die oberste Karte, erlischt und erscheint auf einer anderen wieder. Dann auf einer dritten.
+
+${name}. Diesmal hörst du den Ruf nicht irgendwo im Raum. Er ist direkt vor dir. Für einen Augenblick erinnerst du dich an all die Stunden, die du bereits in dieser Sammlung verbracht hast. Die Karten haben deinen Namen damals nie gerufen.
+
+Unterhalb der Auslage beginnt eines der eingelassenen Zeichen schwach zu leuchten.
+
+Die Schutzlinie öffnet sich, nicht vollständig, sondern gerade weit genug, dass du an die Karten herantreten könntest.
+
+*if (oracle_card_drawn) or (prophecy_01_revealed)
+  Die Karten bleiben ruhig. Eine Prophezeiung begleitet dich bereits; die Auslage verlangt keine zweite.
+  *set itharkael_archive_relics_seen true
+  *set itharkael_oracle_encounter_seen true
+  *goto archive_loop
+
+*choice
+  #Dem Ruf folgen.
+    *goto oracle_prepare
+  #Die Karten nicht berühren.
+    Du bleibst außerhalb der geöffneten Schutzlinie.
+
+    Das Leuchten hält noch einen Moment an. Eine Karte hebt sich kaum sichtbar aus dem Stapel, als würde etwas Unsichtbares an ihrem Rand ziehen. Dann sinkt sie wieder zurück, das Licht verlischt und die Schutzlinie schließt sich. Was immer dich gerufen hat, versucht nicht, dich aufzuhalten. Die Karten liegen wieder still.
+    *set oracle_card_drawn false
+    *set prophecy_01_revealed false
+    *set itharkael_archive_relics_seen true
+    *set itharkael_oracle_encounter_seen true
+    *goto archive_loop
+
+*label oracle_prepare
+Du trittst näher. Kaum überquerst du die geöffnete Linie, reagieren die Karten. Erst bewegt sich nur die oberste. Dann eine zweite. Schließlich hebt sich der gesamte Stapel ein kleines Stück aus seiner Halterung.
+
+Die Karten lösen sich voneinander. Eine nach der anderen gleitet nach vorn, bis sie sich vor dir zu einem Fächer öffnen. Ihre Rückseiten zeigen nichts, das dir verraten könnte, welche Karte unter deiner Hand liegt.
+
+Das Licht zwischen ihnen pulsiert einmal. Wartend. Du verstehst die Aufforderung auch ohne Worte.
+
+Zieh eine Karte.
+
+*page_break Weiter
+
+*rand oracle_roll 1 6
+*gosub oracle_data
+*script if (window.AnantharaOracle) window.AnantharaOracle.mount(this);
+*goto oracle_complete
+
+*label oracle_complete
+*set oracle_card_drawn true
+*set prophecy_01_card oracle_card
+*set prophecy_01_de oracle_card_full_de
+*set prophecy_01_en oracle_card_full_en
+*set prophecy_01 oracle_card_full_de
+*set prophecy_01_revealed true
+*set itharkael_archive_relics_seen true
+*set itharkael_oracle_encounter_seen true
+
+Für einige Herzschläge bleibt die Karte vor dir. Ihre Worte verändern sich nicht. Keine Erklärung folgt, und niemand sagt dir, wie du sie verstehen sollst. Dann beginnt das Licht an ihren Rändern schwächer zu werden.
+
+Die übrigen Karten schließen sich wieder zu einem Stapel. Auch die gezogene Karte sinkt langsam zu ihnen zurück.
+
+Als sie ihren Platz erreicht, schließt sich die Schutzlinie um die Auslage. Alles ist wieder still. Nur die Worte der Karte bleiben dir im Gedächtnis: deine erste Prophezeiung.
+
+Du bleibst noch einen Moment vor der Auslage stehen.
+
+Danach setzt sich die vertraute Ruhe der Sammlung wieder durch. Weiter hinten blättert irgendwo jemand eine Seite um, und Schritte hallen gedämpft über Stein, als wäre nichts geschehen.
+*goto archive_loop
+
+*label oracle_data
+*if oracle_roll = 1
+  *set oracle_card "truth"
+  *set oracle_card_title_de "Wahrheit"
+  *set oracle_card_title_en "Truth"
+  *set oracle_card_text_de "Klarheit jenseits von Illusion."
+  *set oracle_card_text_en "Clarity beyond illusion."
+  *set oracle_card_full_de "Du suchst Klarheit jenseits von Illusion und Selbsttäuschung. Wahre Erkenntnis beginnt dort, wo du dir selbst ehrlich begegnest."
+  *set oracle_card_full_en "You seek clarity beyond illusion and self-deception. True insight begins where you meet yourself honestly."
+  *set oracle_card_image "Assets/cards/Wahrheit.png"
+*if oracle_roll = 2
+  *set oracle_card "harmony"
+  *set oracle_card_title_de "Harmonie"
+  *set oracle_card_title_en "Harmony"
+  *set oracle_card_text_de "Licht und Schatten finden ein Gleichgewicht."
+  *set oracle_card_text_en "Light and shadow find their balance."
+  *set oracle_card_full_de "Wahre Harmonie entsteht nicht durch Verdrängung, sondern indem Licht und Schatten gemeinsam Raum erhalten."
+  *set oracle_card_full_en "True harmony does not come from repression, but from allowing light and shadow to share the same space."
+  *set oracle_card_image "Assets/cards/Harmonie.png"
+*if oracle_roll = 3
+  *set oracle_card "growth"
+  *set oracle_card_title_de "Wachstum"
+  *set oracle_card_title_en "Growth"
+  *set oracle_card_text_de "Etwas in dir ist bereit zu erblühen."
+  *set oracle_card_text_en "Something within you is ready to bloom."
+  *set oracle_card_full_de "Wachstum verlangt Geduld und den Mut, eine vertraute Form hinter dir zu lassen."
+  *set oracle_card_full_en "Growth asks for patience and the courage to leave a familiar shape behind."
+  *set oracle_card_image "Assets/cards/Wachstum.png"
+*if oracle_roll = 4
+  *set oracle_card "hope"
+  *set oracle_card_title_de "Hoffnung"
+  *set oracle_card_title_en "Hope"
+  *set oracle_card_text_de "Ein fernes Licht kennt deinen Namen."
+  *set oracle_card_text_en "A distant light knows your name."
+  *set oracle_card_full_de "Hoffnung ist kein blindes Versprechen. Sie ist der leise Faden, dem du folgst, wenn der ganze Pfad noch unsichtbar ist."
+  *set oracle_card_full_en "Hope is not a blind promise. It is the quiet thread you follow while the whole path remains unseen."
+  *set oracle_card_image "Assets/cards/Hoffnung.png"
+*if oracle_roll = 5
+  *set oracle_card "wanderer"
+  *set oracle_card_title_de "Wanderer"
+  *set oracle_card_title_en "Wanderer"
+  *set oracle_card_text_de "Der Weg verändert jene, die ihm zuhören."
+  *set oracle_card_text_en "The road changes those who listen to it."
+  *set oracle_card_full_de "Du musst den ganzen Weg nicht kennen. Der nächste ehrliche Schritt genügt, um eine neue Welt zu öffnen."
+  *set oracle_card_full_en "You do not need to know the whole road. The next honest step is enough to open a new world."
+  *set oracle_card_image "Assets/cards/Wanderer.png"
+*if oracle_roll = 6
+  *set oracle_card "revelation"
+  *set oracle_card_title_de "Offenbarung"
+  *set oracle_card_title_en "Revelation"
+  *set oracle_card_text_de "Das Verborgene beginnt, sich zu zeigen."
+  *set oracle_card_text_en "What was hidden begins to reveal itself."
+  *set oracle_card_full_de "Eine Wahrheit nähert sich deinem Bewusstsein. Empfange sie ohne Eile; Erkenntnis entfaltet sich in Schichten."
+  *set oracle_card_full_en "A truth is approaching your awareness. Receive it without haste; insight unfolds in layers."
+  *set oracle_card_image "Assets/cards/Offenbarung.png"
+*return
+
+*label courtyard
+*if itharkael_courtyard_entered = false
+  *set itharkael_courtyard_entered true
+  Schon bevor du den Innenhof erreichst, werden die Stimmen lauter. Nach der gedämpften Ruhe der inneren Hallen öffnet sich Ithar’kael hier wieder. Über dir liegt freier Himmel zwischen den hohen Mauern des Ordens. Licht fällt über alten Stein, über breite Durchgänge und jene Stellen, an denen sich im Laufe des Tages fast immer irgendjemand aufhält. Sucher kommen aus verschiedenen Teilen des Gebäudes zusammen, tragen Bücher, Karten oder kleine Bündel unter dem Arm, bleiben für ein paar Worte stehen und verschwinden wenig später wieder durch einen anderen Gang.
+
+  Andere haben es offensichtlich weniger eilig. Eine Gruppe hat sich in ein Gespräch vertieft, das wahrscheinlich schon vor einer halben Stunde hätte enden sollen. Weiter entfernt wird gelacht. Jemand ruft einer anderen Person etwas hinterher, bekommt eine Antwort, die du nicht ganz verstehst, und schüttelt grinsend den Kopf. Du kennst diese Geräusche.
+
+  Nicht als Hintergrund einer Prüfung. Als Alltag. Für einen Moment bleibst du einfach stehen und lässt das Leben Ithar’kaels an dir vorbeiziehen.
+
+*label courtyard_loop
+Was möchtest du tun?
+
+*choice
+  *if itharkael_courtyard_rest_seen
+    *selectable_if (false) #Eine Weile im Innenhof bleiben. [angesehen]
+      *goto courtyard_loop
+  *if itharkael_courtyard_rest_seen = false
+    #Eine Weile im Innenhof bleiben.
+      *set itharkael_courtyard_rest_seen true
+      Du suchst dir einen Platz am Rand des Hofes und lässt dir zum ersten Mal seit Stunden Zeit, ohne etwas Bestimmtes tun zu müssen. Vor dir verändert sich der Innenhof ständig. Zwei Sucher überqueren ihn gemeinsam und diskutieren so konzentriert, dass einer von ihnen beinahe mit jemandem zusammenstößt. Eine andere trägt einen Stapel Bücher, der ihr offensichtlich die Sicht versperrt, weigert sich aber trotzdem, auch nur eines davon abzugeben. Von irgendwoher kommt ein kurzer Ausbruch von Gelächter.
+
+      Nichts davon ist außergewöhnlich. Genau deshalb fühlt es sich vertraut an. Du hast selbst oft genug diesen Hof durchquert, mit dem Kopf noch bei einer Aufgabe, einem Text oder einer Frage. Manchmal allein. Manchmal mitten in einem Gespräch, das auf dem Weg von einem Raum zum nächsten begonnen hatte und dort längst nicht endete.
+
+      Heute bewegst du dich nicht weiter. Du sitzt einfach da. Und bemerkst erst jetzt, wie selten du Ithar’kael betrachtet hast, ohne bereits auf dem Weg zu etwas anderem zu sein.
+
+      Bald wird sich das ändern. Wenn du diese Hallen eines Tages als Gesandter hinter dir lässt, werden andere Orte deinen Alltag bestimmen. Andere Wege. Andere Nächte. Vielleicht Tage, an denen du froh wärst, nur hier sitzen zu können und nichts weiter tun zu müssen, als Stimmen im Hof zuzuhören. Du fragst dich, wie viele solcher ruhigen Augenblicke vor dir liegen.
+
+      Ob du unterwegs lernen wirst, sie zu finden. Oder ob du eines Tages an diesen hier zurückdenken wirst, weil sie viel seltener geworden sind, als du heute ahnst. Im Moment hast du wenigstens diesen einen.
+
+      Also bleibst du noch eine Weile sitzen.
+
+      *goto courtyard_loop
+  *if itharkael_courtyard_seekers_seen
+    *selectable_if (false) #Bei den anderen Suchern stehen bleiben. [angesehen]
+      *goto courtyard_loop
+  *if itharkael_courtyard_seekers_seen = false
+    #Bei den anderen Suchern stehen bleiben.
+      *goto seekers
+  *if itharkael_courtyard_envoys_seen
+    *selectable_if (false) #Die Gesandten beobachten. [angesehen]
+      *goto courtyard_loop
+  *if itharkael_courtyard_envoys_seen = false
+    #Die Gesandten beobachten.
+      *set itharkael_courtyard_envoys_seen true
+      Auf der anderen Seite des Hofes fällt dir eine kleine Gruppe von Gesandten auf. Einige scheinen gerade erst angekommen zu sein. Staub liegt noch auf ihren Sachen. Einer von ihnen hält mehrere zusammengerollte Karten unter einem Arm, während eine andere Person versucht, gleichzeitig mit jemandem zu sprechen und eine Tasche neu zu verschließen.
+
+      Ein Stück weiter bereitet sich eine zweite Gruppe offenbar darauf vor, Ithar’kael zu verlassen. Gepäck wird überprüft. Aufzeichnungen werden noch einmal durchgesehen. Ein Bündel wechselt den Besitzer und kurz darauf wieder zurück, weil offensichtlich niemand sicher ist, wem es eigentlich gehört. Du hast solche Szenen schon oft gesehen.
+
+      Früher waren die Gesandten dabei immer jene gewesen, die von draußen kamen oder dorthin aufbrachen. Menschen, deren Berichte du später im Archiv gelesen hast. Menschen, deren Funde irgendwann auf einem Tisch, in einer Vitrine oder zwischen den Seiten einer Akte landeten.
+
+      Heute beobachtest du sie anders. Nicht, weil du plötzlich einer von ihnen wärst. Noch nicht.
+
+      Aber die Entfernung zwischen ihrem Leben und deinem fühlt sich kleiner an als noch am Morgen. Einer der Zurückgekehrten lacht über etwas, das du nicht hören kannst. Ein anderer wirkt, als würde er am liebsten schlafen, bevor irgendjemand auch nur die erste Frage nach der Reise stellt. Nichts daran sieht nach einer Legende aus.
+
+      Es sieht nach Arbeit aus. Nach langen Wegen. Nach Dingen, die nicht nach Plan laufen.
+
+      Und trotzdem spürst du bei dem Gedanken daran kein Zurückweichen. Eher das Gegenteil. Bald könnte dein eigener Weg dich durch dieselben Tore hinausführen.
+
+      Wohin genau, weißt du noch nicht. Vielleicht wirst du mit Antworten zurückkehren. Vielleicht mit neuen Fragen.
+
+      Vielleicht wird dein Weg an Orte führen, deren Namen heute noch nicht einmal in deinen Gedanken existieren. Du fragst dich, wie du eines Tages selbst durch diesen Hof zurückkehren wirst. Mit Staub auf den Kleidern?
+
+      Mit einem Fund unter dem Arm? Mit einer Geschichte, die dir niemand glauben wird, bis du beweisen kannst, dass sie wahr ist? Oder ganz anders, als du es dir heute überhaupt vorstellen könntest?
+
+      Dein Schicksal gibt dir darauf noch keine Antwort. Vielleicht ist das gut so. Zum ersten Mal liegt der Weg nicht mehr nur in den Berichten anderer vor dir.
+
+      *goto courtyard_loop
+  #Den Innenhof verlassen.
+    *set itharkael_courtyard_done true
+    Schließlich löst du dich vom Treiben des Hofes. Hinter dir setzen sich Gespräche fort, Schritte kreuzen sich, irgendwo beginnt erneut jemand zu lachen. Ithar’kael fühlt sich hier weniger wie ein uralter Orden an als wie das, was es in all den Jahren ebenfalls für dich gewesen ist:
+
+    ein Ort voller Menschen. Du gehst zurück in die Hallen. Corvus wartet später in der Großen Halle.
+
+    *goto hub
+
+*label seekers
+Nicht weit von dir steht eine kleine Gruppe von Suchern beisammen. Du kennst einige der Gesichter. Nicht unbedingt gut genug, um jeden Gedanken mit ihnen geteilt zu haben – aber gut genug für das vertraute Nicken, das folgt, als du näher kommst. Das Gespräch dreht sich gerade um etwas, das offenbar schon seit mehreren Minuten diskutiert wird.
+
+Du verstehst nur die letzten Sätze. „Ich sage nur, dass die Abschrift älter sein könnte.“ „Und ich sage, dass du das seit gestern behauptest, ohne einen einzigen Beleg dafür zu haben.“
+
+„Ich habe einen Beleg.“ „Eine Vermutung ist kein Beleg.“ Jemand bemerkt dich und hebt eine Hand.
+
+„Perfektes Timing.“ „Nein“, murmelt jemand daneben. „Zieh ${name} da nicht auch noch mit rein.“ „Warum nicht? Die Prüfung ist vorbei. Jetzt darf ${name} wieder über die wirklich wichtigen Probleme nachdenken.“
+
+Ein Blatt wird dir entgegengehalten. Zwei Abschriften desselben Textes. Eine davon wirkt deutlich älter. Zumindest auf den ersten Blick. „Also“, sagt jemand. „Was würdest du tun? Wir haben eine Vermutung, aber noch keinen sicheren Beleg.“
+
+*choice
+  #„Ich würde erst weiter nach Belegen suchen, bevor ich etwas behaupte.“
+    *set itharkael_courtyard_debate_choice "evidence"
+    „Danke.“ Die Person auf der anderen Seite verschränkt zufrieden die Arme. „Das war nicht die Abstimmung, die ich mir vorgestellt hatte“, kommt sofort zurück.
+
+    „Dann hättest du vielleicht vorher Belege sammeln sollen.“ Die Diskussion beginnt erneut.
+
+    *goto seekers_personal
+  #„Ich würde die Vermutung festhalten – aber auch klar dazuschreiben, dass sie noch nicht bewiesen ist.“
+    *set itharkael_courtyard_debate_choice "qualified"
+    Für einen Moment wird es still. Dann nickt jemand langsam. „Damit könnte ich leben.“
+
+    „Natürlich kannst du damit leben. Du bekommst deine Theorie und ich bekomme meinen Vorbehalt.“ „Siehst du? Zusammenarbeit.“ „So würde ich das nicht nennen.“
+
+    *goto seekers_personal
+  #„Ich würde beide Möglichkeiten offenlassen. Vielleicht fehlt uns noch etwas, das keiner von euch berücksichtigt.“
+    *set itharkael_courtyard_debate_choice "open"
+    Jemand seufzt. „Das ist die Antwort, bei der wir jetzt noch drei weitere Stunden suchen müssen, oder?“ „Wahrscheinlich.“
+
+    „Natürlich.“ Trotzdem wandert der Blick bereits wieder zu den beiden Abschriften.
+
+    *goto seekers_personal
+
+*label seekers_personal
+Erst jetzt scheint jemand daran zu denken, warum du überhaupt hier bist. „Moment.“ Ein Blick trifft dich.
+
+„Du hast bestanden, oder?“ Du bestätigst es. Für einen Augenblick verändert sich die Stimmung.
+
+Keine Zeremonie. Kein Jubel, der durch den ganzen Hof hallt. Aber mehrere Gesichter hellen sich auf. „Dann Glückwunsch.“
+
+„Endlich.“ „Ignorier das.“ Das letzte kommt sofort von der Person daneben.
+
+Du musst lachen. Dann wird der Ton etwas ruhiger. Einer von ihnen kennt den Grund, aus dem du damals nach Ithar’kael gekommen bist, und stellt schließlich die Frage, die vermutlich irgendwann kommen musste.
+
+*if personal_quest_id = "missing"
+  „Dann kannst du jetzt wirklich anfangen, nach ${missing_person_name} zu suchen.“ Für einen Moment schweigt die Gruppe. „Du hast lange darauf gewartet.“
+
+  Der Blick deines Gegenübers bleibt auf dir. „Was glaubst du, wirst du finden?“
+
+  *choice
+    #„Ich hoffe vor allem, ${missing_person_name} lebend zu finden.“
+      *set itharkael_courtyard_personal_response "missing_hope_alive"
+      Die Antwort kommt nicht sofort. Schließlich nickt dein Gegenüber. „Dann hoffe ich, dass genau das auf dich wartet.“
+
+      *goto seekers_end
+    #„Ich weiß es nicht. Genau deshalb muss ich suchen.“
+      *set itharkael_courtyard_personal_response "missing_uncertain"
+      „Fair.“ Ein kurzes Nicken. „Vielleicht ist das die einzige ehrliche Antwort, bevor man überhaupt angefangen hat.“
+
+      *goto seekers_end
+    #„Was auch immer ich finde – ich will endlich wissen, was geschehen ist.“
+      *set itharkael_courtyard_personal_response "missing_need_truth"
+      Dein Gegenüber betrachtet dich einen Augenblick länger. „Dann hoffe ich, dass die Wahrheit dir zumindest einen Weg nach vorn gibt.“
+
+      *goto seekers_end
+*if personal_quest_id = "affliction"
+  „Dann kannst du jetzt endlich auch außerhalb dieser Archive nach Antworten suchen.“ Der Blick deines Gegenübers wird ernster. „Wegen der Krankheit.“
+
+  Du musst nicht fragen, welche gemeint ist. „Du hast Jahre damit verbracht, nach etwas zu suchen, das erklären könnte, was in deiner Heimat passiert ist.“ Eine kleine Pause.
+
+  „Was hoffst du da draußen zu finden?“
+
+  *choice
+    #„Eine Ursache. Solange ich sie nicht kenne, weiß ich nicht einmal, wonach ich wirklich suche.“
+      *set itharkael_courtyard_personal_response "affliction_find_cause"
+      „Dann ist das wenigstens ein Anfang.“ Dein Gegenüber nickt nachdenklich. „Vielleicht ist eine gute Frage manchmal wirklich mehr wert als eine schlechte Antwort.“
+
+      *goto seekers_end
+    #„Etwas, das den Erkrankten helfen kann.“
+      *set itharkael_courtyard_personal_response "affliction_help_sick"
+      Der Gesichtsausdruck deines Gegenübers wird weicher. „Dann hoffe ich, dass du es findest.“
+
+      *goto seekers_end
+    #„Ich weiß nicht, was ich finden werde. Ich weiß nur, dass ich nicht aufhören kann zu suchen.“
+      *set itharkael_courtyard_personal_response "affliction_keep_searching"
+      Für einen Moment sagt niemand etwas. Dann: „Das klingt zumindest nach jemandem, der in Ithar’kael nicht völlig falsch gelandet ist.“
+
+      *goto seekers_end
+*if personal_quest_id = "lost_memory"
+  „Und du?“ Die Frage kommt etwas vorsichtiger als zuvor. „Wenn du jetzt wirklich hinausgehst und nach deiner Vergangenheit suchst …“
+
+  Dein Gegenüber zögert. „Was hoffst du eigentlich zu finden?“ Vielleicht ist das schwieriger zu beantworten, als es klingt.
+
+  *choice
+    #„Ich will wissen, was damals wirklich geschehen ist.“
+      *set itharkael_courtyard_personal_response "memory_truth"
+      „Verständlich.“ Dein Gegenüber nickt. „Nicht zu wissen, was Teil des eigenen Lebens war, muss irgendwann schwerer werden als jede Antwort.“
+
+      *goto seekers_end
+    #„Ich muss herausfinden, wer ich war – wer ich heute bin und welche Rolle meine Vergangenheit dabei spielt.“
+      *set itharkael_courtyard_personal_response "memory_identity"
+      Dein Gegenüber nickt langsam. „Dann wünsche ich dir, dass du findest, wonach du suchst.“
+
+      *goto seekers_end
+    #„Ich weiß nicht, ob ich bereit für alles bin, was ich finden könnte. Aber ich will trotzdem suchen.“
+      *set itharkael_courtyard_personal_response "memory_uncertain_but_search"
+      Dein Gegenüber antwortet nicht sofort. Dann nickt es nur. „Das reicht vielleicht.“
+
+      *goto seekers_end
+
+*label seekers_end
+Irgendjemand bringt die beiden Abschriften wieder ins Gespräch. Innerhalb weniger Augenblicke ist die Gruppe erneut mitten in ihrer alten Diskussion. Du bleibst noch kurz dabei.
+
+Vielleicht wirst du solche Gespräche vermissen. Oder vielleicht wirst du eines Tages mit einem eigenen Fund hier stehen und genau dieselbe Diskussion auslösen. Beides erscheint dir plötzlich möglich.
+
+*set itharkael_courtyard_seekers_seen true
+*goto courtyard_loop

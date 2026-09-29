@@ -1,0 +1,664 @@
+*comment Raum III – Die Chroniken
+*temp examined_creation false
+*temp examined_growth false
+*temp examined_destruction false
+*temp examined_system false
+*temp examined_pedestal false
+*temp examined_inscription false
+*temp investigation_count 0
+*temp resonated false
+*temp resonance_available false
+*temp resonance_ready false
+*temp pattern_ready false
+*temp lost_memory_ruin_known_before_replica false
+
+*label start
+*if language = "en"
+  *goto_scene en_00_exam_room_03
+*set quest_exam_room_03_status "active"
+*set quest_exam_room_03_objective "Verstehe das System der drei Wandbilder und vollende den letzten Abschnitt."
+
+[b]WAS WIR IN UNS TRAGEN[/b]
+
+Der Durchgang führt dich in eine große, kreisförmige Kammer. Anders als in den beiden Abschnitten zuvor gibt es hier keine deutliche Lichtquelle. Ein schwacher Schein liegt über dem Stein — gerade genug, um Formen, Kanten und Darstellungen voneinander zu unterscheiden.
+
+Im Zentrum steht ein steinernes Podest. Seine Oberfläche ist leer, abgesehen von feinen goldenen Linien, die ein geöffnetes Buch darstellen. Du erkennst dieselbe Form wieder, die am Ende des zweiten Abschnitts aus dem verborgenen Lichtnetz hervorgetreten ist. Welches Buch sie zeigt und was es bedeutet, weißt du noch immer nicht.
+
+Vom goldenen Buch führen mineralische Leitungen in den Sockel des Podests, durch den Boden und weiter zu drei großen Wandbildern. Vor jedem Bild liegt eine breite steinerne Druckplatte. Niedrige Sockel tragen dieselben kristallinen Strukturen. Alles wirkt vollständig und funktionsfähig.
+
+Doch alles bleibt dunkel.
+
+Was möchtest du tun?
+
+*choice
+  #Die Kammer untersuchen.
+    *goto investigation
+
+*label investigation
+*set resonance_available false
+*set resonance_ready false
+*set pattern_ready false
+*if (thal_archetype = "Llifari") and (thal_resonance = "Seeker")
+  *set resonance_available true
+*if (thal_archetype = "Artisari") and (thal_resonance = "Veilwalker")
+  *set resonance_available true
+*if (thal_archetype = "Veilwalker") and (thal_resonance = "Artisari")
+  *set resonance_available true
+*if examined_creation
+  *if examined_growth
+    *if examined_destruction
+      *if resonance_available
+        *if resonated = false
+          *set resonance_ready true
+      *if examined_system
+        *set pattern_ready true
+      *if examined_pedestal
+        *set pattern_ready true
+
+Was untersuchst du?
+
+*choice
+  *if examined_creation and (pattern_ready = false)
+    *selectable_if (false) #Das Wandbild der Erschaffung. [untersucht]
+      *goto investigation
+  *elseif examined_creation = false
+    #Das Wandbild der Erschaffung.
+      *set examined_creation true
+      *set investigation_count +1
+      Naganoth, Gavarenth und Faon’lin stehen über einer jungen Welt, Faon’lin zwischen ihren Brüdern. Ihre Hände sind geöffnet. Von den Drei geht Licht aus, das sich über goldene Linien in Wasser, Erde, Pflanzen, Tiere, erste Gebäude und die Bewohner dieser Welt verteilt.
+
+      Das Licht bleibt nicht in ihren Händen. Es wird gegeben. Manche Linien enden in der Welt, andere teilen sich und laufen weiter. Du erkennst Motive aus dem ersten Raum: die Flamme, wachsendes Leben und erste Verbindungen.
+
+      *if thal_archetype = "Seeker"
+        Du liest das Werk beinahe automatisch als historische Quelle. Positionen, wiederkehrende Motive und die Richtung der Linien sind nicht bloße Verzierung. Dieses Bild ist der Anfang einer fortlaufenden Entwicklung.
+      *if thal_archetype = "Artisari"
+        Farbe und Form antworten subtil auf dein Thal’ithara. Wasser scheint für einen Augenblick zu fließen. Blätter bewegen sich. Eine dargestellte Hand führt ihre Geste fort. Das Werk wird nicht zu einer objektiven Aufnahme der Vergangenheit; es beginnt, seine Aussage durch Bewegung auszudrücken.
+      *if thal_archetype = "Veilwalker"
+        An der Darstellung haftet etwas von Erwartung und Staunen, dazu eine schwer greifbare Präsenz. Es ist keine vollständige Erinnerung — nur ein Echo dessen, was an diesem Werk zurückblieb.
+      *goto investigation
+  *if examined_growth and (pattern_ready = false)
+    *selectable_if (false) #Das Wandbild des Wachstums. [untersucht]
+      *goto investigation
+  *elseif examined_growth = false
+    #Das Wandbild des Wachstums.
+      *set examined_growth true
+      *set investigation_count +1
+      Die Welt ist voller geworden. Wälder, Siedlungen und Städte haben sich ausgebreitet. Menschen bauen, erschaffen Kunst, fertigen Werkzeuge, pflegen andere, pflanzen, forschen, reisen und geben Wissen oder geschaffene Dinge weiter.
+
+      Goldene Linien verlaufen durch Hände, Werke, Natur und Gemeinschaften. Sie teilen sich, treffen aufeinander und bilden neue Wege. Die Drei sind noch Teil des Bildes, stehen aber nicht länger im Mittelpunkt. Was im ersten Bild gegeben wurde, befindet sich nun innerhalb der Schöpfung selbst und wird dort weitergetragen.
+
+      *if thal_archetype = "Seeker"
+        Die veränderte Bildsprache bestätigt deinen ersten Eindruck: Das Licht beginnt bei den Drei, doch hier lässt es sich kaum noch auf eine einzige Quelle zurückführen. Die Bilder erzählen nicht getrennte Szenen, sondern eine Entwicklung.
+      *if thal_archetype = "Llifari"
+        Stein, mineralische Einschlüsse und kristalline Leitungen wirken auf dich wie ein zusammenhängendes Geflecht — wie Wurzeln unter Erde oder Wasserläufe, die etwas aufnehmen, verteilen und dabei verändern. Diese Energie soll fließen. Sie ist nicht dafür geschaffen, an einem Punkt festgehalten zu werden.
+      *if thal_archetype = "Artisari"
+        Eine Figur reicht einer anderen etwas weiter. Eine Pflanze wächst um einen kaum wahrnehmbaren Spalt. Ein geschaffenes Werk scheint für einen Atemzug lebendig. Das Wandbild drückt sich aus, ohne vorzugeben, eine lückenlose Vergangenheit zu zeigen.
+      *if thal_archetype = "Veilwalker"
+        Zahllose Lebensspuren überlagern einander: Stimmen, Freude, Sorge, Hoffnung, Verlust, Nähe und Erinnerung. Du nimmst wahr, was am Werk haftet — nicht die vollständige Geschichte dessen, was einst geschah.
+      *goto investigation
+  *if examined_destruction and (pattern_ready = false)
+    *selectable_if (false) #Das zerstörte Wandbild. [untersucht]
+      *goto investigation
+  *elseif examined_destruction = false
+    #Das zerstörte Wandbild.
+      *set examined_destruction true
+      *set investigation_count +1
+      Das dritte Wandbild zeigt Dunkelheit und Zerstörung. Doch nicht nur die dargestellte Welt wurde beschädigt. Das Werk selbst ist zerstört.
+
+      Große Bereiche sind geschwärzt, geborsten oder fehlen vollständig. Stellenweise ist der Stein deformiert oder geschmolzen. Nur Fragmente bleiben: eine Hand, Teile einer Gestalt, ein Gebäude, vielleicht ein Baum und einzelne goldene Linien. Die ursprüngliche Szene lässt sich daraus nicht vollständig rekonstruieren. Was fehlt, bleibt verloren.
+
+      Unter dem Bild ist der Sockel erhalten. Mineralische Leitungen verschwinden unmittelbar in der geschwärzten Fläche.
+
+      *if thal_archetype = "Aegis"
+        Bruchlinien, Verformungen und Belastungsspuren erzählen dir mehr. Auf diesen Stein wirkte enorme Kraft ein. Manche Bereiche wurden herausgebrochen, andere unter großer Belastung deformiert. Ob die Ursache physisch, magisch oder beides war, kannst du nicht bestimmen. Wer dafür verantwortlich war, bleibt ebenso offen.
+
+        Doch eines weißt du mit großer Sicherheit: Dieses Wandbild ist nicht einfach verfallen. Es wurde zerstört.
+      *if thal_archetype = "Artisari"
+        Bewegungen erscheinen nur noch in Fragmenten. Eine Hand beginnt eine Geste, die der fehlende Stein niemals beendet. Farbe regt sich und erstarrt wieder. Selbst der Ausdruck des Werkes ist gebrochen.
+      *if thal_archetype = "Veilwalker"
+        Die Echos brechen ab. Angst und Verlust treten stärker hervor — vielleicht ein Schrei, vielleicht eine Stimme, deren Ursprung du nicht bestimmen kannst. Dann bleibt nur Stille. Auch hier erhältst du keine vollständige Erinnerung.
+      *goto investigation
+  *if examined_system and (pattern_ready = false)
+    *selectable_if (false) #Die Druckplatten, Sockel und Leitungen. [untersucht]
+      *goto investigation
+  *elseif examined_system = false
+    #Die Druckplatten, Sockel und Leitungen.
+      *set examined_system true
+      *set investigation_count +1
+      Du trittst auf eine der breiten Platten. Sie sinkt leicht in den Boden. Im zugehörigen Sockel öffnet sich hörbar ein Mechanismus, und die mineralischen Leitungen treten deutlicher hervor. Sie bleiben dunkel. Als du die Platte verlässt, kehrt sie in ihre Ausgangsposition zurück.
+
+      Die Platte öffnet einen Weg. Sie erzeugt nicht, was durch ihn fließen soll.
+
+      *if thal_archetype = "Vanguard"
+        Die Konstruktion wird für dich rasch lesbar. Die Platten, Sockel und Leitungen sind Teile eines einzigen Systems. Sie öffnen und verbinden Wege, nehmen Energie auf und leiten sie weiter. Auch das zentrale Podest liegt am Ende dieses Systems.
+      *if thal_archetype = "Llifari"
+        Die mineralischen Wege erinnern dich weniger an eine Maschine als an ein lebendes Geflecht. Was hier aufgenommen wird, soll wandern, sich verteilen und verändert weitergegeben werden.
+      *goto investigation
+  *if examined_pedestal and (pattern_ready = false)
+    *selectable_if (false) #Das Podest und die Buchgravur. [untersucht]
+      *goto investigation
+  *elseif examined_pedestal = false
+    #Das Podest und die Buchgravur.
+      *set examined_pedestal true
+      *set investigation_count +1
+      Die goldene Gravur ist über die Leitungen mit allen drei Wandbildern verbunden. Dennoch reagiert sie nicht. Du suchst nach einer verborgenen Flamme, einem Kristall oder einem einfallenden Lichtstrahl wie in den vorherigen Räumen.
+
+      Es gibt nichts davon.
+
+      Das Podest kann etwas empfangen. Aber der Raum besitzt keine sichtbare Quelle.
+      *goto investigation
+  *if examined_inscription and (pattern_ready = false)
+    *selectable_if (false) #Die nackte Wand und die Inschrift. [untersucht]
+      *goto investigation
+  *elseif examined_inscription = false
+    #Die nackte Wand und die Inschrift.
+      *set examined_inscription true
+      *set investigation_count +1
+      Nach dem zerstörten Bild folgt kein viertes Wandbild. Dort befindet sich nur nackter Stein.
+
+      [i]Was gegeben wird, soll weitergetragen werden.[/i]
+
+      *if thal_archetype = "Seeker"
+        Die Komposition wirkt nicht wie eine zufällige Lücke. Die erhaltenen Elemente führen bewusst hierher. Die drei Bilder bilden eine Entwicklung, und die nackte Wand mit der Inschrift ist ihr vorgesehener nächster Schritt.
+      *goto investigation
+  *if resonance_ready
+    #[Resonieren] Ich lasse die Verbindung tiefer werden.
+      *set resonated true
+      *goto resonance
+  *if pattern_ready
+    #Ich setze die Beobachtungen zusammen.
+      *goto pattern
+
+*label resonance
+*if (thal_archetype = "Llifari") and (thal_resonance = "Seeker")
+  Etwas in dem Muster fühlt sich vertrauter an, als deine Wahrnehmung von Stein und Energie allein erklären könnte. Du besinnst dich auf den suchenden Teil deiner Resonanz.
+
+  Die Bilder folgen einem Rhythmus, den du aus der lebenden Welt kennst. Etwas entsteht, wächst, verändert sich und verändert wiederum das, womit es verbunden ist. Nichts bleibt vollkommen in seinem ursprünglichen Zustand. Auch das dritte Bild steht nicht außerhalb dieser Entwicklung. Seine Zerstörung ist Teil desselben Verlaufs, obwohl du weder erkennen kannst, was dort geschah, noch was danach kam.
+
+  Die Resonanz offenbart dir keine verlorene Geschichte und keine endgültige Wahrheit. Sie lässt dich nur einen tieferen Rhythmus in der Darstellung wahrnehmen.
+*if (thal_archetype = "Artisari") and (thal_resonance = "Veilwalker")
+  Hinter den Bewegungen des erwachenden Kunstwerks antwortet etwas. Du lässt die Veilwalker-Resonanz näher treten.
+
+  Zu den Gesten und Farben kommen emotionale und spirituelle Echos. Im zweiten Bild hörst du Lachen, Atemzüge, undeutliche Gespräche, ein Lied ohne verständliche Worte und Werkzeug auf Stein. Ein Name klingt an und verschwindet, bevor du ihn festhalten kannst.
+
+  Im zerstörten Bild zerfallen auch diese Eindrücke. Bewegungen bleiben Fragmente. Stimmen brechen ab. Ein Schrei, brechender Stein, jemand, der nach einer anderen Person ruft — dann Stille. Das Werk trägt Spuren von Leben, aber keine zuverlässige historische Aufzeichnung.
+*if (thal_archetype = "Veilwalker") and (thal_resonance = "Artisari")
+  Eines der Echos beginnt nach Form zu suchen. Du öffnest dich der Artisari-Resonanz, und für einen Augenblick verschwindet die Wand.
+
+  Du stehst zwischen Menschen, die arbeiten, bauen, lachen, erschaffen und Dinge von Hand zu Hand weitergeben. Geräusche und Bilder umgeben dich. Dann kippt die Vision: Hitze, Bewegung, Dunkelheit, Angst, eine ausgestreckte Hand und eine Stimme.
+
+  Bevor daraus eine vollständige Szene werden kann, reißt die Verbindung ab. Du stehst wieder vor dem Stein. Das Echo erhielt für einen Augenblick Gestalt — nicht historische Gewissheit.
+*page_break Weiter untersuchen
+*goto investigation
+
+*label pattern
+*set room3_light_pattern_understood true
+*set quest_exam_room_03_discovery_01 "Die drei Wandbilder bilden einen verbundenen Verlauf: Das Licht wird gegeben, von der Schöpfung aufgenommen und verändert weitergetragen. Auch die Leitungen des zerstörten Bildes sind weiterhin mit dem System verbunden."
+
+Die Wandbilder scheinen keine voneinander getrennten Darstellungen zu sein. Im ersten geht das Licht von den Drei aus. Im zweiten wird es von der Schöpfung aufgenommen, verändert und weitergegeben. Das letzte Bild ist zu stark zerstört, um zu erkennen, was darauf geschah. Doch seine Leitungen sind noch immer mit dem übrigen System verbunden.
+
+Die Leitungen können etwas tragen. Die Platten können Wege öffnen. Das Podest kann etwas empfangen.
+
+Doch der Raum besitzt keine eigene Quelle.
+
+Du schon.
+
+*set room3_self_as_light_understood true
+*set quest_exam_room_03_discovery_02 "Die Druckplatten öffnen nur Wege. Die fehlende Quelle des Systems muss das eigene Thal’ithara sein."
+
+*choice
+  #Ich gebe mein Thal’ithara in den geöffneten Weg.
+    *goto carry_light
+
+*label carry_light
+Du trittst auf die erste Druckplatte und konzentrierst dein Thal’ithara auf die freigelegte Leitung. Seine Erscheinung trägt die unverkennbare Sprache deiner Seele, doch der Mechanismus bleibt derselbe.
+
+Deine Energie erreicht das erste Wandbild und erwacht zwischen den geöffneten Händen der Drei. Von dort läuft sie durch die junge Welt. Eine Linie wird zu zwei, zwei werden zu mehreren. Dein Thal’ithara nimmt den Platz des dargestellten Lichts ein.
+
+Am äußeren Rand stoppt das Leuchten. Die Verbindung zum zweiten Bild liegt offen, doch es reicht nicht, nur Licht zu erzeugen.
+
+Was gegeben wird, muss weitergetragen werden.
+
+Du hältst die Verbindung und führst dieselbe Energie weiter.
+
+Im zweiten Bild läuft dein Thal’ithara durch Wurzeln, Gebäude, Werkzeuge, Kunstwerke und Hände. Linien teilen sich und finden wieder zusammen. Es bleibt eindeutig deine Magie, doch sein Weg hinterlässt Spuren. Was weitergegeben wird, bleibt nicht vollkommen unverändert. Es nimmt neue Wege und neue Formen an.
+
+Schließlich erreicht es die Verbindung zum dritten Wandbild.
+
+Die dritte Platte öffnet den beschädigten Sockel. Die verbliebenen goldenen Linien glimmen auf und führen direkt in die geschwärzte Oberfläche. Dort verschwindet jeder sichtbare Weg.
+
+Du erinnerst dich an den zweiten Abschnitt. Lichtwege waren unter dem dunklen Pigment verschwunden und später wieder aufgetaucht. Unsichtbar bedeutete nicht beendet.
+
+Du führst dein Thal’ithara weiter.
+
+Das Licht tritt in die schwarze Fläche ein.
+
+Und verschwindet.
+
+Die Verbindung bleibt. Du spürst deine Magie noch, obwohl du sie nicht sehen kannst. Tiefer im zerstörten Stein wird sie schwerer, ferner, kälter. Für einen Augenblick lässt sich kaum unterscheiden, wo das Vertraute deiner eigenen Kraft endet und wo das beginnt, was in der Dunkelheit auf sie einwirkt.
+
+Du kämpfst nicht dagegen an. Du versuchst nicht, die Dunkelheit zu vertreiben. Du hältst nur die Verbindung.
+
+Aus einem tiefen Riss tritt wieder Licht hervor.
+
+Es ist noch immer dein Thal’ithara.
+
+Aber es ist nicht vollkommen so, wie es hineingegangen ist.
+
+Zwischen seinem Leuchten liegt etwas Dunkles — nicht wie ein Fremdkörper, eine Krankheit oder eine Verunreinigung. Licht und Dunkelheit bleiben unterscheidbar und sind doch für diesen Moment Teil derselben Spur.
+
+*set room3_light_carried_through_darkness true
+*set quest_exam_room_03_discovery_03 "Das eigene Thal’ithara wurde durch den zerstörten, dunklen Teil des Wandbilds geführt, trat wieder hervor und hatte sich dabei wahrnehmbar verändert."
+
+Das hervortretende Licht fällt quer durch die Kammer und trifft genau auf die goldene Gravur des geöffneten Buches im zentralen Podest. Dort beginnt sich das Gold zu entzünden. Innerhalb der Gravur erscheinen noch einmal die bekannten Motive: Flamme. Wachstum. Verbindung. Schleier. Beim Schleier verschwindet das Licht kurz und setzt sich darunter fort.
+
+Die drei Sockel rasten nacheinander ein. Feine Lichtbahnen werden im Boden sichtbar und verbinden die drei Wandbilder mit dem Podest. Erst jetzt wird das vollständige System sichtbar. Die Energie stammt weiterhin aus deinem Thal’ithara.
+
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountHold(this, {kind:"book", stateField:"room3_pedestal_activated", nextLabel:"pedestal_after_attunement"});
+*goto pedestal_after_attunement
+
+*label pedestal_after_attunement
+*set room3_pedestal_activated true
+
+Über der goldenen Gravur beginnen sich Linien aus Licht zu erheben. Aus ihnen entstehen Seiten, eine Mittelfalz und schließlich ein Einband. Das Objekt wirkt weder vollständig materiell noch wie eine bloße Illusion. Es ist eine magische Projektion, deren Form sich immer weiter verdichtet, bis ein geöffnetes Buch über dem Podest liegt.
+
+Es besitzt dieselbe Form wie das verborgene Buch, das du am Ende des zweiten Abschnitts gesehen hast.
+
+*set room3_chronicles_replica_manifested true
+
+Deine Verbindung endet nicht. Du spürst dein eigenes Thal’ithara weiterhin in der Replik. Die Prüfung nutzt die Energie, die du durch die drei Bilder getragen hast, um sie zu formen und aufrechtzuerhalten.
+
+Vor dir liegt nun das geöffnete Buch.
+
+Ihre Seiten sind geöffnet.
+
+Und sie beginnt zu reagieren.
+
+*page_break Die Replik betrachten
+*goto replica_intro
+
+*label replica_intro
+Die Replik schwebt geöffnet über dem Podest. In ihren leuchtenden Linien spürst du weiterhin dein eigenes Thal’ithara. Sie besteht nicht aus einer fremden Macht, die nun unabhängig von dir funktioniert; ein Teil deiner Kraft hält sie für diesen Augenblick aufrecht.
+
+Ihre Seiten sind leer.
+
+*script if (window.AnantharaInteractions) window.AnantharaInteractions.mountReplica(this, {nextLabel:"replica_after_reveal"});
+*goto replica_after_reveal
+
+*label replica_after_reveal
+
+Die Worte bleiben einen Augenblick bestehen. Dann verschwinden sie wieder, Zeile für Zeile. Die Seite ist leer.
+
+Du kennst die Chroniken als Legende. Erst jetzt kannst du diesen Namen mit dem Buch verbinden. Wo sich das Original befindet, wer es erschuf, wer es bewacht oder was es tatsächlich vermag, bleibt dir verborgen.
+
+*page_break Weiter
+
+*if personal_quest_id = "lost_memory"
+  *set lost_memory_ruin_known_before_replica lost_memory_sand_ruin
+  *goto lost_memory_menu
+*if personal_quest_id = "missing"
+  *goto missing_name
+*goto affliction_menu
+
+*label lost_memory_menu
+Eine einzige Frage.
+
+Du bist nach Ithar’kael gekommen, weil ein Teil deiner eigenen Vergangenheit für dich nicht erreichbar ist. Du weißt, dass etwas geschehen sein muss. Erinnerungen fehlen.
+
+Manchmal kehren Fragmente zurück, manchmal nur ein Gefühl, das du nicht einordnen kannst. Und immer wieder ist da diese seltsame Vertrautheit, besonders wenn dein Thal’ithara etwas in dir berührt, das dein Verstand nicht erklären kann.
+
+Wenn du wirklich nur eine einzige Frage stellen darfst, welche sollte es sein?
+
+*choice
+  #„Was ist damals mit mir geschehen?“
+    *set room3_personal_question "lost_memory_what_happened"
+    *goto lost_memory_answer_happened
+  #„Wie habe ich meine Erinnerungen verloren?“
+    *set room3_personal_question "lost_memory_how_lost"
+    *goto lost_memory_answer_loss
+  #„Wer bin ich?“
+    *set room3_personal_question "lost_memory_who"
+    *goto lost_memory_answer_identity
+  #Ich versuche zuerst, meine Gedanken zu ordnen.
+    *goto lost_memory_reflection
+
+*label lost_memory_reflection
+Du sagst nichts.
+
+Die Replik wartet.
+
+Seit du begonnen hast, nach deiner Vergangenheit zu suchen, kreisen deine Gedanken immer wieder um dieselben Fragen. Was ist geschehen? Wie hast du deine Erinnerungen verloren? Wer warst du davor?
+
+Aber keine dieser Fragen gibt dir einen Ort, an dem du anfangen kannst.
+
+*if lost_memory_ruin_known_before_replica = false
+  Du versuchst, dich rückwärts durch deine Erinnerungen zu bewegen, doch irgendwann erreichst du immer dieselbe Grenze. Gefühle ohne Ursprung. Vertrautheit ohne Erinnerung. Augenblicke, in denen etwas in dir reagiert, obwohl du nicht weißt, worauf.
+
+  Du suchst nach einem Namen.
+
+  Nichts.
+
+  Nach einem Ort.
+
+  Nichts.
+
+  Nach irgendeinem konkreten Punkt, von dem aus du weitergehen könntest.
+
+  Wieder nichts.
+
+  Und vielleicht liegt genau darin der Fehler. Du versuchst die ganze Zeit herauszufinden, was geschehen ist, obwohl du nicht einmal weißt, wo du anfangen sollst zu suchen.
+*if lost_memory_ruin_known_before_replica
+  Sobald du die Augen schließt, ist sie wieder da.
+
+  Sand. Hitze. Heller Stein.
+
+  Die Ruine.
+
+  Du weißt nicht, ob du wirklich dort gewesen bist. Du weißt nicht, wann. Du weißt nicht, was dort geschehen ist. Aber immerhin ist es etwas. Zum ersten Mal besitzt deine Vergangenheit eine Spur, die nicht nur aus einem Gefühl besteht.
+
+  Und trotzdem reicht selbst das nicht.
+
+  Wenn du diese Ruine morgen finden würdest — was dann? Was würdest du dort suchen? Woran würdest du erkennen, dass du der Wahrheit überhaupt näherkommst?
+
+Vielleicht brauchst du noch keine vollständige Antwort. Vielleicht brauchst du zuerst nur den nächsten Ort, an dem du suchen kannst.
+
+*choice
+  #„Was ist damals mit mir geschehen?“
+    *set room3_personal_question "lost_memory_what_happened"
+    *goto lost_memory_answer_happened
+  #„Wie habe ich meine Erinnerungen verloren?“
+    *set room3_personal_question "lost_memory_how_lost"
+    *goto lost_memory_answer_loss
+  #„Wer bin ich?“
+    *set room3_personal_question "lost_memory_who"
+    *goto lost_memory_answer_identity
+  #„Wo soll ich anfangen, nach Antworten zu suchen?“
+    *set room3_personal_question "lost_memory_where_to_begin"
+    *goto lost_memory_where
+
+*label lost_memory_answer_happened
+Die Frage erscheint auf der Seite.
+
+„Was ist damals mit mir geschehen?“
+
+Darunter entsteht die Antwort.
+
+„Manchmal liegt die Antwort nicht in dem, was geschehen ist, sondern in dem, was seitdem in dir geblieben ist.“
+
+Mehr erscheint nicht. Keine Vision. Keine zusätzliche Erklärung.
+
+Dann wendet sich die Seite.
+*goto lost_memory_conviction
+
+*label lost_memory_answer_loss
+„Wie habe ich meine Erinnerungen verloren?“
+
+Für einige Augenblicke bleibt der Rest der Seite leer.
+
+Dann:
+
+„Der Geist bewahrt nicht immer das Geschehen. Manchmal bewahrt er nur dessen Spuren.“
+
+Das ist alles. Die Replik sagt nicht, wodurch die Erinnerungen verschwanden, ob sie verloren, verborgen oder lediglich unerreichbar sind.
+
+Die Seite wendet sich.
+*goto lost_memory_conviction
+
+*label lost_memory_answer_identity
+„Wer bin ich?“
+
+Die Antwort braucht etwas länger. Dann erscheint:
+
+„Wer du warst, kann bewahrt werden. Wer du bist, entscheidest du.“
+
+Die Schrift bleibt einen Moment bestehen.
+
+Dann wendet sich die Seite.
+*goto lost_memory_conviction
+
+*label lost_memory_where
+„Wo soll ich anfangen, nach Antworten zu suchen?“
+
+Diesmal antwortet die Replik nicht mit Worten.
+
+*if lost_memory_ruin_known_before_replica = false
+  Eine dünne Linie zieht sich über das Papier. Dann eine zweite. Weitere folgen.
+
+  Erst wirken sie bedeutungslos. Dann erkennst du Mauern. Gebrochene Säulen. Stein, halb unter etwas verborgen. Schließlich erscheint die Landschaft darum. Sand. Nichts als Sand.
+
+  Eine Ruine erhebt sich aus einer endlosen hellen Weite. Teile der Mauern sind unter Dünen verschwunden. Andere ragen noch immer aus dem Boden.
+
+  Du hast diesen Ort noch nie gesehen. Zumindest nicht, soweit du dich erinnern kannst. Und trotzdem reagiert etwas in dir. Nicht wie Wiedererkennen. Eher wie der Augenblick unmittelbar davor.
+
+  Du beugst dich näher über die Seite. Vielleicht gibt es irgendwo einen Namen, ein Zeichen, irgendetwas, das dir sagt, wo dieser Ort liegt.
+
+  Doch die Linien beginnen bereits zu verblassen. Die Ruine zerfällt. Der Sand verschwindet. Dann ist die Seite wieder leer.
+
+  Du weißt nicht, was dort auf dich wartet. Aber zum ersten Mal besitzt deine Suche einen Ausgangspunkt.
+  *set lost_memory_sand_ruin true
+  *set lost_memory_sand_ruin_discovered_via_replica true
+  *goto lost_memory_conviction
+*if lost_memory_ruin_known_before_replica
+  Fast unmittelbar beginnt sich ein Bild zu formen. Sand. Stein. Die Ruine. Du erkennst sie. Dann verändert sich das Bild.
+
+  Die Perspektive führt dich zwischen die gebrochenen Mauern, durch einen schmalen Durchgang und weiter hinein, als deine eigene Erinnerung je gereicht hat.
+
+  Bis vor dir eine Wand erscheint. Was dort einmal dargestellt war, ist kaum noch zu erkennen. Farbe haftet nur noch in einzelnen Spuren am Stein. Linien verschwinden unter Rissen. Vielleicht war es einmal ein Wandgemälde. Vielleicht etwas anderes. Darunter befinden sich Zeichen. Eine Schrift. Du kennst sie nicht. Und doch bleibt dein Blick daran hängen.
+
+  Dann hörst du eine Stimme. Nur einen einzigen Satz.
+
+  [i]Pîn reip kalztarkaikh duldid sêmîk.[/i]
+
+  Du verstehst kein einziges Wort. Aber der Klang trifft etwas in dir. Nicht wie eine fremde Sprache. Wie etwas, das du einmal gekannt haben könntest.
+
+  Dann zerbricht das Bild. Die Ruine verschwindet. Die Stimme verstummt. Nur die Schrift bleibt noch einige Herzschläge lang auf der Seite stehen. Dann ist auch sie fort.
+  *set lost_memory_tehand_inscription true
+  *set echo_tehand "Die Replik verband meine Erinnerung an die Ruine mit den Worten: „Pîn reip kalztarkaikh duldid sêmîk.“ Ich weiß noch nicht, was sie bedeuten – nur, dass die Replik beides miteinander verbunden hat."
+  *goto lost_memory_conviction
+
+*label lost_memory_conviction
+Die Seite bleibt leer. Dann erscheint neue Schrift. Diesmal hast nicht du gefragt.
+
+[i]Wenn du findest, wer du warst — was wirst du mit der Wahrheit tun?[/i]
+
+*choice
+  #Die Wahrheit soll ans Licht.
+    *gosub conviction_truth
+    *goto final_page
+  #Manche Wahrheiten müssen geschützt werden.
+    *gosub conviction_guard
+    *goto final_page
+  #Was ich erfahre, soll anderen helfen können.
+    *gosub conviction_gift
+    *goto final_page
+  #Meine Vergangenheit entscheidet nicht, wer ich werde.
+    *gosub conviction_self
+    *goto final_page
+
+*label missing_name
+*if missing_person_name = ""
+  Bevor du die Frage stellen kannst, musst du den Namen festhalten, um den deine Suche kreist.
+
+  Wie hieß die Person, nach der du suchst?
+  *input_text missing_person_name
+*goto missing_menu
+
+*label missing_menu
+Eine einzige Frage.
+
+Du bist nach Ithar’kael gekommen, weil ${missing_person_name} verschwunden ist und niemand dir sagen konnte, was geschehen ist.
+
+Jetzt könntest du eine einzige Frage stellen.
+
+*choice
+  #„Ist ${missing_person_name} noch am Leben?“
+    *set room3_personal_question "missing_alive"
+    Die Frage erscheint.
+
+    „Ist ${missing_person_name} noch am Leben?“
+
+    Darunter entsteht nur ein einziger Satz.
+
+    „Nicht jede Stille bedeutet ein Ende."
+
+    Mehr erscheint nicht. Die Antwort bestätigt weder Leben noch Tod.
+    *goto missing_conviction
+  #„Wo finde ich ${missing_person_name}?"
+    *set room3_personal_question "missing_where"
+    „Wo finde ich ${missing_person_name}?"
+
+    *if missing_mural_connection
+      „Nicht jeder Weg beginnt mit einem Ort. Manche Spuren trägt man bereits mit sich.“
+    *if missing_mural_connection = false
+      „Nicht jeder Weg beginnt mit einem Ort. Manche beginnen mit einer Spur.“
+    *goto missing_conviction
+  #„Ist ${missing_person_name} freiwillig verschwunden?"
+    *set room3_personal_question "missing_voluntary"
+    „Ist ${missing_person_name} freiwillig verschwunden?"
+
+    Die Antwort erscheint fast unmittelbar.
+
+    „Abwesenheit allein verrät keinen Willen.“
+
+    Keine Entführung wird bestätigt. Kein freiwilliges Fortgehen wird bestätigt.
+    *goto missing_conviction
+
+*label missing_conviction
+Eine neue Seite schlägt auf.
+
+[i]Wenn du die Wahrheit findest — was wirst du mit ihr tun?[/i]
+
+*choice
+  #Ich werde sie ans Licht bringen.
+    *gosub conviction_truth
+    *goto final_page
+  #Ich werde schützen, wen sie gefährden könnte.
+    *gosub conviction_guard
+    *goto final_page
+  #Ich werde sie mit denen teilen, die sie betrifft.
+    *gosub conviction_gift
+    *goto final_page
+  #Ich entscheide selbst, was sie für mein Leben bedeutet.
+    *gosub conviction_self
+    *goto final_page
+
+*label affliction_menu
+Eine seltene Krankheit hat deine Heimat heimgesucht. Niemand konnte ihren Ursprung erklären. Du bist nach Ithar’kael gekommen, um herauszufinden, was wirklich dahintersteckt.
+
+Eine einzige Frage.
+
+*choice
+  #„Was für eine Krankheit hat meine Heimat heimgesucht?"
+    *set room3_personal_question "affliction_nature"
+    „Was für eine Krankheit hat meine Heimat heimgesucht?"
+
+    Die Replik antwortet nicht mit einem Namen.
+
+    „Aus Schmerz geboren. In Dunkelheit geformt.“
+
+    Unter den Worten bildet sich ein dunkler Tintenfleck und zieht langsam ins Papier. Mehr erscheint nicht.
+    *goto affliction_conviction
+  #„Kann diese Krankheit geheilt werden?"
+    *set room3_personal_question "affliction_cure_possible"
+    „Kann diese Krankheit geheilt werden?"
+
+    Die Antwort erscheint:
+
+    „Heilung beginnt dort, wo man bereit ist, tiefer zu sehen als das Leiden selbst.“
+    *goto affliction_conviction
+  #„Wie kann ich diese Krankheit heilen?"
+    *set room3_personal_question "affliction_cure_how"
+    „Wie kann ich diese Krankheit heilen?"
+
+    Darunter entsteht:
+
+    „Indem du dich dem stellst, was unter ihren Symptomen verborgen liegt.“
+    *goto affliction_conviction
+  *if affliction_veil_connection
+    #„Was verbindet den schwarzen Schleier mit der Krankheit?"
+      *set room3_personal_question "affliction_veil_source"
+      *set affliction_shared_source_known true
+      *set echo_personal_clue_01 "Während der Prüfung sah ich meine Heimat und denselben dunklen Einfluss unter der Haut der Erkrankten, der dem schwarzen Schleier auffällig ähnelte. Die Replik zeigte, dass beides derselben Quelle entspringt."
+      „Was verbindet den schwarzen Schleier mit der Krankheit?"
+
+      Die Antwort erscheint:
+
+      „Was du im Schleier gesehen hast und was in den Erkrankten lag, entspringt derselben Quelle.“
+
+      Die genaue Quelle, ihr Mechanismus und ihre größere Bedeutung bleiben unbekannt.
+      *goto affliction_conviction
+
+*label affliction_conviction
+Die nächste Seite öffnet sich.
+
+[i]Wenn du den Ursprung erkennst — wem gehört dieses Wissen?[/i]
+
+*choice
+  #Der Wahrheit selbst. Sie darf nicht verborgen werden.
+    *gosub conviction_truth
+    *goto final_page
+  #Denen, die verantwortungsvoll damit umgehen können.
+    *gosub conviction_guard
+    *goto final_page
+  #Allen, denen es helfen kann.
+    *gosub conviction_gift
+    *goto final_page
+  #Wissen gibt niemandem das Recht, über andere zu bestimmen.
+    *gosub conviction_self
+    *goto final_page
+
+*label conviction_truth
+*set knowledge_truth +2
+*if knowledge_conviction_initial = ""
+  *set knowledge_conviction_initial "truth"
+*return
+
+*label conviction_guard
+*set knowledge_guard +2
+*if knowledge_conviction_initial = ""
+  *set knowledge_conviction_initial "guard"
+*return
+
+*label conviction_gift
+*set knowledge_gift +2
+*if knowledge_conviction_initial = ""
+  *set knowledge_conviction_initial "gift"
+*return
+
+*label conviction_self
+*set knowledge_self +2
+*if knowledge_conviction_initial = ""
+  *set knowledge_conviction_initial "self"
+*return
+
+*label final_page
+Die Replik bewertet deine Entscheidung nicht. Die Seite wendet sich. Neue Schrift entsteht.
+
+„Wissen ist Macht.“ „Macht kann bewahrt werden.“ „Macht kann geteilt werden.“ „Macht kann verborgen werden.“ „Macht kann gebraucht werden.“ „Wie du Wissen nutzt, hat Konsequenzen.“ „Was du weißt, liegt in deiner Verantwortung.“ Dann schließt sich das Buch.
+
+Das Licht um den Einband wird schwächer, doch die Replik verschwindet nicht. Sie bleibt auf dem Podest liegen. Hinter dir hörst du Stein über Stein gleiten. Der Ausgang ist offen.
+
+Keine weitere Anweisung erscheint. Keine Stimme sagt dir, was du tun sollst. Die Replik liegt einfach dort.
+
+*choice
+  #Ich lasse die Replik auf dem Podest.
+    *set room3_replica_choice "leave"
+    Du wendest dich vom Podest ab. Das Buch bleibt zurück. Kein Licht folgt dir. Keine Stimme ruft dich zurück.
+
+    Als du den Ausgang erreichst, wirfst du noch einmal einen Blick über die Schulter. Die Konturen der Replik werden bereits blasser. Dann trittst du über die Schwelle.
+    *goto room_end
+  #Ich nehme die Replik mit.
+    *set room3_replica_choice "take"
+    Du streckst die Hand aus. Für einen Moment erwartest du, durch Licht zu greifen. Stattdessen berühren deine Finger einen Einband. Fest. Kühl. Schwerer, als etwas aus Licht sein dürfte.
+
+    Du hebst die Replik vom Podest. Nichts geschieht. Keine Warnung. Kein Widerstand. Du kannst sie tragen. Also gehst du. Ein Schritt. Noch einer. Erst als du die Schwelle beinahe erreicht hast, verändert sich das Gewicht in deinen Händen.
+
+    Der Einband löst sich auf. Die Seiten werden zu Licht. Bevor du reagieren kannst, gleiten die leuchtenden Linien zwischen deinen Fingern hindurch und ziehen zurück durch den Raum. Über dem Podest sammeln sie sich erneut. Für einen kurzen Augenblick liegt die Replik wieder dort, als hättest du sie niemals berührt. Dann beginnt auch sie zu verblassen. Kein Urteil. Keine Strafe. Nur die Grenze dessen, was diese Replik ist. Du trittst über die Schwelle.
+    *goto room_end
+
+*label room_end
+*set quest_exam_room_03_status "completed"
+*set quest_exam_room_03_objective "Der letzte Abschnitt wurde vollendet und die Replik der Chroniken befragt."
+*set quest_exam_status "active"
+*set quest_exam_objective "Der letzte Abschnitt der Prüfung ist abgeschlossen. Die Auswertung der Abschlussprüfung steht noch aus."
+*goto_scene de_00_post_exam

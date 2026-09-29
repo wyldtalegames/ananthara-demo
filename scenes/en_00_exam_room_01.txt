@@ -1,0 +1,595 @@
+*comment en_00_exam_room_01.txt
+*comment Prologue — The Ithar'kael Final Examination, Room I
+*temp wrong_symbol ""
+
+*label start
+*page_break Prologue — The Final Examination
+
+[b]HIDDEN TRUTH[/b]
+
+*set quest_exam_room_01_visible true
+*set quest_exam_status "active"
+*set quest_exam_objective "Complete all three sections of the final examination."
+*set quest_exam_room_01_status "active"
+*set quest_exam_room_01_objective "Uncover the secret of the ruin and find your way out before the last sand has fallen through the hourglass."
+
+The chamber is smaller than you expected. Cold stone surrounds you on every side. No window breaks the walls, and no torch lights the room. Only a weak glow enters through the narrow seams of the door behind you, fading after a few steps into darkness. In the center stands a stone lectern. A single scroll rests upon it.
+
+“Find the secret of this ruin. When you believe you understand it, find your way out.” That is all you were given.
+
+You step closer. The parchment is marked by age: dark edges, fine cracks and faded signs cross its surface. Some are familiar; others almost disappear into the parchment. Among them are curved characters you recognize. Têhand.
+
+You reach for it. The moment your fingers touch the parchment, a faint tingling passes beneath your skin. Something answers. A fine shimmer travels beneath your fingertips and through the writing. It follows one sign, then the next, spreading like liquid light across the scroll. Individual characters flare gold for a heartbeat. The energy reaches the edge and disappears into the stone lectern.
+
+A deep tone fills the chamber. You pull your hand away. For a moment everything is still. Then fire blooms behind you. One torch. A second answers across the room, then a third. One after another, flames awaken along the walls until warm light pushes the darkness back.
+
+But the light reveals something else. Fine lines begin to glow where there was only bare stone. Symbols emerge from walls and floor as if they had slept beneath the surface: dozens of them, some no larger than your hand, others spread across several stone plates. You recognize a flame. A blade. Water. A crown. Something like a sun. Roots and growing vines. Lines that interlock. Farther back, a sign like an eye, half-hidden behind something resembling a veil.
+
+You look back to the scroll. Its golden shimmer has weakened, but has not vanished completely. The scroll did not simply react to your touch. It reacted to you.
+
+What do you investigate first?
+
+*choice
+  #I examine the scroll more closely first.
+    *set exam_room_01_first_block "scroll"
+    *goto scroll_investigation
+  #I study the room and its newly revealed symbols first.
+    *set exam_room_01_first_block "room"
+    *goto room_investigation
+
+*label scroll_investigation
+*if exam_room_01_room_done
+  After examining the room and its symbols, you return to the stone lectern. The signs on the scroll now feel less like a single riddle and more like part of the same structure.
+  *if exam_room_01_room_thal_used
+    *if thal_archetype = "Veilwalker"
+      The echo of earlier candidates is still fresh in your memory.
+    *if thal_archetype = "Llifari"
+      The parchment answers faintly to the vibrations in the stone.
+    *if thal_archetype = "Seeker"
+      The pattern you noticed in the chamber continues across the writing.
+    *if thal_archetype = "Artisari"
+      Beneath the faded ink you sense the shape of a work that has not quite forgotten itself.
+    *if thal_archetype = "Vanguard"
+      The warmth at the scroll's edge recalls the grooves in the stone.
+    *if thal_archetype = "Aegis"
+      Through your own sign, you felt different opposing forces behind the Crown and Blade. You still do not know which signs belong to the solution. The scroll may provide the connection that force alone cannot reveal.
+*if exam_room_01_room_done = false
+  You step closer to the stone lectern and focus on the scroll.
+
+The parchment is old, and its writing is only partly preserved. Some lines can be read without difficulty; from others, only individual words or characters remain. Between them are places where the ink has faded so completely that entire portions of the text are missing.
+
+Part of it was written in ordinary script, and part in Têhand, that ancient language whose characters are still found in rituals, oaths, seals and traditions dating back to the age of the gods. Not every word in Têhand carries magic. Yet you have learned never to call unknown words harmless merely because you can translate them.
+
+One of the surviving lines feels familiar—not because you have read this exact sentence before, but because its components belong to those you encountered repeatedly during your training.
+
+[i]Don wuvurep dêkh posehkund sundaykh, elvip wuvurep dêkh posehkund duldaykh.[/i]
+
+You work through the familiar characters in your mind. Not every linguistic nuance yields itself immediately, but the meaning is clear enough:
+
+“What was hidden reveals itself not to the eye, but to the light.”
+
+You read the translation again. Then you tilt the parchment. Torchlight skims across its surface. For a moment you think you see more signs between two faded passages.
+
+You change the angle. They vanish.
+
+The Têhand sentence suddenly sounds much less metaphorical.
+
+What do you do?
+
+*choice
+  #I angle the parchment so the torchlight crosses the faded lines.
+    *set exam_room_01_hidden_method "light"
+    You lift the parchment carefully and alter its angle towards the nearest torch. At first nothing happens. Then the light falls more shallowly across the surface. Something changes. Fine lines emerge between the faded signs: first separate strokes, then curves, then complete characters. They had not vanished. They were merely invisible beneath ordinary light. You hold the scroll still as what was hidden slowly joins together.
+    *goto reveal_hidden_text_en
+  *if thal_archetype = "Artisari"
+    #I connect with the writing and help the work remember itself. [Artisari]
+      *set exam_room_01_hidden_method "artisari"
+      You place your fingertips upon one of the last visible signs. To you, writing is not merely information. Someone created these lines. Every curve, interruption and joining stroke was once a deliberate movement—a work given form by a hand.
+
+      You let your Thal’ithara flow into the writing. The sign beneath your finger begins to glow gold. Slowly you draw your fingertip along the faded line. Wherever you touch the parchment, the ink awakens. An incomplete curve continues. A broken line finds its ending. Characters complete themselves beneath your hand one after another, as though the parchment remembers the movements by which they were once created.
+
+      You do not create the words anew. You help the work remember itself.
+      *goto reveal_hidden_text_en
+  *if thal_archetype = "Veilwalker"
+    #I search for an echo of someone who examined this scroll before me. [Veilwalker]
+      *set exam_room_01_hidden_method "veilwalker"
+      You loosen your attention from the parchment and search for what remains in this place. Among the faint echoes of earlier candidates, a figure briefly takes shape at the lectern. Their hands move the scroll. Once. Again. Then they pause.
+
+      The figure lifts the parchment slightly and turns it towards the light of a torch. For one heartbeat, hidden signs flare across its surface. The echo dissolves. But you have seen what you need to know. It has shown you an action, not an interpretation.
+      *goto reveal_hidden_text_en
+
+*label reveal_hidden_text_en
+*set exam_room_01_hidden_revealed true
+*set quest_exam_room_01_discovery_01 "Oblique light makes hidden writing on the Têhand scroll visible."
+
+Four hidden lines become readable:
+
+“From their hands was given what should belong to no one alone.”
+
+“Where the gift took root, life awakened and brought forth something new.”
+
+“What had been created apart found one another and created onward together.”
+
+“But when open hands closed, a veil fell over what had once been freely given.”
+
+You let your gaze travel over the newly visible lines once more. They do not read like four independent statements. Each seems to grow from the one before it.
+
+A gift. Something that grows from it.
+
+Something that finds its way together.
+
+*page_break Continue
+
+And finally, something that lays itself over all of it.
+
+Around you, the symbols wait within the stone. Perhaps the lines do not merely describe what happened. Perhaps they also tell you the order in which the signs must be read. Their imagery recalls the symbols in the chamber, but the lines name none of them directly. You will have to determine the correspondences yourself.
+
+*set quest_exam_room_01_discovery_02 "Four hidden lines describe gift, growth, connection and a final veil."
+*set exam_room_01_scroll_done true
+*if exam_room_01_room_done
+  *goto convergence_en
+*goto room_investigation
+
+*label room_investigation
+*if exam_room_01_scroll_done
+  You turn from the scroll to the chamber. You are no longer looking only for irregularities, but for correspondences.
+*if exam_room_01_scroll_done = false
+  You leave the scroll on the lectern for now and focus on the chamber.
+
+Only now that the torches are burning do you see how many signs are truly set into the stone. There are far more than a simple combination should require. Some repeat across floor and walls; others appear only once. Certain plates bear faint discolouration, while others look almost untouched.
+
+Even now, you can see no obvious door leading onward. You approach the first plates. Some do not respond to your presence at all. Around others, you think you can make out fine seams or grooves in the surrounding stone.
+
+The chamber waits.
+
+The scroll reacted to your magical energy. Perhaps that already hints at how this place expects to be understood. You could rely solely upon what your own eyes can recognize. Or you could trust the part of yourself through which your Thal’ithara assumed its shape.
+
+*choice
+  #I study the carved signs and their arrangement.
+    You take your time. You walk the walls, compare the signs, note which repeat and which depictions occur only once. Some symbols seem merely carved into the stone. Others have finer edges, as though the plates behind them might move.
+
+    The signs are not scattered at random. Repeating lines connect several of them to the lectern and to a broad plate on the opposite wall. Flame, Bud, Connection and Eye stand out most clearly, yet Crown, Blade, Water and Sun also bear traces of repeated contact. For now, observation alone can tell you nothing more with certainty.
+    *goto room_after_mundane_en
+  #I inspect the plates, seams and possible mechanisms.
+    You walk the walls, inspect seams, compare the sizes of the plates and note which signs repeat. Several symbols sit on movable plates. Fine mechanical seams run behind their edges. Some lead deeper into the wall; others climb towards the ceiling or descend into the floor.
+
+    This is no mere inscription. The chamber can respond to your choice. For now, observation alone can tell you nothing more with certainty.
+    *goto room_after_mundane_en
+  #I use my Thal'ithara to examine the chamber.
+    *goto room_thal_en
+
+*label room_after_mundane_en
+*choice
+  #I also call on my Thal'ithara.
+    *goto room_thal_en
+  #The visible evidence is enough for now.
+    *goto room_complete_en
+
+*label room_thal_en
+*set exam_room_01_room_thal_used true
+*if thal_archetype = "Veilwalker"
+  As a Veilwalker, you have learned that places can preserve traces invisible to the eye: emotions, memories and sometimes even echoes of those who stood here before you. You let your gaze soften and turn your attention not to the stone itself, but to what clings to it.
+
+  For a moment, nothing happens. Then the first footprint appears. Pale. Translucent. Another follows, then dozens. Spiritual traces of previous candidates overlap like memories no one fully erased. One figure stands at the lectern. Another kneels before a symbol. A hand raises a torch.
+
+  A wrong sign is touched. The memory convulses and tears apart. Then you hear a voice—not clearly enough to understand every word, but it speaks signs from the scroll. One of the symbols begins to glow. The echo fades.
+
+  You now know that others tried reading the scroll aloud and that their words provoked a reaction in the room. Yet their echoes show only what they did, not whether they were right. Faces, words and the exact sequence dissolve whenever you try to grasp them.
+  *goto room_complete_en
+*if thal_archetype = "Aegis"
+  As an Aegis, the nature of your Thal’ithara lies in strength, resilience and the instinct to stand against what might bring harm to others. Through signs and seals, you can give that strength form and direction — and sometimes learn what stands against you by setting your own power against it.
+
+  You crouch before the stone plates and trace a small sign in the air with two fingers. Pale light remains where your fingertips pass. As you channel part of your strength into it, you guide the sign slowly across the different symbols. Before most of them, it remains still. At the crown, however, the glowing lines suddenly tighten as though a heavy force were pressing down against them from the other side. At the blade, a sharp sideways jolt runs through the sign instead, pulling your hand with it before you brace against the force.
+
+  You release the connection. Your Thal’ithara has revealed neither the meaning of the symbols nor their correct order. But you have learned something else: forces wait behind the crown and the blade that feel distinctly different from the other plates. You cannot know exactly what will happen if you activate them, but they are not harmless.
+  *set exam_room_01_danger_known true
+  *goto room_complete_en
+*if thal_archetype = "Seeker"
+  As a Seeker, your strength is not that hidden answers simply reveal themselves to you. It is your urge to recognize connections where others first see only fragments. You compare the signs on the scroll with the symbols in the room.
+
+  Something repeats. Not exactly, but often enough that it cannot be chance. Certain forms upon the parchment appear again in altered shape upon the stone plates. Even within the writing, some characters seem to recur in a conspicuous order. What first seemed like poetic repetition begins to feel like structure.
+
+  You do not yet know its meaning, but you are certain the scroll and symbols are not separate riddles. They tell parts of the same thing—and understanding one may allow the other to make sense. Neither contains the whole answer; the text must be translated into the language of the room.
+  *goto room_complete_en
+*if thal_archetype = "Artisari"
+  As an Artisari, you study the signs longer. To you, a symbol is not merely line, colour and shape. Someone chose that form because it was meant to express something. A flame can be more than fire. A bud more than a plant. An outstretched hand more than a gesture. Images can carry thought without speaking a word, and sometimes their meaning outlives the language in which they were created.
+
+  You move slowly along the stone plates. Among crowns, blades, water and other signs, your gaze repeatedly settles upon certain images. You do not try to translate them. You let their forms act upon you. What did their maker intend when they drew these lines? What connects their visual language?
+
+  When you focus upon that question, your Thal’ithara answers. Colour gathers in the carved lines of one symbol—only a faint shimmer at first, then a clearer glow. A second sign answers several steps away. Then a third, and finally a fourth. The remaining plates stay dark.
+
+  You turn towards the scroll. Within the portions of the writing that remain legible, you recognize the same four signs. There, too, their lines begin to shimmer in the same colours. The faded passages between them remain hidden, yet the connection between parchment and stone can no longer be overlooked.
+
+  Four related signs answer one another: Flame, Bud, Connection and Eye. They belong together, but their order and meaning remain ambiguous.
+  *goto room_complete_en
+*if thal_archetype = "Vanguard"
+  As a Vanguard, you direct your attention towards construction, function and the way separate parts of a system engage. You examine the plates themselves. Fine grooves run behind some of them into the wall. A mechanism. Discolouration upon their surfaces likely came from heat; the plates probably respond to fire or a similar source of energy.
+
+  Some plates possess additional mechanical connections. From the crown, a narrow linkage rises into the ceiling. Behind the blade plate, a separate mechanism runs sideways into the wall. They evidently do not belong to the same system as the remaining signs. Traps.
+
+  You still do not know which combination is correct, but you understand how the room listens. You know which signs may carry immediate consequences—and that those consequences can be avoided if you react quickly.
+  *set exam_room_01_danger_known true
+  *goto room_complete_en
+*if thal_archetype = "Llifari"
+  As a Llifari, you do not first seek the answer in writing or symbols. Your Thal’ithara draws your perception deeper, into the stone beneath your feet. You place a hand upon one plate. Its surface is cold, but beneath it you sense something else.
+
+  A faint tension runs through the rock. You close your eyes. For a moment the chamber vanishes, leaving only pressure, resistance and minute movements in stone. Some plates lie silent and heavy within the foundation. From others, barely perceptible vibrations travel through floor and walls, branching and disappearing somewhere behind the masonry.
+
+  When your fingers pass over one symbol, a quiet vibration answers far beneath it. You do not know the mechanism or the correct signs. But the stone tells you that the chamber is connected. What you trigger in one place is carried elsewhere—as though the whole room were a single body.
+  *goto room_complete_en
+*goto room_complete_en
+
+*label room_complete_en
+*set exam_room_01_room_done true
+*if exam_room_01_scroll_done
+  *goto convergence_en
+*goto scroll_investigation
+
+*label convergence_en
+*set exam_room_01_puzzle_line 1
+You step between the lectern and the wall of symbols.
+
+Only now do the individual observations begin to connect. The scroll. The signs in the stone. The four statements. What first seemed like separate clues appears to be part of the same story.
+
+*if (thal_archetype = "Artisari") and (exam_room_01_room_thal_used)
+  You have already recognized four of the symbols as belonging together.
+*if (thal_archetype = "Seeker") and (exam_room_01_room_thal_used)
+  The pattern you noticed earlier now lies more clearly before you: text and chamber truly do tell the same story.
+*if ((thal_archetype = "Aegis") or (thal_archetype = "Vanguard")) and (exam_room_01_danger_known)
+  You also know that some of the wrong signs are connected to dangerous forces or mechanisms.
+*if (thal_archetype = "Veilwalker") and (exam_room_01_room_thal_used)
+  And somewhere in the chamber’s echoes remains the memory that spoken words can affect the symbols themselves.
+
+Yet the decision itself still belongs to you. The hidden lines give you a story. The chamber demands that you translate it into signs.
+
+Before you begin, you notice a second, shorter passage at the lower edge of the scroll. Its characters are fainter than the rest of the text. You could try to decipher them—or trust your own reading.
+
+*choice
+  #I solve the sequence myself.
+    *goto puzzle_line_1_en
+  #I examine the shorter Têhand passage.
+    *goto recitation_discovery_en
+
+*label recitation_discovery_en
+*set exam_room_01_recitation_found true
+Beneath the four statements lies another short passage. Unlike the narrative lines above, it has a conspicuously regular structure. Two brief sentences. Two imperatives.
+
+The passage reads:
+
+[i]Kikaggondal bîngehkundid. Rîndal durkid bîngehkundayk.[/i]
+
+Taken literally, it carries the sense of remembering what was given and making visible what became of it. As a complete translation, you read:
+
+“Remember what was given. Show what became of it.”
+
+It does not sound like another description. It sounds like an instruction to recite. That it belongs to this examination does not mean unknown Têhand words are universally safe.
+
+*choice
+  #I speak the words aloud.
+    *goto recitation_demo_en
+  *if thal_archetype = "Artisari"
+    #I give the words a melody and sing them. [Artisari]
+      *goto recitation_demo_en
+  #I refuse the recitation and solve the sequence myself.
+    *goto puzzle_line_1_en
+
+*label recitation_demo_en
+*set exam_room_01_recitation_used true
+*set exam_room_01_sequence_known true
+*set quest_exam_room_01_discovery_03 "The chamber demonstrated the sequence: Flame → Bud → Connection → Eye."
+The final word fades. For a moment, the chamber remains still.
+
+Then a single deep tone sounds. The carved lines of the Flame fill with red light. A few heartbeats later, it fades.
+
+A second tone follows, brighter than the first. The symbol of Growth awakens in green light.
+
+Then comes a third sound—or rather, two. Two tones ring out almost together, answer one another and finally meet in harmony as Connection glows gold.
+
+Last comes a muted, almost distant tone. The sign of the Veil fills with deep violet light. Then it too fades.
+
+Silence.
+
+Four colors. Four tones. One sequence.
+
+The chamber explained nothing. But it played something for you.
+*page_break Return to the symbols
+*goto puzzle_line_1_en
+
+*label puzzle_line_1_en
+*set exam_room_01_puzzle_line 1
+First line:
+
+“From their hands was given what should belong to no one alone.”
+
+Which sign answers it?
+
+*choice
+  *if exam_room_01_l1_crown
+    *selectable_if (false) #The Crown. [already tried]
+      *goto puzzle_line_1_en
+  *if (exam_room_01_l1_crown = false) and (exam_room_01_danger_known)
+    #The Crown. [Danger detected]
+      *set exam_room_01_l1_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  *if (exam_room_01_l1_crown = false) and (exam_room_01_danger_known = false)
+    #The Crown.
+      *set exam_room_01_l1_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  *if exam_room_01_l1_water
+    *selectable_if (false) #The Water. [already tried]
+      *goto puzzle_line_1_en
+  *else
+    #The Water.
+      *set exam_room_01_l1_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer_en
+  #The Flame.
+    Red spreads through the Flame’s carved lines. A warm, deep tone sounds somewhere behind the stone. The symbol remains lit.
+    *goto puzzle_line_2_en
+  *if exam_room_01_l1_sun
+    *selectable_if (false) #The Sun. [already tried]
+      *goto puzzle_line_1_en
+  *else
+    #The Sun.
+      *set exam_room_01_l1_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer_en
+
+*label puzzle_line_2_en
+*set exam_room_01_puzzle_line 2
+Second line:
+
+“Where the gift took root, life awakened and brought forth something new.”
+
+Which sign continues the story?
+*choice
+  *if exam_room_01_l2_water
+    *selectable_if (false) #The Water. [already tried]
+      *goto puzzle_line_2_en
+  *else
+    #The Water.
+      *set exam_room_01_l2_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer_en
+  #The Bud.
+    Green light spreads through the carved lines of the Bud. A second tone sounds, brighter than the first. Flame and Growth now shine together.
+    *goto puzzle_line_3_en
+  *if exam_room_01_l2_sun
+    *selectable_if (false) #The Sun. [already tried]
+      *goto puzzle_line_2_en
+  *else
+    #The Sun.
+      *set exam_room_01_l2_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer_en
+  *if exam_room_01_l2_eye
+    *selectable_if (false) #The Eye. [already tried]
+      *goto puzzle_line_2_en
+  *else
+    #The Eye.
+      *set exam_room_01_l2_eye true
+      *set wrong_symbol "eye"
+      *goto wrong_answer_en
+
+*label puzzle_line_3_en
+*set exam_room_01_puzzle_line 3
+Third line:
+
+“What had been created apart found one another and created onward together.”
+
+Which sign continues the story?
+*choice
+  *if exam_room_01_l3_crown
+    *selectable_if (false) #The Crown. [already tried]
+      *goto puzzle_line_3_en
+  *if (exam_room_01_l3_crown = false) and (exam_room_01_danger_known)
+    #The Crown. [Danger detected]
+      *set exam_room_01_l3_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  *if (exam_room_01_l3_crown = false) and (exam_room_01_danger_known = false)
+    #The Crown.
+      *set exam_room_01_l3_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  *if exam_room_01_l3_eye
+    *selectable_if (false) #The Eye. [already tried]
+      *goto puzzle_line_3_en
+  *else
+    #The Eye.
+      *set exam_room_01_l3_eye true
+      *set wrong_symbol "eye"
+      *goto wrong_answer_en
+  #The Connection.
+    Golden light travels through the Connection. This time, not one tone but two answer one another—separate at first, then together—until for one brief moment they hold the same harmony. Three symbols now shine.
+    *goto puzzle_line_4_en
+  *if exam_room_01_l3_water
+    *selectable_if (false) #The Water. [already tried]
+      *goto puzzle_line_3_en
+  *else
+    #The Water.
+      *set exam_room_01_l3_water true
+      *set wrong_symbol "water"
+      *goto wrong_answer_en
+
+*label puzzle_line_4_en
+*set exam_room_01_puzzle_line 4
+Fourth line:
+
+“But when open hands closed, a veil fell over what had once been freely given.”
+
+Which sign completes the story?
+*choice
+  *if exam_room_01_l4_crown
+    *selectable_if (false) #The Crown. [already tried]
+      *goto puzzle_line_4_en
+  *if (exam_room_01_l4_crown = false) and (exam_room_01_danger_known)
+    #The Crown. [Danger detected]
+      *set exam_room_01_l4_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  *if (exam_room_01_l4_crown = false) and (exam_room_01_danger_known = false)
+    #The Crown.
+      *set exam_room_01_l4_crown true
+      *set wrong_symbol "crown"
+      *goto wrong_answer_en
+  #The Eye.
+    A deep violet shimmer fills the sign. The fourth tone is more muted than the others, almost distant. All four symbols now shine together.
+    *goto puzzle_success_en
+  *if exam_room_01_l4_blade
+    *selectable_if (false) #The Blade. [already tried]
+      *goto puzzle_line_4_en
+  *if (exam_room_01_l4_blade = false) and (exam_room_01_danger_known)
+    #The Blade. [Danger detected]
+      *set exam_room_01_l4_blade true
+      *set wrong_symbol "blade"
+      *goto wrong_answer_en
+  *if (exam_room_01_l4_blade = false) and (exam_room_01_danger_known = false)
+    #The Blade.
+      *set exam_room_01_l4_blade true
+      *set wrong_symbol "blade"
+      *goto wrong_answer_en
+  *if exam_room_01_l4_sun
+    *selectable_if (false) #The Sun. [already tried]
+      *goto puzzle_line_4_en
+  *else
+    #The Sun.
+      *set exam_room_01_l4_sun true
+      *set wrong_symbol "sun"
+      *goto wrong_answer_en
+
+*label wrong_answer_en
+*if wrong_symbol = "crown"
+  Stone grinds overhead.
+
+  *if (exam_room_01_danger_known) and (thal_archetype = "Aegis")
+    The scraping begins above you, and in the same instant you recognize the force that pressed against your sign earlier. The stone plate drops from the ceiling. Your Thal’ithara surges through your arms and shoulders, the lines of your sign flaring across your skin as you thrust both hands upward. The stone crashes into you with tremendous force. Your knees give for a moment, but you hold until the mechanism catches and pulls the plate back upward. The crown goes dark. Wrong answer — but this time, at least, you knew what was coming.
+  *if (exam_room_01_danger_known) and (thal_archetype != "Aegis")
+    You are already moving when the mechanism engages. The heavy plate strikes the place where you stood, then withdraws into the ceiling.
+  *if exam_room_01_danger_known = false
+    You step back as a heavy plate drops from the ceiling and withdraws again.
+*if wrong_symbol = "blade"
+  *if (exam_room_01_danger_known) and (thal_archetype = "Aegis")
+    You recognize the sideways jolt. As the blunt training blade snaps from the wall, you trace a brief sign into its path and drive your strength through it. Pale light braces against the strike. The blade glances away and the mechanism pulls it back.
+  *if (exam_room_01_danger_known) and (thal_archetype != "Aegis")
+    You are already moving when the blunt training blade snaps from the wall. It cuts through empty air and withdraws.
+  *if exam_room_01_danger_known = false
+    A blunt training blade snaps from the wall. You move aside before it withdraws.
+*if wrong_symbol = "water"
+  Blue light fills the Water sign. No tone follows, and it fades.
+*if wrong_symbol = "sun"
+  The Sun flashes brightly. White spots dance before your eyes, then vanish.
+*if wrong_symbol = "eye"
+  A narrow mechanical seam opens behind the Eye and closes before you can reach it.
+
+The activated signs go dark. The sequence resets to the first line. The answer you tried remains visible but disabled for this line.
+*choice
+  #I try the sequence again.
+    *goto puzzle_line_1_en
+  *if exam_room_01_recitation_found = false
+    #I examine the Têhand passage now.
+      *goto recitation_discovery_en
+  *if exam_room_01_recitation_found
+    #I review the Têhand passage again.
+      *goto recitation_discovery_en
+
+*label puzzle_success_en
+*set exam_room_01_sequence_known true
+*if quest_exam_room_01_discovery_03 = ""
+  *set quest_exam_room_01_discovery_03 "The chamber sequence is Flame → Bud → Connection → Eye."
+
+This time, the final symbol does not fade.
+
+Red. Green. Gold. Violet.
+
+The four colours lie across the stone plates like parts of a single image. The Flame’s deep tone sounds again, followed by Growth’s brighter note. Connection’s two tones answer one another. At last, the muted sound of the Veil settles beneath them.
+
+For one moment the separate tones exist beside one another. Then they become a chord.
+
+Fine lines begin to glow in the floor. They run from one symbol to the next: Flame to Growth, Growth to Connection, and from there to Veil. What first seemed like four separate signs becomes one movement through the room.
+
+Stone grinds. Dust spills from a seam in the opposite wall. You step back. A wall you had taken for solid slowly sinks into the floor.
+
+Another chamber lies beyond.
+
+Yet before you take your first step through, your gaze returns to the stone lectern. The scroll still lies there.
+
+*choice
+  #I take the scroll with me.
+    *set exam_room_01_scroll_disposition "taken"
+    You return to the lectern and carefully roll the ancient parchment. Whatever this source originally meant—and whatever waits beyond the opened wall—you decide to keep the original with you.
+    *set quest_exam_room_01_item_01 "Têhand scroll — contains the light clue and the four hidden lines of the examination."
+    *if exam_room_01_recitation_found
+      *set quest_exam_room_01_item_01 quest_exam_room_01_item_01 & " It also contains the Têhand recitation."
+    *goto exit_room_en
+  #I copy exactly two pieces of information and leave the original.
+    *set exam_room_01_scroll_disposition "copied"
+    You do not have to take the parchment to preserve something from it. You review what you discovered and decide which information matters enough to record.
+    *goto copy_first_en
+  #I leave the scroll behind.
+    *set exam_room_01_scroll_disposition "left"
+    You leave the scroll upon the stone lectern. No copy. No original in your bag. For now, what you carry from this chamber remains only in your memory.
+    *goto exit_room_en
+
+*label copy_first_en
+Choose the first of exactly two things to preserve.
+*choice
+  #The hidden story of gift, growth, connection and veil.
+    *set exam_room_01_copy_first "story"
+    *set quest_exam_room_01_note_01 "Hidden story: gift → growth → connection → veil."
+    *goto copy_second_en
+  #The sequence: Flame → Bud → Connection → Eye.
+    *set exam_room_01_copy_first "sequence"
+    *set quest_exam_room_01_note_01 "Symbol sequence: Flame → Bud → Connection → Eye."
+    *goto copy_second_en
+  #The light clue: “What was hidden reveals itself not to the eye, but to the light.”
+    *set exam_room_01_copy_first "light"
+    *set quest_exam_room_01_note_01 "Light clue: What was hidden reveals itself not to the eye, but to the light."
+    *goto copy_second_en
+  *if exam_room_01_recitation_found
+    #The recitation: “Remember what was given. Show what became of it.”
+      *set exam_room_01_copy_first "recitation"
+      *set quest_exam_room_01_note_01 "Têhand recitation: Remember what was given. Show what became of it."
+      *goto copy_second_en
+
+*label copy_second_en
+Choose the second information to preserve.
+*choice
+  *if exam_room_01_copy_first != "story"
+    #The hidden story of gift, growth, connection and veil.
+      *set exam_room_01_copy_second "story"
+      *set quest_exam_room_01_note_02 "Hidden story: gift → growth → connection → veil."
+      *goto copy_complete_en
+  *if exam_room_01_copy_first != "sequence"
+    #The sequence: Flame → Bud → Connection → Eye.
+      *set exam_room_01_copy_second "sequence"
+      *set quest_exam_room_01_note_02 "Symbol sequence: Flame → Bud → Connection → Eye."
+      *goto copy_complete_en
+  *if exam_room_01_copy_first != "light"
+    #The light clue: “What was hidden reveals itself not to the eye, but to the light.”
+      *set exam_room_01_copy_second "light"
+      *set quest_exam_room_01_note_02 "Light clue: What was hidden reveals itself not to the eye, but to the light."
+      *goto copy_complete_en
+  *if exam_room_01_recitation_found
+    *if exam_room_01_copy_first != "recitation"
+      #The recitation: “Remember what was given. Show what became of it.”
+        *set exam_room_01_copy_second "recitation"
+        *set quest_exam_room_01_note_02 "Têhand recitation: Remember what was given. Show what became of it."
+        *goto copy_complete_en
+
+*label copy_complete_en
+You record exactly the two selected pieces, then return the scroll to the lectern.
+*goto exit_room_en
+
+*label exit_room_en
+*set quest_exam_room_01_status "completed"
+*set quest_exam_room_01_objective "The first section of the examination was deciphered and completed."
+
+You step through the opening. As soon as you cross the threshold, the stone behind you begins to move. Slowly, the wall slides back into place. The lectern disappears. Then the torches. Then the last narrow line of the chamber.
+
+With a deep sound, the passage closes. The next part of your examination lies before you.
+
+*page_break Next section
+*goto_scene en_00_exam_room_02

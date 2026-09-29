@@ -1,0 +1,58 @@
+*comment Auswertung der Ithar'kael-Abschlussprüfung mit Corvus
+
+*label start
+
+Hinter dir setzt sich Stein in Bewegung, langsam und schwer, bis der Durchgang zur letzten Prüfungskammer vollständig verschlossen ist. Für einen Moment bleibt nur die Stille des Ganges zurück. Dann bemerkst du Corvus. Er wartet einige Schritte entfernt, die Hände ruhig hinter dem Rücken verschränkt. Sein Haar ist längst vollständig ergraut, und die Jahre haben feine Linien um seine Augen und über seine Stirn gezogen. Dennoch liegt nichts Gebrechliches in seiner Haltung. Sein Blick ist so wach und ruhig wie du ihn kennst – aufmerksam auf eine Weise, die manchmal den Eindruck erweckt, als bemerke er eine Frage noch bevor jemand sie ausgesprochen hat.
+
+Corvus gehört zu jenen, die deine Ausbildung in Ithar’kael immer wieder begleitet haben. Nie als persönlicher Lehrmeister, der jeden deiner Schritte lenkte, aber oft genug, dass du seine knappen Bemerkungen ebenso kennst wie die Pausen, die ihnen vorausgehen. Eine Antwort genügte ihm selten, wenn sich dahinter noch eine bessere Frage verbarg.
+
+Heute wartet keine weitere Frage auf dich. Zumindest nicht die Art, die auf einer Prüfungsseite steht. Corvus mustert dich nicht wie jemand, der nach einem Fehler sucht, sondern wie jemand, der auf etwas gewartet hat, das nun abgeschlossen ist.
+
+„Du hast bestanden.“ Die Worte kommen ohne Zeremonie, fast sachlich. Corvus lässt einen Augenblick verstreichen. „Aber darum ging es nie allein.“ Sein Blick streift kurz die geschlossene Tür hinter dir. „Die Prüfung sollte dir keine Antwort vorschreiben. Sie sollte zeigen, wie du suchst, was du mit einer Antwort beginnst – und was du tust, wenn Wissen plötzlich greifbar wird.“ Er sieht wieder zu dir. „Im ersten Abschnitt kamst du nur weiter, indem du wirklich hingesehen hast. Nicht jede Spur war eine Antwort, und nicht alles Sichtbare war wichtig. Im zweiten Abschnitt hattest du bereits Wissen. Aber Wissen allein genügte nicht. Du musstest es einsetzen, Verbindungen herstellen und herausfinden, was davon dich tatsächlich weiterführt.“ Sein Blick wandert noch einmal zur verschlossenen Kammer. „Und im letzten Abschnitt konntest du nicht mehr nur beobachten. Du selbst wurdest Teil der Antwort. Deine Magie. Deine Fragen. Deine Vorstellung davon, was Wissen bedeutet.“
+
+*page_break Weiter
+
+*if knowledge_conviction_initial = "truth"
+  „Du hast gesagt, dass Wahrheit ans Licht gehört.“ Corvus spricht es weder anerkennend noch tadelnd aus. „Manchmal ist genau das notwendig. Aber Wahrheit wird nicht harmlos, nur weil sie wahr ist. Sie kann aufdecken, was verborgen werden sollte. Sie kann befreien. Sie kann ebenso verletzen.“ Für einen Moment schweigt er. „Die Frage ist nicht nur, ob eine Wahrheit ausgesprochen werden darf. Manchmal ist die schwierigere Frage, was geschieht, nachdem sie ausgesprochen wurde.“
+
+*if knowledge_conviction_initial = "guard"
+  „Du hast gesagt, dass manches Wissen geschützt werden muss.“ Corvus nickt kaum merklich. „Das kann Verantwortung bedeuten. Nicht alles, was gewusst werden kann, muss jedem offenstehen.“ Sein Blick bleibt ruhig. „Aber Schutz und Kontrolle können dieselbe Sprache sprechen, wenn man nicht aufpasst. Wer Wissen bewahrt, entscheidet irgendwann vielleicht auch darüber, wer es erfahren darf.“ Er lässt die Worte stehen. „Diese Grenze wird dir niemand ein für alle Mal zeigen können.“
+
+*if knowledge_conviction_initial = "gift"
+  „Du hast gesagt, dass Wissen weitergegeben werden sollte, wenn es anderen helfen kann.“ Corvus betrachtet dich einen Moment. „Geteiltes Wissen kann Dinge verändern, die ein Einzelner niemals verändern könnte.“ Dann fährt er ruhiger fort: „Aber in dem Augenblick, in dem du etwas weitergibst, entscheidest du nicht mehr allein, was daraus wird. Du kannst wählen, was du teilst. Du kannst nicht immer wählen, wofür ein anderer es benutzt.“
+
+*if knowledge_conviction_initial = "self"
+  „Du hast gesagt, dass Wissen nicht bestimmen darf, wer du bist.“ Corvus’ Stimme bleibt ruhig. „Das ist eine Unterscheidung, die viele erst spät lernen. Vergangenheit, Herkunft und selbst Wahrheit nehmen dir nicht das Recht, deinen eigenen Weg zu wählen.“ Eine kurze Pause. „Aber Selbstbestimmung bedeutet nicht, dass etwas Unbequemes aufhört wahr zu sein, nur weil du dich weigerst, dich davon bestimmen zu lassen.“
+
+Corvus schweigt einen Moment, bevor er weiterspricht. „Und dann wurde Wissen persönlich.“ Seine Stimme ist ruhiger geworden. „Nicht mehr als Gedanke. Nicht mehr als etwas, das einem Fremden gehört oder irgendwo in einem Archiv bewahrt wird. Die Replik konnte auf etwas antworten, das du selbst suchst.“ Er lässt die Worte kurz wirken. „Das ist der Punkt, an dem Wissen zur Versuchung werden kann. Nicht unbedingt, weil es verboten ist. Sondern weil es plötzlich etwas verspricht, das du selbst willst.“
+
+*if room3_replica_choice = "take"
+  „Du hast nach ihr gegriffen und versucht, sie mitzunehmen.“ Mehr sagt Corvus zunächst nicht dazu. „Vielleicht ist gerade deshalb wichtig, dass du dir merkst, was du zuvor gesagt hast.“
+
+*if room3_replica_choice = "leave"
+  „Du hast sie zurückgelassen.“ Auch darin liegt weder Lob noch Tadel. „Vielleicht ist gerade deshalb wichtig, dass du dir merkst, was du zuvor gesagt hast.“
+
+*if knowledge_conviction_initial = "truth"
+  „Du hast gesagt, Wahrheit soll ans Licht.“
+*if knowledge_conviction_initial = "guard"
+  „Du hast gesagt, manches Wissen müsse geschützt werden.“
+*if knowledge_conviction_initial = "gift"
+  „Du hast gesagt, Wissen solle anderen helfen können.“
+*if knowledge_conviction_initial = "self"
+  „Du hast gesagt, Wissen dürfe nicht bestimmen, wer du bist.“
+
+Corvus’ Blick bleibt auf dir. „Und in diesem Augenblick ging es nicht mehr um Wissen im Allgemeinen. Es ging um deins.“
+
+*page_break Weiter
+
+Corvus lässt die Stille einen Moment zwischen euch stehen. „Du hast heute gezeigt, wie du suchst. Du hast gesagt, was du über Wissen glaubst. Und du hast gehandelt, als es persönlich wurde.“ Eine kurze Pause. „Ithar’kael hat sich zum Ziel gesetzt, jede Wahrheit zu suchen, wie verborgen oder verschleiert sie auch sein mag. Wir folgen Mythen, bis wir wissen, was hinter ihnen liegt. Wir sammeln Spuren, vergleichen Berichte, prüfen Beweise und stellen selbst das infrage, was längst als Gewissheit gilt.“ Sein Blick ruht ruhig auf dir. „Aber eine Wahrheit zu finden ist nur der Anfang. Am Ende müssen wir immer entscheiden, was wir mit dem tun, was wir erfahren haben. Lassen wir ein uraltes Artefakt dort zurück, wo wir es gefunden haben, weil dieser Ort vielleicht Teil seiner Geschichte, seines Zwecks oder seines Schutzes ist? Oder nehmen wir es mit, weil wir glauben, dass Wissen bewahrt, untersucht oder anderen zugänglich gemacht werden sollte? Und was verändert sich allein dadurch, dass wir diese Entscheidung treffen?“ Corvus atmet langsam aus. „Die Ironie unserer Arbeit ist, dass wir selten mit völliger Sicherheit wissen können, ob eine Entscheidung richtig oder falsch war. Wir können nur abwägen. Hinterfragen. Verantwortung übernehmen. Und versuchen, nicht nur an das zu denken, was wir wissen wollen, sondern auch daran, was unser Wissen für andere bedeuten kann.“ Für einen Moment liegt etwas beinahe Feierliches in seiner Stimme. „Wahrheit ist keine bloße Meinung. Sie ist ein Geheimnis, das sich nur denen offenbart, die bereit sind, alles zu hinterfragen – selbst sich selbst.“
+
+*set quest_exam_status "completed"
+*set guild_rank "Envoy"
+*set quest_exam_objective "Die Abschlussprüfung ist abgeschlossen."
+
+Etwas in Corvus’ Haltung verändert sich, kaum merklich, und doch weißt du, dass die Prüfung damit wirklich vorbei ist. „Deine Abschlussprüfung ist beendet.“ Er tritt einen Schritt zur Seite und gibt den Gang frei. „Ich erwarte dich später in der Großen Halle.“ Sein Blick bleibt noch einen Augenblick auf dir. „Bis dahin gehört deine Zeit dir.“
+
+Du gehst bereits an ihm vorbei, als seine Stimme dich noch einmal erreicht. „Suche, was verborgen ist. Hinterfrage, was als Wahrheit gilt.“
+
+*goto_scene de_00_itharkael_free_time

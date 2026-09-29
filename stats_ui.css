@@ -1,0 +1,2058 @@
+.ana-expanded-stats {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+}
+
+.ana-native-stat-chart { display: none !important; }
+
+.ana-dossier-section p,
+.ana-dossier-lore p,
+.ana-echo-group p,
+.ana-choice-card-copy {
+  text-align: left;
+}
+
+/* Ithar'kael dossier */
+.ana-identity-record {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.15rem, 4vw, 2.4rem);
+  border: 1px solid rgba(255, 199, 0, 0.34);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.76);
+  background:
+    linear-gradient(90deg, transparent 0 19px, rgba(255, 199, 0, 0.06) 20px, transparent 21px),
+    radial-gradient(circle at 50% 0, rgba(147, 116, 44, 0.1), transparent 44%),
+    linear-gradient(145deg, rgba(18, 29, 18, 0.97), rgba(7, 15, 10, 0.98));
+  box-shadow: 0 0 36px rgba(255, 199, 0, 0.08), inset 0 0 45px rgba(255, 199, 0, 0.025);
+}
+
+.ana-identity-record::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(255, 199, 0, 0.08);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+.ana-dossier-header,
+.ana-dossier-section {
+  position: relative;
+  z-index: 1;
+}
+
+.ana-dossier-header {
+  padding-bottom: clamp(1.4rem, 4vw, 2rem);
+  text-align: center;
+}
+
+.ana-dossier-seal {
+  width: min(110px, 32%);
+  height: 140px;
+  margin: 0 auto 0.8rem;
+  color: rgba(255, 199, 0, 0.78);
+  filter: drop-shadow(0 0 9px rgba(255, 199, 0, 0.18));
+}
+
+.ana-dossier-seal img,
+.ana-dossier-seal svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ana-dossier-seal img {
+  display: block;
+  filter: drop-shadow(0 0 13px rgba(255, 199, 0, 0.18));
+}
+
+.ana-dossier-seal svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.ana-dossier-seal [hidden] { display: none; }
+
+.ana-dossier-header > p {
+  margin: 0 0 0.45rem;
+  color: rgba(255, 199, 0, 0.58);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+}
+
+.ana-dossier-header h2 {
+  margin: 0;
+  color: #ffc700;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.35rem, 5vw, 2.35rem);
+  line-height: 1.16;
+  letter-spacing: 0.055em;
+  text-shadow: 0 0 22px rgba(255, 199, 0, 0.18);
+}
+
+.ana-dossier-current-stats {
+  margin-top: 0;
+  text-align: left;
+}
+
+.ana-dossier-current-stats h3 {
+  margin-bottom: 1rem;
+}
+
+.ana-dossier-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ana-dossier-stat {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.82rem 0.9rem;
+  border: 1px solid rgba(255, 199, 0, 0.22);
+  border-radius: 11px;
+  background: radial-gradient(circle at 100% 50%, rgba(255, 199, 0, 0.1), transparent 45%), rgba(255, 255, 255, 0.022);
+  box-shadow: inset 0 0 16px rgba(255, 199, 0, 0.025);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+
+.ana-dossier-stat span {
+  min-width: 0;
+  color: rgba(255, 199, 0, 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  overflow-wrap: anywhere;
+}
+
+.ana-dossier-stat strong {
+  flex: 0 0 auto;
+  min-width: 2rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.94rem;
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .ana-dossier-stat:hover {
+    border-color: rgba(255, 199, 0, 0.48);
+    background-color: rgba(255, 199, 0, 0.025);
+    box-shadow: 0 0 18px rgba(255, 199, 0, 0.08), inset 0 0 18px rgba(255, 199, 0, 0.04);
+  }
+}
+
+.ana-dossier-name {
+  display: block;
+  margin: 1rem 0 1.35rem;
+  color: #f7f0d1;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(1.7rem, 6vw, 2.8rem);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ana-dossier-art {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 199, 0, 0.5);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(20, 34, 21, 0.96), rgba(4, 12, 7, 0.98));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34), 0 0 20px rgba(255, 199, 0, 0.08), inset 0 0 18px rgba(255, 199, 0, 0.04);
+}
+
+.ana-dossier-art::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255, 199, 0, 0.13);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.ana-dossier-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ana-dossier-art.is-race {
+  width: min(310px, 82%);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 1.5rem;
+}
+
+.ana-dossier-art.is-race img { object-position: center top; }
+
+.ana-dossier-art.is-homeland {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0.25rem 0 0.85rem;
+}
+
+.ana-dossier-art-fallback {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  color: rgba(255, 199, 0, 0.52);
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.06), transparent 65%);
+  text-align: center;
+}
+
+.ana-dossier-art-fallback[hidden] { display: none; }
+
+.ana-dossier-art-fallback svg {
+  width: clamp(48px, 22%, 72px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.ana-dossier-art-fallback span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ana-dossier-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid rgba(255, 199, 0, 0.2);
+}
+
+.ana-dossier-fact {
+  min-width: 0;
+  padding: 0.85rem 0.7rem;
+}
+
+.ana-dossier-fact + .ana-dossier-fact {
+  border-left: 1px solid rgba(255, 199, 0, 0.14);
+}
+
+.ana-dossier-fact span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: rgba(255, 199, 0, 0.58);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ana-dossier-fact strong {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.ana-dossier-section {
+  padding: clamp(1.15rem, 3vw, 1.65rem) 0 0;
+}
+
+.ana-dossier-section::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 1.1rem;
+  background: linear-gradient(90deg, transparent, rgba(255, 199, 0, 0.42) 14%, rgba(255, 199, 0, 0.18) 72%, transparent);
+}
+
+.ana-dossier-section h3 {
+  margin: 0 0 0.75rem;
+  color: #ffc700;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  letter-spacing: 0.05em;
+}
+
+.ana-dossier-section > p,
+.ana-dossier-lore p {
+  margin: 0;
+  line-height: 1.72;
+}
+
+.ana-dossier-entry {
+  min-width: 0;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.12);
+}
+
+.ana-dossier-entry h4 {
+  margin: 0 0 0.5rem;
+  color: rgba(255, 199, 0, 0.76);
+  font: 700 0.75rem/1.4 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ana-dossier-entry p {
+  margin: 0;
+  line-height: 1.72;
+}
+
+.ana-dossier-origin {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+}
+
+.ana-dossier-lore {
+  min-width: 0;
+  padding-right: clamp(0.8rem, 3vw, 1.5rem);
+}
+
+.ana-dossier-lore + .ana-dossier-lore {
+  padding-right: 0;
+  padding-left: clamp(0.8rem, 3vw, 1.5rem);
+  border-left: 1px solid rgba(255, 199, 0, 0.16);
+}
+
+.ana-dossier-lore h4 {
+  margin: 0 0 0.5rem;
+  color: #f7f0d1;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: 1rem;
+}
+
+.ana-dossier-lore .ana-dossier-lens {
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-style: italic;
+}
+
+.ana-dossier-lens span {
+  color: rgba(255, 199, 0, 0.72);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.ana-dossier-thal {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #f7f0d1;
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: 1.08rem;
+}
+
+.ana-thal-profile-panel {
+  padding: clamp(1rem, 3vw, 1.45rem);
+  border: 1px solid rgba(255, 199, 0, 0.24);
+  border-radius: 13px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 199, 0, 0.07), transparent 54%),
+    rgba(255, 255, 255, 0.018);
+  box-shadow: inset 0 0 28px rgba(255, 199, 0, 0.025);
+}
+
+.ana-thal-profile-panel > p {
+  margin: 0;
+  line-height: 1.76;
+}
+
+.ana-thal-profile-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.ana-thal-profile-fields .ana-dossier-entry {
+  margin: 0;
+  padding: 0.9rem;
+  border: 1px solid rgba(255, 199, 0, 0.13);
+  border-radius: 10px;
+  background: rgba(2, 9, 5, 0.28);
+}
+
+/* Visual race and homeland choices */
+.choice.ana-visual-choice-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.choice.ana-visual-choice-grid > div,
+.choice.ana-visual-choice-grid > div:first-child,
+.choice.ana-visual-choice-grid > div:last-child {
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(15, 31, 19, 0.97), rgba(5, 13, 8, 0.99));
+}
+
+.choice label.ana-visual-choice {
+  position: relative;
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto 1fr;
+  align-items: stretch;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ana-visual-choice > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ana-visual-choice:has(input:focus-visible) {
+  outline: 2px solid #ffc700;
+  outline-offset: -3px;
+}
+
+.ana-choice-card-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(2, 9, 5, 0.96);
+}
+
+.ana-choice-card-media.is-race { aspect-ratio: 4 / 3; }
+.ana-choice-card-media.is-homeland { aspect-ratio: 16 / 9; }
+
+.ana-choice-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ana-choice-card-media.is-race img { object-position: center 24%; }
+
+.ana-choice-card-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  align-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: rgba(255, 199, 0, 0.52);
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.07), transparent 68%);
+  text-align: center;
+}
+
+.ana-choice-card-fallback[hidden] { display: none; }
+
+.ana-choice-card-fallback svg {
+  width: 52px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.ana-choice-card-fallback span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ana-choice-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.48rem;
+  padding: 0.9rem 1rem 1rem;
+  text-align: left;
+}
+
+.ana-choice-card-copy strong {
+  color: #ffc700;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+.ana-choice-card-copy > span {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.ana-choice-card-copy em {
+  margin-top: auto;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.13);
+  color: rgba(255, 199, 0, 0.68);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.choice.ana-visual-choice-grid > div:has(.ana-visual-choice.is-selected),
+.choice.ana-visual-choice-grid > div:has(input:checked) {
+  border-color: #ffc700;
+  box-shadow: 0 0 24px rgba(255, 199, 0, 0.22), inset 0 0 18px rgba(255, 199, 0, 0.05);
+}
+
+/* Collectible Threads of Fate gallery */
+.ana-fate-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(108px, 150px));
+  gap: clamp(0.9rem, 2.5vw, 1.35rem);
+  justify-content: center;
+  align-items: start;
+}
+
+.ana-fate-gallery .ana-fate-card {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid rgba(255, 199, 0, 0.42);
+  border-radius: 12px;
+  color: #ffc700;
+  background: linear-gradient(145deg, rgba(12, 25, 15, 0.96), rgba(3, 10, 6, 0.98));
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.38), 0 0 14px rgba(255, 199, 0, 0.06), inset 0 0 12px rgba(255, 199, 0, 0.035);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ana-fate-gallery .ana-fate-card img {
+  width: 100%;
+  aspect-ratio: 10 / 16;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.ana-fate-gallery .ana-fate-card span { display: none; }
+
+.ana-fate-gallery .ana-fate-card:hover,
+.ana-fate-gallery .ana-fate-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 199, 0, 0.82);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 18px rgba(255, 199, 0, 0.16);
+}
+
+.ana-echo-group { border-top: 1px solid rgba(255, 199, 0, 0.16); }
+
+.ana-echo-group summary {
+  cursor: pointer;
+  padding: 1rem 0;
+  color: #ffc700;
+  font-weight: 700;
+  list-style: none;
+}
+
+.ana-echo-group summary::-webkit-details-marker { display: none; }
+.ana-echo-group[open] summary { text-shadow: 0 0 12px rgba(255,199,0,.22); }
+.ana-echo-group p { margin: 0 0 1rem; line-height: 1.7; }
+
+@media (max-width: 720px) {
+  .ana-dossier-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ana-dossier-fact:nth-child(3) { border-left: 0; }
+  .ana-dossier-fact:nth-child(n + 3) { border-top: 1px solid rgba(255, 199, 0, 0.14); }
+  .ana-dossier-origin { grid-template-columns: 1fr; }
+  .ana-dossier-lore,
+  .ana-dossier-lore + .ana-dossier-lore { padding: 0; border-left: 0; }
+  .ana-dossier-lore + .ana-dossier-lore { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 199, 0, 0.12); }
+  .ana-thal-profile-fields { grid-template-columns: 1fr; }
+  .ana-dossier-stat-grid { grid-template-columns: 1fr; }
+  .ana-fate-gallery { grid-template-columns: repeat(2, minmax(100px, 145px)); }
+  .choice.ana-visual-choice-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .ana-identity-record { padding-inline: 1rem; }
+  .ana-dossier-header > p { letter-spacing: 0.11em; }
+  .ana-dossier-art.is-race { width: min(270px, 92%); }
+  .ana-dossier-seal { width: min(84px, 30%); height: 110px; }
+  .ana-fate-gallery { grid-template-columns: minmax(104px, 145px); justify-content: center; }
+}
+
+/* Touch layouts keep visual identity choices compact so scrolling exposes
+   several options at once.  Desktop/tablet rules above remain unchanged. */
+@media (max-width: 699px) {
+  .choice.ana-visual-choice-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    align-content: start;
+    align-items: start;
+    gap: 12px;
+  }
+  .choice.ana-visual-choice-grid > div,
+  .choice.ana-visual-choice-grid > div:first-child,
+  .choice.ana-visual-choice-grid > div:last-child {
+    height: auto;
+    min-height: 44px;
+    align-self: start;
+  }
+  .choice label.ana-visual-choice {
+    grid-template-columns: minmax(88px, 29%) minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: stretch;
+    height: auto;
+    width: 100%;
+    min-height: 0;
+    touch-action: pan-y;
+  }
+  .ana-choice-card-media.is-race,
+  .ana-choice-card-media.is-homeland {
+    display: block;
+    width: 100%;
+    min-height: 96px;
+    max-height: 128px;
+    aspect-ratio: auto;
+  }
+  .ana-choice-card-media img { width: 100%; height: 100%; object-fit: contain; }
+  .ana-choice-card-media.is-homeland img { object-fit: cover; }
+  .ana-choice-card-copy { min-width: 0; padding: .65rem .85rem .7rem; gap: .22rem; }
+  .ana-choice-card-copy strong { font-size: .94rem; line-height: 1.2; overflow-wrap: normal; word-break: normal; }
+  .ana-choice-card-copy > span { font-size: .8rem; line-height: 1.35; overflow-wrap: break-word; word-break: normal; }
+}
+
+@media (max-width: 359px) {
+  .choice.ana-visual-choice-grid { grid-template-columns: 1fr; }
+  .choice label.ana-visual-choice { grid-template-columns: 82px minmax(0, 1fr); min-height: 0; }
+  .ana-choice-card-media.is-race,
+  .ana-choice-card-media.is-homeland { min-height: 88px; max-height: 112px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ana-dossier-stat { transition: none; }
+  .ana-fate-gallery .ana-fate-card { transition: none; }
+  .ana-fate-gallery .ana-fate-card:hover,
+  .ana-fate-gallery .ana-fate-card:focus-visible { transform: none; }
+}
+
+.ac-travel-items{border-top:1px solid rgba(255,199,0,.22)}
+.ac-travel-item{padding:clamp(18px,3vw,28px);border:1px solid rgba(255,199,0,.2);border-radius:12px;background:rgba(3,14,8,.5)}
+.ac-travel-item h3{margin:0 0 12px;color:#ffc700}.ac-travel-item h4{margin:20px 0 7px;color:rgba(255,199,0,.82);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}.ac-travel-item p{margin:0;line-height:1.7;text-align:left}
+.ac-download-sheet{display:block;min-height:46px;margin:0 auto 28px;padding:12px 22px;border:1px solid rgba(255,199,0,.55);border-radius:999px;color:#ffc700;background:rgba(7,18,38,.84);font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.ac-download-sheet:hover{box-shadow:0 0 22px rgba(255,199,0,.18)}.ac-download-sheet:focus-visible{outline:2px solid #fff;outline-offset:3px}.ac-download-sheet:disabled{opacity:.65;cursor:wait}
+
+.character-sheet-export-wrapper{position:absolute;top:0;left:-100000px;z-index:0;width:1120px;min-width:1120px;max-width:1120px;overflow:visible;background:#030a18;pointer-events:none}
+.character-sheet-export-wrapper .is-export-clone{width:1120px!important;min-width:1120px!important;max-width:1120px!important;box-sizing:border-box!important;transform:none!important;filter:none!important;animation:none!important}
+.character-sheet-export-wrapper .is-export-clone *,
+.character-sheet-export-wrapper .is-export-clone *::before,
+.character-sheet-export-wrapper .is-export-clone *::after{box-sizing:border-box!important;animation:none!important;transition:none!important}
+.character-sheet-export-wrapper .is-export-clone .ac-download-sheet,
+.character-sheet-export-wrapper .is-export-clone button{display:none!important}
+.character-sheet-export-wrapper .is-export-clone img{max-width:100%!important;object-fit:contain!important}
+.character-sheet-export-wrapper .is-export-clone .ac-character-reveal{grid-template-columns:minmax(340px,.8fr) minmax(0,1.2fr)!important}
+.character-sheet-export-wrapper .is-export-clone .ac-art.is-race-portrait{min-height:620px!important}
+.character-sheet-export-wrapper .is-export-clone .ac-art.is-race-portrait img{width:100%!important;height:100%!important;object-position:center bottom!important}
+.character-sheet-export-wrapper .is-export-clone .ac-fact-strip{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.character-sheet-export-wrapper .is-export-clone .ac-world-card.is-homeland-profile{grid-template-columns:minmax(320px,.8fr) minmax(0,1.2fr)!important}
+.character-sheet-export-wrapper .is-export-clone .ac-magic-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.character-sheet-export-wrapper .is-export-clone .ac-magic-facts .is-manifestation{grid-column:1/-1!important}
+.ac-export-preview{position:fixed;inset:0;z-index:16000;display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:rgba(0,0,0,.9)}
+.ac-export-preview-dialog{display:flex;flex-direction:column;width:min(100%,760px);max-height:calc(100dvh - 24px);padding:14px;overflow:auto;border:1px solid rgba(255,199,0,.48);border-radius:14px;background:#030a18}
+.ac-export-preview-dialog img{display:block;width:100%;height:auto;object-fit:contain}
+.ac-export-preview-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:sticky;bottom:0;padding:14px 0 0;background:#030a18}
+.ac-export-preview-actions a,.ac-export-preview-actions button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:10px 18px;border:1px solid rgba(255,199,0,.6);border-radius:999px;color:#ffc700;background:#071226;text-decoration:none;cursor:pointer}
+.as-tabs button.is-active{color:#081109!important;text-shadow:0 1px rgba(255,255,255,.25)}
+.as-tabs button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Unified in-game archive UI */
+.ananthara-game-ui {
+  --ananthara-black: #030805;
+  --ananthara-green: #0b1f10;
+  --ananthara-gold: #ffc700;
+  --ananthara-ivory: #f7f0d1;
+  --ananthara-muted: rgba(255, 255, 255, 0.68);
+  --ananthara-line: rgba(255, 199, 0, 0.24);
+  --ananthara-panel: rgba(7, 18, 10, 0.82);
+  width: min(calc(100vw - 3rem), 1360px);
+  max-width: none;
+  margin: clamp(1rem, 3vw, 1.8rem) auto 0;
+  color: var(--ananthara-muted);
+  overflow-x: hidden;
+}
+
+.ananthara-game-ui *,
+.ananthara-game-ui *::before,
+.ananthara-game-ui *::after,
+.ac-modal *,
+.ac-modal *::before,
+.ac-modal *::after {
+  box-sizing: border-box;
+}
+
+body:has(.ananthara-game-ui) #container1.container {
+  width: min(calc(100vw - 2rem), 1420px);
+  max-width: none;
+  padding-inline: clamp(12px, 2vw, 28px);
+}
+
+body.ana-stats-active #container1.container {
+  width: min(calc(100vw - 2rem), 1420px) !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+  padding-inline: clamp(12px, 2vw, 28px) !important;
+}
+
+body.ana-stats-active #main,
+body.ana-stats-active #text {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body.ana-stats-active #main {
+  padding: clamp(12px, 2vw, 28px) !important;
+}
+
+body.ana-stats-active #text {
+  padding: 0 !important;
+}
+
+body.ana-stats-active .ananthara-game-ui,
+body.ana-stats-active .as-tabs,
+body.ana-stats-active .as-panel {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+body:has(.ananthara-game-ui) #main {
+  width: 100%;
+  max-width: none;
+  padding: clamp(18px, 2.2vw, 32px);
+}
+
+body:has(.ananthara-game-ui) #text {
+  width: 100%;
+  max-width: none;
+}
+
+body:has(.ananthara-game-ui) #buttons {
+  flex-wrap: wrap;
+}
+
+.as-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  width: min(100%, 1280px);
+  margin: 0 auto 1rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(255, 199, 0, 0.18);
+  border-radius: 999px;
+  background: rgba(2, 8, 4, 0.45);
+}
+
+.as-back-button {
+  display: block;
+  min-height: 44px;
+  margin: 0 auto 0.85rem;
+  padding: 0.72rem 1.35rem;
+  border: 1px solid rgba(255, 199, 0, 0.55);
+  border-radius: 999px;
+  color: #ffc700;
+  background: rgba(2, 8, 4, 0.72);
+  font: 700 0.78rem/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.as-back-button:hover,
+.as-back-button:focus-visible {
+  border-color: #ffc700;
+  background: rgba(255, 199, 0, 0.08);
+  box-shadow: 0 0 18px rgba(255, 199, 0, 0.2);
+  outline: none;
+}
+
+.as-tabs button {
+  min-height: 44px;
+  min-width: min(100%, 9rem);
+  padding: 0.75rem 1.15rem;
+  border: 1px solid rgba(255, 199, 0, 0.25);
+  border-radius: 999px;
+  color: rgba(255, 199, 0, 0.72);
+  background: rgba(255, 199, 0, 0.035);
+  font: 700 0.74rem/1.1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.as-tabs button.is-active,
+.as-tabs button:hover,
+.as-tabs button:focus-visible {
+  color: #071109;
+  border-color: rgba(255, 199, 0, 0.9);
+  background: linear-gradient(135deg, #ffc700, #b8941e);
+  box-shadow: 0 0 22px rgba(255, 199, 0, 0.2);
+  outline: none;
+}
+
+.as-panel {
+  min-width: 0;
+  width: 100%;
+}
+
+.ananthara-character-sheet {
+  position: relative;
+  width: min(100%, 1280px);
+  max-width: none;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 199, 0, 0.42);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(46, 106, 64, 0.2), transparent 27%),
+    repeating-linear-gradient(0deg, transparent 0 35px, rgba(255, 199, 0, 0.016) 36px),
+    linear-gradient(145deg, rgba(8, 19, 11, 0.99), rgba(3, 8, 5, 0.995));
+  box-shadow:
+    0 0 38px rgba(255, 199, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 199, 0, 0.07),
+    inset 0 0 58px rgba(0, 0, 0, 0.34);
+}
+
+.ananthara-character-sheet::before,
+.ananthara-character-sheet::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.ananthara-character-sheet::before {
+  inset: 0.55rem;
+  border: 1px solid rgba(255, 199, 0, 0.09);
+  border-radius: 12px;
+}
+
+.ananthara-character-sheet::after {
+  inset: auto 10% 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 199, 0, 0.65), transparent);
+}
+
+.ac-header,
+.ac-character-reveal,
+.ac-fact-strip,
+.ac-section,
+.ac-magic-profile {
+  position: relative;
+  z-index: 1;
+}
+
+.ac-header {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 0.25rem 0.5rem 1rem;
+}
+
+.ac-seal {
+  width: clamp(78px, 17vw, 116px);
+  height: clamp(86px, 18vw, 128px);
+  margin-bottom: 0.45rem;
+  color: rgba(255, 199, 0, 0.78);
+  filter: drop-shadow(0 0 12px rgba(255, 199, 0, 0.18));
+}
+
+.ac-seal img,
+.ac-seal svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ac-seal svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.ac-seal [hidden] { display: none; }
+
+.ac-eyebrow {
+  margin: 0 0 0.3rem;
+  color: rgba(255, 199, 0, 0.68);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.ac-title {
+  margin: 0;
+  max-width: 100%;
+  color: var(--ananthara-gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.35rem, 4.6vw, 2.45rem);
+  line-height: 1.14;
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 22px rgba(255, 199, 0, 0.18);
+}
+
+.ac-name {
+  display: block;
+  margin: 0.8rem 0 0.65rem;
+  max-width: 100%;
+  color: var(--ananthara-ivory);
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(1.65rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.ac-divider,
+.ac-section-title {
+  width: min(100%, 44rem);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  color: rgba(255, 199, 0, 0.75);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ac-divider::before,
+.ac-divider::after,
+.ac-section-title::before,
+.ac-section-title::after {
+  content: "";
+  border-top: 1px solid rgba(255, 199, 0, 0.3);
+}
+
+.ac-section-title {
+  margin: 0 0 1rem;
+  width: 100%;
+}
+
+.ac-character-reveal {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.8fr) minmax(0, 1.2fr);
+  overflow: hidden;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.46);
+  border-bottom: 1px solid rgba(255, 199, 0, 0.46);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(54, 125, 75, 0.28), transparent 40%),
+    linear-gradient(120deg, rgba(12, 31, 17, 0.9), rgba(3, 9, 5, 0.92));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+
+.ac-art {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, rgba(68, 145, 88, 0.28), transparent 56%), rgba(2, 8, 4, 0.92);
+}
+
+.ac-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.ac-art.is-race-portrait {
+  min-height: clamp(32rem, 46vw, 43rem);
+}
+
+.ac-art.is-race-portrait img {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.ac-art.is-homeland {
+  height: clamp(10rem, 28vw, 15rem);
+  border-bottom: 1px solid rgba(255, 199, 0, 0.18);
+}
+
+.ac-art.is-oracle-card {
+  min-height: 17rem;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  border-right: 1px solid rgba(255, 199, 0, 0.2);
+}
+
+.ac-art.is-oracle-card img {
+  width: auto;
+  height: auto;
+  max-width: min(12rem, 70vw);
+  max-height: 15rem;
+  border-radius: 8px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55));
+}
+
+.ac-art.is-oracle-thumb {
+  aspect-ratio: 10 / 16;
+  border-radius: 8px;
+}
+
+.ac-art.is-oracle-large {
+  width: min(220px, 70vw);
+  aspect-ratio: 10 / 16;
+  margin: 0 auto 1rem;
+  border: 1px solid rgba(255, 199, 0, 0.3);
+  border-radius: 10px;
+}
+
+.ac-art-fallback {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  padding: 1rem;
+  color: rgba(255, 199, 0, 0.52);
+  text-align: center;
+}
+
+.ac-art-fallback[hidden] { display: none; }
+
+.ac-art-fallback svg {
+  width: clamp(48px, 22%, 80px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.ac-art-fallback span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ac-character-copy {
+  position: relative;
+  min-width: 0;
+  padding: clamp(1.15rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ac-character-copy::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(1.15rem, 3vw, 2rem);
+  width: 5rem;
+  border-top: 2px solid var(--ananthara-gold);
+}
+
+.ac-character-copy h3,
+.ac-magic-profile h3,
+.ac-world-card h3,
+.ac-oracle-copy h3,
+.ac-modal-dialog h2 {
+  margin: 0;
+  color: var(--ananthara-gold);
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.ac-character-copy h3 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+}
+
+.ac-lede,
+.ac-story,
+.ac-world-card p:not(.ac-eyebrow),
+.ac-field p,
+.ac-magic-description,
+.ac-magic-facts dd,
+.ac-magic-note,
+.ac-oracle-copy p:not(.ac-eyebrow),
+.aj-copy p,
+.ac-modal-dialog p {
+  line-height: 1.72;
+}
+
+.ananthara-character-sheet .ac-lede,
+.ananthara-character-sheet .ac-story,
+.ananthara-character-sheet .ac-world-card p:not(.ac-eyebrow),
+.ananthara-character-sheet .ac-field p,
+.ananthara-character-sheet .ac-magic-description,
+.ananthara-character-sheet .ac-magic-facts dd,
+.ananthara-character-sheet .ac-magic-note,
+.ananthara-character-sheet .ac-oracle-copy p:not(.ac-eyebrow),
+.ananthara-journey-log .aj-copy p,
+.ac-modal-dialog p:not(.ac-eyebrow) {
+  text-align: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.ac-lede {
+  max-width: 68rem;
+  margin: 0.85rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.93rem, 2vw, 1.05rem);
+}
+
+.ac-story {
+  position: relative;
+  margin: 1rem 0 0;
+  padding: 1rem 0 0 1.15rem;
+  border-left: 2px solid rgba(255, 199, 0, 0.45);
+  color: rgba(255, 255, 255, 0.86);
+  font-family: Georgia, serif;
+  font-size: clamp(1rem, 2.3vw, 1.18rem);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.ac-fact-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1rem 0 0;
+  border-block: 1px solid rgba(255, 199, 0, 0.22);
+}
+
+.ac-fact-strip div {
+  min-width: 0;
+  padding: 0.85rem 0.7rem;
+}
+
+.ac-fact-strip div + div {
+  border-left: 1px solid rgba(255, 199, 0, 0.14);
+}
+
+.ac-fact-strip dt {
+  margin: 0 0 0.25rem;
+  color: rgba(255, 199, 0, 0.62);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ac-fact-strip dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: anywhere;
+}
+
+.ac-section {
+  margin-top: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.ac-world-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 0.9rem;
+}
+
+.ac-world-card {
+  min-width: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 199, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 199, 0, 0.3);
+  background: rgba(5, 15, 8, 0.56);
+}
+
+.ac-world-card.is-homeland-profile {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.2fr);
+  grid-column: 1 / -1;
+}
+
+.ac-world-card > div,
+.ac-world-card.is-record {
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.ac-world-card h3 {
+  font-size: clamp(1.25rem, 3.2vw, 1.75rem);
+}
+
+.ac-world-card p {
+  margin: 0.55rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ac-field {
+  margin-top: 0.95rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.15);
+}
+
+.ac-character-copy .ac-field {
+  margin-top: 1.15rem;
+}
+
+.ac-field h4 {
+  margin: 0 0 0.35rem;
+  color: rgba(255, 199, 0, 0.78);
+  font: 700 0.66rem/1.35 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ac-field p { margin: 0; color: rgba(255, 255, 255, 0.74); }
+
+.ac-magic-profile {
+  margin-top: clamp(1.2rem, 3vw, 1.8rem);
+  padding: clamp(1.2rem, 3vw, 2rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 199, 0, 0.5);
+  background:
+    radial-gradient(circle at 9% 9%, rgba(255, 199, 0, 0.1), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(52, 122, 72, 0.28), transparent 35%),
+    linear-gradient(140deg, rgba(11, 30, 16, 0.98), rgba(3, 9, 5, 0.99));
+  box-shadow: inset 0 0 55px rgba(0, 0, 0, 0.34), 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+.ac-magic-profile::after {
+  content: "";
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px solid rgba(255, 199, 0, 0.1);
+  pointer-events: none;
+}
+
+.ac-magic-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.ac-magic-symbol {
+  flex: 0 0 auto;
+  width: clamp(3.4rem, 10vw, 5.2rem);
+  color: rgba(255, 199, 0, 0.86);
+  filter: drop-shadow(0 0 12px rgba(255, 199, 0, 0.22));
+}
+
+.ac-magic-symbol svg {
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ac-magic-profile h3 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+.ac-magic-description {
+  position: relative;
+  z-index: 1;
+  max-width: 54rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ac-magic-facts {
+  position: relative;
+  z-index: 1;
+  margin: 1.15rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.2rem;
+}
+
+.ac-magic-facts div {
+  min-width: 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 199, 0, 0.23);
+}
+
+.ac-magic-facts .is-manifestation {
+  grid-column: 1 / -1;
+}
+
+.ac-magic-facts .is-manifestation dd {
+  max-width: 68rem;
+}
+
+.ac-magic-facts dt {
+  color: rgba(255, 199, 0, 0.84);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ac-magic-facts dd {
+  margin: 0.4rem 0 0;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.ac-magic-note {
+  position: relative;
+  z-index: 1;
+  margin: 1.05rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.16);
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+.ac-oracle-record {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(170px, 0.36fr) minmax(0, 1fr);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 199, 0, 0.48);
+  border-radius: 0;
+  color: inherit;
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255, 199, 0, 0.1), transparent 26%),
+    linear-gradient(120deg, rgba(12, 30, 16, 0.96), rgba(3, 9, 5, 0.99));
+  box-shadow: inset 0 0 0 4px rgba(3, 9, 5, 0.72), inset 0 0 0 5px rgba(255, 199, 0, 0.08);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ac-oracle-copy {
+  padding: clamp(1.1rem, 3vw, 1.55rem);
+}
+
+.ac-oracle-copy h3 {
+  font-size: clamp(1.35rem, 3.5vw, 2rem);
+}
+
+.ac-oracle-omen {
+  color: rgba(255, 199, 0, 0.76) !important;
+  font-style: italic;
+}
+
+.ac-oracle-copy small,
+.ac-modal-dialog small {
+  display: block;
+  margin-top: 0.8rem;
+  color: rgba(255, 199, 0, 0.6);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.ac-attribute-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.ac-attribute-tile {
+  position: relative;
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 199, 0, 0.24);
+  border-radius: 12px;
+  background: radial-gradient(circle at 100% 50%, rgba(255, 199, 0, 0.1), transparent 45%), rgba(255, 255, 255, 0.025);
+  box-shadow: inset 0 0 16px rgba(255, 199, 0, 0.025);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ac-attribute-tile span {
+  display: block;
+  color: rgba(255, 199, 0, 0.74);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+}
+
+.ac-attribute-tile strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 1.15rem;
+}
+
+.ac-attribute-bar {
+  display: block;
+  height: 5px;
+  margin-top: 0.7rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ac-attribute-bar::before {
+  content: "";
+  display: block;
+  width: calc(var(--value) * 1%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255, 199, 0, 0.45), #ffc700);
+  box-shadow: 0 0 12px rgba(255, 199, 0, 0.35);
+}
+
+.ac-attribute-tile:hover {
+  border-color: rgba(255, 199, 0, 0.52);
+  box-shadow: 0 0 18px rgba(255, 199, 0, 0.08), inset 0 0 18px rgba(255, 199, 0, 0.04);
+}
+
+.ananthara-quest-log,
+.ananthara-journey-log,
+.ananthara-attribute-overview {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.25rem);
+  border: 1px solid rgba(255, 199, 0, 0.34);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(46, 106, 64, 0.15), transparent 34%),
+    linear-gradient(145deg, rgba(8, 19, 11, 0.97), rgba(3, 8, 5, 0.99));
+  box-shadow: 0 0 32px rgba(255, 199, 0, 0.06), inset 0 0 36px rgba(0, 0, 0, 0.26);
+}
+
+.aq-group + .aq-group {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.22);
+}
+
+.aq-group-title {
+  margin: 0 0 0.9rem;
+  color: rgba(255, 199, 0, 0.78);
+  font: 700 0.72rem/1.35 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.aq-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.aq-card {
+  min-width: 0;
+  border: 1px solid rgba(255, 199, 0, 0.24);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(255, 199, 0, 0.08), transparent 34%),
+    rgba(255, 255, 255, 0.022);
+  box-shadow: inset 0 0 24px rgba(255, 199, 0, 0.025);
+}
+
+.aq-card.is-completed {
+  border-color: rgba(190, 190, 176, 0.2);
+  background: rgba(200, 210, 200, 0.025);
+  filter: saturate(0.58);
+}
+
+.aq-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  padding: clamp(1rem, 2.5vw, 1.45rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.aq-card-header::-webkit-details-marker {
+  display: none;
+}
+
+.aq-card-header:focus-visible {
+  outline: 2px solid var(--ananthara-gold);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.aq-card-body {
+  padding: 0 clamp(1rem, 2.5vw, 1.45rem) clamp(1rem, 2.5vw, 1.45rem);
+  animation: aq-reveal 180ms ease-out;
+}
+
+.aq-meta {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 0.65rem;
+}
+
+.aq-toggle {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: rgba(255, 199, 0, 0.75);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.aq-card[open] .aq-toggle {
+  transform: rotate(180deg);
+}
+
+@keyframes aq-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.aq-heading {
+  min-width: 0;
+}
+
+.aq-type {
+  display: block;
+  color: rgba(255, 199, 0, 0.6);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.aq-heading h3 {
+  margin: 0.3rem 0 0;
+  color: var(--ananthara-gold);
+  font-family: "AnantharaTitle", Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.16;
+  overflow-wrap: break-word;
+}
+
+.aq-status {
+  flex: 0 0 auto;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid rgba(255, 199, 0, 0.36);
+  border-radius: 999px;
+  color: rgba(255, 199, 0, 0.82);
+  background: rgba(255, 199, 0, 0.055);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aq-objective {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-left: 2px solid rgba(255, 199, 0, 0.58);
+  background: rgba(2, 9, 5, 0.32);
+}
+
+.aq-objective h4,
+.aq-detail h4 {
+  margin: 0 0 0.45rem;
+  color: rgba(255, 199, 0, 0.76);
+  font: 700 0.68rem/1.35 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.aq-objective p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.65;
+}
+
+.aq-detail {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 199, 0, 0.13);
+}
+
+.aq-detail ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.aq-detail li {
+  padding-left: 0.15rem;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.62;
+  overflow-wrap: break-word;
+}
+
+.aq-detail li + li {
+  margin-top: 0.42rem;
+}
+
+.aq-rooms { display: grid; gap: .7rem; margin-top: 1.1rem; }
+.aq-room { border: 1px solid rgba(255,199,0,.16); border-radius: 10px; background: rgba(0,0,0,.16); }
+.aq-room.is-completed { opacity: .72; filter: saturate(.55); }
+.aq-room.is-locked { opacity: .5; }
+.aq-room-summary { display: flex; justify-content: space-between; gap: 1rem; min-height: 44px; padding: .8rem 1rem; cursor: pointer; color: rgba(255,255,255,.82); }
+.aq-room-summary strong { color: var(--ananthara-gold); }
+.aq-room-summary span { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.aq-room-body { padding: 0 1rem 1rem; }
+
+.aj-timeline {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0 0 0 1.4rem;
+  list-style: none;
+}
+
+.aj-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.8rem;
+  bottom: 0.8rem;
+  border-left: 1px solid rgba(255, 199, 0, 0.28);
+}
+
+.aj-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+}
+
+.aj-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 199, 0, 0.44);
+  border-radius: 999px;
+  color: var(--ananthara-gold);
+  background: #071109;
+  box-shadow: 0 0 16px rgba(255, 199, 0, 0.08);
+}
+
+.aj-copy {
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 199, 0, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.aj-copy small {
+  color: rgba(255, 199, 0, 0.58);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.aj-copy h3 {
+  margin: 0.25rem 0 0.45rem;
+  color: var(--ananthara-gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.aj-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.ac-empty {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  text-align: center;
+  line-height: 1.7;
+}
+
+.ac-modal {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: rgba(1, 5, 3, 0.78);
+  backdrop-filter: blur(8px);
+  animation: ac-modal-backdrop-in 0.28s ease both;
+}
+
+.ac-modal-dialog {
+  width: min(100%, 34rem);
+  max-height: min(90dvh, 760px);
+  overflow: auto;
+  padding: clamp(1rem, 4vw, 1.6rem);
+  border: 1px solid rgba(255, 199, 0, 0.52);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  background: linear-gradient(145deg, rgba(9, 22, 12, 0.98), rgba(3, 8, 5, 0.99));
+  box-shadow: 0 0 45px rgba(255, 199, 0, 0.16), inset 0 0 38px rgba(255, 199, 0, 0.04);
+  text-align: center;
+  animation: ac-modal-dialog-in 0.48s cubic-bezier(0.2, 0.78, 0.2, 1) both;
+}
+
+@keyframes ac-modal-backdrop-in {
+  from { opacity: 0; backdrop-filter: blur(0); }
+  to { opacity: 1; backdrop-filter: blur(8px); }
+}
+
+@keyframes ac-modal-dialog-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.965); filter: blur(3px); }
+  65% { opacity: 1; }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.ac-modal-dialog h2 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(1.5rem, 8vw, 2.35rem);
+  text-align: center;
+}
+
+.ac-modal-dialog p {
+  margin: 0.7rem 0 0;
+}
+
+.ac-close {
+  min-height: 44px;
+  margin: 1.2rem auto 0;
+  padding: 0.8rem 1.35rem;
+  border: 1px solid rgba(255, 199, 0, 0.7);
+  border-radius: 999px;
+  color: #071109;
+  background: linear-gradient(135deg, #ffc700, #b8941e);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ac-oracle-thumb {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid rgba(255, 199, 0, 0.42);
+  border-radius: 12px;
+  color: #ffc700;
+  background: linear-gradient(145deg, rgba(12, 25, 15, 0.96), rgba(3, 10, 6, 0.98));
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.38), 0 0 14px rgba(255, 199, 0, 0.06), inset 0 0 12px rgba(255, 199, 0, 0.035);
+  cursor: pointer;
+}
+
+.ac-oracle-thumb span {
+  display: block;
+  padding: 0.55rem 0.25rem 0.25rem;
+  color: rgba(255, 199, 0, 0.78);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .ac-world-grid {
+    grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .ac-character-copy {
+    padding: clamp(1.7rem, 3vw, 2.6rem);
+  }
+
+  .ac-section {
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+  .ananthara-game-ui {
+    width: min(calc(100% - 1.5rem), 1180px);
+  }
+
+  .ananthara-character-sheet,
+  .ananthara-quest-log,
+  .ananthara-journey-log,
+  .ananthara-attribute-overview {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .ac-character-reveal {
+    grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.22fr);
+  }
+
+  .ac-art.is-race-portrait {
+    min-height: clamp(21rem, 48vw, 32rem);
+  }
+
+  .ac-world-grid {
+    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  .ac-world-card.is-homeland-profile {
+    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  .ac-fact-strip,
+  .ac-attribute-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ac-fact-strip div:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .ac-fact-strip div:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 199, 0, 0.14);
+  }
+}
+
+@media (max-width: 699px) {
+  .ac-character-reveal,
+  .ac-world-grid,
+  .ac-oracle-record,
+  .ac-world-card.is-homeland-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-art.is-oracle-card {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 199, 0, 0.2);
+  }
+
+  .ac-fact-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ac-fact-strip div:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .ac-fact-strip div:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 199, 0, 0.14);
+  }
+}
+
+@media (max-width: 699px) {
+  .ananthara-game-ui {
+    width: min(calc(100vw - 0.75rem), 100%);
+  }
+
+  body:has(.ananthara-game-ui) #container1.container {
+    width: min(calc(100vw - 0.5rem), 100%);
+    padding-left: max(0.25rem, env(safe-area-inset-left));
+    padding-right: max(0.25rem, env(safe-area-inset-right));
+  }
+
+  body:has(.ananthara-game-ui) #main {
+    padding: clamp(10px, 3.5vw, 16px);
+  }
+
+  .as-tabs {
+    border-radius: 18px;
+    width: 100%;
+  }
+
+  .as-tabs button {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  .ananthara-character-sheet {
+    padding: clamp(0.875rem, 4vw, 1.125rem);
+    border-radius: 14px;
+  }
+
+  .ananthara-journey-log,
+  .ananthara-quest-log,
+  .ananthara-attribute-overview {
+    padding: clamp(0.875rem, 4vw, 1.125rem);
+  }
+
+  .ac-art.is-race-portrait {
+    min-height: clamp(18rem, 96vw, 30rem);
+  }
+
+  .ac-art.is-homeland {
+    height: clamp(9rem, 45vw, 14rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .ananthara-character-sheet .ac-lede,
+  .ananthara-character-sheet .ac-story,
+  .ananthara-character-sheet .ac-world-card p:not(.ac-eyebrow),
+  .ananthara-character-sheet .ac-field p,
+  .ananthara-character-sheet .ac-magic-description,
+  .ananthara-character-sheet .ac-magic-facts dd,
+  .ananthara-character-sheet .ac-magic-note,
+  .ananthara-character-sheet .ac-oracle-copy p:not(.ac-eyebrow),
+  .ananthara-journey-log .aj-copy p,
+  .ac-modal-dialog p:not(.ac-eyebrow) {
+    text-align: left;
+  }
+
+  .ac-character-copy {
+    padding: 1rem;
+  }
+
+  .ac-character-copy::before {
+    left: 1rem;
+  }
+
+  .ac-fact-strip div + div {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 199, 0, 0.14);
+  }
+
+  .ac-magic-heading {
+    align-items: flex-start;
+  }
+
+  .ac-magic-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-section-title {
+    gap: 0.45rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .aj-timeline {
+    padding-left: 0.35rem;
+  }
+
+  .aj-timeline::before {
+    display: none;
+  }
+
+  .aj-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .aq-card-header {
+    display: grid;
+  }
+
+  .aq-status {
+    justify-self: start;
+  }
+
+  .aq-meta {
+    justify-self: start;
+  }
+
+  .aj-icon {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .ananthara-game-ui {
+    width: min(calc(100vw - 0.5rem), 100%);
+  }
+
+  body:has(.ananthara-game-ui) #main {
+    padding: 10px;
+  }
+
+  .as-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .as-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .as-tabs button {
+    flex: 0 0 auto;
+    min-width: max-content;
+    white-space: nowrap;
+  }
+
+  .ac-fact-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-title {
+    font-size: clamp(1.12rem, 7vw, 1.55rem);
+  }
+
+  .ac-name,
+  .ac-character-copy h3,
+  .ac-magic-profile h3 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 599px) {
+  .ac-attribute-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .ac-attribute-tile {
+    min-height: 7.5rem;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .ac-attribute-tile span {
+    font-size: clamp(0.78rem, 3.5vw, 0.95rem);
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  .ac-attribute-tile strong {
+    font-size: clamp(1.5rem, 7vw, 2.1rem);
+    line-height: 1;
+  }
+}
+
+@media (max-width: 359px) {
+  .ac-attribute-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .as-tabs button,
+  .ac-attribute-tile,
+  .aq-toggle {
+    transition: none;
+  }
+
+  .aq-card-body {
+    animation: none;
+  }
+}
+.ananthara-items-overview{width:100%;max-width:1240px;margin-inline:auto}.ac-items-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ananthara-items-overview .ac-travel-item{min-width:0;padding:22px;border:1px solid rgba(255,199,0,.28);border-radius:14px;background:rgba(8,24,14,.78)}.ananthara-items-overview .ac-travel-item h3{margin-top:0;color:#ffc700}.ananthara-items-overview .ac-travel-item p{line-height:1.65}.ananthara-items-overview .ac-travel-item h4{margin-bottom:8px;color:rgba(255,199,0,.86)}
+@media(max-width:699px){.ac-items-grid{grid-template-columns:1fr;gap:14px}.ananthara-items-overview .ac-travel-item{padding:17px}}

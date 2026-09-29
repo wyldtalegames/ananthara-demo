@@ -1,0 +1,777 @@
+*comment Official Ithar'kael registration and Thal'ithara awakening
+*temp veilwalker 0
+*temp llifari 0
+*temp seeker 0
+*temp artisari 0
+*temp vanguard 0
+*temp aegis 0
+*temp veilwalker_order 0
+*temp llifari_order 0
+*temp seeker_order 0
+*temp artisari_order 0
+*temp vanguard_order 0
+*temp aegis_order 0
+*temp thal_pick_order 0
+*temp best_score 0
+*temp best_order 0
+*temp second_score 0
+*temp second_order 0
+*temp identity_story ""
+
+*label start
+*if language = "en"
+  [b]FINAL EXAMINATION REGISTRATION[/b]
+
+  Before the examination can begin, your Seeker dossier must be completed.
+
+  Let us begin with your name.
+
+  What is your name?
+*if language != "en"
+  [b]REGISTRIERUNG ZUR ABSCHLUSSPRÜFUNG[/b]
+
+  Bevor die Prüfung beginnen kann, muss deine Sucherakte vervollständigt werden.
+
+  Beginnen wir mit deinem Namen.
+
+  Wie ist dein Name?
+
+*input_text name
+*if name = ""
+  *set name "Nameless Seeker"
+*goto race_intro
+
+*label race_intro
+*if language = "en"
+  The first seal of the record asks about the people whose history lives in you.
+  *goto race_en
+*goto race_de
+
+*label race_en
+What is your race?
+*choice
+  #Lir'vyn — A people shaped by living landscapes, communal memory and the patient rhythms of nature.
+    *set race "Lir'vyn"
+    *set race_image "Assets/races/lirvyn.png"
+    *set race_lore "The Lir'vyn are shaped by living landscapes, communal memory and the patient rhythms of nature. Their oldest traditions teach that no truth exists entirely apart from the world around it."
+    *set race_lens "You instinctively notice bonds between people, places and living things."
+    *goto homeland_intro
+  #Draek'har — A people often feared because of ancient history and misunderstood origins.
+    *set race "Draek'har"
+    *set race_image "Assets/races/draekhar.png"
+    *set race_lore "The Draek'har are often feared across Ananthara because of ancient history and misunderstood origins. They endure stories written about them by others while guarding histories few outsiders have heard."
+    *set race_lens "You instinctively notice distrust before trust."
+    *goto homeland_intro
+  #Varinar — A far-travelled people whose traditions prize adaptation, exchange and stories carried across borders.
+    *set race "Varinar"
+    *set race_image "Assets/races/varinar.png"
+    *set race_lore "The Varinar are a far-travelled people whose traditions prize adaptation, exchange and stories carried across borders. Their identity is not rootless, but woven from every place that welcomed or challenged them."
+    *set race_lens "You instinctively read unfamiliar customs and search for common ground."
+    *goto homeland_intro
+  #Durkaen — A steadfast people known for craft, remembrance and promises meant to outlast generations.
+    *set race "Durkaen"
+    *set race_image "Assets/races/durkaen.png"
+    *set race_lore "The Durkaen are known for steadfast craft, long remembrance and promises meant to outlast generations. They believe what one builds reveals as much as what one says."
+    *set race_lens "You instinctively notice what was built to endure and what is beginning to fracture."
+    *goto homeland_intro
+
+*label race_de
+Welchem Volk gehörst du an?
+*choice
+  #Lir'vyn — Ein Volk, geprägt von lebendigen Landschaften, gemeinsamer Erinnerung und dem geduldigen Rhythmus der Natur.
+    *set race "Lir'vyn"
+    *set race_image "Assets/races/lirvyn.png"
+    *set race_lore "Die Lir'vyn sind von lebendigen Landschaften, gemeinsamer Erinnerung und dem geduldigen Rhythmus der Natur geprägt. Ihre ältesten Traditionen lehren, dass keine Wahrheit vollkommen getrennt von der Welt existiert, die sie umgibt."
+    *set race_lens "Du bemerkst instinktiv die Verbindungen zwischen Menschen, Orten und allem Lebendigen."
+    *goto homeland_intro
+  #Draek'har — Ein Volk, das wegen seiner alten Geschichte und missverstandenen Herkunft oft gefürchtet wird.
+    *set race "Draek'har"
+    *set race_image "Assets/races/draekhar.png"
+    *set race_lore "Die Draek'har werden in Ananthara wegen ihrer alten Geschichte und missverstandenen Herkunft oft gefürchtet. Sie leben mit Geschichten, die andere über sie geschrieben haben, und bewahren zugleich Wahrheiten, die kaum ein Außenstehender kennt."
+    *set race_lens "Du bemerkst Misstrauen instinktiv, lange bevor Vertrauen ausgesprochen wird."
+    *goto homeland_intro
+  #Varinar — Ein weitgereistes Volk, dessen Traditionen Anpassung, Austausch und über Grenzen getragene Geschichten ehren.
+    *set race "Varinar"
+    *set race_image "Assets/races/varinar.png"
+    *set race_lore "Die Varinar sind ein weitgereistes Volk, dessen Traditionen Anpassung, Austausch und über Grenzen getragene Geschichten ehren. Ihre Identität ist nicht wurzellos, sondern aus jedem Ort gewoben, der sie willkommen hieß oder herausforderte."
+    *set race_lens "Du liest fremde Bräuche instinktiv und suchst nach einer gemeinsamen Sprache."
+    *goto homeland_intro
+  #Durkaen — Ein standhaftes Volk, bekannt für Handwerk, Erinnerung und Versprechen, die Generationen überdauern sollen.
+    *set race "Durkaen"
+    *set race_image "Assets/races/durkaen.png"
+    *set race_lore "Die Durkaen sind für beständiges Handwerk, langes Erinnern und Versprechen bekannt, die Generationen überdauern sollen. Sie glauben, dass das Erschaffene ebenso viel über jemanden verrät wie dessen Worte."
+    *set race_lens "Du bemerkst instinktiv, was für die Ewigkeit gebaut wurde und wo bereits erste Risse entstehen."
+    *goto homeland_intro
+
+*label homeland_intro
+*if language = "en"
+  The second seal asks which land first taught you how to see the world.
+  *goto homeland_en
+*goto homeland_de
+
+*label homeland_en
+Where is your homeland?
+*choice
+  #Bay'r — A tranquil realm of verdant hills, meandering rivers and dreamy countryside, where community, simplicity and harmony with nature guide everyday life.
+    *set homeland "Bay'r"
+    *set homeland_image "Assets/homelands/web-bayr.webp"
+    *set homeland_lore "Bay'r is a tranquil, nature-bound realm of verdant hills, meandering rivers, fertile fields and ancient forests. Community, simplicity and harmony with the natural cycles shape everyday life. Shamanic traditions, festivals, meditations and rituals connect its people with the goddess Faon'lin, the great Life Tree, the spirits of nature and one another."
+    *set homeland_lens "Community, simplicity and harmony with nature shaped how you first learned to see the world."
+    *set origin "Bay'r"
+    *set origin_lens "rooted"
+    *set echo_origin "You come from Bay'r. Verdant hills, river paths, festivals and nature-bound rituals shaped your earliest sense of belonging."
+    *goto history_intro
+  #Thal'draen — A majestic kingdom where ice and snow shape the land and the air hums with pure magic.
+    *set homeland "Thal'draen"
+    *set homeland_image "Assets/homelands/web-thal.webp"
+    *set homeland_lore "Thal'draen is a majestic kingdom of snow-covered mountains, frozen lakes, crystals and moonlit cities. Scholars, mages and researchers devote themselves to ancient knowledge, rituals and the arcane arts. On clear nights, moonlight, stars and auroras reflect across the ice while crystals and magical ley lines fill the landscape with quiet energy."
+    *set homeland_lens "Ancient knowledge, ritual discipline and pure magic shaped your view of the world."
+    *set origin "Thal'draen"
+    *set origin_lens "watchful"
+    *set echo_origin "You come from Thal'draen. Snow, crystal, moonlit cities and ancient study taught you to listen for quiet magic."
+    *goto history_intro
+  #V'eild — A bustling kingdom where trade and commerce weave through every facet of life.
+    *set homeland "V'eild"
+    *set homeland_image "Assets/homelands/web-veild.webp"
+    *set homeland_lore "V'eild is a bustling and diverse kingdom whose capital is one of Ananthara's greatest centres of trade. Merchants from distant lands bring rare goods, enchanted artefacts, spices and vivid stories. The kingdom stretches from crowded markets and ordered streets to hot deserts and tropical coastal regions. Trade, craftsmanship, rank and responsibility shape its society."
+    *set homeland_lens "Trade, craftsmanship, rank and responsibility shaped your understanding of society."
+    *set origin "Veild"
+    *set origin_lens "vivid"
+    *set echo_origin "You come from V'eild. Markets, trade routes, craftsmanship and stories from distant lands shaped your view of Ananthara."
+    *goto history_intro
+
+*label homeland_de
+Wo liegt deine Heimat?
+*choice
+  #Bay'r — Ein ruhiges Reich aus grünen Hügeln, gewundenen Flüssen und verträumten Landschaften, in dem Gemeinschaft, Einfachheit und Harmonie mit der Natur das Leben bestimmen.
+    *set homeland "Bay'r"
+    *set homeland_image "Assets/homelands/web-bayr.webp"
+    *set homeland_lore "Bay'r ist ein ruhiges, naturverbundenes Reich aus grünen Hügeln, gewundenen Flüssen, fruchtbaren Feldern und alten Wäldern. Gemeinschaft, Einfachheit und der Einklang mit den natürlichen Kreisläufen prägen das tägliche Leben. Schamanische Traditionen, Feste, Meditationen und Rituale verbinden die Menschen mit der Göttin Faon'lin, dem Lebensbaum, den Naturgeistern und miteinander."
+    *set homeland_lens "Gemeinschaft, Einfachheit und Harmonie mit der Natur prägten deinen ersten Blick auf die Welt."
+    *set origin "Bay'r"
+    *set origin_lens "verwurzelt"
+    *set echo_origin "Du stammst aus Bay'r. Grüne Hügel, Flusspfade, Feste und naturverbundene Rituale prägten dein erstes Gefühl von Zugehörigkeit."
+    *goto history_intro
+  #Thal'draen — Ein majestätisches Reich, in dem Eis und Schnee das Land formen und die Luft von reiner Magie erfüllt ist.
+    *set homeland "Thal'draen"
+    *set homeland_image "Assets/homelands/web-thal.webp"
+    *set homeland_lore "Thal'draen is a majestic kingdom of snow-covered mountains, frozen lakes, crystals and moonlit cities. Scholars, mages and researchers devote themselves to ancient knowledge, rituals and the arcane arts. On clear nights, moonlight, stars and auroras reflect across the ice while crystals and magical ley lines fill the landscape with quiet energy."
+    *set homeland_lens "Altes Wissen, rituelle Disziplin und reine Magie prägten deinen Blick auf die Welt."
+    *set origin "Thal'draen"
+    *set origin_lens "wachsam"
+    *set echo_origin "Du stammst aus Thal'draen. Schnee, Kristalle, mondhelle Städte und altes Studium lehrten dich, stiller Magie zu lauschen."
+    *goto history_intro
+  #V'eild — Ein geschäftiges Reich, in dem Handel und Austausch jeden Bereich des Lebens prägen.
+    *set homeland "V'eild"
+    *set homeland_image "Assets/homelands/web-veild.webp"
+    *set homeland_lore "V'eild ist ein geschäftiges und vielfältiges Reich, dessen Hauptstadt zu den bedeutendsten Handelsmetropolen Anantharas gehört. Händler aus fernen Ländern bringen seltene Waren, verzauberte Artefakte, Gewürze und Geschichten mit sich. Das Reich reicht von lebendigen Märkten und geordneten Straßen über heiße Wüsten bis zu tropischen Küstenregionen. Handel, Handwerk, Rang und Verantwortung prägen seine Gesellschaft."
+    *set homeland_lens "Handel, Handwerk, Rang und Verantwortung prägten dein Verständnis von Gesellschaft."
+    *set origin "Veild"
+    *set origin_lens "farbenreich"
+    *set echo_origin "Du stammst aus V'eild. Märkte, Handelswege, Handwerk und Geschichten aus fernen Ländern prägten deinen Blick auf Ananthara."
+    *goto history_intro
+
+*label history_intro
+*if language = "en"
+  Before arriving at Ithar'kael… what shaped your early life the most?
+  *goto history_en
+*goto history_de
+
+*label history_en
+*choice
+  #I was raised among scholars and old knowledge.
+    *set personal_history "scholars"
+    *set personal_history_full "You were raised among scholars and old knowledge. Questions were welcomed, but every answer revealed another locked door."
+    *goto reason_intro
+  #I grew up with very little and learned survival early.
+    *set personal_history "survival"
+    *set personal_history_full "You grew up with very little and learned survival early. Resourcefulness became a language you spoke before you knew its name."
+    *goto reason_intro
+  #I belonged to a respected family where expectations were placed upon me from birth.
+    *set personal_history "noble"
+    *set personal_history_full "You belonged to a respected family and carried expectations from birth. Status opened doors, but it also decided who others expected you to become."
+    *goto reason_intro
+  #I spent much of my youth wandering, never truly belonging anywhere.
+    *set personal_history "wanderer"
+    *set personal_history_full "You spent much of your youth wandering and never truly belonging anywhere. You learned to arrive, observe and leave before a place could claim you."
+    *goto reason_intro
+  #I learned early that trusting others can be dangerous.
+    *set personal_history "distrust"
+    *set personal_history_full "You learned early that trusting others can be dangerous. Since then, you have measured promises by what people risk to keep them."
+    *goto reason_intro
+
+*label history_de
+*choice
+  #Ich wuchs unter Gelehrten und altem Wissen auf.
+    *set personal_history "scholars"
+    *set personal_history_full "Du wuchst unter Gelehrten und altem Wissen auf. Fragen waren willkommen, doch jede Antwort offenbarte eine weitere verschlossene Tür."
+    *goto reason_intro
+  #Ich wuchs mit sehr wenig auf und lernte früh zu überleben.
+    *set personal_history "survival"
+    *set personal_history_full "Du wuchst mit sehr wenig auf und lerntest früh zu überleben. Einfallsreichtum wurde zu einer Sprache, die du beherrschtest, bevor du ihren Namen kanntest."
+    *goto reason_intro
+  #Ich gehörte einer angesehenen Familie an und trug von Geburt an ihre Erwartungen.
+    *set personal_history "noble"
+    *set personal_history_full "Du gehörtest einer angesehenen Familie an und trugst von Geburt an ihre Erwartungen. Ansehen öffnete Türen, bestimmte aber auch, wer du in den Augen anderer sein solltest."
+    *goto reason_intro
+  #Ich verbrachte einen großen Teil meiner Jugend auf Wanderschaft, ohne irgendwo wirklich dazuzugehören.
+    *set personal_history "wanderer"
+    *set personal_history_full "Du verbrachtest einen großen Teil deiner Jugend auf Wanderschaft, ohne irgendwo wirklich dazuzugehören. Du lerntest anzukommen, zu beobachten und zu gehen, bevor ein Ort dich beanspruchen konnte."
+    *goto reason_intro
+  #Ich lernte früh, dass es gefährlich sein kann, anderen zu vertrauen.
+    *set personal_history "distrust"
+    *set personal_history_full "Du lerntest früh, dass es gefährlich sein kann, anderen zu vertrauen. Seitdem misst du Versprechen daran, was Menschen riskieren, um sie zu halten."
+    *goto reason_intro
+
+*label reason_intro
+*if race = "Draek'har"
+  *if personal_history = "noble"
+    *if language = "en"
+      Even your family's standing never fully shielded you from the old prejudice attached to the Draek'har name.
+    *if language != "en"
+      Selbst das Ansehen deiner Familie schützte dich nie vollständig vor den alten Vorurteilen, die dem Namen der Draek'har anhaften.
+*if language = "en"
+  Not everyone arrives at Ithar'kael willingly. Life often pushes us toward truth.
+
+  What happened before your journey brought you here?
+  *goto reason_en
+*goto reason_de
+
+*label reason_en
+*choice
+  #Someone important to me disappeared under mysterious circumstances. I am searching for answers no one else could give me.
+    *set seeker_reason "missing"
+    *set seeker_reason_full "Someone important to me disappeared under mysterious circumstances. I am searching for answers no one else could give me."
+    *goto seed_personal_quest
+  #A rare illness struck my homeland. No one could explain where it came from. I joined Ithar'kael to uncover its cause.
+    *set seeker_reason "affliction"
+    *set seeker_reason_full "A rare illness struck my homeland. No one could explain where it came from. I joined Ithar'kael to uncover its cause."
+    *goto seed_personal_quest
+  #Something happened in my past that I still cannot explain. Parts of my memory are missing, yet fragments sometimes return — accompanied by a magic that feels strangely familiar. I came to Ithar'kael to discover what truly happened.
+    *set seeker_reason "lost_memory"
+    *set seeker_reason_full "Something happened in my past that I still cannot explain. Parts of my memory are missing, yet fragments sometimes return — accompanied by a magic that feels strangely familiar. I came to Ithar'kael to discover what truly happened."
+    *goto seed_personal_quest
+
+*label reason_de
+*choice
+  #Ein wichtiger Mensch verschwand unter rätselhaften Umständen. Ich suche nach Antworten, die mir niemand sonst geben konnte.
+    *set seeker_reason "missing"
+    *set seeker_reason_full "Ein wichtiger Mensch verschwand unter rätselhaften Umständen. Ich suche nach Antworten, die mir niemand sonst geben konnte."
+    *goto seed_personal_quest
+  #Eine seltene Krankheit suchte meine Heimat heim. Niemand konnte ihren Ursprung erklären. Ich schloss mich Ithar'kael an, um ihre Ursache zu finden.
+    *set seeker_reason "affliction"
+    *set seeker_reason_full "Eine seltene Krankheit suchte meine Heimat heim. Niemand konnte ihren Ursprung erklären. Ich schloss mich Ithar'kael an, um ihre Ursache zu finden."
+    *goto seed_personal_quest
+  #In meiner Vergangenheit geschah etwas, das ich bis heute nicht erklären kann. Teile meiner Erinnerung fehlen, doch manchmal kehren Fragmente zurück – begleitet von einer Magie, die sich seltsam vertraut anfühlt. Ich kam zu Ithar'kael, um herauszufinden, was damals wirklich geschah.
+    *set seeker_reason "lost_memory"
+    *set seeker_reason_full "In meiner Vergangenheit geschah etwas, das ich bis heute nicht erklären kann. Teile meiner Erinnerung fehlen, doch manchmal kehren Fragmente zurück – begleitet von einer Magie, die sich seltsam vertraut anfühlt. Ich kam zu Ithar'kael, um herauszufinden, was damals wirklich geschah."
+    *goto seed_personal_quest
+
+*label seed_personal_quest
+*comment The personal quest thread is seeded from the chosen reason for seeking. Future chapters can advance this without rewriting identity creation.
+*set personal_quest_id seeker_reason
+*set personal_quest_stage "seeded"
+*set personal_quest_log_visible true
+*if language = "en"
+  *if personal_quest_id = "missing"
+    *set personal_quest_log_title "Lost Souls"
+    *set personal_quest_log_objective "Find out what happened to the person who disappeared."
+  *if personal_quest_id = "affliction"
+    *set personal_quest_log_title "The Affliction"
+    *set personal_quest_log_objective "Find the origin of the illness that struck your homeland."
+  *if personal_quest_id = "lost_memory"
+    *set personal_quest_log_title "Lost Memories"
+    *set personal_quest_log_objective "Find out what happened in your past and why parts of your memory are missing."
+*if language != "en"
+  *if personal_quest_id = "missing"
+    *set personal_quest_log_title "Verlorene Seelen"
+    *set personal_quest_log_objective "Finde heraus, was mit der verschwundenen Person geschehen ist."
+  *if personal_quest_id = "affliction"
+    *set personal_quest_log_title "Die Krankheit"
+    *set personal_quest_log_objective "Finde den Ursprung der Krankheit, die deine Heimat heimgesucht hat."
+  *if personal_quest_id = "lost_memory"
+    *set personal_quest_log_title "Verlorene Erinnerungen"
+    *set personal_quest_log_objective "Finde heraus, was in deiner Vergangenheit geschehen ist und warum Teile deiner Erinnerung fehlen."
+*goto thal_intro
+
+*label thal_intro
+*if language = "en"
+  The final seal does not ask you to choose magic.
+
+  Thal'ithara is the soul made visible: identity, memory, passion and emotional truth given form. The archive listens for how your soul already reaches toward the world.
+  *page_break Begin the attunement
+*if language != "en"
+  Das letzte Siegel verlangt nicht von dir, Magie zu wählen.
+
+  Thal'ithara ist die sichtbar gewordene Seele: Identität, Erinnerung, Leidenschaft und emotionale Wahrheit, die Form annimmt. Das Archiv lauscht darauf, wie deine Seele bereits nach der Welt greift.
+  *page_break Einstimmung beginnen
+*goto thal_q1
+
+*label thal_q1
+*if language = "en"
+  What kind of experiences leave the deepest imprint on your soul?
+  *goto thal_q1_en
+*goto thal_q1_de
+
+*label thal_q1_en
+*choice
+  #Moments I wish I could preserve forever.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set artisari_order thal_pick_order
+    *goto thal_q2
+  #Moments that make me question deeper truths.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q2
+  #Moments that inspire me to create something meaningful.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set vanguard +1
+    *set artisari_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto thal_q2
+  #Moments where I deeply connect with another person's emotions.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set aegis +1
+    *set veilwalker_order thal_pick_order
+    *set aegis_order thal_pick_order
+    *goto thal_q2
+  #Moments that reveal connections others would never notice.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set seeker +1
+    *set llifari_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q2
+
+*label thal_q1_de
+Welche Erfahrungen hinterlassen den tiefsten Eindruck in deiner Seele?
+*choice
+  #Momente, die ich für immer bewahren möchte.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set artisari_order thal_pick_order
+    *goto thal_q2
+  #Momente, die mich tiefere Wahrheiten hinterfragen lassen.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q2
+  #Momente, die mich dazu inspirieren, etwas Bedeutungsvolles zu erschaffen.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set vanguard +1
+    *set artisari_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto thal_q2
+  #Momente, in denen ich mich tief mit den Gefühlen eines anderen Menschen verbinde.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set aegis +1
+    *set veilwalker_order thal_pick_order
+    *set aegis_order thal_pick_order
+    *goto thal_q2
+  #Momente, die Verbindungen offenbaren, die andere niemals bemerken würden.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set seeker +1
+    *set llifari_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q2
+
+*label thal_q2
+*if language = "en"
+  When something deeply moves you, what happens naturally?
+  *goto thal_q2_en
+*goto thal_q2_de
+
+*label thal_q2_en
+*choice
+  #I want to preserve the feeling forever.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set artisari_order thal_pick_order
+    *goto thal_q3
+  #I begin reflecting on its deeper meaning.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q3
+  #I feel the urge to create something from it.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set vanguard +1
+    *set artisari_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto thal_q3
+  #I instinctively want to share that feeling with others.
+    *set thal_pick_order +1
+    *set aegis +2
+    *set veilwalker +1
+    *set aegis_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q3
+  #I become aware of hidden connections I had never noticed before.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set seeker +1
+    *set veilwalker_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q3
+
+*label thal_q2_de
+Wenn dich etwas zutiefst berührt, was geschieht ganz natürlich?
+*choice
+  #Ich möchte dieses Gefühl für immer bewahren.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set artisari_order thal_pick_order
+    *goto thal_q3
+  #Ich beginne, über seine tiefere Bedeutung nachzudenken.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q3
+  #Ich verspüre den Drang, daraus etwas zu erschaffen.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set vanguard +1
+    *set artisari_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto thal_q3
+  #Ich möchte dieses Gefühl instinktiv mit anderen teilen.
+    *set thal_pick_order +1
+    *set aegis +2
+    *set veilwalker +1
+    *set aegis_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto thal_q3
+  #Ich werde mir verborgener Verbindungen bewusst, die ich zuvor nie bemerkt hatte.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set seeker +1
+    *set veilwalker_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q3
+
+*label thal_q3
+*if language = "en"
+  What truth has always fascinated you most?
+  *goto thal_q3_en
+*goto thal_q3_de
+
+*label thal_q3_en
+*choice
+  #Understanding the emotions people struggle to express.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set artisari +1
+    *set veilwalker_order thal_pick_order
+    *set artisari_order thal_pick_order
+    *goto thal_q4
+  #Understanding the hidden structures behind how things work.
+    *set thal_pick_order +1
+    *set vanguard +2
+    *set seeker +1
+    *set vanguard_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q4
+  #Understanding how creation allows us to leave something behind.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set seeker +1
+    *set artisari_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q4
+  #Understanding how people can heal when they lose themselves.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set aegis +1
+    *set llifari_order thal_pick_order
+    *set aegis_order thal_pick_order
+    *goto thal_q4
+  #Understanding realities that exist beyond what we normally perceive.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set veilwalker_order thal_pick_order
+    *goto thal_q4
+
+*label thal_q3_de
+Welche Wahrheit hat dich schon immer am meisten fasziniert?
+*choice
+  #Zu verstehen, welche Gefühle Menschen nur schwer ausdrücken können.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set artisari +1
+    *set veilwalker_order thal_pick_order
+    *set artisari_order thal_pick_order
+    *goto thal_q4
+  #Die verborgenen Strukturen dahinter zu verstehen, wie Dinge funktionieren.
+    *set thal_pick_order +1
+    *set vanguard +2
+    *set seeker +1
+    *set vanguard_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q4
+  #Zu verstehen, wie wir durch Schöpfung etwas hinterlassen können.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set seeker +1
+    *set artisari_order thal_pick_order
+    *set seeker_order thal_pick_order
+    *goto thal_q4
+  #Zu verstehen, wie Menschen heilen können, wenn sie sich selbst verlieren.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set aegis +1
+    *set llifari_order thal_pick_order
+    *set aegis_order thal_pick_order
+    *goto thal_q4
+  #Wirklichkeiten zu verstehen, die jenseits dessen existieren, was wir gewöhnlich wahrnehmen.
+    *set thal_pick_order +1
+    *set veilwalker +2
+    *set veilwalker_order thal_pick_order
+    *goto thal_q4
+
+*label thal_q4
+*if language = "en"
+  Thal'ithara is strongest when the self remains in balance.
+
+  But imbalance shapes magic as well.
+
+  What would break your inner balance the fastest?
+  *goto thal_q4_en
+*goto thal_q4_de
+
+*label thal_q4_en
+*choice
+  #I slowly begin losing connection to who I truly am.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set veilwalker +1
+    *set llifari_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #I become restless and increasingly frustrated.
+    *set thal_pick_order +1
+    *set vanguard +2
+    *set vanguard_order thal_pick_order
+    *goto determine_thal
+  #I begin hiding what I actually feel.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set veilwalker +1
+    *set artisari_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #I start questioning everything around me.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #I force myself forward, no matter the cost.
+    *set thal_pick_order +1
+    *set aegis +2
+    *set vanguard +1
+    *set aegis_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto determine_thal
+
+*label thal_q4_de
+Thal'ithara ist am stärksten, wenn das Selbst im Gleichgewicht bleibt.
+
+Doch auch Ungleichgewicht formt die Magie.
+
+Was würde dein inneres Gleichgewicht am schnellsten zerbrechen?
+*choice
+  #Ich beginne langsam, die Verbindung zu meinem wahren Selbst zu verlieren.
+    *set thal_pick_order +1
+    *set llifari +2
+    *set veilwalker +1
+    *set llifari_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #Ich werde rastlos und zunehmend frustriert.
+    *set thal_pick_order +1
+    *set vanguard +2
+    *set vanguard_order thal_pick_order
+    *goto determine_thal
+  #Ich beginne zu verbergen, was ich wirklich fühle.
+    *set thal_pick_order +1
+    *set artisari +2
+    *set veilwalker +1
+    *set artisari_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #Ich beginne, alles um mich herum infrage zu stellen.
+    *set thal_pick_order +1
+    *set seeker +2
+    *set veilwalker +1
+    *set seeker_order thal_pick_order
+    *set veilwalker_order thal_pick_order
+    *goto determine_thal
+  #Ich zwinge mich vorwärts, ganz gleich, was es kostet.
+    *set thal_pick_order +1
+    *set aegis +2
+    *set vanguard +1
+    *set aegis_order thal_pick_order
+    *set vanguard_order thal_pick_order
+    *goto determine_thal
+
+*label determine_thal
+*comment The six scores below mirror the current Thal'ithara archetypes from the Ananthara quiz.
+*comment Tie-break rule: when scores match, the archetype touched by the latest answer wins.
+*set thal_archetype "Veilwalker"
+*set best_score veilwalker
+*set best_order veilwalker_order
+*if (llifari > best_score) or ((llifari = best_score) and (llifari_order > best_order))
+  *set thal_archetype "Llifari"
+  *set best_score llifari
+  *set best_order llifari_order
+*if (seeker > best_score) or ((seeker = best_score) and (seeker_order > best_order))
+  *set thal_archetype "Seeker"
+  *set best_score seeker
+  *set best_order seeker_order
+*if (artisari > best_score) or ((artisari = best_score) and (artisari_order > best_order))
+  *set thal_archetype "Artisari"
+  *set best_score artisari
+  *set best_order artisari_order
+*if (vanguard > best_score) or ((vanguard = best_score) and (vanguard_order > best_order))
+  *set thal_archetype "Vanguard"
+  *set best_score vanguard
+  *set best_order vanguard_order
+*if (aegis > best_score) or ((aegis = best_score) and (aegis_order > best_order))
+  *set thal_archetype "Aegis"
+  *set best_score aegis
+  *set best_order aegis_order
+
+*set thal_resonance ""
+*set second_score -1
+*set second_order -1
+*if thal_archetype != "Veilwalker"
+  *if (veilwalker > second_score) or ((veilwalker = second_score) and (veilwalker_order > second_order))
+    *set thal_resonance "Veilwalker"
+    *set second_score veilwalker
+    *set second_order veilwalker_order
+*if thal_archetype != "Llifari"
+  *if (llifari > second_score) or ((llifari = second_score) and (llifari_order > second_order))
+    *set thal_resonance "Llifari"
+    *set second_score llifari
+    *set second_order llifari_order
+*if thal_archetype != "Seeker"
+  *if (seeker > second_score) or ((seeker = second_score) and (seeker_order > second_order))
+    *set thal_resonance "Seeker"
+    *set second_score seeker
+    *set second_order seeker_order
+*if thal_archetype != "Artisari"
+  *if (artisari > second_score) or ((artisari = second_score) and (artisari_order > second_order))
+    *set thal_resonance "Artisari"
+    *set second_score artisari
+    *set second_order artisari_order
+*if thal_archetype != "Vanguard"
+  *if (vanguard > second_score) or ((vanguard = second_score) and (vanguard_order > second_order))
+    *set thal_resonance "Vanguard"
+    *set second_score vanguard
+    *set second_order vanguard_order
+*if thal_archetype != "Aegis"
+  *if (aegis > second_score) or ((aegis = second_score) and (aegis_order > second_order))
+    *set thal_resonance "Aegis"
+    *set second_score aegis
+    *set second_order aegis_order
+*if thal_resonance = ""
+  *if thal_archetype != "Seeker"
+    *set thal_resonance "Seeker"
+  *if thal_archetype = "Seeker"
+    *set thal_resonance "Veilwalker"
+
+*set thal_calling thal_archetype
+*set thal_manifestation thal_archetype & "|"
+*set thal_manifestation thal_manifestation & thal_resonance
+*set thal_type thal_archetype
+*set thal_description ""
+*set thal_passive ""
+*set thal_growth ""
+*set thal_calling_description ""
+*set thal_affinity ""
+*set thal_resonance_description ""
+*set thal_manifestation_description ""
+*goto thal_reveal
+
+*label thal_reveal
+*script if (window.AnantharaIdentity) window.AnantharaIdentity.mountThalReveal(this);
+*goto identity_story
+
+*label identity_story
+*if language = "en"
+  *if personal_history = "scholars"
+    *set identity_story "I grew up among scholars and old knowledge. Questions were welcomed, but every answer revealed another locked door."
+  *if personal_history = "survival"
+    *set identity_story "I grew up with very little and learned survival early. Resourcefulness became a language I spoke before I knew its name."
+  *if personal_history = "noble"
+    *set identity_story "I belonged to a respected family and carried expectations from birth. Status opened doors, but it also decided who others expected me to become."
+  *if personal_history = "wanderer"
+    *set identity_story "I spent much of my youth wandering and never truly belonging anywhere. I learned to arrive, observe and leave before a place could claim me."
+  *if personal_history = "distrust"
+    *set identity_story "I learned early that trusting others can be dangerous. Since then, I have measured promises by what people risk to keep them."
+  *if seeker_reason = "missing"
+    *set identity_story identity_story & " Someone important to me disappeared under mysterious circumstances. I am searching for answers no one else could give me."
+  *if seeker_reason = "affliction"
+    *set identity_story identity_story & " A rare illness struck my homeland. No one could explain where it came from. I joined Ithar'kael to uncover its cause."
+  *if seeker_reason = "lost_memory"
+    *set identity_story identity_story & " Something happened in my past that I still cannot explain. Parts of my memory are missing, yet fragments sometimes return — accompanied by a magic that feels strangely familiar. I came to Ithar'kael to discover what truly happened."
+  *set identity_story identity_story & " I am "
+  *set identity_story identity_story & race
+  *set identity_story identity_story & ", and "
+  *set identity_story identity_story & homeland
+  *set identity_story identity_story & " is the homeland that first taught me how to see the world. My Thal'ithara revealed its core archetype as "
+  *set identity_story identity_story & thal_archetype
+  *set identity_story identity_story & ", while my current resonance answered through "
+  *set identity_story identity_story & thal_resonance
+  *set identity_story identity_story & "."
+*if language != "en"
+  *if personal_history = "scholars"
+    *set identity_story "Ich wuchs unter Gelehrten und altem Wissen auf. Fragen waren willkommen, doch jede Antwort offenbarte eine weitere verschlossene Tür."
+  *if personal_history = "survival"
+    *set identity_story "Ich wuchs mit sehr wenig auf und lernte früh zu überleben. Einfallsreichtum wurde zu einer Sprache, die ich beherrschte, bevor ich ihren Namen kannte."
+  *if personal_history = "noble"
+    *set identity_story "Ich gehörte einer angesehenen Familie an und trug von Geburt an ihre Erwartungen. Ansehen öffnete Türen, bestimmte aber auch, wer ich in den Augen anderer sein sollte."
+  *if personal_history = "wanderer"
+    *set identity_story "Ich verbrachte einen großen Teil meiner Jugend auf Wanderschaft, ohne irgendwo wirklich dazuzugehören. Ich lernte anzukommen, zu beobachten und zu gehen, bevor ein Ort mich beanspruchen konnte."
+  *if personal_history = "distrust"
+    *set identity_story "Ich lernte früh, dass es gefährlich sein kann, anderen zu vertrauen. Seitdem messe ich Versprechen daran, was Menschen riskieren, um sie zu halten."
+  *if seeker_reason = "missing"
+    *set identity_story identity_story & " Ein wichtiger Mensch verschwand unter rätselhaften Umständen. Ich suche nach Antworten, die mir niemand sonst geben konnte."
+  *if seeker_reason = "affliction"
+    *set identity_story identity_story & " Eine seltene Krankheit suchte meine Heimat heim. Niemand konnte ihren Ursprung erklären. Ich schloss mich Ithar'kael an, um ihre Ursache zu finden."
+  *if seeker_reason = "lost_memory"
+    *set identity_story identity_story & " In meiner Vergangenheit geschah etwas, das ich bis heute nicht erklären kann. Teile meiner Erinnerung fehlen, doch manchmal kehren Fragmente zurück – begleitet von einer Magie, die sich seltsam vertraut anfühlt. Ich kam zu Ithar'kael, um herauszufinden, was damals wirklich geschah."
+  *set identity_story identity_story & " Ich gehöre zu den "
+  *set identity_story identity_story & race
+  *set identity_story identity_story & ", und "
+  *set identity_story identity_story & homeland
+  *set identity_story identity_story & " ist die Heimat, die mich zuerst lehrte, die Welt zu sehen. Mein Thal'ithara offenbarte seinen Kernarchetyp als "
+  *set identity_story identity_story & thal_archetype
+  *set identity_story identity_story & ", während meine aktuelle Resonanz durch "
+  *set identity_story identity_story & thal_resonance
+  *set identity_story identity_story & " antwortete."
+
+*script if (window.AnantharaIdentity) window.AnantharaIdentity.mountIdentityStory(this, this.temps.identity_story);
+*goto identity_complete
+
+*label identity_complete
+*if language = "en"
+  *goto_scene en_00_exam_room_01
+*goto_scene de_00_exam_room_01

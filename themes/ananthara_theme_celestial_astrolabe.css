@@ -1,14 +1,14 @@
 /* Celestial Astrolabe — production theme. */
 @font-face {
   font-family:"AnantharaTitle";
-  src:url("../fonts/CinzelDecorative-Bold.woff2") format("woff2"),url("web/mygame/fonts/CinzelDecorative-Bold.woff2") format("woff2");
+  src:url("../fonts/CinzelDecorative-Bold.woff2") format("woff2");
   font-weight:700;
   font-style:normal;
   font-display:swap;
 }
 @font-face {
   font-family:"AnantharaSubtitle";
-  src:url("../fonts/Advercase-Bold.woff2") format("woff2"),url("web/mygame/fonts/Advercase-Bold.woff2") format("woff2");
+  src:url("../fonts/Advercase-Bold.woff2") format("woff2");
   font-weight:700;
   font-style:normal;
   font-display:swap;

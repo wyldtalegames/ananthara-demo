@@ -72,7 +72,7 @@ html[data-ana-theme="celestial"] #text.is-lab-revealed::before {
 
 /* Header instrument nodes */
 html[data-ana-theme="celestial"] #header { background:linear-gradient(180deg,rgba(2,7,17,.96),rgba(4,12,24,.88)); border-bottom:1px solid rgba(132,223,227,.2); box-shadow:0 12px 36px rgba(0,0,0,.35); }
-html[data-ana-theme="celestial"] #title { width:min(88vw,820px); height:clamp(120px,18vw,230px); margin-inline:auto; overflow:hidden; color:transparent; background:center/contain no-repeat url("../Assets/_final.png"); font-size:0; line-height:0; text-shadow:none; }
+html[data-ana-theme="celestial"] #title { width:min(88vw,820px); height:clamp(120px,18vw,230px); margin-inline:auto; overflow:hidden; color:transparent; background:center/contain no-repeat url("../Assets/final.png"); font-size:0; line-height:0; text-shadow:none; }
 html[data-ana-theme="celestial"] #author { color:var(--celestial-muted); }
 html[data-ana-theme="celestial"] #buttons { gap:14px; }
 html[data-ana-theme="celestial"] #statsButton,

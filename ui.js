@@ -3700,12 +3700,16 @@ window.onload=function() {
         for (var i = 0; i < window.knownProducts.length; i++) {
           fullProducts[i] = window.storeName + "." + window.knownProducts[i];
         }
-        xhrAuthRequest("GET", "product-data", function(ok, data) {
-          if (!window.productData) window.productData = {};
-          for (var i = 0; i < window.knownProducts.length; i++) {
-            window.productData[window.knownProducts[i]] = data[window.storeName + "." + window.knownProducts[i]];
-          }
-        }, "products", fullProducts.join(","));
+        if (fullProducts.length > 0) {
+          xhrAuthRequest("GET", "product-data", function(ok, data) {
+            if (!window.productData) window.productData = {};
+            for (var i = 0; i < window.knownProducts.length; i++) {
+              window.productData[window.knownProducts[i]] = data[window.storeName + "." + window.knownProducts[i]];
+            }
+          }, "products", fullProducts.join(","));
+        } else if (!window.productData) {
+          window.productData = {};
+        }
       })();
     }
 

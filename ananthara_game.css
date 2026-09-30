@@ -1204,6 +1204,17 @@ dialog {
 }
 .ana-replica-name{transition:opacity .4s ease}.ana-replica-name.is-fading{opacity:0}
 
+/* Desktop game viewport: the shell remains fixed while only the story panel
+   scrolls. Header height stays content-driven, so the panel receives exactly
+   the remaining dynamic viewport height. */
+@media(min-width:700px) and (pointer:fine){
+  html{height:100%;overflow:hidden}
+  body,body.nightmode,body.whitemode{height:100%;min-height:0;overflow:hidden}
+  .container{display:flex;flex-direction:column;height:100vh;height:100dvh;min-height:0;overflow:hidden}
+  .container>#header{flex:0 0 auto}
+  .container>#main{flex:1 1 auto;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:auto}
+}
+
 /* Mobile app shell: the browser viewport stays fixed while the active game
    surface owns vertical scrolling. Kept last so older layout rules cannot
    restore document scrolling or a fixed story-panel height. */

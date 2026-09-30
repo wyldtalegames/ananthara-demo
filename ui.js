@@ -637,6 +637,7 @@ function asyncConfirm(message, callback) {
 function clearScreen(code) {
     var text = document.getElementById("text");
     var container1 = document.getElementById("container1");
+    var fixedDesktopStory = typeof window.AnantharaUsesFixedDesktopStoryViewport === "function" && window.AnantharaUsesFixedDesktopStoryViewport();
     if (!container1) throw new Error("<div id=container1> is missing from index.html");
 
     if (window.animateEnabled && window.animationProperty && (!window.isIosApp || window.newIosCurl) && !document.getElementById('container2')) {
@@ -650,7 +651,7 @@ function clearScreen(code) {
       // get the vertical scroll position as pageYOffset
       // translate up by pageYOffset pixels, then scroll to the top
       // now we're scrolled up, but the viewport *looks* like it has retained its scroll position
-      var pageYOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      var pageYOffset = fixedDesktopStory ? 0 : (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0);
       var extraScroll = 0;
       if (window.isMobile && window.isWeb && window.isAndroid && !/Chrome/.test(navigator.userAgent)) {
         extraScroll = 1; // try to hide url bar
@@ -658,7 +659,7 @@ function clearScreen(code) {
       pageYOffset -= extraScroll;
       container1.style.transform = "translateY(-"+pageYOffset+ "px)";
       container1.style.webkitTransform = "translateY(-"+pageYOffset+ "px)";
-      window.scrollTo(0,extraScroll);
+      if (!fixedDesktopStory) window.scrollTo(0,extraScroll);
 
       container2.innerHTML = container1.innerHTML;
       [].forEach.call(container1.querySelectorAll('input,button,a,textarea,label'), function(element) {
@@ -680,7 +681,7 @@ function clearScreen(code) {
       text.setAttribute("id", "text");
       main.appendChild(text);
 
-      window.scrollTo(0,1);
+      if (!fixedDesktopStory) window.scrollTo(0,1);
     }
 
 
@@ -714,10 +715,13 @@ function focusFirst() {
     }
     focusable.setAttribute("tabindex", "-1");
     focusable.classList.add("tempfocus");
-    focusable.focus();
+    var preventStoryScroll = typeof window.AnantharaUsesFixedDesktopStoryViewport === "function" && window.AnantharaUsesFixedDesktopStoryViewport();
+    if (preventStoryScroll) focusable.focus({preventScroll:true});
+    else focusable.focus();
     focusable.blur();
     requestAnimationFrame(function () {
-      focusable.focus();
+      if (preventStoryScroll) focusable.focus({preventScroll:true});
+      else focusable.focus();
       requestAnimationFrame(function () {
         focusable.blur();
         focusable.removeAttribute("tabindex");
@@ -3833,11 +3837,6 @@ window.onload=function() {
         selected.classList.remove('selectedKeyboard');
       })
     });
-
-    // Deployment integration point: the ChoiceScript globals, navigation
-    // state, preferences and DOM references are fully initialized here.
-    window.anantharaChoiceScriptReady = true;
-    window.dispatchEvent(new Event("ananthara:runtime-ready"));
 
 };
 

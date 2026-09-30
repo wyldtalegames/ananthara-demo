@@ -510,7 +510,7 @@
     if (!target) return;
     var existing = target.querySelector(".ana-demo-end");
     if (existing) existing.remove();
-    var headingSource = target.querySelector("p strong");
+    var headingSource = target.querySelector("p strong, p b");
     if (headingSource && headingSource.textContent.trim() === text(lang, "demo")) {
       var heading = element("h2", "ana-demo-heading", headingSource.textContent.trim());
       headingSource.parentNode.replaceWith(heading);
@@ -556,14 +556,13 @@
         window.matchMedia("(min-width: 700px) and (pointer: fine)").matches;
     }
 
-    function scrollToStoryStart() {
+    window.AnantharaUsesFixedDesktopStoryViewport = isDesktopWeb;
+
+    function resetStoryPanel() {
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
-          var storyText = document.getElementById("text");
-          if (!storyText) return;
-          var top = Math.max(0, window.pageYOffset + storyText.getBoundingClientRect().top - 24);
-          var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          window.scrollTo({top:top, left:0, behavior:reducedMotion ? "auto" : "smooth"});
+          var storyPanel = document.getElementById("main");
+          if (storyPanel) storyPanel.scrollTop = 0;
         });
       });
     }
@@ -584,14 +583,14 @@
       if (!isDesktopWeb()) return result;
 
       if (!incomingContainer) {
-        scrollToStoryStart();
+        resetStoryPanel();
         return result;
       }
 
       var onStable = function () {
         incomingContainer.removeEventListener("transitionend", onStable);
         incomingContainer.removeEventListener("webkitTransitionEnd", onStable);
-        scrollToStoryStart();
+        resetStoryPanel();
       };
       incomingContainer.addEventListener("transitionend", onStable);
       incomingContainer.addEventListener("webkitTransitionEnd", onStable);

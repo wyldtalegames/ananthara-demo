@@ -682,6 +682,7 @@ Scene.prototype.checkSum = function checkSum() {
           alertify.log("The game has updated. Restarting chapter.");
         }
       }
+      if (typeof window !== "undefined" && window.AnantharaSaveRecovery && window.AnantharaSaveRecovery.recoverChangedScene(this)) return false;
       var self = this;
       safeTimeout(function () {
         clearScreen(function () {
@@ -692,6 +693,7 @@ Scene.prototype.checkSum = function checkSum() {
     }
   }
   this.temps.choice_crc = this.crc;
+  if (typeof window !== "undefined" && window.AnantharaSaveRecovery) window.AnantharaSaveRecovery.clearForScene(this.name);
   return true;
 };
 

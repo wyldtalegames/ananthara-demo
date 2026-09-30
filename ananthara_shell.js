@@ -4,6 +4,7 @@
   var MANIFEST_KEY = "ananthara_manual_save_manifest";
   var META_PREFIX = "ananthara_manual_save_meta_";
   var SLOT_PREFIX = "ananthara_manual_";
+  var BACKUP_PREFIX = "ananthara_manual_backup_";
   var LINKS = Object.assign({
     feedback: "https://www.worldofananthara.com/ananthara-game#feedback",
     newsletter: "https://www.worldofananthara.com/ananthara-game#newsletter"
@@ -88,11 +89,104 @@
   }
 
   function slotFor(id) { return SLOT_PREFIX + id; }
+  function backupKeyFor(id) { return BACKUP_PREFIX + id; }
 
   function stateFromRaw(raw) {
     var state = parseJson(raw, null);
     return state && state.stats && state.stats.sceneName ? state : null;
   }
+
+  function stateMatchesScene(state, sceneName) {
+    return !!(state && state.stats && safeString(state.stats.sceneName) === safeString(sceneName));
+  }
+
+  function cloneState(state) {
+    return state ? parseJson(JSON.stringify(state), null) : null;
+  }
+
+  function syncManualBackup(store, id, manualState, callback) {
+    var expectedScene = safeString(manualState && manualState.stats && manualState.stats.sceneName);
+    function storeIfMatching(rawBackup) {
+      var backupState = stateFromRaw(rawBackup);
+      if (!stateMatchesScene(backupState, expectedScene)) {
+        return remove(store, backupKeyFor(id), function () { callback(true, null); });
+      }
+      write(store, backupKeyFor(id), rawBackup, function (ok) { callback(!!ok, backupState); });
+    }
+    var pseudoBackup = window.pseudoSave && window.pseudoSave.backup;
+    if (stateMatchesScene(stateFromRaw(pseudoBackup), expectedScene)) return storeIfMatching(pseudoBackup);
+    read(store, "statebackup", function (ok, rawBackup) { storeIfMatching(ok ? rawBackup : null); });
+  }
+
+  function prepareManualLoad(slot, callback) {
+    var store = engineStore();
+    var id = safeString(slot).indexOf(SLOT_PREFIX) === 0 ? safeString(slot).slice(SLOT_PREFIX.length) : "";
+    if (!store || !id) {
+      window.AnantharaManualRecoveryContext = null;
+      return callback();
+    }
+    read(store, "state" + slot, function (stateOk, rawState) {
+      var savedState = stateOk ? stateFromRaw(rawState) : null;
+      read(store, backupKeyFor(id), function (backupOk, rawBackup) {
+        var companion = backupOk ? stateFromRaw(rawBackup) : null;
+        var sceneName = safeString(savedState && savedState.stats && savedState.stats.sceneName);
+        window.AnantharaManualRecoveryContext = savedState ? {
+          slot: slot,
+          sceneName: sceneName,
+          savedState: savedState,
+          companionBackup: stateMatchesScene(companion, sceneName) ? companion : null
+        } : null;
+        callback();
+      });
+    });
+  }
+
+  function sceneStartState(scene) {
+    var stats = {};
+    Object.keys((scene && scene.stats) || {}).forEach(function (key) {
+      if (key === "scene") return;
+      var value = scene.stats[key];
+      try { stats[key] = value && typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value; }
+      catch (error) { console.warn("Could not preserve stat during scene recovery:", key, error); }
+    });
+    stats.sceneName = scene.name;
+    return {version:window.version || "UNKNOWN", stats:stats, temps:{}, lineNum:0, indent:0};
+  }
+
+  function restoreSceneStart(state, sceneName) {
+    var recoveryState = cloneState(state);
+    if (!stateMatchesScene(recoveryState, sceneName)) return false;
+    recoveryState.temps = {};
+    recoveryState.lineNum = 0;
+    recoveryState.indent = 0;
+    window.AnantharaManualRecoveryContext = null;
+    window.clearScreen(function () { window.restoreGame(recoveryState, sceneName, false); });
+    return true;
+  }
+
+  window.AnantharaSaveRecovery = {
+    recoverChangedScene: function (scene) {
+      if (!scene || !safeString(scene.name)) return false;
+      var expectedScene = safeString(scene.name);
+      var context = window.AnantharaManualRecoveryContext;
+      if (context && context.sceneName === expectedScene) {
+        return restoreSceneStart(context.companionBackup || context.savedState, expectedScene);
+      }
+
+      var fallback = sceneStartState(scene);
+      var store = engineStore();
+      if (!store) return restoreSceneStart(fallback, expectedScene);
+      read(store, "statebackup", function (ok, rawBackup) {
+        var backup = ok ? stateFromRaw(rawBackup) : null;
+        restoreSceneStart(stateMatchesScene(backup, expectedScene) ? backup : fallback, expectedScene);
+      });
+      return true;
+    },
+    clearForScene: function (sceneName) {
+      var context = window.AnantharaManualRecoveryContext;
+      if (context && context.sceneName === sceneName) window.AnantharaManualRecoveryContext = null;
+    }
+  };
 
   function metadataFromState(id, state, existing) {
     var stats = state.stats || {};
@@ -172,13 +266,16 @@
       window.pseudoSave[slot] = rawState;
       write(store, "state" + slot, rawState, function (stateWritten) {
         if (!stateWritten) return callback(false, "state");
-        write(store, META_PREFIX + id, JSON.stringify(meta), function (metaWritten) {
-          if (!metaWritten) return callback(false, "meta");
-          readManifest(store, function (ids) {
-            if (ids.indexOf(id) === -1) ids.push(id);
-            writeManifest(store, ids, function (manifestWritten) {
-              if (window.AnantharaIntro) window.AnantharaIntro.refreshManualSaveButton();
-              callback(!!manifestWritten, manifestWritten ? meta : "manifest");
+        syncManualBackup(store, id, state, function (backupWritten) {
+          if (!backupWritten) return callback(false, "backup");
+          write(store, META_PREFIX + id, JSON.stringify(meta), function (metaWritten) {
+            if (!metaWritten) return callback(false, "meta");
+            readManifest(store, function (ids) {
+              if (ids.indexOf(id) === -1) ids.push(id);
+              writeManifest(store, ids, function (manifestWritten) {
+                if (window.AnantharaIntro) window.AnantharaIntro.refreshManualSaveButton();
+                callback(!!manifestWritten, manifestWritten ? meta : "manifest");
+              });
             });
           });
         });
@@ -191,12 +288,14 @@
     if (!store || !save) return callback(false);
     var slot = slotFor(save.id);
     remove(store, "state" + slot, function () {
-      remove(store, META_PREFIX + save.id, function () {
-        if (window.pseudoSave) delete window.pseudoSave[slot];
-        readManifest(store, function (ids) {
-          writeManifest(store, ids.filter(function (id) { return id !== save.id; }), function (ok) {
-            if (window.AnantharaIntro) window.AnantharaIntro.refreshManualSaveButton();
-            callback(!!ok);
+      remove(store, backupKeyFor(save.id), function () {
+        remove(store, META_PREFIX + save.id, function () {
+          if (window.pseudoSave) delete window.pseudoSave[slot];
+          readManifest(store, function (ids) {
+            writeManifest(store, ids.filter(function (id) { return id !== save.id; }), function (ok) {
+              if (window.AnantharaIntro) window.AnantharaIntro.refreshManualSaveButton();
+              callback(!!ok);
+            });
           });
         });
       });
@@ -398,7 +497,7 @@
         var overlay = card.closest(".ana-save-overlay");
         closeOverlay(overlay);
         if (landing && window.AnantharaIntro) window.AnantharaIntro.loadManualGame(slot);
-        else window.clearScreen(function () { window.loadAndRestoreGame(slot); });
+        else prepareManualLoad(slot, function () { window.clearScreen(function () { window.loadAndRestoreGame(slot); }); });
       }, "is-primary"));
       actions.appendChild(button(text(lang, "remove"), function () {
         confirmInline(card, text(lang, "confirmDelete"), text(lang, "yesDelete"), function () {
@@ -608,7 +707,8 @@
     hasAny: function (callback) { listSaves(function (saves) { callback(saves.length > 0); }); },
     openSave: function () { openSavePanel({mode:"save"}); },
     openLoad: function (options) { openSavePanel(Object.assign({mode:"load"}, options || {})); },
-    slotFor: slotFor
+    slotFor: slotFor,
+    prepareLoad: prepareManualLoad
   };
   window.AnantharaDemoEnd = {mount: mountDemoEnd};
   window.AnantharaHowTo = {open: openHowTo};

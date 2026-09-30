@@ -467,7 +467,12 @@
       if (action === "close-world") modal.hidden = true;
       if (action === "leave") {
         intro.classList.add("has-left");
-        intro.querySelector(".ana-intro-content").innerHTML = "<p>The path waits in silence.</p>";
+        if (openingVideo) openingVideo.pause();
+        if (loopVideo) loopVideo.pause();
+        window.close();
+        window.setTimeout(function () {
+          if (!document.hidden) window.location.replace("about:blank");
+        }, 120);
       }
     });
   });

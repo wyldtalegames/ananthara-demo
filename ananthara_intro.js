@@ -136,8 +136,8 @@
     var soundButton = document.getElementById("anaIntroSound");
     var skipButton = document.getElementById("anaIntroSkip");
     var landingCopy = {
-      de: {begin:"Reise beginnen", how:"So wird gespielt", continue:"Zurück nach Ananthara", load:"Spiel laden", language:"Sprache", languageTitle:"SPRACHE", back:"Zurück", world:"Über Ananthara", leave:"Den Pfad verlassen", worldCopy:"Willkommen in Ananthara, einer Welt uralter Königreiche, heiliger Magie und vergessener Wahrheiten.", close:"Schließen"},
-      en: {begin:"Begin Your Journey", how:"How to Play", continue:"Return to Ananthara", load:"Load Game", language:"Language", languageTitle:"LANGUAGE", back:"Back", world:"About Ananthara", leave:"Leave the Path", worldCopy:"Welcome to Ananthara, a world shaped by ancient kingdoms, sacred magic and forgotten truths.", close:"Close"}
+      de: {begin:"Reise beginnen", how:"So wird gespielt", continue:"Zurück nach Ananthara", load:"Spiel laden", language:"Sprache", languageTitle:"SPRACHE", back:"Zurück", world:"Über Ananthara", leave:"Feedback geben", worldCopy:"Willkommen in Ananthara, einer Welt uralter Königreiche, heiliger Magie und vergessener Wahrheiten.", close:"Schließen"},
+      en: {begin:"Begin Your Journey", how:"How to Play", continue:"Return to Ananthara", load:"Load Game", language:"Language", languageTitle:"LANGUAGE", back:"Back", world:"About Ananthara", leave:"Give Feedback", worldCopy:"Welcome to Ananthara, a world shaped by ancient kingdoms, sacred magic and forgotten truths.", close:"Close"}
     };
     function localizeLanding(lang) {
       lang = lang === "de" ? "de" : "en";
@@ -466,13 +466,10 @@
       }
       if (action === "close-world") modal.hidden = true;
       if (action === "leave") {
-        intro.classList.add("has-left");
-        if (openingVideo) openingVideo.pause();
-        if (loopVideo) loopVideo.pause();
-        window.close();
-        window.setTimeout(function () {
-          if (!document.hidden) window.location.replace("about:blank");
-        }, 120);
+        var feedbackUrl = "https://www.worldofananthara.com/ananthara-game#feedback";
+        var feedbackWindow = window.open(feedbackUrl, "_blank");
+        if (feedbackWindow) feedbackWindow.opener = null;
+        else window.location.href = feedbackUrl;
       }
     });
   });

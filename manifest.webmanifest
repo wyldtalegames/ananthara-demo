@@ -12,16 +12,10 @@
   "categories": ["games", "entertainment"],
   "icons": [
     {
-      "src": "Assets/app-icon-192.png",
-      "sizes": "192x192",
+      "src": "Assets/icongame.png",
+      "sizes": "1254x1254",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "Assets/app-icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ]
 }

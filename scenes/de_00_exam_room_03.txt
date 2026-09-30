@@ -274,14 +274,12 @@ Ihre Seiten sind geöffnet.
 
 Und sie beginnt zu reagieren.
 
-*page_break Die Replik betrachten
-*goto replica_intro
-
 *label replica_intro
 Die Replik schwebt geöffnet über dem Podest. In ihren leuchtenden Linien spürst du weiterhin dein eigenes Thal’ithara. Sie besteht nicht aus einer fremden Macht, die nun unabhängig von dir funktioniert; ein Teil deiner Kraft hält sie für diesen Augenblick aufrecht.
 
 Ihre Seiten sind leer.
 
+*page_break Die Replik betrachten
 *script if (window.AnantharaInteractions) window.AnantharaInteractions.mountReplica(this, {nextLabel:"replica_after_reveal"});
 *goto replica_after_reveal
 
@@ -301,7 +299,7 @@ Du kennst die Chroniken als Legende. Erst jetzt kannst du diesen Namen mit dem B
 *goto affliction_menu
 
 *label lost_memory_menu
-Eine einzige Frage.
+Dies ist deine Chance, etwas herauszufinden. Eine einzige Frage könnte den nächsten Hinweis liefern. Was fragst du?
 
 Du bist nach Ithar’kael gekommen, weil ein Teil deiner eigenen Vergangenheit für dich nicht erreichbar ist. Du weißt, dass etwas geschehen sein muss. Erinnerungen fehlen.
 
@@ -484,7 +482,7 @@ Die Seite bleibt leer. Dann erscheint neue Schrift. Diesmal hast nicht du gefrag
 *goto missing_menu
 
 *label missing_menu
-Eine einzige Frage.
+Dies ist deine Chance, etwas herauszufinden. Eine einzige Frage könnte den nächsten Hinweis liefern. Was fragst du?
 
 Du bist nach Ithar’kael gekommen, weil ${missing_person_name} verschwunden ist und niemand dir sagen konnte, was geschehen ist.
 
@@ -545,7 +543,7 @@ Eine neue Seite schlägt auf.
 *label affliction_menu
 Eine seltene Krankheit hat deine Heimat heimgesucht. Niemand konnte ihren Ursprung erklären. Du bist nach Ithar’kael gekommen, um herauszufinden, was wirklich dahintersteckt.
 
-Eine einzige Frage.
+Dies ist deine Chance, etwas herauszufinden. Eine einzige Frage könnte den nächsten Hinweis liefern. Was fragst du?
 
 *choice
   #„Was für eine Krankheit hat meine Heimat heimgesucht?"
@@ -634,7 +632,7 @@ Die nächste Seite öffnet sich.
 *label final_page
 Die Replik bewertet deine Entscheidung nicht. Die Seite wendet sich. Neue Schrift entsteht.
 
-„Wissen ist Macht.“ „Macht kann bewahrt werden.“ „Macht kann geteilt werden.“ „Macht kann verborgen werden.“ „Macht kann gebraucht werden.“ „Wie du Wissen nutzt, hat Konsequenzen.“ „Was du weißt, liegt in deiner Verantwortung.“ Dann schließt sich das Buch.
+„Wissen ist Macht. Macht kann bewahrt, geteilt, verborgen oder gebraucht werden. Wie du Wissen nutzt, hat Konsequenzen, und was du weißt, liegt in deiner Verantwortung.“ Dann schließt sich das Buch.
 
 Das Licht um den Einband wird schwächer, doch die Replik verschwindet nicht. Sie bleibt auf dem Podest liegen. Hinter dir hörst du Stein über Stein gleiten. Der Ausgang ist offen.
 

@@ -272,14 +272,12 @@ Its pages are open.
 
 And it begins to react.
 
-*page_break Examine the replica
-*goto replica_intro
-
 *label replica_intro
 The replica hovers open above the pedestal. Within its luminous lines, you can still feel your own Thal’ithara. It does not consist of a foreign power now functioning independently of you; part of your strength sustains it for this moment.
 
 Its pages are blank.
 
+*page_break Examine the replica
 *script if (window.AnantharaInteractions) window.AnantharaInteractions.mountReplica(this, {nextLabel:"replica_after_reveal"});
 *goto replica_after_reveal
 
@@ -299,7 +297,7 @@ You know the Chronicles as a legend. Only now can you connect that name to this 
 *goto affliction_menu
 
 *label lost_memory_menu
-One question.
+This is your chance to learn something. A single question might reveal the next clue. What do you ask?
 
 You came to Ithar’kael because part of your own past lies beyond your reach. You know something must have happened. Memories are missing.
 
@@ -482,7 +480,7 @@ The page remains blank. Then new writing appears. This time, you were not the on
 *goto missing_menu
 
 *label missing_menu
-One question.
+This is your chance to learn something. A single question might reveal the next clue. What do you ask?
 
 You came to Ithar’kael because ${missing_person_name} vanished and no one could tell you what happened.
 
@@ -543,7 +541,7 @@ A new page turns.
 *label affliction_menu
 A rare illness swept through your homeland. No one could explain its origin. You came to Ithar’kael to discover what truly lies behind it.
 
-One question.
+This is your chance to learn something. A single question might reveal the next clue. What do you ask?
 
 *choice
   #“What kind of illness afflicted my homeland?”
@@ -632,7 +630,7 @@ The next page opens.
 *label final_page
 The replica does not judge your decision. The page turns. New writing appears.
 
-“Knowledge is power.” “Power can be preserved.” “Power can be shared.” “Power can be hidden.” “Power can be used.” “How you use knowledge has consequences.” “What you know is your responsibility.” Then the book closes.
+“Knowledge is power. Power can be preserved, shared, hidden or used. How you use knowledge has consequences, and what you know is your responsibility.” Then the book closes.
 
 The light around its cover grows fainter, but the replica does not vanish. It remains upon the pedestal. Behind you, you hear stone sliding across stone. The exit is open.
 

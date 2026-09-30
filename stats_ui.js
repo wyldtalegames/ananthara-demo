@@ -1670,10 +1670,10 @@
     var instructions = el("div", "ana-replica-instructions");
     [en ? "Consider the answer." : "Bedenke die Antwort.", en ? "And decide what you will do with the knowledge." : "Und entscheide, was du mit dem Wissen tun wirst."].forEach(function (line) { instructions.appendChild(el("p", "", line)); });
     questionPrompt.hidden = true; copy.hidden = true; instructions.hidden = true;
-    pageNode.appendChild(copy); dialog.appendChild(questionPrompt); dialog.appendChild(instructions);
+    pageNode.appendChild(copy); pageNode.appendChild(questionPrompt); pageNode.appendChild(instructions);
     var controls = el("div", "ana-replica-controls");
     var next = el("button", "is-primary", en ? "Continue" : "Weiter"); next.type = "button"; next.hidden = true;
-    controls.appendChild(next); dialog.appendChild(controls);
+    controls.appendChild(next); pageNode.appendChild(controls);
     var videoStage = el("div", "ana-replica-video-stage");
     var videoSkip = el("button", "ana-replica-video-skip", en ? "SKIP" : "ÜBERSPRINGEN"); videoSkip.type = "button";
     videoStage.appendChild(video); videoStage.appendChild(videoSkip);

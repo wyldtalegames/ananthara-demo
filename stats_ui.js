@@ -1959,8 +1959,28 @@
     // rebuilds the choice markup on navigation, so install this guard on
     // the current main surface only and let native radio/change behavior
     // remain the source of truth.
-    if (!main.dataset.anantharaChoiceScrollGuard) {
+    // Use a DOM-node property rather than a data attribute. ChoiceScript's
+    // page curl clones markup (including data attributes) but not listeners;
+    // a cloned marker would therefore suppress installation on the new page.
+    if (!main.anantharaChoiceScrollGuardInstalled) {
       var activeGesture = null;
+      var visualChoiceScrollTop = null;
+      function isDesktopVisualChoicePointer(event, label) {
+        return !!label && label.classList.contains("ana-visual-choice") &&
+          event.button === 0 && !window.isMobile && !!window.matchMedia &&
+          window.matchMedia("(min-width: 700px) and (pointer: fine)").matches;
+      }
+      // A native label click focuses its visually hidden radio. On desktop
+      // that can make the internally scrolling story panel reveal the 1px
+      // control and jump away from the card the player clicked. Prevent only
+      // the mouse-down focus step; the following native click/change remains
+      // intact, as does the complete keyboard path.
+      main.addEventListener("mousedown", function (event) {
+        var label = event.target && event.target.closest ? event.target.closest(".choice label.ana-visual-choice") : null;
+        if (!isDesktopVisualChoicePointer(event, label)) return;
+        visualChoiceScrollTop = main.scrollTop;
+        event.preventDefault();
+      }, true);
       main.addEventListener("pointerdown", function (event) {
         var label = event.target && event.target.closest ? event.target.closest(".choice label") : null;
         if (!label) { activeGesture = null; return; }
@@ -1988,6 +2008,30 @@
         activeGesture = null;
         if (wasScroll) { event.preventDefault(); event.stopImmediatePropagation(); }
       }, true);
+      main.addEventListener("click", function (event) {
+        var label = event.target && event.target.closest ? event.target.closest(".choice label.ana-visual-choice") : null;
+        if (!label || visualChoiceScrollTop === null || window.isMobile) return;
+        var preservedScrollTop = visualChoiceScrollTop;
+        visualChoiceScrollTop = null;
+        var input = label.querySelector('input[type="radio"]');
+        // Cancel only the pointer-generated label default action, because it
+        // focuses the hidden radio and scrolls #main. Reproduce the native
+        // checked/input/change sequence without moving focus. Keyboard
+        // activation never sets visualChoiceScrollTop and stays untouched.
+        event.preventDefault();
+        if (input && !input.disabled && !input.checked) {
+          input.checked = true;
+          input.dispatchEvent(new Event("input", {bubbles: true}));
+          input.dispatchEvent(new Event("change", {bubbles: true}));
+        }
+        // Restore in the same task and once after native label activation.
+        // This covers browsers that scroll during the radio's default action
+        // without introducing a timeout or visible smooth movement.
+        main.scrollTop = preservedScrollTop;
+        window.requestAnimationFrame(function () {
+          main.scrollTop = preservedScrollTop;
+        });
+      }, true);
       main.addEventListener("change", function (event) {
         var input = event.target;
         if (!input || !input.matches || !input.matches(".choice input")) return;
@@ -1998,7 +2042,7 @@
           label.classList.toggle("is-selected", !!(radio && radio.checked));
         });
       });
-      main.dataset.anantharaChoiceScrollGuard = "true";
+      main.anantharaChoiceScrollGuardInstalled = true;
     }
 
     Array.prototype.forEach.call(main.querySelectorAll(".ana-choice-question"), function (paragraph) {

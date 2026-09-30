@@ -4,11 +4,14 @@
   var MANIFEST_KEY = "ananthara_manual_save_manifest";
   var META_PREFIX = "ananthara_manual_save_meta_";
   var SLOT_PREFIX = "ananthara_manual_";
-  var LINKS = Object.assign({feedback: "", newsletter: "", patreon: ""}, window.AnantharaLinks || {});
+  var LINKS = Object.assign({
+    feedback: "https://www.worldofananthara.com/ananthara-game#feedback",
+    newsletter: "https://www.worldofananthara.com/ananthara-game#newsletter"
+  }, window.AnantharaLinks || {});
 
   var COPY = {
     de: {
-      menu: "Menü", returnGame: "Zurück zum Spiel", saveGame: "Spiel speichern", loadGame: "Spiel laden",
+      menu: "Menü", returnGame: "Zurück zum Spiel", mainMenu: "Hauptmenü", saveGame: "Spiel speichern", loadGame: "Spiel laden",
       restartGame: "Neu beginnen", settings: "Einstellungen", saveTitle: "SPIEL SPEICHERN", loadTitle: "SPIEL LADEN",
       saveName: "Name des Speicherstands", createSave: "Neuen Speicherstand anlegen", overwrite: "Überschreiben",
       load: "Laden", remove: "Löschen", cancel: "Abbrechen", back: "Zurück", confirmOverwrite: "Diesen Speicherstand wirklich überschreiben?",
@@ -18,10 +21,10 @@
       corrupt: "Dieser Speicherstand konnte nicht gelesen werden.", saveFailed: "Der Speicherstand konnte nicht angelegt werden.",
       saved: "Spiel erfolgreich gespeichert.", unnamed: "Unbenannter Sucher", defaultSuffix: "Speicherstand",
       demo: "DANKE, DASS DU DIE DEMO GESPIELT HAST.", feedback: "Feedback geben", newsletter: "Für Neuigkeiten anmelden",
-      patreon: "Auf Patreon unterstützen", newGame: "Neues Spiel", howTo: "So wird gespielt", linkUnavailable: "Link noch nicht konfiguriert."
+      newGame: "Neues Spiel", howTo: "So wird gespielt", linkUnavailable: "Link noch nicht konfiguriert."
     },
     en: {
-      menu: "Menu", returnGame: "Return to the Game", saveGame: "Save Game", loadGame: "Load Game",
+      menu: "Menu", returnGame: "Return to the Game", mainMenu: "Main Menu", saveGame: "Save Game", loadGame: "Load Game",
       restartGame: "Restart Game", settings: "Settings", saveTitle: "SAVE GAME", loadTitle: "LOAD GAME",
       saveName: "Save name", createSave: "Create New Save", overwrite: "Overwrite",
       load: "Load", remove: "Delete", cancel: "Cancel", back: "Back", confirmOverwrite: "Overwrite this saved game?",
@@ -31,7 +34,7 @@
       corrupt: "This saved game could not be read.", saveFailed: "The saved game could not be created.",
       saved: "Game saved successfully.", unnamed: "Unnamed Seeker", defaultSuffix: "Save",
       demo: "THANK YOU FOR PLAYING THE DEMO.", feedback: "Give Feedback", newsletter: "Subscribe for News",
-      patreon: "Support on Patreon", newGame: "New Game", howTo: "How to Play", linkUnavailable: "Link not configured yet."
+      newGame: "New Game", howTo: "How to Play", linkUnavailable: "Link not configured yet."
     }
   };
 
@@ -461,6 +464,10 @@
     });
   }
 
+  function returnToMainMenu() {
+    window.location.reload();
+  }
+
   function showAnantharaMenu() {
     if (document.getElementById("loading")) return;
     var menuButton = document.getElementById("menuButton");
@@ -475,6 +482,7 @@
       var menu = element("section", "ana-game-menu");
       menu.appendChild(element("h2", "", text(lang, "menu")));
       menu.appendChild(button(text(lang, "returnGame"), returnToGame, "is-primary"));
+      menu.appendChild(button(text(lang, "mainMenu"), returnToMainMenu));
       menu.appendChild(button(text(lang, "howTo"), function (event) { openHowTo({language:lang, trigger:event.currentTarget}); }));
       menu.appendChild(button(text(lang, "saveGame"), function () { openSavePanel({mode:"save"}); }));
       menu.appendChild(button(text(lang, "loadGame"), function () { openSavePanel({mode:"load"}); }));
@@ -502,11 +510,16 @@
     if (!target) return;
     var existing = target.querySelector(".ana-demo-end");
     if (existing) existing.remove();
+    var headingSource = target.querySelector("p strong");
+    if (headingSource && headingSource.textContent.trim() === text(lang, "demo")) {
+      var heading = element("h2", "ana-demo-heading", headingSource.textContent.trim());
+      headingSource.parentNode.replaceWith(heading);
+    }
     var panel = element("section", "ana-demo-end");
     panel.appendChild(element("div", "ana-demo-sigil", "✧"));
     var actions = element("div", "ana-demo-actions");
     [
-      ["feedback", "feedback"], ["newsletter", "newsletter"], ["patreon", "patreon"]
+      ["feedback", "feedback"], ["newsletter", "newsletter"]
     ].forEach(function (entry) {
       var url = safeString(LINKS[entry[0]]);
       var link = element("a", "", text(lang, entry[1]));
@@ -521,6 +534,7 @@
       }
       actions.appendChild(link);
     });
+    actions.appendChild(button(text(lang, "mainMenu"), returnToMainMenu));
     actions.appendChild(button(text(lang, "newGame"), function () {
       if (window.AnantharaIntro) window.AnantharaIntro.startNewGame();
       else window.restartGame(false);
@@ -528,6 +542,64 @@
     panel.appendChild(actions);
     target.appendChild(panel);
   }
+
+  function installDesktopStoryScroll() {
+    if (!window.Scene || !window.Scene.prototype || typeof window.Scene.prototype.resetPage !== "function" || typeof window.curl !== "function") return;
+    if (window.AnantharaDesktopStoryScrollInstalled) return;
+    window.AnantharaDesktopStoryScrollInstalled = true;
+
+    var originalResetPage = window.Scene.prototype.resetPage;
+    var originalCurl = window.curl;
+
+    function isDesktopWeb() {
+      return !!window.isWeb && !window.isMobile && !!window.matchMedia &&
+        window.matchMedia("(min-width: 700px) and (pointer: fine)").matches;
+    }
+
+    function scrollToStoryStart() {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          var storyText = document.getElementById("text");
+          if (!storyText) return;
+          var top = Math.max(0, window.pageYOffset + storyText.getBoundingClientRect().top - 24);
+          var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({top:top, left:0, behavior:reducedMotion ? "auto" : "smooth"});
+        });
+      });
+    }
+
+    window.Scene.prototype.resetPage = function () {
+      // resetPage is the normal story/page-break/choice path. Secondary
+      // scenes (stats and other UI modes) deliberately do not set this flag.
+      if (!this.secondaryMode) window.AnantharaStoryScrollPending = true;
+      return originalResetPage.apply(this, arguments);
+    };
+
+    window.curl = function () {
+      var shouldScroll = window.AnantharaStoryScrollPending === true;
+      var incomingContainer = document.getElementById("container2");
+      var result = originalCurl.apply(this, arguments);
+      if (!shouldScroll) return result;
+      window.AnantharaStoryScrollPending = false;
+      if (!isDesktopWeb()) return result;
+
+      if (!incomingContainer) {
+        scrollToStoryStart();
+        return result;
+      }
+
+      var onStable = function () {
+        incomingContainer.removeEventListener("transitionend", onStable);
+        incomingContainer.removeEventListener("webkitTransitionEnd", onStable);
+        scrollToStoryStart();
+      };
+      incomingContainer.addEventListener("transitionend", onStable);
+      incomingContainer.addEventListener("webkitTransitionEnd", onStable);
+      return result;
+    };
+  }
+
+  installDesktopStoryScroll();
 
   window.AnantharaLinks = LINKS;
   window.AnantharaManualSaves = {

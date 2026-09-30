@@ -87,6 +87,7 @@
 .ana-save-close{display:block;margin:24px auto 0;min-width:180px}
 
 .ana-demo-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.ana-demo-heading{margin:0 auto 1.5rem;color:#ffc700;font-family:"AnantharaSubtitle",Arial,sans-serif;font-size:clamp(1.65rem,4vw,3rem);line-height:1.15;letter-spacing:.08em;text-align:center;text-wrap:balance}
 
 @media(max-width:640px){
   .ana-intro-content h1{font-size:clamp(1.7rem,10vw,3rem);letter-spacing:.025em}

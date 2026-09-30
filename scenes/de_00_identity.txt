@@ -224,12 +224,6 @@ Wo liegt deine Heimat?
     *goto reason_intro
 
 *label reason_intro
-*if race = "Draek'har"
-  *if personal_history = "noble"
-    *if language = "en"
-      Even your family's standing never fully shielded you from the old prejudice attached to the Draek'har name.
-    *if language != "en"
-      Selbst das Ansehen deiner Familie schützte dich nie vollständig vor den alten Vorurteilen, die dem Namen der Draek'har anhaften.
 *if language = "en"
   Not everyone arrives at Ithar'kael willingly. Life often pushes us toward truth.
 

@@ -423,7 +423,7 @@
         });
       }
       window.setTimeout(function () {
-        if (openingVideo.readyState < 2 || openingVideo.paused) failVideo();
+        if (!transitioned && (openingVideo.readyState < 2 || openingVideo.paused)) failVideo();
       }, 4000);
     } else {
       intro.classList.remove("video-pending");

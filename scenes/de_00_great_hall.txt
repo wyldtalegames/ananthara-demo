@@ -235,7 +235,7 @@ Für einen Moment denkst du an die letzte Prüfungskammer. An die freigelegte Ba
 
 Dann sieht er dich noch einmal an.
 
-„Die Chroniken sind dein Auftrag.“ Eine kurze Pause. „Was du auf dem Weg außerdem findest, wird deine Suche.“ Er tritt zur Seite. „Wenn du bereit bist, wähle deinen ersten Weg.“
+„Die Chroniken sind dein Auftrag. Aber Ananthara besteht aus mehr als dem Ziel, das man dir nennt. Du wirst Orte und Kulturen kennenlernen, alten Mythen folgen und auf Relikte und Geschichten stoßen, nach denen niemand dich geschickt hat. Welche dieser Spuren du weiterverfolgst, liegt bei dir.“ Er tritt zur Seite. „Wenn du bereit bist, wähle deinen ersten Weg.“
 
 *page_break Weiter
 

@@ -388,6 +388,12 @@
   gap: 1rem;
 }
 
+@media (min-width: 700px) and (pointer: fine) {
+  #main:has(.choice.ana-visual-choice-grid) {
+    overflow-anchor: none;
+  }
+}
+
 .choice.ana-visual-choice-grid > div,
 .choice.ana-visual-choice-grid > div:first-child,
 .choice.ana-visual-choice-grid > div:last-child {

@@ -1970,6 +1970,10 @@
           event.button === 0 && !window.isMobile && !!window.matchMedia &&
           window.matchMedia("(min-width: 700px) and (pointer: fine)").matches;
       }
+      main.addEventListener("pointerdown", function (event) {
+        var label = event.target && event.target.closest ? event.target.closest(".choice label.ana-visual-choice") : null;
+        if (isDesktopVisualChoicePointer(event, label)) visualChoiceScrollTop = main.scrollTop;
+      }, true);
       // A native label click focuses its visually hidden radio. On desktop
       // that can make the internally scrolling story panel reveal the 1px
       // control and jump away from the card the player clicked. Prevent only
@@ -1978,7 +1982,7 @@
       main.addEventListener("mousedown", function (event) {
         var label = event.target && event.target.closest ? event.target.closest(".choice label.ana-visual-choice") : null;
         if (!isDesktopVisualChoicePointer(event, label)) return;
-        visualChoiceScrollTop = main.scrollTop;
+        if (visualChoiceScrollTop === null) visualChoiceScrollTop = main.scrollTop;
         event.preventDefault();
       }, true);
       main.addEventListener("pointerdown", function (event) {
@@ -2030,6 +2034,9 @@
         main.scrollTop = preservedScrollTop;
         window.requestAnimationFrame(function () {
           main.scrollTop = preservedScrollTop;
+          window.requestAnimationFrame(function () {
+            main.scrollTop = preservedScrollTop;
+          });
         });
       }, true);
       main.addEventListener("change", function (event) {
